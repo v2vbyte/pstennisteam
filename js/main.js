@@ -17,9 +17,9 @@
   /* ---------- 1. Configuração ---------- */
   var CONFIG = {
     // Número com código do país e DDD, só dígitos. Ex.: 5531987654321
-    whatsapp: '55319XXXXXXXX',
+    whatsapp: '5531995869025',
     // Número exibido na página (texto). Ex.: (31) 98765-4321
-    telefoneExibido: '[telefone]'
+    telefoneExibido: '+55 (31) 99586-9025'
   };
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
