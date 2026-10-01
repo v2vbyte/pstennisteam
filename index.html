@@ -1,626 +1,824 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pstennisteam | Aulas de tênis em Belo Horizonte</title>
-  <meta name="description" content="Aulas de tênis com Paulo Santana em Belo Horizonte: individual, dupla, grupo e aula avulsa na Fama Tennis ou no seu condomínio. Agende uma aula experimental.">
-  <meta name="theme-color" content="#A8492A">
+<html lang="pt-BR" data-theme="saibro">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
-  <!-- Open Graph: aparece quando o link é compartilhado no WhatsApp e redes sociais -->
-  <meta property="og:title" content="pstennisteam | Aulas de tênis em Belo Horizonte">
-  <meta property="og:description" content="Do primeiro saque à preparação para torneios. Agende uma aula experimental.">
-  <meta property="og:type" content="website">
-  <!-- <meta property="og:image" content="img/compartilhamento.jpg"> -->
+    <title>Paulo Santana | Tennis Coach em Belo Horizonte</title>
+    <meta
+      name="description"
+      content="Aulas de tênis com Paulo Santana em Belo Horizonte, na Fama Tennis e em condomínios. Site completo no ar em 4 de outubro. Agende sua aula experimental pelo WhatsApp."
+    />
+    <meta name="theme-color" content="#A8492A" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
-</head>
-<body>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pstennisteam.com/" />
+    <meta property="og:title" content="Paulo Santana | Tennis Coach" />
+    <meta
+      property="og:description"
+      content="Aulas de tênis em Belo Horizonte. Agende sua aula experimental pelo WhatsApp."
+    />
+    <!-- EDITAR: imagem que aparece ao compartilhar o link (1200 x 630). Suba o arquivo e tire o comentário.
+<meta property="og:image" content="https://pstennisteam.com/compartilhar.jpg">
+-->
 
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%23D4F24A'/%3E%3Cpath d='M7 8c7 6 7 18 0 24M33 8c-7 6-7 18 0 24' fill='none' stroke='%231C1A17' stroke-opacity='.3' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
 
-<!-- ========== CABEÇALHO ========== -->
-<header class="site-header" id="topo">
-  <div class="container site-header__inner">
-    <a class="brand" href="#inicio" aria-label="PS Tennis Team, voltar ao início">
-      <img class="brand__logo" src="img/logo-preta.png" alt="PS Tennis Team" width="782" height="196">
-    </a>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Figtree:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line class="menu-toggle__l1" x1="4" y1="7" x2="20" y2="7"></line>
-        <line class="menu-toggle__l2" x1="4" y1="12" x2="20" y2="12"></line>
-        <line class="menu-toggle__l3" x1="4" y1="17" x2="14" y2="17"></line>
-      </svg>
-    </button>
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        var t = localStorage.getItem("ps-tema");
+        if (t === "saibro" || t === "rapida")
+          document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
 
-    <nav class="main-nav" id="menu-principal" aria-label="Principal">
-      <ul class="main-nav__list">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#aulas">Aulas</a></li>
-        <li><a href="#programas">Programas</a></li>
-        <li><a href="#onde">Onde</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-      <a class="btn btn--ink" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener">Agendar aula experimental</a>
-    </nav>
-  </div>
-</header>
+    <style>
+      :root {
+        /* Design system PS Tennis Team */
+        --saibro: #a8492a;
+        --lima: #d4f24a;
+        --tinta: #1c1a17;
+        --creme: #f4eee6;
+        --grafite: #2a2723;
+        --texto-no-escuro: #cfc6ba;
+        --azul-quadra: #1f4e8c;
+        --verde-quadra: #2f6b4f;
 
-<main id="conteudo">
+        --fonte-titulo:
+          "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+        --fonte-texto:
+          "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  <!-- ========== INÍCIO ========== -->
-  <section class="hero" id="inicio">
-    <div class="container hero__inner">
-      <div class="hero__text">
-        <p class="eyebrow eyebrow--light">Aulas de tênis em Belo Horizonte | MG</p>
-        <h1 class="hero__title">Tênis para quem quer aprender de verdade.</h1>
-        <p class="hero__lead">Do primeiro saque à preparação para torneios, com um método que respeita o seu ritmo e mostra a sua evolução em vídeo.</p>
-        <div class="hero__actions">
-          <a class="btn btn--ball btn--lg" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
-            Agendar aula experimental
-          </a>
-          <a class="link-light" href="#aulas">Ver modalidades</a>
+        --margem: clamp(20px, 5vw, 56px);
+      }
+
+      /* Modo saibro: terracota + creme */
+      [data-theme="saibro"] {
+        --fundo: var(--saibro);
+        --texto: var(--creme);
+        --texto-2: var(--creme);
+        --linha: rgba(244, 238, 230, 0.34);
+        --piso: rgba(244, 238, 230, 0);
+        --marca: rgba(28, 26, 23, 0.24);
+        --trilho: rgba(28, 26, 23, 0.22);
+      }
+
+      /* Modo quadra rápida: entorno verde, quadra azul, linhas creme */
+      [data-theme="rapida"] {
+        --fundo: var(--verde-quadra);
+        --texto: var(--creme);
+        --texto-2: var(--creme);
+        --linha: rgba(244, 238, 230, 0.5);
+        --piso: var(--azul-quadra);
+        --marca: rgba(28, 26, 23, 0.26);
+        --trilho: rgba(28, 26, 23, 0.24);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      body {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        background: var(--fundo);
+        color: var(--texto);
+        font-family: var(--fonte-texto);
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 0.6s ease,
+          color 0.6s ease;
+      }
+
+      /* ---------- Quadra (elemento gráfico da marca) ---------- */
+      .quadra {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        height: 94vh;
+        height: 94svh;
+        width: calc(94svh * 1297 / 2497);
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
+        overflow: visible;
+      }
+      @media (orientation: landscape) {
+        .quadra {
+          height: 96vw;
+          width: calc(96vw * 1297 / 2497);
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+      }
+      .quadra .piso {
+        fill: var(--piso);
+        transition: fill 0.6s ease;
+      }
+      .quadra .l {
+        fill: none;
+        stroke: var(--linha);
+        stroke-width: 4;
+        stroke-linecap: square;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 0;
+        transition: stroke 0.6s ease;
+      }
+      .quadra .rede {
+        stroke-width: 7;
+      }
+      .js .quadra .l {
+        stroke-dashoffset: 1;
+      }
+      .js.desenha .quadra .l {
+        animation: traca 1s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+        animation-delay: var(--d, 0s);
+      }
+      @keyframes traca {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* ---------- Estrutura ---------- */
+      .pagina {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: max(20px, env(safe-area-inset-top)) var(--margem)
+          max(20px, env(safe-area-inset-bottom));
+      }
+
+      .topo,
+      .rodape {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .logo {
+        display: block;
+        height: 48px;
+        width: auto;
+      }
+
+      /* Seletor de modo */
+      .tema {
+        display: inline-flex;
+        gap: 2px;
+        padding: 4px;
+        border-radius: 999px;
+        background: var(--trilho);
+        transition: background-color 0.6s ease;
+      }
+      .tema button {
+        min-height: 40px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--texto);
+        font: 600 14px/1 var(--fonte-texto);
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+      .tema button[aria-pressed="true"] {
+        background: var(--lima);
+        color: var(--tinta);
+      }
+
+      /* Centro */
+      .centro {
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      h1 {
+        --bola: max(14px, 0.2em);
+        --folga: 0.07em;
+        margin: 0;
+        font: 800 clamp(3.5rem, 16vw, 11.5rem)/0.9 var(--fonte-titulo);
+        text-transform: uppercase;
+        letter-spacing: 0.005em;
+      }
+      h1 .linha {
+        display: block;
+        white-space: nowrap;
+      }
+      /* espaço onde a bola pousa, como o ponto final do nome */
+      h1 .linha-2::before,
+      h1 .slot {
+        content: "";
+        display: inline-block;
+        width: calc(var(--bola) + var(--folga));
+        height: var(--bola);
+        vertical-align: baseline;
+      }
+
+      .funcao {
+        margin: 22px 0 0;
+        font: 600 clamp(1.05rem, 3.4vw, 1.5rem)/1 var(--fonte-titulo);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        padding-left: 0.16em; /* compensa o espaçamento da última letra */
+      }
+
+      .data {
+        margin: 14px 0 0;
+        font-size: clamp(1.1875rem, 2.4vw, 1.3125rem);
+        line-height: 1.6;
+        color: var(--texto-2);
+        transition: color 0.6s ease;
+      }
+
+      .botao {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 52px;
+        margin-top: 34px;
+        padding: 0 28px;
+        border-radius: 999px;
+        background: var(--lima);
+        color: var(--tinta);
+        font: 700 17px/1 var(--fonte-texto);
+        text-decoration: none;
+        transition: transform 0.2s ease;
+      }
+      .botao:hover {
+        transform: translateY(-2px);
+      }
+      .botao svg {
+        width: 20px;
+        height: 20px;
+        flex: none;
+      }
+
+      .rodape {
+        font: 600 14px/1.4 var(--fonte-texto);
+        color: var(--texto-2);
+        transition: color 0.6s ease;
+      }
+      .rodape p {
+        margin: 0;
+      }
+      .rodape a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--texto);
+        outline-offset: 3px;
+      }
+
+      /* ---------- Bola ---------- */
+      .camada-bola {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .bola,
+      .sombra {
+        display: none;
+      }
+      .js .bola,
+      .js .sombra {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        will-change: transform;
+      }
+      .bola {
+        padding: 0;
+        border: 0;
+        background: none;
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+      .bola::before {
+        /* área de toque maior que a bola */
+        content: "";
+        position: absolute;
+        inset: -14px;
+        border-radius: 50%;
+      }
+      .bola-squash,
+      .bola svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .bola-squash {
+        transform-origin: 50% 100%;
+      }
+      .sombra {
+        border-radius: 50%;
+        background: var(--marca);
+        filter: blur(1px);
+      }
+      .js .bola.visivel,
+      .js .sombra.visivel {
+        opacity: 1;
+      }
+
+      .marca-bola {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--marca);
+        animation: marca 1.6s ease-out forwards;
+      }
+      @keyframes marca {
+        from {
+          opacity: 1;
+          transform: scale(0.55);
+        }
+        to {
+          opacity: 0;
+          transform: scale(1);
+        }
+      }
+
+      /* ---------- Entradas ---------- */
+      .js .revela {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+        transition-delay: var(--d, 0s);
+      }
+      .js .revela.on {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Reduzir movimento: tudo aparece parado */
+      @media (prefers-reduced-motion: reduce) {
+        .js .revela {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .js .quadra .l {
+          stroke-dashoffset: 0;
+          animation: none;
+        }
+        .botao {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rodape {
+          flex-direction: column;
+          gap: 6px;
+          text-align: center;
+        }
+        .tema button {
+          padding: 0 10px;
+          font-size: 13px;
+        }
+        .logo {
+          height: 30px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Quadra vista de cima, nas medidas oficiais (cm) -->
+    <svg
+      class="quadra"
+      viewBox="-100 -60 1297 2497"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect class="piso" x="0" y="0" width="1097" height="2377" />
+      <path class="l" pathLength="1" style="--d: 0s" d="M0 0H1097V2377H0Z" />
+      <path class="l" pathLength="1" style="--d: 0.15s" d="M137 0V2377" />
+      <path class="l" pathLength="1" style="--d: 0.15s" d="M960 0V2377" />
+      <path class="l" pathLength="1" style="--d: 0.3s" d="M137 548.5H960" />
+      <path class="l" pathLength="1" style="--d: 0.3s" d="M137 1828.5H960" />
+      <path
+        class="l"
+        pathLength="1"
+        style="--d: 0.45s"
+        d="M548.5 548.5V1828.5"
+      />
+      <path class="l" pathLength="1" style="--d: 0.45s" d="M548.5 0V30" />
+      <path class="l" pathLength="1" style="--d: 0.45s" d="M548.5 2377V2347" />
+      <path
+        class="l rede"
+        pathLength="1"
+        style="--d: 0.6s"
+        d="M-91 1188.5H1188"
+      />
+    </svg>
+
+    <div class="pagina">
+      <header class="topo">
+        <!-- Logo branca (vale para saibro e quadra rápida) -->
+        <a
+          class="revela fase-1"
+          href="/"
+          aria-label="PS Tennis Team, página inicial"
+        >
+          <img
+            class="logo"
+            src="data:image/png;base64,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"
+            alt="PS Tennis Team"
+            width="479"
+            height="120"
+          />
+        </a>
+
+        <div class="tema revela fase-1" role="group" aria-label="Cor da página">
+          <button type="button" data-tema="saibro" aria-pressed="true">
+            Saibro
+          </button>
+          <button type="button" data-tema="rapida" aria-pressed="false">
+            Quadra rápida
+          </button>
         </div>
-      </div>
+      </header>
 
-      <div class="hero__media">
-        <!--
-          VÍDEO DO HERO: quando o vídeo estiver pronto, coloque o arquivo em img/
-          e substitua o bloco .hero__placeholder abaixo por:
-          <video class="hero__video" src="img/hero.mp4" poster="img/hero.jpg" autoplay muted loop playsinline></video>
-          (vídeo curto, 6 a 10 segundos, sem som)
-        -->
-        <div class="hero__placeholder">
-          <svg class="court court--vertical" viewBox="0 0 360 734" fill="none" aria-hidden="true">
-            <rect x="20" y="20" width="320" height="694"></rect>
-            <line x1="60" y1="20" x2="60" y2="714"></line>
-            <line x1="300" y1="20" x2="300" y2="714"></line>
-            <line x1="60" y1="180" x2="300" y2="180"></line>
-            <line x1="60" y1="554" x2="300" y2="554"></line>
-            <line x1="180" y1="180" x2="180" y2="554"></line>
-            <line x1="180" y1="20" x2="180" y2="34"></line>
-            <line x1="180" y1="700" x2="180" y2="714"></line>
-            <line class="court__net" x1="4" y1="367" x2="356" y2="367"></line>
+      <main class="centro">
+        <!-- EDITAR: nome -->
+        <h1 class="revela fase-1">
+          <span class="linha">Paulo</span>
+          <span class="linha linha-2"
+            >Santana<span class="slot" aria-hidden="true"></span
+          ></span>
+        </h1>
+
+        <!-- EDITAR: função -->
+        <p class="funcao revela fase-2">Tennis Coach</p>
+
+        <!-- EDITAR: data. O texto de data-depois aparece sozinho se a data passar e esta página ainda estiver no ar -->
+        <p
+          class="data revela fase-2"
+          id="data"
+          data-depois="O site completo chega em breve"
+        >
+          No ar em 4 de outubro
+        </p>
+
+        <!-- EDITAR: número do WhatsApp e mensagem pronta -->
+        <a
+          class="botao revela fase-2"
+          href="https://wa.me/5531995869025?text=Ol%C3%A1%2C%20Paulo!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20aula%20experimental."
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"
+            />
           </svg>
-          <svg class="court court--horizontal" viewBox="0 0 734 360" fill="none" aria-hidden="true">
-            <rect x="20" y="20" width="694" height="320"></rect>
-            <line x1="20" y1="60" x2="714" y2="60"></line>
-            <line x1="20" y1="300" x2="714" y2="300"></line>
-            <line x1="180" y1="60" x2="180" y2="300"></line>
-            <line x1="554" y1="60" x2="554" y2="300"></line>
-            <line x1="180" y1="180" x2="554" y2="180"></line>
-            <line class="court__net" x1="367" y1="4" x2="367" y2="356"></line>
+          Agendar aula experimental
+        </a>
+      </main>
+
+      <footer class="rodape revela fase-2">
+        <p>Aulas de tênis em Belo Horizonte, MG</p>
+        <p>
+          <a
+            href="https://instagram.com/pstennisteam"
+            target="_blank"
+            rel="noopener"
+            >@pstennisteam</a
+          >
+        </p>
+      </footer>
+    </div>
+
+    <!-- Bola: entra quicando e pousa como ponto final do nome. Tocar nela faz quicar de novo. -->
+    <div class="camada-bola">
+      <span class="sombra" aria-hidden="true"></span>
+      <button class="bola" type="button" aria-label="Quicar a bola de novo">
+        <span class="bola-squash">
+          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <circle cx="20" cy="20" r="19.5" fill="#D4F24A" />
+            <path
+              d="M7 8c7 6 7 18 0 24M33 8c-7 6-7 18 0 24"
+              fill="none"
+              stroke="#1C1A17"
+              stroke-opacity=".28"
+              stroke-width="2.4"
+              stroke-linecap="round"
+            />
           </svg>
-          <span class="play-badge" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-          <span class="media-label">[Vídeo em quadra · 8 s, sem som, em loop]</span>
-        </div>
-      </div>
+        </span>
+      </button>
     </div>
-  </section>
 
-  <!-- ========== CREDENCIAIS ========== -->
-  <section class="credentials" aria-label="Credenciais">
-    <div class="container credentials__inner">
-      <div class="credential">
-        <span class="credential__value">+ 17 anos</span>
-        <span class="credential__label">de quadra</span>
-      </div>
-      <div class="credential">
-        <span class="credential__value">+ 500 alunos</span>
-        <span class="credential__label">já passaram pelas aulas</span>
-      </div>
-      <div class="credential">
-        <span class="credential__value">+ 4 quadras</span>
-        <span class="credential__label">quadras parceiras e condomínios</span>
-      </div>
-    </div>
-  </section>
+    <script>
+      (function () {
+        "use strict";
 
-  <!-- ========== SOBRE ========== -->
-  <section class="section" id="sobre">
-    <div class="container about">
-      <div class="about__photo">
-        <img src="img/paulo.jpg" alt="Paulo Santana em quadra de saibro, em posição de espera com a raquete" width="1000" height="1333" loading="lazy">
-      </div>
-      <div class="about__text">
-        <p class="eyebrow">O professor e o método</p>
-        <h2 class="section-title">Técnica se aprende. Gosto pelo jogo se constrói.</h2>
-        <p class="body-lg"><strong>Paulo Santana</strong> é professor e treinador há mais de uma década para adultos de todas as faixas etárias, gêneros e níveis. Iniciando como boleiro e evoluindo para rebatedor, vive o tênis há 17 anos. Seu método integra técnica, movimentação em quadra, controle de efeitos, tática e mentalidade, porque no tênis tudo acontece ao mesmo tempo.</p>
-        <ol class="method">
-          <li class="method__item">
-            <span class="method__num" aria-hidden="true">01</span>
-            <div>
-              <h3 class="method__title">Diagnóstico na primeira aula</h3>
-              <p class="method__text">Entender seu nível, seu corpo e o que você quer do tênis.</p>
-            </div>
-          </li>
-          <li class="method__item">
-            <span class="method__num" aria-hidden="true">02</span>
-            <div>
-              <h3 class="method__title">Plano por objetivo</h3>
-              <p class="method__text">Lazer, condicionamento ou competição pedem caminhos diferentes.</p>
-            </div>
-          </li>
-          <li class="method__item">
-            <span class="method__num" aria-hidden="true">03</span>
-            <div>
-              <h3 class="method__title">Evolução registrada em vídeo</h3>
-              <p class="method__text">Você vê o antes e o depois do seu golpe, mês a mês.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
+        // EDITAR: data e hora em que o site completo entra no ar (horário de Brasília)
+        var CONFIG = { lancamento: "2026-10-04T00:00:00-03:00" };
 
-  <!-- ========== AULAS REGULARES (cards que viram) ========== -->
-  <section class="section section--paper" id="aulas">
-    <div class="container">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="eyebrow">Aulas regulares</p>
-          <h2 class="section-title">Escolha o formato.<br>Depois, o lugar.</h2>
-        </div>
-        <a class="link-dark" href="#qual-aula">Não sabe qual escolher? Faça o teste</a>
-      </div>
+        var root = document.documentElement;
+        var reduz = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
-      <!--
-        Cada card tem dois lados: frente = Fama Tennis, verso = Condomínio.
-        Para alterar valores, edite os textos .plan__price e .plan__unit de cada lado.
-      -->
-      <div class="plans">
+        /* ---------- Modo de cor ---------- */
+        var botoesTema = Array.prototype.slice.call(
+          document.querySelectorAll("[data-tema]"),
+        );
+        var metaCor = document.querySelector('meta[name="theme-color"]');
 
-        <button class="plan" type="button" aria-pressed="false">
-          <span class="plan__inner">
-            <span class="plan__face plan__face--front">
-              <span class="plan__top"><span class="chip chip--accent">Fama Tennis</span><span class="plan__where">quadra parceira</span></span>
-              <span class="plan__title">Individual</span>
-              <span class="plan__desc">Atenção total ao seu jogo, com plano montado a partir do seu objetivo.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 1 aluno</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 990]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
-            </span>
-            <span class="plan__face plan__face--back" aria-hidden="true">
-              <span class="plan__top"><span class="chip chip--ball">Condomínio</span><span class="plan__where">na quadra do seu prédio</span></span>
-              <span class="plan__title">Individual</span>
-              <span class="plan__desc">O mesmo acompanhamento individual, sem sair do seu condomínio.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 1 aluno</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 810]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
-            </span>
-          </span>
-        </button>
+        function aplicaTema(tema, salvar) {
+          root.setAttribute("data-theme", tema);
+          botoesTema.forEach(function (b) {
+            b.setAttribute(
+              "aria-pressed",
+              b.getAttribute("data-tema") === tema ? "true" : "false",
+            );
+          });
+          if (metaCor)
+            metaCor.setAttribute(
+              "content",
+              tema === "rapida" ? "#2F6B4F" : "#A8492A",
+            );
+          if (salvar) {
+            try {
+              localStorage.setItem("ps-tema", tema);
+            } catch (e) {}
+          }
+        }
+        botoesTema.forEach(function (b) {
+          b.addEventListener("click", function () {
+            aplicaTema(b.getAttribute("data-tema"), true);
+          });
+        });
+        aplicaTema(root.getAttribute("data-theme") || "saibro", false);
 
-        <button class="plan" type="button" aria-pressed="false">
-          <span class="plan__inner">
-            <span class="plan__face plan__face--front">
-              <span class="plan__top"><span class="chip chip--accent">Fama Tennis</span><span class="plan__where">quadra parceira</span></span>
-              <span class="plan__title">Dupla</span>
-              <span class="plan__desc">Divida a quadra com um parceiro de jogo e aprendam juntos, no mesmo ritmo.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 2 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 630]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
-            </span>
-            <span class="plan__face plan__face--back" aria-hidden="true">
-              <span class="plan__top"><span class="chip chip--ball">Condomínio</span><span class="plan__where">na quadra do seu prédio</span></span>
-              <span class="plan__title">Dupla</span>
-              <span class="plan__desc">Com um vizinho, familiar ou amigo, na quadra do prédio.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 2 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 540]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
-            </span>
-          </span>
-        </button>
+        /* ---------- Data ---------- */
+        var data = document.getElementById("data");
+        if (data && Date.now() >= new Date(CONFIG.lancamento).getTime()) {
+          data.textContent = data.getAttribute("data-depois");
+        }
 
-        <button class="plan" type="button" aria-pressed="false">
-          <span class="plan__inner">
-            <span class="plan__face plan__face--front">
-              <span class="plan__top"><span class="chip chip--accent">Fama Tennis</span><span class="plan__where">quadra parceira</span></span>
-              <span class="plan__title">Grupo</span>
-              <span class="plan__desc">Turma fechada de quatro pessoas, com muita troca de bola e jogo de duplas.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 4 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 405]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
-            </span>
-            <span class="plan__face plan__face--back" aria-hidden="true">
-              <span class="plan__top"><span class="chip chip--ball">Condomínio</span><span class="plan__where">na quadra do seu prédio</span></span>
-              <span class="plan__title">Grupo</span>
-              <span class="plan__desc">Reúna quatro moradores e dividam a aula na quadra do condomínio.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · 4 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 360]</span><span class="plan__unit">[por mês]</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
-            </span>
-          </span>
-        </button>
+        /* ---------- Bola ---------- */
+        var G = 2600; // gravidade em px/s²
+        var camada = document.querySelector(".camada-bola");
+        var bola = document.querySelector(".bola");
+        var squash = bola.querySelector(".bola-squash");
+        var gira = bola.querySelector("svg");
+        var sombra = document.querySelector(".sombra");
+        var slot = document.querySelector(".slot");
 
-        <button class="plan" type="button" aria-pressed="false">
-          <span class="plan__inner">
-            <span class="plan__face plan__face--front">
-              <span class="plan__top"><span class="chip chip--accent">Fama Tennis</span><span class="plan__where">quadra parceira</span></span>
-              <span class="plan__title">Aula avulsa</span>
-              <span class="plan__desc">Uma aula sem pacote, para experimentar ou encaixar na sua agenda.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · sem compromisso</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 240]</span><span class="plan__unit">por aula</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
-            </span>
-            <span class="plan__face plan__face--back" aria-hidden="true">
-              <span class="plan__top"><span class="chip chip--ball">Condomínio</span><span class="plan__where">na quadra do seu prédio</span></span>
-              <span class="plan__title">Aula avulsa</span>
-              <span class="plan__desc">Uma aula pontual na quadra do seu condomínio, sem pacote.</span>
-              <span class="plan__spacer"></span>
-              <span class="plan__meta">60 min · sem compromisso</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 220]</span><span class="plan__unit">por aula</span></span>
-              <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
-            </span>
-          </span>
-        </button>
+        var tam = 20,
+          sombraA = 6,
+          alvoX = 0,
+          chao = 0,
+          giro = 0,
+          animando = false;
 
-      </div>
+        function mede() {
+          var r = slot.getBoundingClientRect();
+          tam = Math.max(12, Math.round(r.height));
+          alvoX = r.right + window.scrollX - tam / 2;
+          chao = r.bottom + window.scrollY;
+          sombraA = Math.max(4, Math.round(tam * 0.28));
+          bola.style.width = bola.style.height = tam + "px";
+          sombra.style.width = tam + "px";
+          sombra.style.height = sombraA + "px";
+        }
 
-      <ul class="plan-notes">
-        <li class="plan-note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><line x1="12" y1="7.5" x2="12" y2="7.6"></line></svg><div><p class="plan-note__title">Pacotes de 1 aula por semana</p><p class="plan-note__text">Todos os valores acima são para pacotes com uma aula semanal.</p></div></li>
-        <li class="plan-note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><line x1="12" y1="7.5" x2="12" y2="7.6"></line></svg><div><p class="plan-note__title">Dupla e grupo</p><p class="plan-note__text">Os valores são por pessoa, por mês.</p></div></li>
-        <li class="plan-note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><line x1="12" y1="7.5" x2="12" y2="7.6"></line></svg><div><p class="plan-note__title">Mais de uma aula por semana</p><p class="plan-note__text">Pacotes com duas ou mais aulas semanais têm valores sob consulta.</p></div></li>
-        <li class="plan-note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><line x1="12" y1="7.5" x2="12" y2="7.6"></line></svg><div><p class="plan-note__title">Aula avulsa na Fama Tennis</p><p class="plan-note__text">Agendada conforme a disponibilidade da quadra.</p></div></li>
-      </ul>
-    </div>
-  </section>
+        function posiciona(x, altura, rot, sx, sy) {
+          bola.style.transform =
+            "translate3d(" +
+            (x - tam / 2) +
+            "px," +
+            (chao - altura - tam) +
+            "px,0)";
+          squash.style.transform = "scale(" + sx + "," + sy + ")";
+          gira.style.transform = "rotate(" + rot + "rad)";
+          var perto = Math.max(0, 1 - altura / 380);
+          sombra.style.transform =
+            "translate3d(" +
+            (x - tam / 2) +
+            "px," +
+            (chao - sombraA / 2) +
+            "px,0) scale(" +
+            (0.45 + 0.55 * perto) +
+            ")";
+          sombra.style.opacity = (0.1 + 0.9 * perto).toFixed(3);
+        }
 
-  <!-- ========== PROGRAMAS ADICIONAIS ========== -->
-  <section class="section" id="programas">
-    <div class="container">
-      <div class="section-head section-head--narrow">
-        <p class="eyebrow">Programas adicionais</p>
-        <h2 class="section-title">Para ir além das aulas regulares</h2>
-        <p class="body-lg">Contratados à parte, como complemento ao seu plano de aulas ou para não alunos.</p>
-      </div>
+        function marca(x, forca) {
+          if (forca < 0.15) return;
+          var m = document.createElement("span");
+          var w = tam * (1.1 + forca);
+          m.className = "marca-bola";
+          m.setAttribute("aria-hidden", "true");
+          m.style.width = w + "px";
+          m.style.height = w * 0.32 + "px";
+          m.style.left = x - w / 2 + "px";
+          m.style.top = chao - w * 0.16 + "px";
+          camada.insertBefore(m, sombra);
+          m.addEventListener("animationend", function () {
+            m.remove();
+          });
+        }
 
-      <div class="programs">
-        <article class="program program--ink">
-          <span class="chip chip--ball">Adicional</span>
-          <h3 class="program__title">Preparação para torneios</h3>
-          <p class="program__text">Para quem quer competir: tática, preparo físico específico e leitura de jogo.</p>
-          <ul class="program__list">
-            <li>Planejamento do calendário de torneios</li>
-            <li>Treino de jogo de pontos e estratégia</li>
-            <li>Análise de partidas em vídeo</li>
-          </ul>
-          <div class="program__foot">
-            <a class="btn btn--ball btn--lg btn--block" href="#" data-whatsapp="Olá! Vim pelo site e tenho interesse na Preparação para torneios." target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>Quero me preparar</a>
-          </div>
-        </article>
+        function prepara(segs) {
+          var acc = 0;
+          segs.forEach(function (s) {
+            s.dur = (s.tipo === "queda" ? 1 : 2) * Math.sqrt((2 * s.H) / G);
+            acc += s.dur;
+            s.fim = acc;
+          });
+          return acc;
+        }
 
-        <article class="program program--accent">
-          <span class="chip chip--ink">Adicional</span>
-          <h3 class="program__title">Clínicas de fim de semana</h3>
-          <p class="program__text">Encontros temáticos para treinar um fundamento de cada vez, de forma intensiva.</p>
-          <ul class="program__list">
-            <li>Temas como saque, voleio e jogo de duplas</li>
-            <li>Abertas a alunos e não alunos</li>
-            <li>Vagas limitadas por turma</li>
-          </ul>
-          <div class="program__foot">
-            <a class="btn btn--ink btn--lg btn--block" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de saber as próximas datas das Clínicas de fim de semana." target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>Ver próximas datas</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+        // Física simples: queda livre + arcos parabólicos que perdem altura a cada quique
+        function quica(segs, x0, vx, giroBase, giroExtra, aoTerminar) {
+          var total = prepara(segs);
+          var k = 0,
+            tImpacto = -1,
+            vImpacto = 0,
+            t0 = null;
+          animando = true;
+          bola.classList.add("visivel");
+          sombra.classList.add("visivel");
 
-  <!-- ========== TESTE: QUAL AULA É PARA VOCÊ? ========== -->
-  <section class="section section--ink" id="qual-aula">
-    <div class="container quiz">
-      <div class="quiz__intro">
-        <p class="eyebrow eyebrow--ball">Em 1 minuto</p>
-        <h2 class="section-title section-title--light">Qual aula é para você?</h2>
-        <p class="quiz__lead">Perguntas rápidas sobre quem vai jogar, o objetivo no tênis, a experiência, o formato de aula e os horários livres. No final, o WhatsApp abre com a mensagem pronta para agendar.</p>
-        <p class="quiz__progress" id="quiz-progress" aria-live="polite">0 de 5 respondidas</p>
-      </div>
+          function frame(agora) {
+            if (t0 === null) t0 = agora;
+            var t = (agora - t0) / 1000;
+            var tc = Math.min(t, total);
 
-      <div class="quiz__body">
-        <!-- As perguntas são montadas pelo js/main.js, porque os textos mudam conforme as respostas -->
-        <form class="quiz__questions" id="quiz-questions" onsubmit="return false" aria-label="Teste de indicação de aula"></form>
+            var i = 0,
+              inicio = 0;
+            while (i < segs.length - 1 && tc > segs[i].fim) {
+              inicio = segs[i].fim;
+              i++;
+            }
+            var s = segs[i],
+              tl = tc - inicio,
+              altura;
+            if (s.tipo === "queda") altura = s.H - 0.5 * G * tl * tl;
+            else {
+              var v = Math.sqrt(2 * G * s.H);
+              altura = v * tl - 0.5 * G * tl * tl;
+            }
+            altura = Math.max(0, altura);
 
-        <div class="quiz__result" id="quiz-result" aria-live="polite">
-          <p class="quiz__empty" id="quiz-empty">Responda todas as perguntas para ver a sugestão.</p>
+            var x = x0 + vx * tc;
 
-          <div class="result" id="quiz-card" hidden>
-            <div class="result__head">
-              <div class="result__text">
-                <p class="result__kicker">Nossa sugestão</p>
-                <p class="result__title" id="result-title"></p>
-                <p class="result__for" id="result-for"></p>
-                <p class="result__desc" id="result-desc"></p>
-              </div>
-              <a class="btn btn--ball btn--lg" id="result-whatsapp" href="#" target="_blank" rel="noopener">
-                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
-                Enviar pelo WhatsApp
-              </a>
-            </div>
-            <a class="result__extra" id="result-extra" href="#programas" hidden><span aria-hidden="true">+</span><span id="result-extra-text"></span></a>
-            <div class="result__message">
-              <p class="result__message-label">Mensagem que vai para o WhatsApp</p>
-              <p class="result__message-text" id="result-message"></p>
-            </div>
-            <button class="result__reset" type="button" id="quiz-reset">Refazer o teste</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            while (k < segs.length && t >= segs[k].fim) {
+              tImpacto = segs[k].fim;
+              vImpacto = Math.sqrt(2 * G * segs[k].H);
+              marca(x0 + vx * segs[k].fim, Math.min(1, vImpacto / 1800));
+              k++;
+            }
 
-  <!-- ========== ONDE E QUANDO ========== -->
-  <section class="section" id="onde">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Onde e quando</p>
-        <h2 class="section-title">Perto de você, no seu horário</h2>
-      </div>
+            var sx = 1,
+              sy = 1;
+            if (tImpacto >= 0 && t - tImpacto < 0.12) {
+              var a =
+                (1 - (t - tImpacto) / 0.12) * Math.min(0.28, vImpacto / 5000);
+              sy = 1 - a;
+              sx = 1 + a * 0.7;
+            }
 
-      <div class="where">
-        <div class="where__map">
-          <iframe
-            title="Mapa da Fama Tennis, R. Geraldo Vasconcelos, 210, Estoril, Belo Horizonte"
-            src="https://www.google.com/maps?q=R.+Geraldo+Vasconcelos,+210+-+Estoril,+Belo+Horizonte+-+MG&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+            giro = giroBase + (x - x0) / (tam / 2) + giroExtra * tc;
+            posiciona(x, altura, giro, sx, sy);
 
-        <div class="where__info">
-          <ul class="places">
-            <li class="place">
-              <span class="place__mark" aria-hidden="true">A</span>
-              <div>
-                <p class="place__name">Fama Tennis · quadra parceira</p>
-                <p class="place__detail">R. Geraldo Vasconcelos, 210 | Estoril</p>
-                <a class="place__link" href="https://www.google.com/maps/search/?api=1&query=R.+Geraldo+Vasconcelos,+210+Estoril+Belo+Horizonte" target="_blank" rel="noopener">Abrir no Google Maps</a>
-              </div>
-            </li>
-            <li class="place">
-              <span class="place__mark" aria-hidden="true">B</span>
-              <div>
-                <p class="place__name">No seu condomínio</p>
-                <p class="place__detail">O professor vai até a quadra do seu prédio · Sob consulta</p>
-              </div>
-            </li>
-          </ul>
+            if (t < total + 0.12) requestAnimationFrame(frame);
+            else {
+              animando = false;
+              posiciona(alvoX, 0, giro, 1, 1);
+              if (aoTerminar) aoTerminar();
+            }
+          }
+          requestAnimationFrame(frame);
+        }
 
-          <div class="schedule">
-            <div class="schedule__head">
-              <p class="schedule__title">Horários com vaga</p>
-              <div class="schedule__legend" aria-hidden="true">
-                <span><span class="dot dot--free"></span>Livre</span>
-                <span><span class="dot"></span>Lotado</span>
-              </div>
-            </div>
-            <!-- Para atualizar a grade: troque "dot--free" por "dot" (e o texto "Livre" por "Lotado") em cada célula -->
-            <div class="schedule__scroll">
-              <table class="schedule__table">
-                <caption class="visually-hidden">Horários com vaga por dia e turno</caption>
-                <thead>
-                  <tr><th scope="col"><span class="visually-hidden">Turno</span></th><th scope="col">Seg</th><th scope="col">Ter</th><th scope="col">Qua</th><th scope="col">Qui</th><th scope="col">Sex</th><th scope="col">Sáb</th></tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Manhã</th>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Tarde</th>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Noite</th>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        function entradaDaBola(aoTerminar) {
+          mede();
+          var topo = window.scrollY + window.innerHeight * 0.06;
+          var H0 = Math.max(120, chao - (topo + tam));
+          var x0 = window.scrollX - tam * 2;
+          var segs = [{ tipo: "queda", H: H0 }].concat(
+            [0.48, 0.22, 0.09, 0.03].map(function (f) {
+              return { tipo: "arco", H: H0 * f };
+            }),
+          );
+          var total = prepara(segs);
+          quica(segs, x0, (alvoX - x0) / total, 0, 0, aoTerminar);
+        }
 
-  <!-- ========== DEPOIMENTOS ========== -->
-  <section class="section section--paper" id="depoimentos">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Depoimentos</p>
-        <h2 class="section-title">Quem joga conta melhor</h2>
-      </div>
+        bola.addEventListener("click", function () {
+          if (animando || reduz) return;
+          mede();
+          var base = Math.min(
+            170,
+            Math.max(50, chao - window.scrollY - tam - 24),
+          );
+          var segs = [1, 0.42, 0.16, 0.05].map(function (f) {
+            return { tipo: "arco", H: base * f };
+          });
+          quica(segs, alvoX, 0, giro, 6, null);
+        });
 
-      <!-- Para cada depoimento, troque o .video-placeholder por:
-           <video src="img/depoimento-1.mp4" poster="img/depoimento-1.jpg" controls preload="none" playsinline></video> -->
-      <div class="testimonials">
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: antes e depois]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta do aluno sobre a evolução]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], [tempo de aula]</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: mãe ou pai de aluno]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta sobre a experiência da criança]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], responsável por [nome da criança]</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: aluno em torneio]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta sobre a preparação]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], [categoria do torneio]</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+        function reposiciona() {
+          if (animando || !bola.classList.contains("visivel")) return;
+          mede();
+          posiciona(alvoX, 0, giro, 1, 1);
+        }
+        window.addEventListener("resize", reposiciona);
+        if (document.fonts && document.fonts.addEventListener) {
+          document.fonts.addEventListener("loadingdone", reposiciona);
+        }
 
-  <!-- ========== DICAS (INSTAGRAM) ========== -->
-  <section class="section" id="dicas">
-    <div class="container">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="eyebrow">Dicas da quadra</p>
-          <h2 class="section-title">Direto do Instagram</h2>
-        </div>
-        <a class="link-dark" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">Seguir @[perfil]</a>
-      </div>
+        /* ---------- Sequência de abertura ---------- */
+        function revela(seletor, base, passo) {
+          Array.prototype.forEach.call(
+            document.querySelectorAll(seletor),
+            function (el, i) {
+              el.style.setProperty("--d", base + i * passo + "s");
+              el.classList.add("on");
+            },
+          );
+        }
 
-      <!-- Troque cada href pelo link do post e o .tip__thumb por uma imagem de capa: <img src="img/dica-1.jpg" alt="" loading="lazy"> -->
-      <div class="tips">
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
-          <span class="tip__thumb tip__thumb--accent"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Empunhadura continental em 30 segundos</span>
-        </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
-          <span class="tip__thumb tip__thumb--ink"><span class="chip chip--ball">Carrossel</span></span>
-          <span class="tip__title">3 erros comuns no saque de quem está começando</span>
-        </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
-          <span class="tip__thumb tip__thumb--sand"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Como escolher sua primeira raquete</span>
-        </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
-          <span class="tip__thumb tip__thumb--accent"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Aquecimento de 5 minutos antes do jogo</span>
-        </a>
-      </div>
-    </div>
-  </section>
+        function inicia() {
+          if (reduz) {
+            revela(".revela", 0, 0);
+            mede();
+            bola.classList.add("visivel");
+            sombra.classList.add("visivel");
+            posiciona(alvoX, 0, 0, 1, 1);
+            return;
+          }
+          root.classList.add("desenha"); // 1. linhas da quadra se desenham
+          revela(".fase-1", 0.3, 0.15); // 2. nome aparece
+          setTimeout(function () {
+            // 3. bola entra quicando e vira o ponto final
+            entradaDaBola(function () {
+              revela(".fase-2", 0, 0.12); // 4. função, data, botão e rodapé
+            });
+          }, 1350);
+        }
 
-  <!-- ========== PERGUNTAS FREQUENTES ========== -->
-  <section class="section section--paper" id="faq">
-    <div class="container faq">
-      <div class="faq__intro">
-        <p class="eyebrow">Perguntas frequentes</p>
-        <h2 class="section-title">Antes da primeira aula</h2>
-      </div>
-      <!-- Só uma resposta fica aberta por vez (atributo name="faq" + js/main.js) -->
-      <div class="faq__list">
-        <details class="faq__item" name="faq" open>
-          <summary>Preciso ter raquete para começar?</summary>
-          <p>Não. Nas primeiras aulas a raquete e as bolas ficam por minha conta. Depois, ajudo você a escolher o equipamento certo para o seu jogo.</p>
-        </details>
-        <details class="faq__item" name="faq">
-          <summary>Por que os valores no condomínio são diferentes?</summary>
-          <p>[Explicar a diferença, por exemplo deslocamento do professor ou uso da quadra da Fama Tennis.]</p>
-        </details>
-        <details class="faq__item" name="faq">
-          <summary>O que acontece se chover?</summary>
-          <p>A aula é remarcada sem custo, em um novo horário combinado pelo WhatsApp.</p>
-        </details>
-        <details class="faq__item" name="faq">
-          <summary>Como funciona a reposição de aulas?</summary>
-          <p>Avisando com [X] horas de antecedência, você repõe a aula dentro do mesmo mês.</p>
-        </details>
-        <details class="faq__item" name="faq">
-          <summary>Em quanto tempo consigo jogar uma partida?</summary>
-          <p>Depende da frequência e do seu ponto de partida. Na aula experimental definimos juntos metas realistas para os primeiros meses.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONTATO ========== -->
-  <section class="cta" id="contato">
-    <div class="container cta__inner">
-      <div class="cta__text">
-        <h2 class="cta__title">A primeira aula é para a gente se conhecer.</h2>
-        <p class="cta__lead">Aula experimental com diagnóstico do seu jogo e um plano para os primeiros meses.</p>
-      </div>
-      <div class="cta__actions">
-        <a class="btn btn--ball btn--xl" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener">
-          <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
-          Agendar pelo WhatsApp
-        </a>
-        <p class="cta__phone">ou ligue: <a href="tel:+55[telefone]" data-phone>[telefone]</a></p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ========== RODAPÉ ========== -->
-<footer class="site-footer">
-  <div class="container site-footer__grid">
-    <div class="site-footer__brand">
-      <img class="site-footer__logo" src="img/logo-branca.png" alt="PS Tennis Team" width="782" height="196" loading="lazy">
-      <p>Aulas de tênis em Belo Horizonte</p>
-    </div>
-    <nav aria-label="Rodapé">
-      <p class="site-footer__title">Navegação</p>
-      <ul class="site-footer__list">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#aulas">Aulas</a></li>
-        <li><a href="#programas">Programas adicionais</a></li>
-        <li><a href="#onde">Onde e quando</a></li>
-        <li><a href="#faq">Perguntas frequentes</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-    <div>
-      <p class="site-footer__title">Contato</p>
-      <ul class="site-footer__list">
-        <li><a href="#" data-whatsapp="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp: <span data-phone>[telefone]</span></a></li>
-        <li><a href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">Instagram: @[perfil]</a></li>
-        <li><a href="mailto:[e-mail]">[e-mail]</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="site-footer__title">Informações</p>
-      <ul class="site-footer__list">
-        <!-- Estas duas páginas ainda precisam ser criadas -->
-        <li><a href="#">Política de cancelamento e reposição</a></li>
-        <li><a href="#">Aviso de privacidade</a></li>
-        <li>CNPJ [00.000.000/0001-00]</li>
-      </ul>
-    </div>
-  </div>
-  <div class="container site-footer__bottom">
-    <p>© <span id="ano">2026</span> PS Tennis Team. Todos os direitos reservados.</p>
-    <a href="#topo" class="site-footer__top">Voltar ao topo</a>
-  </div>
-</footer>
-
-<!-- Botão flutuante do WhatsApp: aparece depois que a pessoa passa da primeira tela -->
-<a class="wa-float" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
-</a>
-
-</body>
+        var comecou = false;
+        function vai() {
+          if (!comecou) {
+            comecou = true;
+            inicia();
+          }
+        }
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(vai);
+          setTimeout(vai, 1800);
+        } else {
+          vai();
+        }
+      })();
+    </script>
+  </body>
 </html>
