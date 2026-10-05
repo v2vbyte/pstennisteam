@@ -22,7 +22,7 @@
     whatsapp: '5531995869025',
     // Número como aparece na página. Ex.: (31) 98765-4321
     // Enquanto estiver vazio, a linha "ou ligue" e o telefone do rodapé ficam ocultos.
-    telefoneExibido: '(31) 99586-9085'
+    telefoneExibido: '(31) 99586-9025'
   };
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
