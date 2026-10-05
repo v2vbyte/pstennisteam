@@ -19,7 +19,7 @@
   /* ---------- 1. Configuração ---------- */
   var CONFIG = {
     // Número com código do país e DDD, só dígitos. Ex.: 5531987654321
-    whatsapp: '5531995869085',
+    whatsapp: '5531995869025',
     // Número como aparece na página. Ex.: (31) 98765-4321
     // Enquanto estiver vazio, a linha "ou ligue" e o telefone do rodapé ficam ocultos.
     telefoneExibido: '(31) 99586-9085'
