@@ -3,15 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pstennisteam | Aulas de tênis em Belo Horizonte</title>
+  <title>🎾 PS Tennis Team | Aulas de tênis em Belo Horizonte</title>
   <meta name="description" content="Aulas de tênis com Paulo Santana em Belo Horizonte: individual, dupla, grupo e aula avulsa na Fama Tennis ou no seu condomínio. Agende uma aula experimental.">
   <meta name="theme-color" content="#A8492A">
 
   <!-- Open Graph: aparece quando o link é compartilhado no WhatsApp e redes sociais -->
-  <meta property="og:title" content="pstennisteam | Aulas de tênis em Belo Horizonte">
+  <meta property="og:title" content="PS Tennis Team | Aulas de tênis em Belo Horizonte">
   <meta property="og:description" content="Do primeiro saque à preparação para torneios. Agende uma aula experimental.">
   <meta property="og:type" content="website">
-  <!-- <meta property="og:image" content="img/compartilhamento.jpg"> -->
+  <meta property="og:url" content="https://pstennisteam.com/">
+  <meta property="og:image" content="https://pstennisteam.com/img/compartilhamento.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://pstennisteam.com/">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +54,6 @@
         <li><a href="#aulas">Aulas</a></li>
         <li><a href="#programas">Programas</a></li>
         <li><a href="#onde">Onde</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
       <a class="btn btn--ink" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener">Agendar aula experimental</a>
@@ -72,13 +81,12 @@
 
       <div class="hero__media">
         <!--
-          VÍDEO DO HERO: quando o vídeo estiver pronto, coloque o arquivo em img/
-          e substitua o bloco .hero__placeholder abaixo por:
+          Espaço para o vídeo do topo. Quando houver um vídeo curto (6 a 10 s, sem som),
+          coloque o arquivo em img/ e substitua o bloco .hero__court abaixo por:
           <video class="hero__video" src="img/hero.mp4" poster="img/hero.jpg" autoplay muted loop playsinline></video>
-          (vídeo curto, 6 a 10 segundos, sem som)
         -->
-        <div class="hero__placeholder">
-          <svg class="court court--vertical" viewBox="0 0 360 734" fill="none" aria-hidden="true">
+        <div class="hero__court" aria-hidden="true" data-rally>
+          <svg class="court court--vertical" viewBox="0 0 360 734" fill="none">
             <rect x="20" y="20" width="320" height="694"></rect>
             <line x1="60" y1="20" x2="60" y2="714"></line>
             <line x1="300" y1="20" x2="300" y2="714"></line>
@@ -88,8 +96,10 @@
             <line x1="180" y1="20" x2="180" y2="34"></line>
             <line x1="180" y1="700" x2="180" y2="714"></line>
             <line class="court__net" x1="4" y1="367" x2="356" y2="367"></line>
+            <g class="court__trail"></g>
+            <circle class="court__ball" cx="215" cy="690" r="12"></circle>
           </svg>
-          <svg class="court court--horizontal" viewBox="0 0 734 360" fill="none" aria-hidden="true">
+          <svg class="court court--horizontal" viewBox="0 0 734 360" fill="none">
             <rect x="20" y="20" width="694" height="320"></rect>
             <line x1="20" y1="60" x2="714" y2="60"></line>
             <line x1="20" y1="300" x2="714" y2="300"></line>
@@ -97,9 +107,9 @@
             <line x1="554" y1="60" x2="554" y2="300"></line>
             <line x1="180" y1="180" x2="554" y2="180"></line>
             <line class="court__net" x1="367" y1="4" x2="367" y2="356"></line>
+            <g class="court__trail"></g>
+            <circle class="court__ball" cx="690" cy="215" r="20"></circle>
           </svg>
-          <span class="play-badge" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-          <span class="media-label">[Vídeo em quadra · 8 s, sem som, em loop]</span>
         </div>
       </div>
     </div>
@@ -185,7 +195,7 @@
               <span class="plan__desc">Atenção total ao seu jogo, com plano montado a partir do seu objetivo.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 1 aluno</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ 990]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 990</span><span class="plan__unit">por mês</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
             </span>
             <span class="plan__face plan__face--back" aria-hidden="true">
@@ -194,7 +204,7 @@
               <span class="plan__desc">O mesmo acompanhamento individual, sem sair do seu condomínio.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 1 aluno</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 810</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
             </span>
           </span>
@@ -208,7 +218,7 @@
               <span class="plan__desc">Divida a quadra com um parceiro de jogo e aprendam juntos, no mesmo ritmo.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 2 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 630</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
             </span>
             <span class="plan__face plan__face--back" aria-hidden="true">
@@ -217,7 +227,7 @@
               <span class="plan__desc">Com um vizinho, familiar ou amigo, na quadra do prédio.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 2 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 540</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
             </span>
           </span>
@@ -231,7 +241,7 @@
               <span class="plan__desc">Turma fechada de quatro pessoas, com muita troca de bola e jogo de duplas.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 4 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 405</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
             </span>
             <span class="plan__face plan__face--back" aria-hidden="true">
@@ -240,7 +250,7 @@
               <span class="plan__desc">Reúna quatro moradores e dividam a aula na quadra do condomínio.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · 4 alunos</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">[por mês]</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 360</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
             </span>
           </span>
@@ -254,7 +264,7 @@
               <span class="plan__desc">Uma aula sem pacote, para experimentar ou encaixar na sua agenda.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · sem compromisso</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">por aula</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 240</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores em condomínio</span>
             </span>
             <span class="plan__face plan__face--back" aria-hidden="true">
@@ -263,7 +273,7 @@
               <span class="plan__desc">Uma aula pontual na quadra do seu condomínio, sem pacote.</span>
               <span class="plan__spacer"></span>
               <span class="plan__meta">60 min · sem compromisso</span>
-              <span class="plan__pricing"><span class="plan__price">[R$ XX]</span><span class="plan__unit">por aula</span></span>
+              <span class="plan__pricing"><span class="plan__price">R$ 220</span></span>
               <span class="plan__flip"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><polyline points="21 3 21 8 16 8"></polyline><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><polyline points="3 21 3 16 8 16"></polyline></svg>Ver valores na Fama Tennis</span>
             </span>
           </span>
@@ -410,35 +420,35 @@
             <!-- Para atualizar a grade: troque "dot--free" por "dot" (e o texto "Livre" por "Lotado") em cada célula -->
             <div class="schedule__scroll">
               <table class="schedule__table">
-                <caption class="visually-hidden">Horários com vaga por dia e turno</caption>
+                <caption class="visually-hidden">Horários com vaga por dia e turno, de segunda a sábado</caption>
                 <thead>
                   <tr><th scope="col"><span class="visually-hidden">Turno</span></th><th scope="col">Seg</th><th scope="col">Ter</th><th scope="col">Qua</th><th scope="col">Qui</th><th scope="col">Sex</th><th scope="col">Sáb</th></tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">Manhã</th>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
+                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
+                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                   </tr>
                   <tr>
                     <th scope="row">Tarde</th>
-                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
+                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
+                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
                   </tr>
                   <tr>
                     <th scope="row">Noite</th>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
                     <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
-                    <td><span class="dot dot--free"></span><span class="visually-hidden">Livre</span></td>
+                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
+                    <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
                     <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
                     <td><span class="dot"></span><span class="visually-hidden">Lotado</span></td>
                   </tr>
@@ -451,80 +461,41 @@
     </div>
   </section>
 
-  <!-- ========== DEPOIMENTOS ========== -->
-  <section class="section section--paper" id="depoimentos">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Depoimentos</p>
-        <h2 class="section-title">Quem joga conta melhor</h2>
-      </div>
-
-      <!-- Para cada depoimento, troque o .video-placeholder por:
-           <video src="img/depoimento-1.mp4" poster="img/depoimento-1.jpg" controls preload="none" playsinline></video> -->
-      <div class="testimonials">
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: antes e depois]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta do aluno sobre a evolução]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], [tempo de aula]</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: mãe ou pai de aluno]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta sobre a experiência da criança]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], responsável por [nome da criança]</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <div class="video-placeholder">
-            <span class="play-badge play-badge--sm" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-            <span class="media-label media-label--plain">[Vídeo curto: aluno em torneio]</span>
-          </div>
-          <blockquote class="testimonial__quote">“[Frase curta sobre a preparação]”</blockquote>
-          <figcaption class="testimonial__who">[Nome], [categoria do torneio]</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ========== DICAS (INSTAGRAM) ========== -->
-  <section class="section" id="dicas">
+  <section class="section section--paper" id="dicas">
     <div class="container">
       <div class="section-head section-head--split">
         <div>
           <p class="eyebrow">Dicas da quadra</p>
           <h2 class="section-title">Direto do Instagram</h2>
         </div>
-        <a class="link-dark" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">Seguir @[perfil]</a>
+        <a class="link-dark" href="https://www.instagram.com/pstennisteam/" target="_blank" rel="noopener">Seguir @pstennisteam</a>
       </div>
 
-      <!-- Troque cada href pelo link do post e o .tip__thumb por uma imagem de capa: <img src="img/dica-1.jpg" alt="" loading="lazy"> -->
+      <!-- Quando os posts estiverem no ar, troque cada href pelo link do post e, se quiser, coloque a capa dentro de .tip__thumb: <img src="img/dica-1.jpg" alt="" loading="lazy"> -->
       <div class="tips">
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
+        <a class="tip" href="https://www.instagram.com/p/Ddr6qSBhpRZ/" target="_blank" rel="noopener">
           <span class="tip__thumb tip__thumb--accent"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Empunhadura continental em 30 segundos</span>
+          <span class="tip__title">Backhand de uma mão: ainda existe?</span>
         </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
+        <a class="tip" href="https://www.instagram.com/p/Dd4wc-xCXO5/?img_index=1" target="_blank" rel="noopener">
           <span class="tip__thumb tip__thumb--ink"><span class="chip chip--ball">Carrossel</span></span>
-          <span class="tip__title">3 erros comuns no saque de quem está começando</span>
+          <span class="tip__title">4 escolhas de tática que viram pontos</span>
         </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
-          <span class="tip__thumb tip__thumb--sand"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Como escolher sua primeira raquete</span>
+        <a class="tip" href="https://www.instagram.com/p/DblrPNqieUC/?img_index=1" target="_blank" rel="noopener">
+          <span class="tip__thumb tip__thumb--sand"><span class="chip chip--ball">Carrossel</span></span>
+          <span class="tip__title">3 dicas para quem está começando no tênis</span>
         </a>
-        <a class="tip" href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">
+        <a class="tip" href="https://www.instagram.com/p/DTfe0czkVyb/" target="_blank" rel="noopener">
           <span class="tip__thumb tip__thumb--accent"><span class="chip chip--ink">Reels</span></span>
-          <span class="tip__title">Aquecimento de 5 minutos antes do jogo</span>
+          <span class="tip__title">Detalhe fundamental no topspin forehand</span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ========== PERGUNTAS FREQUENTES ========== -->
-  <section class="section section--paper" id="faq">
+  <section class="section" id="faq">
     <div class="container faq">
       <div class="faq__intro">
         <p class="eyebrow">Perguntas frequentes</p>
@@ -537,20 +508,29 @@
           <p>Não. Nas primeiras aulas a raquete e as bolas ficam por minha conta. Depois, ajudo você a escolher o equipamento certo para o seu jogo.</p>
         </details>
         <details class="faq__item" name="faq">
-          <summary>Por que os valores no condomínio são diferentes?</summary>
-          <p>[Explicar a diferença, por exemplo deslocamento do professor ou uso da quadra da Fama Tennis.]</p>
-        </details>
-        <details class="faq__item" name="faq">
           <summary>O que acontece se chover?</summary>
-          <p>A aula é remarcada sem custo, em um novo horário combinado pelo WhatsApp.</p>
+          <p>Se a quadra é descoberta, a aula é remarcada sem custo, em um novo horário combinado pelo WhatsApp.</p>
         </details>
         <details class="faq__item" name="faq">
           <summary>Como funciona a reposição de aulas?</summary>
-          <p>Avisando com [X] horas de antecedência, você repõe a aula dentro do mesmo mês.</p>
+          <p>Avisando com antecedência mínima de 2h, você repõe a aula dentro do mesmo mês, conforme a disponibilidade de horários. Em breve, estará disponível a Política de Reposições e Cancelamentos.</p>
         </details>
         <details class="faq__item" name="faq">
           <summary>Em quanto tempo consigo jogar uma partida?</summary>
           <p>Depende da frequência e do seu ponto de partida. Na aula experimental definimos juntos metas realistas para os primeiros meses.</p>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>Por que a aula em condomínio tem preço diferente?</summary>
+          <p>Em quadras parceiras, existe o custo do aluguel mensal, que é custeado pelo professor e, por isso, é em parte incluído nas mensalidades.</p>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>Os planos mensais possuem fidelidade?</summary>
+          <p>Não. Porém, existe uma Política de Cancelamento (documento completo disponível em breve).</p>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>Como faço para cancelar o meu plano mensal?</summary>
+          <p>O aluno que desejar encerrar as aulas deverá comunicar sua decisão por escrito, pelo WhatsApp oficial da PS Tennis Team, com antecedência mínima de 30 dias. O prazo de 30 dias será contado a partir da data e do horário do envio da comunicação. Durante o período de aviso prévio: o horário permanecerá reservado ao aluno; as aulas continuarão disponíveis normalmente; as aulas do período serão cobradas normalmente, com ou sem comparecimento do aluno, pois o horário permanece reservado exclusivamente para ele, observadas as regras de desmarcação e reposição.</p>
+          <p>Caso o período de 30 dias ultrapasse a data habitual de vencimento da mensalidade, serão cobradas somente as aulas correspondentes ao período restante do aviso prévio, de forma proporcional, não sendo devido o pagamento de um novo ciclo mensal completo.</p>
         </details>
       </div>
     </div>
@@ -568,7 +548,7 @@
           <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
           Agendar pelo WhatsApp
         </a>
-        <p class="cta__phone">ou ligue: <a href="tel:+55[telefone]" data-phone>[telefone]</a></p>
+        <p class="cta__phone">ou ligue: <a href="#" data-phone></a></p>
       </div>
     </div>
   </section>
@@ -596,18 +576,15 @@
     <div>
       <p class="site-footer__title">Contato</p>
       <ul class="site-footer__list">
-        <li><a href="#" data-whatsapp="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp: <span data-phone>[telefone]</span></a></li>
-        <li><a href="https://www.instagram.com/[perfil]/" target="_blank" rel="noopener">Instagram: @[perfil]</a></li>
-        <li><a href="mailto:[e-mail]">[e-mail]</a></li>
+        <li><a href="#" data-whatsapp="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp: <span data-phone></span></a></li>
+        <li><a href="https://www.instagram.com/pstennisteam/" target="_blank" rel="noopener">Instagram: @pstennisteam</a></li>
       </ul>
     </div>
     <div>
       <p class="site-footer__title">Informações</p>
       <ul class="site-footer__list">
-        <!-- Estas duas páginas ainda precisam ser criadas -->
-        <li><a href="#">Política de cancelamento e reposição</a></li>
-        <li><a href="#">Aviso de privacidade</a></li>
-        <li>CNPJ [00.000.000/0001-00]</li>
+        <li><button class="link-button" type="button" data-open-privacy>Aviso de privacidade</button></li>
+        <li><a href="#faq">Perguntas frequentes</a></li>
       </ul>
     </div>
   </div>
@@ -616,6 +593,41 @@
     <a href="#topo" class="site-footer__top">Voltar ao topo</a>
   </div>
 </footer>
+
+<!-- Aviso de privacidade: faixa na primeira visita + janela com o texto completo -->
+<div class="privacy-banner" id="privacy-banner" role="region" aria-label="Aviso de privacidade" hidden>
+  <p class="privacy-banner__text">Este site não coleta seus dados nem usa ferramentas de análise ou publicidade. O mapa e as fontes vêm do Google, e o contato é feito pelo WhatsApp.</p>
+  <div class="privacy-banner__actions">
+    <button class="link-button link-button--dark" type="button" data-open-privacy>Ler o aviso</button>
+    <button class="btn btn--ink" type="button" id="privacy-ok">Entendi</button>
+  </div>
+</div>
+
+<dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+  <div class="privacy-dialog__inner">
+    <div class="privacy-dialog__head">
+      <h2 class="privacy-dialog__title" id="privacy-title">Aviso de privacidade</h2>
+      <button class="privacy-dialog__close" type="button" aria-label="Fechar aviso" data-close-privacy>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="privacy-dialog__body">
+      <h3>Quais dados este site coleta</h3>
+      <p>Nenhum. O site não tem formulários, cadastro, ferramentas de análise de visitas ou publicidade.</p>
+      <h3>O teste "Qual aula é para você?"</h3>
+      <p>As respostas ficam só no seu navegador, enquanto a página está aberta. Nada é enviado ou guardado. Elas só saem daqui se você decidir mandar a mensagem pelo WhatsApp.</p>
+      <h3>Contato pelo WhatsApp</h3>
+      <p>Ao clicar em um botão de WhatsApp, você é levado ao aplicativo com uma mensagem pronta, que pode editar antes de enviar. As informações que você mandar são usadas apenas para responder e agendar aulas.</p>
+      <h3>Serviços de terceiros</h3>
+      <p>O mapa da seção "Onde e quando" e as fontes do site são carregados do Google, que pode registrar dados técnicos de acesso, como o endereço IP, e usar cookies próprios, conforme a sua política de privacidade. Os links para o Instagram e o WhatsApp levam a serviços da Meta, com políticas próprias.</p>
+      <h3>Armazenamento no navegador</h3>
+      <p>O site guarda no seu navegador apenas a informação de que você já viu este aviso, para não mostrá-lo de novo.</p>
+      <h3>Dúvidas</h3>
+      <p>Para qualquer pergunta sobre seus dados, fale com o PS Tennis Team pelo WhatsApp.</p>
+    </div>
+    <button class="btn btn--ink btn--lg privacy-dialog__ok" type="button" data-close-privacy>Entendi</button>
+  </div>
+</dialog>
 
 <!-- Botão flutuante do WhatsApp: aparece depois que a pessoa passa da primeira tela -->
 <a class="wa-float" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">

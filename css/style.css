@@ -371,6 +371,7 @@ button { font: inherit; color: inherit; }
 }
 
 .hero__media { position: relative; }
+.hero__court,
 .hero__placeholder,
 .hero__video {
   position: relative;
@@ -380,6 +381,7 @@ button { font: inherit; color: inherit; }
   overflow: hidden;
   object-fit: cover;
 }
+.hero__court,
 .hero__placeholder {
   background: rgba(0, 0, 0, .22);
   display: flex;
@@ -394,6 +396,10 @@ button { font: inherit; color: inherit; }
 
 .court { stroke: var(--cream); stroke-opacity: .55; stroke-width: 3; }
 .court__net { stroke-width: 5; stroke-opacity: .85; }
+.court__ball { fill: var(--ball); stroke: none; }
+.court__dot { fill: var(--cream); stroke: none; }
+.court__shadow { fill: var(--ink); stroke: none; }
+.court__bounce { fill: none; stroke: var(--ball); stroke-width: 2.5; stroke-opacity: 1; }
 .court--vertical { height: 612px; width: auto; }
 .court--horizontal { display: none; width: 90%; height: auto; stroke-width: 4; }
 
@@ -554,6 +560,7 @@ button { font: inherit; color: inherit; }
   line-height: 1;
 }
 .plan__face--back .plan__price { color: var(--ball); }
+.plan__price--consult { font-size: 28px; }
 .plan__unit { font-size: 14px; color: var(--muted); }
 .plan__face--back .plan__unit { color: var(--on-dark); }
 .plan__flip {
@@ -975,6 +982,85 @@ button { font: inherit; color: inherit; }
   font-size: 14px;
 }
 
+/* Botão com aparência de link (rodapé e aviso) */
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.site-footer .link-button { color: var(--on-dark); }
+.site-footer .link-button:hover { color: var(--cream); text-decoration: underline; text-underline-offset: 4px; }
+.link-button--dark {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Aviso de privacidade: faixa */
+.privacy-banner {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(420px, calc(100% - 48px));
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(28, 26, 23, .18);
+}
+.privacy-banner[hidden] { display: none; }
+.privacy-banner__text { font-size: 15px; line-height: 1.5; color: var(--text-2); }
+.privacy-banner__actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+/* Enquanto a faixa aparece, o botão flutuante do WhatsApp espera */
+body.privacy-pending .wa-float { opacity: 0; pointer-events: none; }
+
+/* Aviso de privacidade: janela */
+.privacy-dialog {
+  width: min(640px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 64px rgba(28, 26, 23, .35);
+}
+.privacy-dialog::backdrop { background: rgba(28, 26, 23, .6); }
+.privacy-dialog__inner { display: flex; flex-direction: column; gap: 20px; padding: 36px 40px; }
+.privacy-dialog__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.privacy-dialog__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 44px;
+  line-height: .95;
+  text-transform: uppercase;
+}
+.privacy-dialog__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+.privacy-dialog__body h3 { margin: 18px 0 4px; font-size: 17px; font-weight: 700; }
+.privacy-dialog__body h3:first-child { margin-top: 0; }
+.privacy-dialog__body p { font-size: 16px; line-height: 1.55; color: var(--text-2); }
+.privacy-dialog__ok { align-self: flex-start; }
+
 /* Botão flutuante do WhatsApp */
 .wa-float {
   position: fixed;
@@ -1001,7 +1087,7 @@ button { font: inherit; color: inherit; }
 /* Telas médias */
 @media (max-width: 1200px) {
   .hero__inner { grid-template-columns: minmax(0, 1fr) 420px; gap: 56px; }
-  .hero__placeholder, .hero__video { height: 520px; }
+  .hero__court, .hero__placeholder, .hero__video { height: 520px; }
   .court--vertical { height: 520px; }
   .about { grid-template-columns: 420px minmax(0, 1fr); gap: 64px; }
   .about__photo { height: 520px; }
@@ -1060,7 +1146,7 @@ button { font: inherit; color: inherit; }
 @media (max-width: 900px) {
   .hero { padding-block: 48px 56px; }
   .hero__inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero__placeholder, .hero__video { height: 260px; border-radius: 22px; }
+  .hero__court, .hero__placeholder, .hero__video { height: 260px; border-radius: 22px; }
   .court--vertical { display: none; }
   .court--horizontal { display: block; }
   .hero__placeholder .play-badge { width: 64px; height: 64px; }
@@ -1126,6 +1212,10 @@ button { font: inherit; color: inherit; }
   .site-footer__grid { grid-template-columns: 1fr; }
 
   .wa-float { right: 16px; bottom: 16px; width: 60px; height: 60px; }
+
+  .privacy-banner { left: 12px; bottom: 12px; width: calc(100% - 24px); padding: 18px 20px; }
+  .privacy-dialog__inner { padding: 28px 24px; }
+  .privacy-dialog__title { font-size: 36px; }
 }
 
 /* ---------- 6. Movimento reduzido ---------- */

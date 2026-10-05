@@ -8,7 +8,9 @@
    6. Cards de aulas que viram
    7. Teste "Qual aula é para você?"
    8. Perguntas frequentes (uma aberta por vez)
-   9. Vídeos e ano do rodapé
+   9. Aviso de privacidade
+   10. Rally na quadra do topo
+   11. Vídeos e ano do rodapé
    ========================================================= */
 
 (function () {
@@ -17,9 +19,10 @@
   /* ---------- 1. Configuração ---------- */
   var CONFIG = {
     // Número com código do país e DDD, só dígitos. Ex.: 5531987654321
-    whatsapp: '55319XXXXXXXX',
-    // Número exibido na página (texto). Ex.: (31) 98765-4321
-    telefoneExibido: '[telefone]'
+    whatsapp: '5531995869085',
+    // Número como aparece na página. Ex.: (31) 98765-4321
+    // Enquanto estiver vazio, a linha "ou ligue" e o telefone do rodapé ficam ocultos.
+    telefoneExibido: '(31) 99586-9085'
   };
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -36,6 +39,12 @@
 
   // Telefone exibido e link de ligação
   document.querySelectorAll('[data-phone]').forEach(function (el) {
+    if (!CONFIG.telefoneExibido) {
+      var holder = el.closest('.cta__phone, li');
+      if (holder && holder.classList.contains('cta__phone')) holder.hidden = true;
+      else if (holder) el.textContent = 'fale conosco';
+      return;
+    }
     el.textContent = CONFIG.telefoneExibido;
     if (el.tagName === 'A') {
       el.setAttribute('href', 'tel:+' + CONFIG.whatsapp);
@@ -392,7 +401,280 @@
     });
   });
 
-  /* ---------- 9. Vídeos e ano ---------- */
+  /* ---------- 9. Aviso de privacidade ---------- */
+  var PRIVACY_KEY = 'ps-aviso-privacidade-visto';
+  var banner = document.getElementById('privacy-banner');
+  var dialog = document.getElementById('privacy-dialog');
+
+  function privacySeen() {
+    try { return localStorage.getItem(PRIVACY_KEY) === '1'; } catch (e) { return false; }
+  }
+  function markPrivacySeen() {
+    try { localStorage.setItem(PRIVACY_KEY, '1'); } catch (e) { /* navegador sem armazenamento */ }
+    if (banner) banner.hidden = true;
+    document.body.classList.remove('privacy-pending');
+  }
+
+  if (banner && !privacySeen()) {
+    banner.hidden = false;
+    document.body.classList.add('privacy-pending');
+  }
+
+  var okBtn = document.getElementById('privacy-ok');
+  if (okBtn) okBtn.addEventListener('click', markPrivacySeen);
+
+  var lastTrigger = null;
+  document.querySelectorAll('[data-open-privacy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!dialog) return;
+      lastTrigger = btn;
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    });
+  });
+
+  function closeDialog() {
+    if (!dialog) return;
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
+  }
+
+  if (dialog) {
+    dialog.querySelectorAll('[data-close-privacy]').forEach(function (btn) {
+      btn.addEventListener('click', closeDialog);
+    });
+    // Clique fora da janela fecha
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) closeDialog();
+    });
+    // Ler o aviso até o fim também conta como visto; o foco volta para onde estava
+    dialog.addEventListener('close', function () {
+      markPrivacySeen();
+      if (lastTrigger && document.body.contains(lastTrigger) && !lastTrigger.closest('[hidden]')) lastTrigger.focus();
+    });
+  }
+
+  /* ---------- 10. Rally na quadra do topo ---------- */
+  // A bolinha cruza a quadra de um lado para o outro, deixa um rastro pontilhado
+  // que vai sumindo e termina no mesmo ponto em que começou: o rally nunca acaba.
+  var rally = document.querySelector('[data-rally]');
+  if (rally) initRally(rally);
+
+  function initRally(container) {
+    var SVG_NS = 'http://www.w3.org/2000/svg';
+
+    // Pontos de batida na quadra vertical (viewBox 360 x 734).
+    // Rede em y = 367; jogador de baixo perto de y = 690, de cima perto de y = 50.
+    // O último trecho volta ao primeiro ponto, fechando o ciclo.
+    var HITS = [
+      [215, 690], [110, 50], [255, 700], [95, 62],
+      [150, 684], [265, 46], [120, 696], [232, 56]
+    ];
+    var SHOT_MS = 1150;       // duração de cada batida
+    var BOUNCE_AT = 0.8;      // ponto do trajeto em que a bola quica no outro lado
+    var DOT_GAP = 15;         // distância entre os pontos do rastro
+    var TRAIL_MS = 1500;      // tempo para cada ponto do rastro sumir
+    var CYCLE_MS = HITS.length * SHOT_MS;
+
+    // Uma curva leve em cada batida sugere o efeito da bola
+    var shots = HITS.map(function (from, i) {
+      var to = HITS[(i + 1) % HITS.length];
+      var mx = (from[0] + to[0]) / 2;
+      var my = (from[1] + to[1]) / 2;
+      var dx = to[0] - from[0];
+      var dy = to[1] - from[1];
+      var len = Math.sqrt(dx * dx + dy * dy);
+      var bend = (i % 2 === 0 ? 1 : -1) * 34;
+      return { from: from, to: to, ctrl: [mx - (dy / len) * bend, my + (dx / len) * bend] };
+    });
+
+    function pointAt(shot, t) {
+      var u = 1 - t;
+      return [
+        u * u * shot.from[0] + 2 * u * t * shot.ctrl[0] + t * t * shot.to[0],
+        u * u * shot.from[1] + 2 * u * t * shot.ctrl[1] + t * t * shot.to[1]
+      ];
+    }
+
+    // Altura da bola em cada momento da batida:
+    // sai da raquete na altura da cintura, sobe, desce até tocar o chão (quique)
+    // e sobe de novo até a altura em que o outro jogador rebate.
+    var HIT_H = 14;       // altura no momento da batida
+    var PEAK_H = 46;      // altura máxima antes do quique
+    var REBOUND_H = 16;   // altura extra depois do quique
+    function heightAt(t) {
+      if (t < BOUNCE_AT) {
+        var s = t / BOUNCE_AT;
+        return HIT_H * (1 - s) + 4 * PEAK_H * s * (1 - s);
+      }
+      var s2 = (t - BOUNCE_AT) / (1 - BOUNCE_AT);
+      return HIT_H * s2 + 4 * REBOUND_H * s2 * (1 - s2);
+    }
+
+    // Vista de cima com luz vinda de um lado: quanto mais alta a bola,
+    // mais ela se afasta da própria sombra. No quique, bola e sombra se encontram.
+    function airPoint(ground, h) {
+      return [ground[0] - 0.8 * h, ground[1] - 0.35 * h];
+    }
+
+    // Quadra vertical (computador) e horizontal (celular): a horizontal é a mesma
+    // quadra girada, então basta trocar x por y.
+    var views = [];
+    container.querySelectorAll('svg').forEach(function (svg) {
+      var horizontal = svg.classList.contains('court--horizontal');
+      views.push({
+        svg: svg,
+        trail: svg.querySelector('.court__trail'),
+        ball: svg.querySelector('.court__ball'),
+        shadow: (function () {
+          var s = document.createElementNS(SVG_NS, 'ellipse');
+          s.setAttribute('class', 'court__shadow');
+          var ball = svg.querySelector('.court__ball');
+          ball.parentNode.insertBefore(s, ball);
+          return s;
+        })(),
+        map: horizontal ? function (p) { return [p[1], p[0]]; } : function (p) { return p; },
+        // No celular a quadra aparece menor, então bola e rastro ganham escala
+        k: horizontal ? 1.7 : 1,
+        dots: [],
+        rings: []
+      });
+    });
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var running = false;
+    var rafId = null;
+    var start = null;
+    var lastDrop = null;
+    var lastShot = -1;
+
+    function addDot(view, p, now) {
+      var c = document.createElementNS(SVG_NS, 'circle');
+      var q = view.map(p);
+      c.setAttribute('cx', q[0].toFixed(1));
+      c.setAttribute('cy', q[1].toFixed(1));
+      c.setAttribute('r', (2.6 * view.k).toFixed(1));
+      c.setAttribute('class', 'court__dot');
+      view.trail.appendChild(c);
+      view.dots.push({ el: c, born: now });
+    }
+
+    function addRing(view, p, now) {
+      var c = document.createElementNS(SVG_NS, 'circle');
+      var q = view.map(p);
+      c.setAttribute('cx', q[0].toFixed(1));
+      c.setAttribute('cy', q[1].toFixed(1));
+      c.setAttribute('r', (4 * view.k).toFixed(1));
+      c.setAttribute('class', 'court__bounce');
+      c.setAttribute('stroke-width', (2.5 * view.k).toFixed(1));
+      view.trail.appendChild(c);
+      view.rings.push({ el: c, born: now });
+    }
+
+    function frame(now) {
+      if (start === null) start = now;
+      var elapsed = (now - start) % CYCLE_MS;
+      var index = Math.floor(elapsed / SHOT_MS);
+      var t = (elapsed - index * SHOT_MS) / SHOT_MS;
+      var shot = shots[index];
+      var g = pointAt(shot, t);
+      var h = heightAt(t);
+      var p = airPoint(g, h);
+      var r = 11 + 0.11 * h;
+
+      // Rastro: um ponto a cada DOT_GAP unidades percorridas
+      if (!lastDrop || Math.hypot(p[0] - lastDrop[0], p[1] - lastDrop[1]) >= DOT_GAP) {
+        views.forEach(function (v) { addDot(v, p, now); });
+        lastDrop = p;
+      }
+      // Marca do quique
+      if (index !== lastShot) {
+        lastShot = index;
+        shot.bounced = false;
+      }
+      if (!shot.bounced && t >= BOUNCE_AT) {
+        shot.bounced = true;
+        var b = pointAt(shot, BOUNCE_AT);
+        views.forEach(function (v) { addRing(v, b, now); });
+      }
+
+      views.forEach(function (v) {
+        var gq = v.map(g);
+        v.shadow.setAttribute('cx', gq[0].toFixed(1));
+        v.shadow.setAttribute('cy', gq[1].toFixed(1));
+        v.shadow.setAttribute('rx', (10 * v.k).toFixed(1));
+        v.shadow.setAttribute('ry', (7 * v.k).toFixed(1));
+        v.shadow.setAttribute('opacity', (0.42 - 0.005 * h).toFixed(3));
+        var q = v.map(p);
+        v.ball.setAttribute('cx', q[0].toFixed(1));
+        v.ball.setAttribute('cy', q[1].toFixed(1));
+        v.ball.setAttribute('r', (r * v.k).toFixed(2));
+
+        v.dots = v.dots.filter(function (d) {
+          var age = (now - d.born) / TRAIL_MS;
+          if (age >= 1) { d.el.remove(); return false; }
+          d.el.setAttribute('opacity', (0.8 * (1 - age)).toFixed(3));
+          return true;
+        });
+        v.rings = v.rings.filter(function (d) {
+          var age = (now - d.born) / 700;
+          if (age >= 1) { d.el.remove(); return false; }
+          d.el.setAttribute('r', ((4 + 14 * age) * v.k).toFixed(1));
+          d.el.setAttribute('opacity', (0.9 * (1 - age)).toFixed(3));
+          return true;
+        });
+      });
+
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function play() {
+      if (running || reduce.matches) return;
+      running = true;
+      start = null;
+      lastDrop = null;
+      lastShot = -1;
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function stop() {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      // Ao parar, limpa o rastro e devolve a bola ao ponto inicial
+      views.forEach(function (v) {
+        v.dots.concat(v.rings).forEach(function (d) { d.el.remove(); });
+        v.dots = [];
+        v.rings = [];
+        var q = v.map(airPoint(HITS[0], HIT_H));
+        v.ball.setAttribute('cx', q[0]);
+        v.ball.setAttribute('cy', q[1]);
+        v.ball.setAttribute('r', (11 + 0.11 * HIT_H) * v.k);
+        var sq = v.map(HITS[0]);
+        v.shadow.setAttribute('cx', sq[0]);
+        v.shadow.setAttribute('cy', sq[1]);
+        v.shadow.setAttribute('rx', 10 * v.k);
+        v.shadow.setAttribute('ry', 7 * v.k);
+        v.shadow.setAttribute('opacity', 0.35);
+      });
+    }
+
+    // Só anima enquanto o topo da página está visível
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) play(); else stop();
+      }, { threshold: 0.1 }).observe(container);
+    } else {
+      play();
+    }
+
+    // Respeita a preferência de reduzir movimento, inclusive se mudar com a página aberta
+    reduce.addEventListener('change', function () {
+      if (reduce.matches) stop(); else play();
+    });
+  }
+
+  /* ---------- 11. Vídeos e ano ---------- */
   // Com "reduzir movimento" ativado no sistema, o vídeo do topo não roda sozinho
   var heroVideo = document.querySelector('.hero__video');
   if (heroVideo && reduceMotion) {
