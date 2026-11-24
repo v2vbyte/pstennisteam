@@ -19,8 +19,8 @@
 <!--
   ============================================================
   CONFIGURAÇÃO DO GOOGLE ADS  (preencher antes de rodar anúncios)
-  1. ADS_ID: o ID da tag do Google, no formato AW-123456789
-     (Google Ads > Metas > Conversões > Configurações > Tag do Google)
+  1. ADS_ID: o ID da tag do Google que o Google Ads entregou
+     (aqui é um contêiner, GTM-T9N2Z22P; também aceita AW-123456789)
   2. ADS_CONVERSAO: o "send_to" da ação de conversão do clique no
      WhatsApp, no formato AW-123456789/AbCdEfGhIj
   Enquanto os valores forem os de exemplo, a tag não é carregada e a
@@ -32,7 +32,7 @@
   ============================================================
 -->
 <script>
-  var ADS_ID = 'AW-XXXXXXXXX';
+  var ADS_ID = 'GTM-T9N2Z22P';
   var ADS_CONVERSAO = 'AW-XXXXXXXXX/ROTULO';
 
   var CONSENT_KEY = 'ps-consentimento-anuncios';
@@ -63,10 +63,13 @@
     if (!TAG_ATIVA) return;
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ADS_ID;
+    // Contêiner (GTM-...) usa gtm.js, como no código do Google Ads; ID AW-... usa gtag.js
+    s.src = ADS_ID.indexOf('GTM-') === 0
+      ? 'https://www.googletagmanager.com/gtm.js?id=' + ADS_ID
+      : 'https://www.googletagmanager.com/gtag/js?id=' + ADS_ID;
     document.head.appendChild(s);
     gtag('js', new Date());
-    gtag('config', ADS_ID);
+    if (ADS_ID.indexOf('GTM-') !== 0) gtag('config', ADS_ID);
   })();
 </script>
 
