@@ -1229,3 +1229,42 @@ body.privacy-pending .wa-float { opacity: 0; pointer-events: none; }
     transition-duration: .01ms !important;
   }
 }
+
+/* ---------- 7. Animações ao rolar a página ----------
+   As classes são colocadas pelo js/main.js (seção 12). Sem JavaScript, ou com
+   "reduzir movimento" ligado no sistema, tudo aparece normalmente, sem animação. */
+.anim {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0s),
+              transform .9s cubic-bezier(.2, .7, .2, 1) var(--d, 0s);
+}
+.anim--esq { transform: translateX(-40px); }
+.anim--dir { transform: translateX(40px); }
+.anim--zoom { transform: scale(.94); }
+.anim.is-in { opacity: 1; transform: none; }
+
+/* Foto do professor: a moldura se abre de baixo para cima e a foto se acomoda */
+.about__photo.anim-foto { clip-path: inset(100% 0 0 0 round 28px); transition: clip-path 1.1s cubic-bezier(.7, 0, .2, 1); }
+.about__photo.anim-foto img { transform: scale(1.15); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+.about__photo.anim-foto.is-in { clip-path: inset(0 0 0 0 round 28px); }
+.about__photo.anim-foto.is-in img { transform: scale(1); }
+.about__photo.anim-foto.is-in:hover img { transform: scale(1.04); }
+
+/* Números de 01 a 03 do método: entram com um pequeno salto */
+.method__item.anim .method__num { display: inline-block; transform: scale(.4); transition: transform .6s cubic-bezier(.3, 1.6, .5, 1) calc(var(--d, 0s) + .15s); }
+.method__item.anim.is-in .method__num { transform: none; }
+
+/* Títulos de seção: a linha lima cresce embaixo do sobretítulo */
+.eyebrow.anim-linha { position: relative; padding-bottom: 10px; }
+.eyebrow.anim-linha::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 44px;
+  border-radius: 3px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.2, .7, .2, 1) .2s;
+}
+.eyebrow--light.anim-linha::after, .eyebrow--ball.anim-linha::after { background: var(--ball); }
+.eyebrow.anim-linha.is-in::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim, .about__photo.anim-foto, .about__photo.anim-foto img, .method__item.anim .method__num { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+}

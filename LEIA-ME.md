@@ -28,6 +28,14 @@ Em "Onde e quando", cada célula da tabela tem `dot dot--free` (livre) ou só `d
 
 O rally do topo fica em `js/main.js`, na seção 10. Os pontos de batida estão em `HITS`, e a velocidade em `SHOT_MS` (milissegundos por batida). A animação só roda com o topo visível e não roda para quem ativou "reduzir movimento" no sistema.
 
+## Animações ao rolar a página
+
+Ficam em `js/main.js`, seção 12, e no fim de `css/style.css`. Para incluir ou tirar blocos, edite a lista `ANIMAR` (seletor e tipo: sobe, `esq`, `dir` ou `zoom`); `ESCALONAR` controla o intervalo entre itens do mesmo grupo. Os números das credenciais contam do zero. Nada anima para quem ativou "reduzir movimento".
+
+## Página da aula experimental (Google Ads)
+
+Fica em `aula-experimental/`, com estilo e scripts no próprio `index.html`. No início do arquivo, preencha `ADS_ID` e `ADS_CONVERSAO`. Enquanto estiverem com `XXX`, a tag do Google e a faixa de consentimento ficam desligadas. A tag usa o modo de consentimento do Google: começa sem cookies de anúncio e só os usa depois do "Aceitar".
+
 ## Trocar a cor principal
 
 Em `css/style.css`, altere `--accent` (saibro `#A8492A`). Opções testadas: azul `#1F4E8C` e verde `#2F6B4F`. Atualize também o `theme-color` no `<head>` do `index.html`.

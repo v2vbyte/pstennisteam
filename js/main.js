@@ -11,6 +11,7 @@
    9. Aviso de privacidade
    10. Rally na quadra do topo
    11. Vídeos e ano do rodapé
+   12. Animações ao rolar a página
    ========================================================= */
 
 (function () {
@@ -690,4 +691,88 @@
 
   var ano = document.getElementById('ano');
   if (ano) ano.textContent = new Date().getFullYear();
+
+  /* ---------- 12. Animações ao rolar a página ---------- */
+  // Cada bloco entra suavemente quando aparece na tela. Para mudar o que anima,
+  // edite a lista ANIMAR: [seletor, tipo]. Tipos: '' (sobe), 'esq', 'dir', 'zoom'.
+  // Itens do mesmo grupo entram em sequência (ESCALONAR = intervalo em segundos).
+  var ANIMAR = [
+    ['.section-head', ''],
+    ['.about__text > *', ''],
+    ['.method__item', 'esq'],
+    ['.plan', ''],
+    ['.plan-note', ''],
+    ['.program', 'zoom'],
+    ['#qual-aula .container > *', ''],
+    ['.place', 'esq'],
+    ['.where__map', 'dir'],
+    ['.schedule', ''],
+    ['.tip', ''],
+    ['.faq__intro', ''],
+    ['.faq__item', ''],
+    ['.cta__text', 'esq'],
+    ['.cta__actions', 'dir']
+  ];
+  var ESCALONAR = 0.09;
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var revela = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        revela.unobserve(entry.target);
+        if (entry.target.hasAttribute('data-conta')) contar(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+    var jaMarcados = [];
+    ANIMAR.forEach(function (par) {
+      var grupos = new Map();
+      document.querySelectorAll(par[0]).forEach(function (el) {
+        if (jaMarcados.indexOf(el) !== -1 || el.closest('.hero')) return;
+        jaMarcados.push(el);
+        var pai = el.parentElement;
+        var i = grupos.get(pai) || 0;
+        grupos.set(pai, i + 1);
+        el.classList.add('anim');
+        if (par[1]) el.classList.add('anim--' + par[1]);
+        el.style.setProperty('--d', Math.min(i * ESCALONAR, 0.6) + 's');
+        revela.observe(el);
+      });
+    });
+
+    // Sobretítulos ganham a linha que cresce
+    document.querySelectorAll('.eyebrow').forEach(function (el) {
+      if (el.closest('.hero')) return;
+      el.classList.add('anim-linha');
+      revela.observe(el);
+    });
+
+    // Foto do professor
+    var fotoProf = document.querySelector('.about__photo');
+    if (fotoProf) { fotoProf.classList.add('anim-foto'); revela.observe(fotoProf); }
+
+    // Números das credenciais contam do zero (ex.: "+ 500 alunos")
+    document.querySelectorAll('.credential__value').forEach(function (el) {
+      if (/\d/.test(el.textContent)) { el.setAttribute('data-conta', el.textContent); revela.observe(el); }
+    });
+  }
+
+  function contar(el) {
+    var original = el.getAttribute('data-conta');
+    var m = original.match(/\d+/);
+    if (!m) return;
+    var alvo = parseInt(m[0], 10);
+    var inicio = null;
+    var duracao = 1400;
+    function passo(t) {
+      if (inicio === null) inicio = t;
+      var p = Math.min((t - inicio) / duracao, 1);
+      var valor = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+      el.textContent = original.replace(m[0], valor);
+      if (p < 1) requestAnimationFrame(passo);
+      else el.textContent = original;
+    }
+    requestAnimationFrame(passo);
+  }
 })();
