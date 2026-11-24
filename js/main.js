@@ -452,6 +452,11 @@
       markPrivacySeen();
       if (lastTrigger && document.body.contains(lastTrigger) && !lastTrigger.closest('[hidden]')) lastTrigger.focus();
     });
+    // Link direto para o aviso (usado pela página da aula experimental): /#aviso-de-privacidade
+    if (location.hash === '#aviso-de-privacidade') {
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    }
   }
 
   /* ---------- 10. Rally na quadra do topo ---------- */
