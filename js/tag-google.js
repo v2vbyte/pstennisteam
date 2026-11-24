@@ -3,9 +3,9 @@
    Carregado no <head> de TODAS as páginas, antes de qualquer outro script.
 
    - TAG_ID: tag do Google entregue pelo Google Ads (contêiner GTM-...).
-   - CONVERSAO: "send_to" da conversão do clique no WhatsApp,
-     no formato AW-123456789/AbCdEfGh. Enquanto tiver XXX, a conversão
-     não é enviada (a tag continua carregando).
+   - ADS_CONTA: ID da conta do Google Ads (AW-...).
+   - CONVERSAO: "send_to" da conversão "Contato" (clique no WhatsApp).
+     Enquanto tiver XXX, a conversão não é enviada.
    - Consentimento (LGPD): a tag começa sem cookies de anúncio (modo de
      consentimento do Google) e só passa a usá-los depois que a pessoa
      toca em "Aceitar". A escolha vale para o site inteiro e fica salva
@@ -15,7 +15,8 @@
   'use strict';
 
   var TAG_ID = 'GTM-T9N2Z22P';
-  var CONVERSAO = 'AW-XXXXXXXXX/ROTULO';
+  var ADS_CONTA = 'AW-18593472042';
+  var CONVERSAO = 'AW-18593472042/XTxLCOjQ0b4dEKq8h6JF'; // conversão "Contato"
   var CHAVE = 'ps-consentimento-anuncios';
 
   window.dataLayer = window.dataLayer || [];
@@ -46,12 +47,14 @@
   s.src = 'https://www.googletagmanager.com/gtm.js?id=' + TAG_ID;
   document.head.appendChild(s);
   gtag('js', new Date());
+  // Garante que a conta do Google Ads esteja ligada à tag, para a conversão chegar
+  gtag('config', ADS_CONTA);
 
   // Conversão: qualquer clique em link de WhatsApp, em qualquer página
   document.addEventListener('click', function (e) {
     var link = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
     if (!link || CONVERSAO.indexOf('XXX') !== -1) return;
-    gtag('event', 'conversion', { send_to: CONVERSAO });
+    gtag('event', 'conversion', { send_to: CONVERSAO, value: 1.0, currency: 'BRL' });
   });
 
   // Usado pelas faixas de consentimento das páginas
