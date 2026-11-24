@@ -8,7 +8,7 @@
    6. Cards de aulas que viram
    7. Teste "Qual aula é para você?"
    8. Perguntas frequentes (uma aberta por vez)
-   9. Aviso de privacidade
+   9. Aviso de privacidade e consentimento de cookies
    10. Rally na quadra do topo
    11. Vídeos e ano do rodapé
    12. Animações ao rolar a página
@@ -402,27 +402,34 @@
     });
   });
 
-  /* ---------- 9. Aviso de privacidade ---------- */
-  var PRIVACY_KEY = 'ps-aviso-privacidade-visto';
+  /* ---------- 9. Aviso de privacidade e consentimento de cookies ---------- */
+  // A faixa pede a escolha sobre os cookies de anúncios (ver js/tag-google.js).
+  // Ela some quando a pessoa aceita ou recusa; ler o aviso não esconde a faixa.
   var banner = document.getElementById('privacy-banner');
   var dialog = document.getElementById('privacy-dialog');
+  var consentimento = window.PSConsentimento;
 
-  function privacySeen() {
-    try { return localStorage.getItem(PRIVACY_KEY) === '1'; } catch (e) { return false; }
+  function openBanner() {
+    if (!banner) return;
+    banner.hidden = false;
+    document.body.classList.add('privacy-pending');
   }
-  function markPrivacySeen() {
-    try { localStorage.setItem(PRIVACY_KEY, '1'); } catch (e) { /* navegador sem armazenamento */ }
+  function closeBanner() {
     if (banner) banner.hidden = true;
     document.body.classList.remove('privacy-pending');
   }
 
-  if (banner && !privacySeen()) {
-    banner.hidden = false;
-    document.body.classList.add('privacy-pending');
-  }
+  if (banner && consentimento && !consentimento.escolha()) openBanner();
 
-  var okBtn = document.getElementById('privacy-ok');
-  if (okBtn) okBtn.addEventListener('click', markPrivacySeen);
+  document.querySelectorAll('[data-consent]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (consentimento) consentimento.definir(btn.getAttribute('data-consent'));
+      closeBanner();
+    });
+  });
+  document.querySelectorAll('[data-open-consent]').forEach(function (btn) {
+    btn.addEventListener('click', openBanner);
+  });
 
   var lastTrigger = null;
   document.querySelectorAll('[data-open-privacy]').forEach(function (btn) {
@@ -448,9 +455,8 @@
     dialog.addEventListener('click', function (event) {
       if (event.target === dialog) closeDialog();
     });
-    // Ler o aviso até o fim também conta como visto; o foco volta para onde estava
+    // Ao fechar, o foco volta para onde estava
     dialog.addEventListener('close', function () {
-      markPrivacySeen();
       if (lastTrigger && document.body.contains(lastTrigger) && !lastTrigger.closest('[hidden]')) lastTrigger.focus();
     });
     // Link direto para o aviso (usado pela página da aula experimental): /#aviso-de-privacidade

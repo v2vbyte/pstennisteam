@@ -32,9 +32,16 @@ O rally do topo fica em `js/main.js`, na seção 10. Os pontos de batida estão 
 
 Ficam em `js/main.js`, seção 12, e no fim de `css/style.css`. Para incluir ou tirar blocos, edite a lista `ANIMAR` (seletor e tipo: sobe, `esq`, `dir` ou `zoom`); `ESCALONAR` controla o intervalo entre itens do mesmo grupo. Os números das credenciais contam do zero. Nada anima para quem ativou "reduzir movimento".
 
-## Página da aula experimental (Google Ads)
+## Google Ads (tag e consentimento)
 
-Fica em `aula-experimental/`, com estilo e scripts no próprio `index.html`. No início do arquivo, preencha `ADS_ID` e `ADS_CONVERSAO`. Enquanto estiverem com `XXX`, a tag do Google e a faixa de consentimento ficam desligadas. A tag usa o modo de consentimento do Google: começa sem cookies de anúncio e só os usa depois do "Aceitar".
+- A tag do Google fica em `js/tag-google.js` e é carregada logo após o `<head>` em **todas as páginas** (`index.html`, `politica-cancelamento-reposicao.html` e `aula-experimental/index.html`). Toda página nova precisa da mesma linha.
+- No início do arquivo: `TAG_ID` (contêiner `GTM-T9N2Z22P`) e `CONVERSAO` (o `send_to` da conversão do clique no WhatsApp). Enquanto `CONVERSAO` tiver `XXX`, a conversão não é enviada.
+- A conversão dispara em qualquer link de WhatsApp de qualquer página.
+- Consentimento (LGPD): a tag começa sem cookies de anúncio e só passa a usá-los depois do "Aceitar" na faixa. A escolha vale para o site inteiro e pode ser mudada em "Preferências de cookies", no rodapé.
+
+## Página da aula experimental
+
+Fica em `aula-experimental/`, com estilo e scripts no próprio `index.html`. É o destino dos anúncios.
 
 ## Trocar a cor principal
 
