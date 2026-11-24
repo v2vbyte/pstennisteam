@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1C1A17">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<!-- Área restrita do professor: sem link no site, fora do Google (noindex)
+     e sem a tag do Google Ads, porque aqui circulam dados de alunos. -->
+
+<title>Área do Professor · PS Tennis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: direto e esportivo, como um bom treinador falando na quadra.
+IDEA: a prancheta do professor: ficha de avaliação e relatório de jogo.
+PICTURE: o desenho da quadra visto de cima e o radar dos golpes.
+COLOUR and TYPE: saibro, tinta, creme, lima só para tocar; Barlow Condensed 800 + Figtree.
+LAYOUT: uma coluna para o celular; relatório em páginas A4.
+*/
+
+:root{color-scheme:light;
+  --saibro:#A8492A;--lima:#D4F24A;--tinta:#1C1A17;--creme:#F4EEE6;--grafite:#2A2723;--papel:#FBF8F3;
+  --areia:#E6DCCF;--linha:#D9CFC2;--forte:#3F3A34;--suave:#5E574E;--noescuro:#CFC6BA;
+  --tit:"Barlow Condensed","Arial Narrow",sans-serif;--txt:"Figtree",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--creme);color:var(--tinta)}
+body{font:16px/1.55 var(--txt);overflow-x:clip;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--tit);font-weight:800;text-transform:uppercase;line-height:.92;margin:0}
+.over{font-family:var(--tit);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:13px;color:var(--saibro)}
+[hidden]{display:none!important}
+
+/* ---------- App ---------- */
+.top{background:var(--tinta);color:var(--creme);padding:14px max(5vw,18px);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+.top img{height:26px;width:auto;display:block}
+.top .who{font-size:13px;font-weight:600;color:var(--noescuro)}
+.top button{background:none;border:0;color:var(--noescuro);font-size:13px;font-weight:600;padding:10px 4px;cursor:pointer}
+.wrap{max-width:560px;margin:0 auto;padding:22px max(5vw,18px) 120px}
+.demo{background:var(--areia);color:var(--forte);border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.45;margin-bottom:18px}
+.demo b{color:var(--tinta)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:0;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,.chip:focus-visible,.dot:focus-visible,input:focus-visible,textarea:focus-visible,.mic:focus-visible{outline:3px solid var(--saibro);outline-offset:2px}
+.b-ink{background:var(--tinta);color:var(--creme)}
+.b-lima{background:var(--lima);color:var(--tinta)}
+.b-ghost{background:transparent;color:var(--tinta);border:1.5px solid var(--linha)}
+.b-full{width:100%}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+
+/* PIN */
+.pin{min-height:100svh;background:var(--tinta);color:var(--creme);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;position:relative;overflow:hidden}
+.pin .court{position:absolute;right:-170px;top:-60px;width:300px;opacity:.3;pointer-events:none}
+.pin img{height:40px;margin-bottom:34px;position:relative}
+.pin h1{font-size:44px;color:var(--creme);text-align:center;position:relative}
+.pin p{color:var(--noescuro);font-size:15px;margin:10px 0 26px;text-align:center;position:relative}
+.dots{display:flex;gap:14px;margin-bottom:26px;position:relative}
+.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--noescuro)}
+.dots i.on{background:var(--lima);border-color:var(--lima)}
+.pad{display:grid;grid-template-columns:repeat(3,76px);gap:12px;position:relative}
+.pad button{height:64px;border-radius:999px;border:0;background:var(--grafite);color:var(--creme);font:700 24px var(--txt);cursor:pointer}
+.pad button:active{background:#3a3631}
+.pad .ghost{background:transparent;font-size:14px;color:var(--noescuro)}
+.pin .err{color:var(--lima);font-weight:600;min-height:24px;margin-top:16px;position:relative}
+
+/* Home */
+.hero{background:var(--tinta);color:var(--creme);border-radius:28px;padding:26px 22px 22px;position:relative;overflow:hidden;margin-bottom:28px}
+.hero .court{position:absolute;right:-70px;top:-60px;width:220px;opacity:.45;pointer-events:none}
+.hero h1{font-size:40px;color:var(--creme);position:relative;max-width:12ch}
+.hero p{color:var(--noescuro);margin:10px 0 20px;position:relative;font-size:15px;max-width:30ch}
+.hero .btn{position:relative}
+.secth{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 12px}
+.secth h2{font-size:28px}
+.search{width:100%;height:48px;border-radius:999px;border:1.5px solid var(--linha);background:var(--papel);padding:0 18px;font-size:16px;margin-bottom:14px}
+.alunos{display:grid;gap:10px}
+.al{display:flex;align-items:center;gap:14px;background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:14px 16px;cursor:pointer;text-align:left;width:100%}
+.al .av{width:46px;height:46px;border-radius:50%;background:var(--saibro);color:var(--creme);display:grid;place-items:center;font:800 20px var(--tit);flex:none}
+.al .nm{font-weight:700;font-size:16px;line-height:1.25}
+.al .meta{font-size:13px;color:var(--suave)}
+.al .go{margin-left:auto;color:var(--suave);flex:none}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--areia);color:var(--forte);margin-top:4px}
+.tag.ok{background:var(--tinta);color:var(--creme)}
+.empty{color:var(--suave);font-size:15px;padding:18px 4px}
+
+/* Form */
+.prog{height:6px;background:var(--areia);border-radius:999px;overflow:hidden;margin:4px 0 20px}
+.prog i{display:block;height:100%;background:var(--saibro);border-radius:999px;transition:width .3s}
+.stepn{font-size:13px;font-weight:600;color:var(--suave);margin-bottom:4px}
+.form h1{font-size:40px;margin-bottom:6px}
+.form .lead{color:var(--suave);font-size:15px;margin:0 0 22px}
+.fld{margin-bottom:22px}
+.fld>label,.fld>.lb{display:block;font-weight:600;font-size:14px;margin-bottom:8px}
+.fld .hint{font-weight:400;color:var(--suave)}
+.inp{width:100%;min-height:50px;border-radius:14px;border:1.5px solid var(--linha);background:var(--papel);padding:12px 14px;font-size:16px}
+textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--linha);background:var(--papel);font-weight:600;font-size:15px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--tinta);border-color:var(--tinta);color:var(--creme)}
+.golpe{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:16px;margin-bottom:12px}
+.golpe .gh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.golpe h3{font-size:24px;font-weight:700}
+.golpe .lvl{font-size:13px;font-weight:600;color:var(--saibro)}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.dot{height:48px;border-radius:999px;border:1.5px solid var(--linha);background:var(--creme);font:700 18px var(--txt);cursor:pointer}
+.dot[aria-pressed=true]{background:var(--tinta);border-color:var(--tinta);color:var(--creme)}
+.golpe .more{margin-top:10px}
+.golpe .more summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--suave);padding:6px 0;list-style:none}
+.golpe .more summary::-webkit-details-marker{display:none}
+.golpe .more summary::before{content:"+ "}
+.golpe .more[open] summary::before{content:"− "}
+.dict{position:relative}
+.dict textarea{padding-right:62px}
+.mic{position:absolute;right:8px;top:8px;width:46px;height:46px;border-radius:50%;border:0;background:var(--tinta);color:var(--creme);display:grid;place-items:center;cursor:pointer}
+.mic.rec{background:var(--saibro);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(168,73,42,.18)}}
+@media (prefers-reduced-motion:reduce){.mic.rec{animation:none}.btn,.prog i{transition:none}}
+.mictip{font-size:13px;color:var(--suave);margin-top:6px}
+.lock{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;background:var(--areia);color:var(--forte);border-radius:999px;padding:3px 10px;margin-left:6px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--papel);border:1.5px solid var(--linha);border-radius:22px;padding:16px;cursor:pointer;margin-bottom:12px}
+.check input{width:24px;height:24px;margin:0;flex:none;accent-color:var(--tinta)}
+.check span{font-size:15px;line-height:1.45}
+.foot{position:fixed;left:0;right:0;bottom:0;background:var(--creme);border-top:1px solid var(--linha);padding:12px max(5vw,18px) calc(12px + env(safe-area-inset-bottom));z-index:4}
+.foot .in{max-width:560px;margin:0 auto;display:flex;gap:10px}
+.foot .btn{flex:1}
+.foot .b-ghost{flex:0 0 auto}
+
+/* vídeo */
+.vbox{background:var(--tinta);border-radius:22px;padding:14px;color:var(--creme)}
+.vbox video{width:100%;max-height:360px;border-radius:14px;background:#000;display:block}
+.vbox .vt{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.vbox .vt .btn{min-height:46px;font-size:15px;padding:0 18px}
+.up{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;border:2px dashed var(--linha);border-radius:22px;padding:30px 16px;background:var(--papel);cursor:pointer}
+.up b{font-size:17px}
+.up span{font-size:14px;color:var(--suave)}
+.frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;margin-top:14px}
+.fr{position:relative;border-radius:14px;overflow:hidden;background:var(--areia);border:3px solid transparent;cursor:pointer;padding:0}
+.fr.sel{border-color:var(--saibro)}
+.fr img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.fr select{position:absolute;left:4px;right:4px;bottom:4px;font-size:12px;font-weight:700;border-radius:999px;border:0;background:var(--tinta);color:var(--creme);padding:4px 6px}
+.fr .x{position:absolute;right:4px;top:4px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(28,26,23,.75);color:var(--creme);font-weight:700;cursor:pointer}
+.small{font-size:13px;color:var(--suave)}
+
+/* gerando */
+.gen{min-height:70svh;display:flex;flex-direction:column;justify-content:center}
+.gen h1{font-size:44px;margin-bottom:22px}
+.gen ol{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.gen li{display:flex;gap:12px;align-items:center;font-weight:600;color:var(--suave)}
+.gen li i{width:26px;height:26px;border-radius:50%;border:2px solid var(--linha);flex:none;display:grid;place-items:center;font-style:normal;font-size:14px}
+.gen li.on{color:var(--tinta)}
+.gen li.on i{background:var(--tinta);border-color:var(--tinta);color:var(--creme)}
+
+/* diagnóstico */
+.dhead{background:var(--saibro);color:var(--creme);border-radius:28px;padding:24px 22px;position:relative;overflow:hidden;margin-bottom:20px}
+.dhead .court{position:absolute;right:-100px;top:-80px;width:200px;opacity:.4;pointer-events:none}
+.dhead .over{color:var(--creme);opacity:.85}
+.dhead h1{font-size:44px;color:var(--creme);margin:6px 0 8px;position:relative}
+.dhead p{margin:0;color:var(--creme);font-size:14px;position:relative}
+.acts{display:grid;gap:10px;margin-bottom:26px}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:18px;margin-bottom:12px}
+.card h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.card ul{margin:0;padding-left:18px}
+.card li{margin-bottom:4px}
+.note{background:var(--areia);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--forte);margin-bottom:12px}
+.modal{position:fixed;inset:0;background:rgba(28,26,23,.6);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:16px}
+.modal .box{background:var(--creme);border-radius:28px;padding:24px 22px;max-width:520px;width:100%}
+.modal h2{font-size:30px;margin-bottom:10px}
+.modal p{color:var(--forte);margin:0 0 18px}
+
+/* ---------- Relatório (A4) ---------- */
+.rbar{position:sticky;top:0;z-index:6;background:var(--tinta);color:var(--creme);padding:10px max(4vw,14px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.rbar .btn{min-height:44px;font-size:15px;padding:0 18px}
+.rbar .msg{font-size:13px;color:var(--noescuro);flex-basis:100%}
+.rstage{padding:18px 0 40px;background:#d8d0c5}
+.rpages{width:210mm;margin:0 auto}
+.pg{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--creme);color:var(--tinta);margin:0 auto 14px;box-shadow:0 4px 24px rgba(28,26,23,.18);font:10.5pt/1.5 var(--txt);break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg h1,.pg h2,.pg h3{font-family:var(--tit);text-transform:uppercase;line-height:.92}
+.pg .in{position:absolute;inset:16mm 16mm 18mm}
+.pg .rodape{position:absolute;left:16mm;right:16mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;font-weight:600;color:var(--suave)}
+.pg .rodape b{color:var(--saibro);font-weight:700}
+.pg .ov{font-family:var(--tit);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:9pt;color:var(--saibro)}
+.pg .h{font-size:34pt;font-weight:800;margin:2mm 0 6mm}
+.pg p{margin:0}
+.court{display:block}
+
+.capa .topo{position:absolute;left:0;right:0;top:0;height:170mm;background:var(--tinta);color:var(--creme);overflow:hidden}
+.capa .topo .court{position:absolute;right:-24mm;top:-10mm;width:92mm;opacity:.42}
+.capa .logo{position:absolute;left:16mm;top:16mm;height:11mm}
+.capa .tt{position:absolute;left:16mm;right:16mm;bottom:16mm}
+.pill{display:inline-block;font-family:var(--txt);font-weight:700;font-size:8.5pt;padding:1.6mm 4mm;border-radius:999px}
+.p-saibro{background:var(--saibro);color:var(--creme)}
+.p-tinta{background:var(--tinta);color:var(--creme)}
+.p-areia{background:var(--areia);color:var(--forte)}
+.capa h1{font-size:62pt;font-weight:800;color:var(--creme);margin:5mm 0 2mm}
+.capa .sub{font-family:var(--tit);font-weight:800;font-size:24pt;text-transform:uppercase;color:var(--noescuro);line-height:.95}
+.capa .nome{font-family:var(--tit);font-weight:800;font-size:34pt;text-transform:uppercase;color:var(--lima);line-height:.95;margin-top:9mm}
+.capa .quando{color:var(--noescuro);font-size:10pt;margin-top:2mm}
+.capa .base{position:absolute;left:16mm;right:16mm;top:180mm;bottom:20mm}
+.perfil{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3mm;margin:3mm 0 7mm}
+.perfil div{background:var(--areia);border-radius:14px;padding:3mm 3.4mm}
+.perfil small{display:block;font-size:7pt;font-weight:600;color:var(--suave);text-transform:none}
+.perfil b{display:block;font-size:9.5pt;line-height:1.25}
+.resumo{font-size:11.5pt;line-height:1.55;color:var(--forte);max-width:165mm}
+.exemplo{position:absolute;right:16mm;top:18mm;font-size:7.5pt;font-weight:600;color:var(--noescuro)}
+
+.jogo .grid{display:grid;grid-template-columns:116mm minmax(0,1fr);gap:7mm;align-items:center}
+.radarbox{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:4mm}
+.radarbox svg{width:100%;height:auto;display:block}
+.notas{display:grid;gap:3.6mm;padding-top:2mm}
+.nt{display:grid;grid-template-columns:30mm minmax(0,1fr);align-items:center;gap:3mm}
+.nt span{font-weight:700;font-size:10.5pt}
+.nt .bar{display:flex;gap:1.4mm}
+.nt .bar i{flex:1;height:4.2mm;border-radius:999px;background:var(--areia)}
+.nt .bar i.on{background:var(--saibro)}
+.escala{font-size:7.5pt;color:var(--suave);margin-top:5mm;line-height:1.5}
+.duas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5mm;margin-top:10mm}
+.jogo .bx{padding:7mm}.jogo .bx li{font-size:11pt}.jogo .bx ol{gap:4.4mm}
+.bx{border-radius:22px;padding:6mm}
+.bx h3{font-size:18pt;font-weight:800;margin-bottom:4mm}
+.bx ol{margin:0;padding:0;list-style:none;display:grid;gap:3.4mm}
+.bx li{display:grid;grid-template-columns:7mm minmax(0,1fr);gap:2mm;font-size:10.5pt;line-height:1.5}
+.bx li b{font-family:var(--tit);font-weight:800;font-size:16pt;line-height:1}
+.bx-claro{background:var(--papel);border:1px solid var(--linha)}
+.bx-claro li b{color:var(--saibro)}
+.bx-escuro{background:var(--tinta);color:var(--creme)}
+.bx-escuro h3{color:var(--creme)}
+.bx-escuro li{color:var(--noescuro)}
+.bx-escuro li b{color:var(--lima)}
+
+.golpes .cards{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5mm}
+.gc{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:5mm;display:flex;flex-direction:column;gap:3mm}
+.gc .gt{display:flex;justify-content:space-between;align-items:center;gap:3mm}
+.gc h3{font-size:19pt;font-weight:700}
+.gc .mini{display:flex;gap:1mm}
+.gc .mini i{width:4.4mm;height:4.4mm;border-radius:50%;background:var(--areia)}
+.gc .mini i.on{background:var(--saibro)}
+.gc .lb{font-size:7.5pt;font-weight:700;color:var(--suave);text-transform:uppercase;letter-spacing:.08em}
+.gc p{font-size:9.5pt;line-height:1.45;color:var(--forte)}
+.corr{background:var(--tinta);color:var(--creme);border-radius:14px;padding:4mm;margin-top:auto}
+.corr .k{font-family:var(--tit);font-weight:700;font-size:10pt;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);margin-bottom:1.4mm}
+.corr p{color:var(--creme);font-size:9.3pt}
+.corr .ex{color:var(--noescuro);font-size:8.5pt;margin-top:2mm}
+
+.outros{margin-top:6mm;background:var(--areia);border-radius:22px;padding:5mm 6mm}
+.outros h3{font-size:15pt;font-weight:800;margin-bottom:3mm}
+.outros .ls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3mm 6mm}
+.outros .it{display:flex;justify-content:space-between;align-items:center;gap:3mm;font-weight:700;font-size:10pt}
+.outros .it small{display:block;font-weight:500;font-size:8pt;color:var(--suave)}
+.outros .mini{display:flex;gap:1mm}.outros .mini i{width:3.6mm;height:3.6mm;border-radius:50%;background:var(--creme)}.outros .mini i.on{background:var(--saibro)}
+.saque .qs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3.4mm;margin-bottom:7mm}
+.q .im{aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:var(--areia);position:relative}
+.q .im img{width:100%;height:100%;object-fit:cover;display:block}
+.q .im .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:7pt;font-weight:600;color:var(--suave);padding:2mm}
+.q .im .ph svg{position:absolute;inset:3mm;width:calc(100% - 6mm);height:calc(100% - 6mm);opacity:.6}
+.q .pill{margin:2.6mm 0 1.6mm}
+.q p{font-size:8.4pt;line-height:1.4;color:var(--forte)}
+.prio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:5mm}
+.bx-saibro{background:var(--saibro);color:var(--creme)}
+.bx-saibro h3{color:var(--creme)}
+.bx-saibro .k{font-family:var(--tit);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);font-size:10pt;margin-bottom:2mm}
+.bx p.t{font-size:10pt;line-height:1.5}
+
+.plano .fases{display:grid;gap:4mm}
+.fase{display:grid;grid-template-columns:34mm minmax(0,1fr);gap:5mm;background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:5mm}
+.fase .fl .n{font-family:var(--tit);font-weight:800;font-size:30pt;color:var(--saibro);line-height:.9}
+.fase .fl small{display:block;font-weight:700;font-size:8.5pt;color:var(--suave);margin-top:1.4mm}
+.fase h3{font-size:16pt;font-weight:800;margin-bottom:2.4mm}
+.fase ul{margin:0;padding:0;list-style:none;display:grid;gap:2mm}
+.fase li{font-size:9.3pt;line-height:1.4;color:var(--forte)}
+.fase li b{color:var(--tinta)}
+.fase .re{margin-top:3mm}
+.extra{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5mm;margin-top:5mm}
+.bx-areia{background:var(--areia)}
+.extra h3{font-size:15pt}
+.extra p,.extra li{font-size:9.3pt;line-height:1.45;color:var(--forte)}
+.extra ul{margin:0;padding-left:4mm;display:block}
+.extra li{display:list-item;margin-bottom:1.6mm}
+
+.fim{background:var(--saibro)!important;color:var(--creme)}
+.fim .court{position:absolute;right:-62mm;top:14mm;width:150mm;opacity:.34}
+.fim .logo{position:absolute;left:16mm;top:16mm;height:11mm}
+.fim .ct{position:absolute;left:16mm;right:16mm;top:70mm}
+.fim h1{font-size:58pt;font-weight:800;color:var(--creme);max-width:130mm}
+.fim .txt{font-size:12pt;line-height:1.55;max-width:125mm;margin:7mm 0 7mm;color:var(--creme)}
+.fim .rec{background:var(--tinta);border-radius:22px;padding:6mm;max-width:130mm}
+.fim .rec .k{font-family:var(--tit);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);font-size:10pt}
+.fim .rec b{display:block;font-family:var(--tit);font-weight:800;font-size:22pt;text-transform:uppercase;line-height:1;margin-top:1.6mm;color:var(--creme)}
+.fim .rec p{color:var(--noescuro);font-size:9.5pt;margin-top:2mm}
+.fim .mods{display:flex;gap:2.4mm;flex-wrap:wrap;margin-top:6mm}
+.fim .mods span{border:1.4px solid rgba(244,238,230,.7);border-radius:999px;padding:1.4mm 4mm;font-weight:600;font-size:9pt}
+.fim .cta{position:absolute;left:16mm;right:16mm;bottom:18mm;display:flex;align-items:flex-end;justify-content:space-between;gap:8mm}
+.fim .zap{display:inline-flex;align-items:center;gap:3mm;background:var(--lima);color:var(--tinta);border-radius:999px;padding:4mm 7mm;font-weight:700;font-size:12pt}
+.fim .zap+p{color:var(--creme);font-size:9pt;margin-top:3mm}
+.fim .qr{background:var(--creme);border-radius:14px;padding:3.4mm;width:36mm;text-align:center;flex:none}
+.fim .qr img{width:100%;display:block}
+.fim .qr small{display:block;color:var(--tinta);font-size:7pt;font-weight:700;margin-top:1.6mm}
+
+
+/* login Google (demonstração) */
+.gbtn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px 0 8px;border-radius:999px;border:0;background:var(--creme);color:var(--tinta);font:700 16px var(--txt);cursor:pointer;position:relative}
+.gbtn .g{width:38px;height:38px;border-radius:50%;background:var(--tinta);color:var(--creme);display:grid;place-items:center}
+.reav{background:var(--tinta);color:var(--noescuro);border-radius:14px;padding:10px 14px;font-size:14px;margin-bottom:16px}
+.reav b{color:var(--creme)}
+.antes{font-size:13px;color:var(--suave);margin:-4px 0 10px}
+.antes b{color:var(--tinta)}
+.dot.was{border-color:var(--saibro);border-style:dashed}
+.evo{display:grid;grid-template-columns:minmax(0,1fr) 22px 18px 22px 40px;align-items:center;gap:6px;padding:7px 0;border-top:1px solid var(--linha);font-size:15px}
+.evo .g{font-weight:600}
+.evo .v{text-align:center;color:var(--suave);font-weight:600}
+.evo .v.now{color:var(--tinta);font-weight:700}
+.evo .ar{color:var(--suave);text-align:center}
+.evo .d{justify-self:end;font-size:12px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--areia);color:var(--forte)}
+.evo .d.mais{background:var(--saibro);color:var(--creme)}
+.hist{display:grid;gap:12px}
+.aula{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:16px}
+.aula .dt{font:800 26px/1 var(--tit);margin-top:6px}
+.aula .rs{font-size:14px;color:var(--forte);margin:10px 0 14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.aula .ab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.aula .ab .btn{min-height:46px;font-size:14px;padding:0 12px}
+.mailnote{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--suave);margin:12px 0 0}
+.mailnote svg{flex:none}
+/* relatório: reavaliação */
+.leg{display:flex;gap:6mm;justify-content:center;font-size:8pt;font-weight:600;color:var(--forte);margin-top:1mm}
+.leg span{display:inline-flex;align-items:center;gap:2mm}
+.leg i{display:inline-block;width:7mm;height:2.6mm;border-radius:1mm}
+.leg .l-now{background:rgba(168,73,42,.2);border:.5mm solid var(--saibro)}
+.leg .l-ant{border:.5mm dashed var(--tinta)}
+.jogo .grid.rv{grid-template-columns:100mm minmax(0,1fr)}
+.nt.rv{grid-template-columns:24mm minmax(0,1fr) 11mm;gap:2.4mm}
+.nt.rv .bar{gap:1.2mm}
+.nt em{font-style:normal;font-size:8.5pt;font-weight:700;color:var(--suave);text-align:right}
+.nt em.mais{color:var(--saibro)}
+.nt .bar i{position:relative}
+.nt .bar i.was::after{content:"";position:absolute;left:12%;right:12%;bottom:-1.5mm;height:.6mm;border-radius:1mm;background:var(--tinta)}
+.gc .gn{display:flex;align-items:center;gap:2mm}
+.gc .gn small{font-size:8pt;font-weight:700;color:var(--saibro)}
+
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:var(--creme)}
+  body.imprimindo>*:not(#relatorio){display:none!important}
+  body.imprimindo #relatorio .rbar{display:none!important}
+  body.imprimindo .rstage{padding:0;background:none}
+  body.imprimindo .rpages{zoom:1!important}
+  body.imprimindo .pg{margin:0;box-shadow:none}
+}
+@media (max-width:420px){.row2{grid-template-columns:minmax(0,1fr)}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="relatorio" hidden></div>
+<div id="modal"></div>
+
+<script>
+{
+/* =========================================================
+   CONFIGURAÇÃO
+   API_URL vazio = modo demonstração (dados ficam só neste aparelho).
+   Para a versão real:
+   - API_URL: URL do Google Apps Script publicado na conta pstennisteam@gmail.com
+   - GOOGLE_CLIENT_ID: ID de cliente OAuth criado no Google Cloud para pstennisteam.com
+   As contas autorizadas a entrar ficam no Apps Script, não aqui.
+   ========================================================= */
+const CONFIG = { API_URL: '', GOOGLE_CLIENT_ID: '', CONTA_DEMO: 'pstennisteam@gmail.com' };
+const DEMO = !CONFIG.API_URL;
+
+const GOLPES = ['Forehand','Backhand','Saque','Devolução','Voleio','Smash','Movimentação'];
+const FASES = ['Preparação','Lançamento','Troféu','Contato','Terminação'];
+const NIVEL = ['','Iniciando','Em desenvolvimento','Funcional','Consistente','Avançado'];
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = s => document.querySelector(s);
+const hoje = () => new Date().toLocaleDateString('pt-BR');
+const uid = () => Math.random().toString(36).slice(2, 10);
+const copia = o => JSON.parse(JSON.stringify(o));
+
+const COURT = (cls = '') => `<svg class="court ${cls}" viewBox="0 0 360 734" fill="none" stroke="#F4EEE6" stroke-width="3" aria-hidden="true"><rect x="20" y="20" width="320" height="694"/><line x1="60" y1="20" x2="60" y2="714"/><line x1="300" y1="20" x2="300" y2="714"/><line x1="60" y1="180" x2="300" y2="180"/><line x1="60" y1="554" x2="300" y2="554"/><line x1="180" y1="180" x2="180" y2="554"/><line x1="180" y1="20" x2="180" y2="34"/><line x1="180" y1="700" x2="180" y2="714"/><line x1="4" y1="367" x2="356" y2="367" stroke-width="5"/></svg>`;
+const ICON = {
+  mic: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  go: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
+  zap: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>',
+  mail: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+  user: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>'
+};
+
+/* ---------- Diagnósticos de exemplo (aluna fictícia) ---------- */
+const EXEMPLO = {
+  exemplo: true, tipo: 'experimental',
+  aluno: { nome: 'Mariana Costa', idade: 34, data: '22/09/2026', local: 'Fama Tennis', objetivo: 'Jogar partidas com mais consistência', tempo: '1 ano, com aulas esporádicas', mao: 'Destra', backhand: 'Duas mãos', empunhadura: 'Eastern', nivel: 'Intermediária iniciante' },
+  resumo: 'Mariana tem uma base boa para evoluir rápido: se movimenta bem, lê a bola cedo e já prepara o forehand com rotação de ombros. Os pontos que mais seguram o jogo hoje são o saque, que ainda não tem um lançamento estável, e o backhand, que sai curto porque o braço trava no contato. Com 12 semanas de trabalho focado, a meta é sacar com segurança e sustentar trocas longas dos dois lados.',
+  notas: [ {golpe:'Forehand',nota:3},{golpe:'Backhand',nota:2},{golpe:'Saque',nota:2},{golpe:'Devolução',nota:3},{golpe:'Voleio',nota:2},{golpe:'Smash',nota:1},{golpe:'Movimentação',nota:4} ],
+  fortes: [
+    'Movimentação lateral rápida e boa leitura da bola: você chega bem posicionada na maioria das bolas.',
+    'Forehand com preparação cedo e boa rotação de ombros, o que já gera potência.',
+    'Disposição e resistência: manteve a qualidade até o fim da aula.'
+  ],
+  melhorar: [
+    'Saque: o lançamento varia de altura e vai para trás da cabeça, o que muda o golpe a cada tentativa.',
+    'Backhand: braços estendidos e travados no contato deixam a bola curta e sem direção.',
+    'Volta à posição de espera: depois de bater, você fica parada olhando a bola por um instante a mais.'
+  ],
+  golpes: [
+    { golpe:'Forehand', nota:3, vi:'Preparação boa, mas o contato acontece muito perto do corpo e a terminação fica baixa. Resultado: bola sem profundidade.', corrigir:'Encontre a bola à frente do pé da frente e termine com a raquete por cima do ombro oposto.', exercicio:'Cesto com alvo depois da linha de saque. 3 séries de 15 bolas.' },
+    { golpe:'Backhand', nota:2, vi:'A mão esquerda fica passiva e o giro do tronco é curto. O braço trava e a bola sai curta.', corrigir:'Deixe a mão esquerda conduzir o golpe, como um forehand de canhota, e solte os braços depois do contato.', exercicio:'Backhand só com a mão esquerda em bola lenta. 3 séries de 10, depois com as duas mãos.' },
+    { golpe:'Voleio', nota:2, vi:'Balanço grande do braço e empunhadura de forehand. A bola vai alta e sem controle.', corrigir:'Use a empunhadura continental e pense em bloquear a bola, não em bater nela.', exercicio:'Voleio de bloqueio a dois metros da rede. 4 séries de 10.' },
+    { golpe:'Movimentação', nota:4, vi:'Desloca bem para os lados e chega equilibrada. O split-step às vezes acontece tarde.', corrigir:'Faça o pequeno salto (split-step) no instante em que o adversário toca na bola.', exercicio:'Jogo de reação com chamada de direção. 4 rodadas de 1 minuto.' }
+  ],
+  saque: {
+    quadros: [
+      { fase:'Preparação', obs:'Postura lateral correta e pés na largura dos ombros.' },
+      { fase:'Lançamento', obs:'Bola sobe atrás da cabeça e o braço do lançamento dobra.' },
+      { fase:'Troféu', obs:'Cotovelo da raquete abaixo da linha do ombro e joelhos pouco flexionados.' },
+      { fase:'Contato', obs:'Contato abaixo da altura máxima, sem estender o braço por completo.' },
+      { fase:'Terminação', obs:'Raquete termina do lado direito; o ideal é cruzar o corpo.' }
+    ],
+    bom: 'A posição inicial é boa e o ritmo é tranquilo, sem pressa. Isso facilita muito a correção.',
+    prioridade: 'Lançamento sempre igual, à frente e levemente à direita, com o braço esticado. Junto com isso, começar a transição para a empunhadura continental, aos poucos, para ganhar efeito e segurança.'
+  },
+  planoTitulo: '12 semanas · 1 aula por semana',
+  plano: [
+    { semanas:'Semanas 1 a 4', titulo:'Base técnica', itens:[
+      { foco:'Lançamento do saque', exercicio:'Lançar e deixar a bola cair sobre a raquete apoiada no chão, à frente do pé.' },
+      { foco:'Empunhadura continental', exercicio:'Saque de bloqueio da linha de saque e voleios de bloqueio.' },
+      { foco:'Backhand com a mão esquerda', exercicio:'Alimentação lenta, só com a mão não dominante.' } ] },
+    { semanas:'Semanas 5 a 8', titulo:'Consistência', reavaliacao:true, itens:[
+      { foco:'Profundidade no forehand', exercicio:'Trocas com alvo no fundo da quadra, contando acertos.' },
+      { foco:'Backhand cruzado', exercicio:'Troca cruzada de backhand, 20 bolas sem erro.' },
+      { foco:'Saque com alvo', exercicio:'Dois alvos na área de saque, 10 tentativas em cada.' } ] },
+    { semanas:'Semanas 9 a 12', titulo:'Jogo', itens:[
+      { foco:'Saque e primeira bola', exercicio:'Pontos começando com saque e ataque na bola seguinte.' },
+      { foco:'Subida à rede', exercicio:'Aproximação e voleio a partir de bola curta.' },
+      { foco:'Pontos jogados', exercicio:'Games e sets curtos com objetivo tático por game.' } ] }
+  ],
+  casa: [ 'Lançamento do saque: 5 minutos por dia, mirando sempre o mesmo ponto.', 'Movimento do backhand sem bola, devagar, sentindo a mão esquerda conduzir.' ],
+  equipamento: { raquete:'Raquete de 270 g, empunhadura L2, corda multifilamento a 55 lb', obs:'A raquete está adequada ao seu momento. Vale testar uma tensão um pouco menor para ganhar conforto e profundidade. Reavaliamos o equipamento quando o saque estiver estável.' },
+  proximo: { recomendacao:'Aula individual, 1 vez por semana', motivo:'O saque e o backhand pedem correções finas, que rendem mais com atenção total nas primeiras semanas.', texto:'Você já tem um diagnóstico claro e um caminho de 12 semanas. A próxima aula começa pela fase 1 do plano, e na semana 8 filmamos de novo para comparar.' }
+};
+
+const REAV = {
+  exemplo: true, tipo: 'reavaliacao',
+  aluno: Object.assign(copia(EXEMPLO.aluno), { data: '17/11/2026', nivel: 'Intermediária' }),
+  anterior: { data: '22/09/2026', notas: copia(EXEMPLO.notas) },
+  resumo: 'Em oito semanas, Mariana deu um salto no saque e no backhand. O lançamento ficou estável e a empunhadura continental já aparece na maioria dos saques. O backhand ganhou profundidade com a mão esquerda conduzindo o golpe. O próximo ciclo transforma essa base em pontos: saque com direção, subida à rede e mais jogo.',
+  notas: [ {golpe:'Forehand',nota:4},{golpe:'Backhand',nota:3},{golpe:'Saque',nota:3},{golpe:'Devolução',nota:3},{golpe:'Voleio',nota:3},{golpe:'Smash',nota:2},{golpe:'Movimentação',nota:4} ],
+  fortes: [
+    'Saque: o lançamento agora sobe sempre no mesmo lugar, à frente do corpo, e o golpe ficou repetível.',
+    'Backhand: a mão esquerda conduz o golpe e a bola passou a chegar no fundo da quadra.',
+    'Voleio: com a empunhadura continental, os voleios de bloqueio saem firmes e baixos.'
+  ],
+  melhorar: [
+    'Saque: ganhar direção, alternando alvos no T e na aberta.',
+    'Forehand: manter a profundidade também nas bolas mais rápidas.',
+    'Smash: começar o trabalho de posicionamento embaixo da bola.'
+  ],
+  golpes: [
+    { golpe:'Forehand', nota:4, vi:'Contato à frente do corpo e terminação alta na maioria das bolas. Em bolas rápidas, o contato ainda atrasa.', corrigir:'Prepare mais cedo quando a bola vem rápida: ombros girados assim que a bola cruza a rede.', exercicio:'Trocas em velocidade crescente com alvo no fundo. 4 séries de 12.' },
+    { golpe:'Backhand', nota:3, vi:'Mão esquerda ativa e bola com profundidade. Na corrida para o lado, a base ainda abre demais.', corrigir:'Chegue com passos curtos e apoie o pé da frente antes de bater.', exercicio:'Backhand em deslocamento lateral, 3 séries de 10 bolas.' },
+    { golpe:'Voleio', nota:3, vi:'Empunhadura continental e bloqueio curto. Falta deslocar o corpo para frente no contato.', corrigir:'Dê um passo para a bola com o pé oposto enquanto bloqueia.', exercicio:'Voleio com passo à frente, alternando lados. 4 séries de 10.' },
+    { golpe:'Smash', nota:2, vi:'Corre para trás de frente para a rede e bate com o braço sozinho.', corrigir:'Vire de lado, aponte a bola com a mão livre e só depois bata.', exercicio:'Smash com bola alimentada alta, parada, 3 séries de 8.' }
+  ],
+  saque: {
+    quadros: [
+      { fase:'Preparação', obs:'Mesma base boa da primeira aula, mais relaxada.' },
+      { fase:'Lançamento', obs:'Bola sobe à frente e à direita, com o braço esticado.' },
+      { fase:'Troféu', obs:'Cotovelo na linha do ombro. Os joelhos ainda podem flexionar mais.' },
+      { fase:'Contato', obs:'Contato mais alto, com o braço quase todo estendido.' },
+      { fase:'Terminação', obs:'A raquete já cruza o corpo e termina do lado esquerdo.' }
+    ],
+    bom: 'O lançamento, que era a prioridade, está resolvido. O saque ficou repetível e entra com mais segurança.',
+    prioridade: 'Flexionar mais os joelhos no troféu para ganhar impulso e começar a escolher a direção: um saque no T, outro na aberta.'
+  },
+  planoTitulo: 'Próximo ciclo · 8 semanas · 1 aula por semana',
+  plano: [
+    { semanas:'Semanas 9 a 12', titulo:'Saque com direção', itens:[
+      { foco:'Joelhos no troféu', exercicio:'Saque partindo da posição de troféu, sentindo o impulso das pernas.' },
+      { foco:'Alvos no T e na aberta', exercicio:'Séries de 10 saques alternando os dois alvos.' },
+      { foco:'Forehand em bola rápida', exercicio:'Trocas com velocidade crescente e alvo no fundo.' } ] },
+    { semanas:'Semanas 13 a 16', titulo:'Jogo de rede', reavaliacao:true, itens:[
+      { foco:'Aproximação e voleio', exercicio:'Bola curta, aproximação na paralela e voleio cruzado.' },
+      { foco:'Smash', exercicio:'Posicionamento de lado e smash em bola alta alimentada.' },
+      { foco:'Pontos com subida', exercicio:'Pontos em que é obrigatório subir à rede na terceira bola.' } ] }
+  ],
+  casa: [ 'Saque sem bola em frente ao espelho, parando no troféu com os joelhos flexionados.', 'Lançamento do saque: 5 minutos, alternando a direção do corpo para o T e para a aberta.' ],
+  equipamento: { raquete:'Raquete de 270 g, empunhadura L2, corda multifilamento a 52 lb', obs:'Com o saque estável, a raquete segue adequada. Na próxima reavaliação vemos se vale um modelo um pouco mais pesado.' },
+  proximo: { recomendacao:'Aula individual, 1 vez por semana', motivo:'O próximo ciclo trabalha direção e jogo de rede, que ainda pedem correções individuais.', texto:'Sua evolução em oito semanas mostra que o plano está funcionando. O próximo ciclo começa na próxima aula, e na semana 16 filmamos de novo para mais uma comparação.' }
+};
+
+/* ---------- Armazenamento (modo demonstração) ---------- */
+const KEY = 'ps-prof-demo-v2';
+let mem = null;
+const load = () => { try { const j = localStorage.getItem(KEY); if (j) return JSON.parse(j); } catch (e) {} return mem; };
+const save = d => { mem = d; try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {
+  try { const leve = copia(d); leve.alunos.forEach(a => a.aulas.forEach(au => { (au.av && au.av.quadros || []).forEach(q => q.img = null); au.diag && au.diag.saque && au.diag.saque.quadros.forEach(q => q.img = null); })); localStorage.setItem(KEY, JSON.stringify(leve)); } catch (e2) {} } };
+const semente = () => ({ alunos: [ { id:'ex1', nome:'Mariana Costa', idade:34, whatsapp:'', local:'Fama Tennis', aulas: [
+  { id:'a1', tipo:'experimental', data:'22/09/2026', diag: EXEMPLO, docUrl:'', av: null },
+  { id:'a2', tipo:'reavaliacao', data:'17/11/2026', diag: REAV, docUrl:'', av: null } ] } ] });
+let db = load() || semente();
+const ultima = al => al.aulas[al.aulas.length - 1];
+
+/* ---------- Sessão e API (Apps Script) ---------- */
+let TOKEN = '', CONTA = '';
+async function api(action, payload = {}) {
+  const r = await fetch(CONFIG.API_URL, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify({ action, token: TOKEN, ...payload }) });
+  const j = await r.json();
+  if (j.erro === 'sessao') { TOKEN = ''; go('login'); throw new Error('Sua sessão expirou. Entre de novo.'); }
+  if (!j.ok) throw new Error(j.erro || 'Falha na comunicação');
+  return j;
+}
+let gisPronto = null;
+function carregarGoogle() {
+  if (gisPronto) return gisPronto;
+  gisPronto = new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  return gisPronto;
+}
+async function montarBotaoGoogle() {
+  try {
+    await carregarGoogle();
+    google.accounts.id.initialize({ client_id: CONFIG.GOOGLE_CLIENT_ID, callback: r => { TOKEN = r.credential; entrar(); } });
+    google.accounts.id.renderButton($('#gbtn'), { theme:'filled_black', shape:'pill', size:'large', text:'signin_with', locale:'pt-BR', width: 280 });
+  } catch (e) { $('#lerr').textContent = 'Não consegui carregar o login do Google. Verifique a internet e recarregue a página.'; }
+}
+async function entrar() {
+  const err = $('#lerr'); if (err) err.textContent = '';
+  try {
+    if (DEMO) { CONTA = CONFIG.CONTA_DEMO; }
+    else { const r = await api('entrar'); CONTA = r.email; db = { alunos: r.alunos || [] }; }
+    go('home');
+  } catch (e) { TOKEN = ''; if (err) err.textContent = e.message; }
+}
+
+/* ---------- Estado ---------- */
+const S = { view:'login', step:0, av:null, alunoId:null, base:null, qsel:null };
+const novoAv = () => ({ nome:'', idade:'', whatsapp:'', local:'', objetivo:'', tempo:'', mao:'', backhand:'', empunhadura:'', nivel:'',
+  golpes: Object.fromEntries(GOLPES.map(g => [g, { nota:0, obs:'' }])), raquete:'', peso:'', grip:'', corda:'', semRaquete:false,
+  fortes:'', melhorar:'', gerais:'', internas:'', quadros:[], consent:false, consentResp:false });
+function avReavaliacao(al) {
+  const u = ultima(al), av = novoAv(), ant = u.av || {};
+  Object.assign(av, { nome: al.nome, idade: al.idade || '', whatsapp: al.whatsapp || '', local: al.local || '' });
+  ['objetivo','tempo','mao','backhand','empunhadura','nivel','raquete','peso','grip','corda','semRaquete'].forEach(k => { if (ant[k] !== undefined && ant[k] !== '') av[k] = ant[k]; });
+  if (!ant.mao && u.diag) { const m = u.diag.aluno.mao || ''; av.mao = /^destr/i.test(m) ? 'Destro' : /^canh/i.test(m) ? 'Canhoto' : ''; av.backhand = u.diag.aluno.backhand || ''; av.empunhadura = u.diag.aluno.empunhadura || ''; }
+  return av;
+}
+const notaAnterior = g => { if (!S.base) return 0; const al = db.alunos.find(x => x.id === S.base); const n = al && (ultima(al).diag.notas || []).find(x => x.golpe === g); return n ? n.nota : 0; };
+
+const app = $('#app');
+function go(view) { S.view = view; render(); window.scrollTo(0, 0); }
+function render() {
+  const v = S.view;
+  app.innerHTML = v === 'login' ? vLogin() : v === 'home' ? vHome() : v === 'form' ? vForm() : v === 'gerando' ? vGerando() : vAluno();
+  bind();
+  if (v === 'login' && !DEMO) montarBotaoGoogle();
+}
+const topo = () => `<header class="top"><img src="/img/logo-branca.png" alt="PS Tennis Team"><span class="who">${esc(CONTA || 'Área do professor')}</span><button data-a="sair">Sair</button></header>`;
+const demoBar = () => DEMO ? `<div class="demo"><b>Modo demonstração.</b> Os dados ficam só neste aparelho e o diagnóstico usa um texto de exemplo. Na versão final, tudo fica no Google Drive de ${esc(CONFIG.CONTA_DEMO)} e cada diagnóstico chega por e-mail.</div>` : '';
+
+/* ---------- Telas ---------- */
+function vLogin() {
+  return `<main class="pin">${COURT()}<img src="/img/logo-branca.png" alt="PS Tennis Team"><h1>Área do professor</h1>
+  <p>Entre com a conta Google do PS Tennis Team.</p>
+  ${DEMO ? `<button class="gbtn" data-a="google"><span class="g">${ICON.user}</span>Entrar com Google</button><p class="small" style="color:var(--noescuro);margin-top:14px">Demonstração: entra como ${esc(CONFIG.CONTA_DEMO)}.</p>` : '<div id="gbtn" style="position:relative;min-height:44px"></div>'}
+  <div class="err" id="lerr"></div></main>`;
+}
+function vHome() {
+  const lista = db.alunos.slice().sort((a, b) => ord(ultima(b).data) - ord(ultima(a).data));
+  return `${topo()}<main class="wrap">${demoBar()}
+  <section class="hero">${COURT()}<h1>Nova aula experimental</h1><p>Preencha a ficha durante ou logo depois da aula. Leva uns 5 minutos.</p>
+  <button class="btn b-lima" data-a="nova">Começar ficha</button></section>
+  <div class="secth"><h2>Alunos</h2><span class="small">${lista.length} no total</span></div>
+  <input class="search" id="busca" type="search" placeholder="Buscar aluno" aria-label="Buscar aluno">
+  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length; return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(a.nome.trim().charAt(0).toUpperCase())}</span><span><span class="nm">${esc(a.nome)}</span><br><span class="meta">Última aula em ${esc(u.data)} · ${n} ${n === 1 ? 'aula registrada' : 'aulas registradas'}</span><br><span class="tag ${n > 1 ? 'ok' : ''}">${n > 1 ? 'Em acompanhamento' : 'Aula experimental'}</span></span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
+  </main>`;
+}
+const ord = d => { const [dd, mm, aa] = String(d).split('/').map(Number); return (aa || 0) * 10000 + (mm || 0) * 100 + (dd || 0); };
+
+/* Etapas da ficha */
+const chips = (campo, opcoes) => `<div class="chips" role="group">${opcoes.map(o => `<button type="button" class="chip" data-chip="${campo}" data-v="${esc(o)}" aria-pressed="${S.av[campo] === o}">${esc(o)}</button>`).join('')}</div>`;
+const ditado = (campo, ph) => `<div class="dict"><textarea class="inp" data-f="${campo}" id="f-${campo}" placeholder="${esc(ph)}">${esc(S.av[campo])}</textarea><button type="button" class="mic" data-mic="f-${campo}" aria-label="Ditar">${ICON.mic}</button></div>`;
+const ETAPAS = [
+  { t:'Aluno', lead:'Quem fez a aula hoje.', ok: av => av.nome.trim().length > 1, html: av => `
+    <div class="fld"><label for="f-nome">Nome do aluno</label><input class="inp" id="f-nome" data-f="nome" value="${esc(av.nome)}" autocomplete="off" ${S.base ? 'readonly' : ''}></div>
+    <div class="row2"><div class="fld"><label for="f-idade">Idade</label><input class="inp" id="f-idade" data-f="idade" inputmode="numeric" value="${esc(av.idade)}"></div>
+    <div class="fld"><label for="f-whatsapp">WhatsApp <span class="hint">(opcional)</span></label><input class="inp" id="f-whatsapp" data-f="whatsapp" inputmode="tel" value="${esc(av.whatsapp)}"></div></div>
+    <div class="fld"><span class="lb">Local da aula</span>${chips('local', ['Fama Tennis','Condomínio'])}</div>
+    <div class="fld"><span class="lb">Objetivo</span>${chips('objetivo', ['Lazer','Condicionamento','Jogar partidas','Competir','Voltar a jogar'])}</div>
+    <div class="fld"><span class="lb">Tempo de prática</span>${chips('tempo', ['Nunca jogou','Menos de 1 ano','1 a 3 anos','Mais de 3 anos'])}</div>` },
+  { t:'Perfil', lead:'Como o aluno joga hoje.', ok: () => true, html: () => `
+    <div class="fld"><span class="lb">Mão dominante</span>${chips('mao', ['Destro','Canhoto'])}</div>
+    <div class="fld"><span class="lb">Backhand</span>${chips('backhand', ['Uma mão','Duas mãos'])}</div>
+    <div class="fld"><span class="lb">Empunhadura do forehand</span>${chips('empunhadura', ['Continental','Eastern','Semi-western','Western'])}</div>
+    <div class="fld"><span class="lb">Nível geral</span>${chips('nivel', ['Iniciante','Intermediário iniciante','Intermediário','Avançado'])}</div>` },
+  { t:'Golpes', lead: () => S.base ? 'Dê a nota de hoje. A nota da última aula aparece em cada golpe para comparar.' : 'Toque na nota de cada golpe. 1 é iniciando e 5 é avançado.', ok: av => GOLPES.some(g => av.golpes[g].nota), html: av => GOLPES.map(g => { const ant = notaAnterior(g); return `
+    <div class="golpe"><div class="gh"><h3>${g}</h3><span class="lvl">${esc(NIVEL[av.golpes[g].nota] || '')}</span></div>
+    ${ant ? `<p class="antes">Na última aula: <b>${ant}</b> · ${esc(NIVEL[ant])}</p>` : ''}
+    <div class="scale" role="group" aria-label="Nota de ${g}">${[1,2,3,4,5].map(n => `<button type="button" class="dot ${n === ant ? 'was' : ''}" data-g="${g}" data-n="${n}" aria-pressed="${av.golpes[g].nota === n}">${n}</button>`).join('')}</div>
+    <details class="more" ${av.golpes[g].obs ? 'open' : ''}><summary>Observação sobre o ${g.toLowerCase()}</summary><div class="dict"><textarea class="inp" id="g-${g}" data-gobs="${g}" placeholder="O que você viu neste golpe">${esc(av.golpes[g].obs)}</textarea><button type="button" class="mic" data-mic="g-${g}" aria-label="Ditar">${ICON.mic}</button></div></details></div>`; }).join('') },
+  { t:'Equipamento', lead:'A raquete que o aluno usou na aula.', ok: () => true, html: av => `
+    <label class="check"><input type="checkbox" data-cb="semRaquete" ${av.semRaquete ? 'checked' : ''}><span>Aluno não tem raquete própria (usou raquete emprestada)</span></label>
+    <div class="fld"><label for="f-raquete">Modelo da raquete</label><input class="inp" id="f-raquete" data-f="raquete" value="${esc(av.raquete)}" placeholder="Ex.: marca e modelo"></div>
+    <div class="fld"><span class="lb">Peso</span>${chips('peso', ['Até 270 g','280 a 290 g','300 g ou mais','Não sei'])}</div>
+    <div class="fld"><span class="lb">Tamanho da empunhadura</span>${chips('grip', ['L1','L2','L3','L4','Não sei'])}</div>
+    <div class="fld"><label for="f-corda">Corda e tensão <span class="hint">(se souber)</span></label><input class="inp" id="f-corda" data-f="corda" value="${esc(av.corda)}"></div>` },
+  { t:'Observações', lead: () => S.base ? 'Fale o que evoluiu e o que ainda precisa de atenção. O diagnóstico compara com a aula anterior.' : 'Toque no microfone e fale. Não precisa caprichar no texto: o diagnóstico organiza tudo.', ok: () => true, html: () => `
+    <div class="fld"><span class="lb">${S.base ? 'O que evoluiu' : 'Pontos fortes'}</span>${ditado('fortes', S.base ? 'O que melhorou desde a última aula' : 'O que o aluno já faz bem')}</div>
+    <div class="fld"><span class="lb">${S.base ? 'Foco do próximo ciclo' : 'Pontos a melhorar'}</span>${ditado('melhorar', 'O que mais segura o jogo hoje')}</div>
+    <div class="fld"><span class="lb">Observações gerais</span>${ditado('gerais', 'Postura, atitude, físico, o que mais chamou atenção')}</div>
+    <div class="fld"><span class="lb">Notas internas <span class="lock">Não vai para o aluno</span></span>${ditado('internas', 'Só para você: impressões, cuidados, valores combinados')}</div>
+    <p class="mictip" id="mictip">${SR ? '' : 'Dica: neste aparelho, use o microfone do próprio teclado para ditar.'}</p>` },
+  { t:'Vídeo do saque', lead:'Grave de 10 a 20 segundos, de lado. A página escolhe 5 quadros, e você pode trocar qualquer um.', ok: () => true, html: av => `
+    <input type="file" id="vfile" accept="video/*" hidden>
+    <div id="vzone">${av._video ? '' : `<button type="button" class="up" data-a="vpick"><b>Escolher ou gravar vídeo</b><span>Só o saque, de 10 a 20 segundos</span></button>`}</div>
+    <div class="vbox" id="vbox" ${av._video ? '' : 'hidden'}><video id="vid" playsinline muted controls preload="auto"></video>
+      <div class="vt"><button type="button" class="btn b-lima" data-a="vmark">Usar este momento</button><button type="button" class="btn b-ghost" style="color:var(--creme);border-color:#5E574E" data-a="vpick">Trocar vídeo</button></div>
+      <p class="small" style="color:var(--noescuro);margin:10px 0 0">Toque em um quadro abaixo, pause o vídeo no momento certo e toque em "Usar este momento".</p></div>
+    <div class="frames" id="frames">${quadrosHTML(av)}</div>
+    <p class="small" style="margin-top:14px">Sem vídeo hoje? Pode avançar: o diagnóstico sai sem a análise do saque.</p>` },
+  { t:'Autorização', lead:'Antes de gerar, confirme a autorização do aluno.', ok: av => av.consent && (!(+av.idade && +av.idade < 18) || av.consentResp), html: av => `
+    <label class="check"><input type="checkbox" data-cb="consent" ${av.consent ? 'checked' : ''}><span>O aluno autorizou o uso das imagens do vídeo e dos dados da aula para o diagnóstico. As imagens não serão publicadas sem uma nova autorização.</span></label>
+    ${+av.idade && +av.idade < 18 ? `<label class="check"><input type="checkbox" data-cb="consentResp" ${av.consentResp ? 'checked' : ''}><span>Aluno menor de idade: o responsável também autorizou.</span></label>` : ''}
+    <div class="card" style="margin-top:18px"><h3>Resumo da ficha</h3><ul>
+      <li><b>${esc(av.nome)}</b>${av.idade ? `, ${esc(av.idade)} anos` : ''}${av.local ? ` · ${esc(av.local)}` : ''}</li>
+      <li>${S.base ? 'Reavaliação, comparando com a aula anterior' : 'Aula experimental'}</li>
+      <li>${GOLPES.filter(g => av.golpes[g].nota).length} golpes avaliados</li>
+      <li>${av.quadros.length ? `${av.quadros.length} quadros do saque` : 'Sem vídeo do saque'}</li>
+      <li>${(n => n === 1 ? '1 observação preenchida' : `${n} observações preenchidas`)([av.fortes, av.melhorar, av.gerais].filter(x => x.trim()).length)}</li></ul></div>
+    <p class="small" style="display:flex;gap:8px;align-items:center">${ICON.mail} Uma cópia com o PDF vai para o e-mail do professor.</p>` }
+];
+function quadrosHTML(av) {
+  return av.quadros.map((q, i) => `<div class="fr ${S.qsel === i ? 'sel' : ''}" data-q="${i}" role="button" tabindex="0" aria-label="Quadro ${i + 1}"><img src="${q.img}" alt="Quadro ${i + 1}: ${esc(q.fase)}">
+    <button type="button" class="x" data-qx="${i}" aria-label="Remover quadro">×</button>
+    <select data-qf="${i}" aria-label="Fase do quadro ${i + 1}">${FASES.map(f => `<option ${q.fase === f ? 'selected' : ''}>${f}</option>`).join('')}</select></div>`).join('');
+}
+function vForm() {
+  const e = ETAPAS[S.step], av = S.av, ult = S.step === ETAPAS.length - 1;
+  const lead = typeof e.lead === 'function' ? e.lead() : e.lead;
+  const al = S.base && db.alunos.find(x => x.id === S.base);
+  return `${topo()}<main class="wrap form">
+  ${al ? `<div class="reav">Reavaliação de <b>${esc(al.nome)}</b> · última aula em ${esc(ultima(al).data)}</div>` : ''}
+  <div class="stepn">Etapa ${S.step + 1} de ${ETAPAS.length}</div><div class="prog"><i style="width:${(S.step + 1) / ETAPAS.length * 100}%"></i></div>
+  <h1>${e.t}</h1><p class="lead">${lead}</p>${e.html(av)}</main>
+  <div class="foot"><div class="in"><button class="btn b-ghost" data-a="voltar">${S.step ? 'Voltar' : 'Cancelar'}</button><button class="btn b-ink" data-a="${ult ? 'gerar' : 'avancar'}" ${e.ok(av) ? '' : 'disabled'}>${ult ? 'Gerar diagnóstico' : 'Avançar'}</button></div></div>`;
+}
+function vGerando() {
+  const passos = ['Enviando a ficha','Analisando os quadros do saque', S.base ? 'Comparando com a aula anterior' : 'Escrevendo o diagnóstico','Montando o plano de treino','Salvando no Google Drive','Enviando o PDF por e-mail'];
+  return `${topo()}<main class="wrap gen"><span class="over">Só um instante</span><h1>Gerando o diagnóstico</h1><ol id="gp">${passos.map(p => `<li><i></i>${p}</li>`).join('')}</ol></main>`;
+}
+function evolucaoHTML(al) {
+  if (al.aulas.length < 2) return '';
+  const pri = al.aulas[0].diag.notas, ult = ultima(al).diag.notas;
+  const linhas = ult.map(n => { const a = (pri.find(x => x.golpe === n.golpe) || {}).nota || 0; const d = n.nota - a;
+    return `<div class="evo"><span class="g">${esc(n.golpe)}</span><span class="v">${a || '–'}</span><span class="ar" aria-hidden="true">→</span><span class="v now">${n.nota}</span><span class="d ${d > 0 ? 'mais' : ''}">${d > 0 ? `+${d}` : d < 0 ? d : '='}</span></div>`; }).join('');
+  return `<div class="card"><h3>Evolução</h3><p class="small" style="margin:0 0 10px">Da primeira aula (${esc(al.aulas[0].data)}) até a última (${esc(ultima(al).data)}).</p>${linhas}</div>`;
+}
+function vAluno() {
+  const al = db.alunos.find(x => x.id === S.alunoId);
+  if (!al) { S.view = 'home'; return vHome(); }
+  const u = ultima(al), aulas = al.aulas.slice().reverse();
+  return `${topo()}<main class="wrap">${demoBar()}
+  <section class="dhead">${COURT()}<span class="over">${al.aulas.length > 1 ? 'Em acompanhamento' : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'aula registrada' : 'aulas registradas'} · última em ${esc(u.data)}</p></section>
+  <div class="acts">
+    <button class="btn b-ink b-full" data-a="reavaliar">Fazer reavaliação</button>
+    ${al.whatsapp ? `<a class="btn b-ghost b-full" href="https://wa.me/55${esc(String(al.whatsapp).replace(/\D/g, ''))}" target="_blank" rel="noopener">Abrir conversa com o aluno</a>` : ''}
+  </div>
+  ${evolucaoHTML(al)}
+  <div class="secth" style="margin-top:22px"><h2>Histórico</h2></div>
+  <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span><div class="dt">${esc(au.data)}</div></div></div>
+    <p class="rs">${esc(au.diag.resumo)}</p>
+    <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Ver e salvar o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
+    <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'PDF enviado por e-mail e salvo no Google Drive.'}</p></div>`).join('')}</div>
+  <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
+  </main>`;
+}
+
+/* ---------- Ditado por voz ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null;
+function ditar(btn) {
+  const alvo = document.getElementById(btn.dataset.mic);
+  if (!SR) { const t = $('#mictip'); t && (t.textContent = 'Neste aparelho, use o microfone do próprio teclado para ditar.'); alvo.focus(); return; }
+  if (rec) { rec.stop(); return; }
+  try {
+    rec = new SR(); rec.lang = 'pt-BR'; rec.continuous = true; rec.interimResults = true;
+    const base = alvo.value ? alvo.value.replace(/\s*$/, ' ') : '';
+    rec.onresult = ev => { let txt = ''; for (let i = 0; i < ev.results.length; i++) txt += ev.results[i][0].transcript; alvo.value = base + txt; alvo.dispatchEvent(new Event('input', { bubbles:true })); };
+    const fim = () => { btn.classList.remove('rec'); rec = null; };
+    rec.onend = fim; rec.onerror = () => { fim(); alvo.focus(); };
+    rec.start(); btn.classList.add('rec');
+  } catch (e) { rec = null; alvo.focus(); }
+}
+
+/* ---------- Vídeo: extração de quadros ---------- */
+let vurl = null;
+function capturar(video) {
+  const w = Math.min(720, video.videoWidth || 720), h = Math.round(w * (video.videoHeight || 1280) / (video.videoWidth || 720));
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  c.getContext('2d').drawImage(video, 0, 0, w, h);
+  return c.toDataURL('image/jpeg', 0.74);
+}
+const seek = (v, t) => new Promise(res => { const f = () => { v.removeEventListener('seeked', f); setTimeout(res, 60); }; v.addEventListener('seeked', f); v.currentTime = t; });
+async function carregarVideo(file) {
+  if (vurl) URL.revokeObjectURL(vurl);
+  vurl = URL.createObjectURL(file);
+  S.av._video = true; S.av.quadros = []; S.qsel = null; render();
+  const v = $('#vid'); v.src = vurl;
+  await new Promise(r => { v.onloadeddata = r; v.onerror = r; });
+  try { await v.play(); v.pause(); } catch (e) {}
+  const dur = v.duration && isFinite(v.duration) ? v.duration : 0;
+  if (!dur || !v.videoWidth) { $('#frames').innerHTML = '<p class="small">Não consegui ler este vídeo aqui. Tente outro arquivo ou avance sem vídeo.</p>'; return; }
+  const pts = [0.12, 0.32, 0.48, 0.62, 0.82];
+  for (let i = 0; i < pts.length; i++) { await seek(v, dur * pts[i]); S.av.quadros.push({ fase: FASES[i], t: dur * pts[i], img: capturar(v) }); }
+  await seek(v, 0); S.qsel = 0;
+  $('#frames').innerHTML = quadrosHTML(S.av);
+}
+
+/* ---------- Diagnóstico (demonstração) ---------- */
+function montarDemo(av, anterior) {
+  const d = copia(anterior ? REAV : EXEMPLO);
+  d.exemplo = 'Texto de exemplo · modo demonstração';
+  const primeiro = av.nome.trim().split(/\s+/)[0];
+  d.resumo = d.resumo.replace(/^(Em oito semanas, )?Mariana/, (m, p) => (p || '') + primeiro);
+  Object.assign(d.aluno, { nome: av.nome.trim(), idade: av.idade, data: hoje(), local: av.local || '', objetivo: av.objetivo || d.aluno.objetivo, tempo: av.tempo || d.aluno.tempo,
+    mao: av.mao || d.aluno.mao, backhand: av.backhand || d.aluno.backhand, empunhadura: av.empunhadura || d.aluno.empunhadura, nivel: av.nivel || d.aluno.nivel });
+  const notas = GOLPES.map(g => ({ golpe: g, nota: av.golpes[g].nota })).filter(n => n.nota);
+  if (notas.length >= 3) d.notas = notas;
+  d.golpes.forEach(g => { if (av.golpes[g.golpe] && av.golpes[g.golpe].nota) g.nota = av.golpes[g.golpe].nota; });
+  if (anterior) d.anterior = { data: anterior.data, notas: copia(anterior.diag.notas) };
+  if (av.quadros.length) d.saque.quadros = av.quadros.map(q => ({ fase: q.fase, img: q.img, obs: (d.saque.quadros.find(x => x.fase === q.fase) || {}).obs || '' }));
+  if (av.raquete || av.peso || av.grip) d.equipamento.raquete = [av.raquete, av.peso, av.grip && `empunhadura ${av.grip}`, av.corda].filter(Boolean).join(', ');
+  return d;
+}
+async function gerar() {
+  const av = S.av, baseId = S.base; go('gerando');
+  const lis = [...document.querySelectorAll('#gp li')];
+  const marca = i => lis.forEach((l, k) => { l.classList.toggle('on', k <= i); l.querySelector('i').textContent = k <= i ? '✓' : ''; });
+  const tipo = baseId ? 'reavaliacao' : 'experimental';
+  const aula = { id: uid(), tipo, data: hoje(), av: copia(av), docUrl: '' };
+  try {
+    let al = baseId ? db.alunos.find(x => x.id === baseId) : null;
+    if (DEMO) {
+      for (let i = 0; i < lis.length; i++) { marca(i); await new Promise(r => setTimeout(r, 550)); }
+      aula.diag = montarDemo(av, al ? ultima(al) : null);
+      if (!al) { al = { id: uid(), nome: av.nome.trim(), idade: av.idade, whatsapp: av.whatsapp, local: av.local, aulas: [] }; db.alunos.push(al); }
+      Object.assign(al, { idade: av.idade || al.idade, whatsapp: av.whatsapp || al.whatsapp, local: av.local || al.local });
+      al.aulas.push(aula);
+    } else {
+      marca(0); const t = setInterval(() => { const n = document.querySelectorAll('#gp li.on').length; if (n < lis.length - 1) marca(n); }, 4000);
+      const r = await api('gerar', { tipo, alunoId: baseId || null, avaliacao: av }); clearInterval(t); marca(lis.length - 1);
+      const i = db.alunos.findIndex(x => x.id === r.aluno.id); if (i >= 0) db.alunos[i] = r.aluno; else db.alunos.push(r.aluno);
+      al = r.aluno;
+    }
+    save(db); S.alunoId = al.id; S.av = null; S.base = null; go('aluno');
+  } catch (e) {
+    app.querySelector('.gen').insertAdjacentHTML('beforeend', `<div class="note" style="margin-top:22px">Não foi possível gerar agora: ${esc(e.message)}. A ficha não se perdeu.</div><button class="btn b-ink" id="tentar">Tentar de novo</button>`);
+    $('#tentar').onclick = () => { S.av = av; S.base = baseId; gerar(); };
+  }
+}
+
+/* ---------- Relatório A4 ---------- */
+function radar(notas, anterior) {
+  const n = notas.length, cx = 180, cy = 168, R = 112;
+  const pt = (i, r) => { const a = (-90 + i * 360 / n) * Math.PI / 180; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+  const poly = vals => vals.map((v, i) => pt(i, R * v / 5).map(x => x.toFixed(1)).join(',')).join(' ');
+  const anel = k => poly(notas.map(() => k));
+  const rings = [1,2,3,4,5].map(k => `<polygon points="${anel(k)}" fill="none" stroke="#D9CFC2" stroke-width="${k === 5 ? 1.4 : 1}"/>`).join('');
+  const eixos = notas.map((_, i) => { const [x, y] = pt(i, R); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D9CFC2"/>`; }).join('');
+  const labels = notas.map((x, i) => { const [lx, ly] = pt(i, R + 24); const c = Math.cos((-90 + i * 360 / n) * Math.PI / 180); const anc = Math.abs(c) < .2 ? 'middle' : c > 0 ? 'start' : 'end';
+    return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anc}" font-family="Figtree" font-weight="700" font-size="13" fill="#1C1A17">${esc(x.golpe)}</text>`; }).join('');
+  const antes = anterior ? `<polygon points="${poly(notas.map(x => (anterior.find(a => a.golpe === x.golpe) || {}).nota || 0))}" fill="none" stroke="#1C1A17" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>` : '';
+  const pts = notas.map((x, i) => { const [px, py] = pt(i, R * x.nota / 5); return `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4.5" fill="#A8492A"/>`; }).join('');
+  return `<svg viewBox="-34 -2 428 334" role="img" aria-label="Radar das notas por golpe">${rings}${eixos}<polygon points="${poly(notas.map(x => x.nota))}" fill="#A8492A" fill-opacity=".2" stroke="#A8492A" stroke-width="2.5" stroke-linejoin="round"/>${antes}${pts}${labels}</svg>`;
+}
+const bolas = (n, cls = 'mini') => `<span class="${cls}">${[1,2,3,4,5].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join('')}</span>`;
+const rod = (a, p) => `<div class="rodape"><span><b>PS Tennis Team</b> · Prof. Paulo Santana · @pstennisteam</span><span>${esc(a.nome)} · ${p}</span></div>`;
+function relatorio(d) {
+  const a = d.aluno, reav = !!d.anterior;
+  const perfil = [['Objetivo', a.objetivo], ['Tempo de prática', a.tempo], ['Nível', a.nivel], ['Mão dominante', a.mao], ['Backhand', a.backhand], ['Empunhadura', a.empunhadura], ['Local', a.local], ['Idade', a.idade ? `${a.idade} anos` : '']].filter(x => x[1]);
+  const golpes = (d.golpes || []).slice(0, 4);
+  const temSaque = !!(d.saque && d.saque.quadros && d.saque.quadros.length);
+  const outros = d.notas.filter(n => !golpes.some(g => g.golpe === n.golpe));
+  const antDe = g => reav ? ((d.anterior.notas.find(x => x.golpe === g) || {}).nota || 0) : 0;
+  let p = 0; const np = () => String(++p);
+  return `
+  <section class="pg capa">
+    <div class="topo">${COURT()}<img class="logo" src="/img/logo-branca.png" alt="PS Tennis Team">${d.exemplo ? `<span class="exemplo">${typeof d.exemplo === 'string' ? esc(d.exemplo) : 'Exemplo com aluna fictícia'}</span>` : ''}
+      <div class="tt"><span class="pill p-saibro">${reav ? 'Reavaliação' : 'Aula experimental'}</span><h1>${reav ? 'Evolução' : 'Diagnóstico'}</h1><div class="sub">${reav ? 'e próximo ciclo de treino' : 'e plano de treino'}</div>
+      <div class="nome">${esc(a.nome)}</div><div class="quando">${esc(a.data)}${a.local ? ` · ${esc(a.local)}` : ''} · com o professor Paulo Santana${reav ? `<br>Comparação com a aula de ${esc(d.anterior.data)}` : ''}</div></div></div>
+    <div class="base"><div class="ov">Seu perfil</div><div class="perfil">${perfil.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join('')}</div>
+      <div class="ov">${reav ? 'Resumo da evolução' : 'Resumo da aula'}</div><p class="resumo" style="margin-top:2.4mm">${esc(d.resumo)}</p></div>
+    ${rod(a, np())}
+  </section>
+
+  <section class="pg jogo"><div class="in">
+    <div class="ov">${reav ? 'Antes e agora' : 'Diagnóstico'}</div><h2 class="h">${reav ? 'Sua evolução' : 'Seu jogo hoje'}</h2>
+    <div class="grid ${reav ? 'rv' : ''}"><div class="radarbox">${radar(d.notas, reav ? d.anterior.notas : null)}
+      ${reav ? `<div class="leg"><span><i class="l-now"></i>Hoje, ${esc(a.data)}</span><span><i class="l-ant"></i>Antes, ${esc(d.anterior.data)}</span></div>` : ''}</div>
+      <div><div class="notas">${d.notas.map(x => { const an = antDe(x.golpe); return `<div class="nt ${reav ? 'rv' : ''}"><span>${esc(x.golpe)}</span><span class="bar">${[1,2,3,4,5].map(k => `<i class="${k <= x.nota ? 'on' : ''} ${reav && k <= an ? 'was' : ''}"></i>`).join('')}</span>${reav ? `<em class="${x.nota > an ? 'mais' : ''}">${an} → ${x.nota}</em>` : ''}</div>`; }).join('')}</div>
+      <p class="escala">Escala de 1 a 5: 1 iniciando · 2 em desenvolvimento · 3 funcional · 4 consistente · 5 avançado.${reav ? ' A linha embaixo de cada barra marca a nota anterior.' : ''}</p></div></div>
+    <div class="duas">
+      <div class="bx bx-claro"><h3>${reav ? 'O que evoluiu' : 'Pontos fortes'}</h3><ol>${d.fortes.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
+      <div class="bx bx-escuro"><h3>${reav ? 'Foco do próximo ciclo' : 'Pontos a melhorar'}</h3><ol>${d.melhorar.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
+    </div></div>${rod(a, np())}
+  </section>
+
+  <section class="pg golpes"><div class="in">
+    <div class="ov">Análise técnica</div><h2 class="h">Golpe a golpe</h2>
+    <div class="cards">${golpes.map(g => { const an = antDe(g.golpe); return `<article class="gc"><div class="gt"><h3>${esc(g.golpe)}</h3><span class="gn">${reav && an ? `<small>${an} → ${g.nota}</small>` : ''}${bolas(g.nota)}</span></div>
+      <div class="lb">O que vi</div><p>${esc(g.vi)}</p>
+      <div class="corr"><div class="k">Como corrigir</div><p>${esc(g.corrigir)}</p>${g.exercicio ? `<p class="ex">Exercício: ${esc(g.exercicio)}</p>` : ''}</div></article>`; }).join('')}</div>
+    ${outros.length ? `<div class="outros"><h3>Também avaliados</h3><div class="ls">${outros.map(x => `<div class="it"><span>${esc(x.golpe)}<small>${x.golpe === 'Saque' && temSaque ? 'Análise na próxima página' : esc(NIVEL[x.nota] || '')}</small></span>${bolas(x.nota)}</div>`).join('')}</div></div>` : ''}
+  </div>${rod(a, np())}</section>
+
+  ${temSaque ? `<section class="pg saque"><div class="in">
+    <div class="ov">Vídeo da aula</div><h2 class="h">Análise do saque</h2>
+    <div class="qs">${d.saque.quadros.slice(0, 5).map((q, i) => `<div class="q"><div class="im">${q.img ? `<img src="${esc(q.img)}" alt="Quadro ${i + 1}">` : `<div class="ph">${COURT().replace('#F4EEE6', '#D9CFC2')}<span style="position:relative">Quadro do vídeo</span></div>`}</div>
+      <span class="pill p-tinta">${esc(q.fase)}</span><p>${esc(q.obs)}</p></div>`).join('')}</div>
+    <div class="prio"><div class="bx bx-claro"><h3>O que já está bom</h3><p class="t">${esc(d.saque.bom)}</p></div>
+      <div class="bx bx-saibro"><div class="k">Prioridade</div><h3>O foco das próximas aulas</h3><p class="t">${esc(d.saque.prioridade)}</p></div></div>
+  </div>${rod(a, np())}</section>` : ''}
+
+  <section class="pg plano"><div class="in">
+    <div class="ov">${esc(d.planoTitulo || '12 semanas · 1 aula por semana')}</div><h2 class="h">${reav ? 'Seu próximo ciclo' : 'Seu plano de treino'}</h2>
+    <div class="fases">${d.plano.map((f, i) => `<div class="fase"><div class="fl"><div class="n">Fase ${i + 1}</div><small>${esc(f.semanas)}</small></div>
+      <div><h3>${esc(f.titulo)}</h3><ul>${f.itens.map(it => `<li><b>${esc(it.foco)}.</b> ${esc(it.exercicio)}</li>`).join('')}</ul>${f.reavaliacao ? '<span class="pill p-saibro re">Reavaliação com novo vídeo no fim da fase</span>' : ''}</div></div>`).join('')}</div>
+    <div class="extra"><div class="bx bx-areia"><h3>Para fazer em casa</h3><ul>${(d.casa || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="bx bx-claro"><h3>Sua raquete</h3><p><b>${esc(d.equipamento.raquete)}</b></p><p style="margin-top:1.6mm">${esc(d.equipamento.obs)}</p></div></div>
+  </div>${rod(a, np())}</section>
+
+  <section class="pg fim">${COURT()}<img class="logo" src="/img/logo-branca.png" alt="PS Tennis Team">
+    <div class="ct"><h1>Seu próximo passo</h1><p class="txt">${esc(d.proximo.texto)}</p>
+      <div class="rec"><div class="k">Indicação do professor</div><b>${esc(d.proximo.recomendacao)}</b><p>${esc(d.proximo.motivo)}</p></div>
+      <div class="mods"><span>Individual</span><span>Dupla</span><span>Grupo (4 pessoas)</span><span>Fama Tennis ou no seu condomínio</span></div></div>
+    <div class="cta"><div><span class="zap">${ICON.zap} Agende pelo WhatsApp</span><p>(31) 99586-9025 · @pstennisteam</p></div>
+      <div class="qr"><img src="/professor/img/qr-whatsapp.svg" alt="QR code do WhatsApp"><small>Aponte a câmera</small></div></div>
+  </section>`;
+}
+function abrirRelatorio(d, soRelatorio) {
+  const r = $('#relatorio');
+  r.innerHTML = `${soRelatorio ? '' : `<div class="rbar"><button class="btn b-lima" id="rprint">Salvar PDF</button><button class="btn b-ghost" style="color:var(--creme);border-color:#5E574E" id="rclose">Voltar</button><span class="msg" id="rmsg">Na janela que abrir, escolha "Salvar como PDF".</span></div>`}<div class="rstage"><div class="rpages" id="rpages">${relatorio(d)}</div></div>`;
+  r.hidden = false; app.hidden = true; window.scrollTo(0, 0);
+  const ajusta = () => { const pg = $('#rpages'); if (pg) pg.style.zoom = Math.min(1, (window.innerWidth - 16) / 794); };
+  if (soRelatorio) { document.body.classList.add('imprimindo'); return; }
+  ajusta(); window.addEventListener('resize', ajusta);
+  $('#rclose').onclick = () => { r.hidden = true; r.innerHTML = ''; app.hidden = false; window.removeEventListener('resize', ajusta); };
+  $('#rprint').onclick = () => {
+    document.body.classList.add('imprimindo');
+    const z = $('#rpages').style.zoom; $('#rpages').style.zoom = 1;
+    try { window.print(); } catch (e) { $('#rmsg').textContent = 'Este visualizador não permite imprimir. No site do professor, o botão abre a opção "Salvar como PDF".'; }
+    setTimeout(() => { document.body.classList.remove('imprimindo'); $('#rpages').style.zoom = z; }, 500);
+  };
+}
+
+/* ---------- Eventos ---------- */
+function bind() {
+  app.onclick = async ev => {
+    const t = ev.target.closest('button, [data-q]'); if (!t) return;
+    const a = t.dataset.a;
+    if (a === 'google') return entrar();
+    if (a === 'sair') { TOKEN = ''; CONTA = ''; try { !DEMO && window.google && google.accounts.id.disableAutoSelect(); } catch (e) {} return go('login'); }
+    if (a === 'nova') { S.av = novoAv(); S.base = null; S.step = 0; S.qsel = null; return go('form'); }
+    if (a === 'reavaliar') { const al = db.alunos.find(x => x.id === S.alunoId); S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; return go('form'); }
+    if (a === 'home') return go('home');
+    if (t.dataset.id) { S.alunoId = t.dataset.id; return go('aluno'); }
+    if (a === 'voltar') { if (rec) rec.stop(); if (S.step) { S.step--; return go('form'); } const vinha = S.base; S.av = null; S.base = null; return go(vinha ? 'aluno' : 'home'); }
+    if (a === 'avancar') { if (rec) rec.stop(); S.step++; return go('form'); }
+    if (a === 'gerar') { if (rec) rec.stop(); return gerar(); }
+    if (t.dataset.chip) { const c = t.dataset.chip; S.av[c] = S.av[c] === t.dataset.v ? '' : t.dataset.v; t.parentElement.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', S.av[c] === b.dataset.v)); return estado(); }
+    if (t.dataset.g) { const g = S.av.golpes[t.dataset.g]; g.nota = +t.dataset.n; t.parentElement.querySelectorAll('.dot').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === g.nota)); t.closest('.golpe').querySelector('.lvl').textContent = NIVEL[g.nota]; return estado(); }
+    if (t.dataset.mic) return ditar(t);
+    if (a === 'vpick') return $('#vfile').click();
+    if (t.dataset.qx !== undefined) { ev.stopPropagation(); S.av.quadros.splice(+t.dataset.qx, 1); S.qsel = null; $('#frames').innerHTML = quadrosHTML(S.av); return; }
+    if (t.dataset.q !== undefined && ev.target.tagName !== 'SELECT') { S.qsel = +t.dataset.q; const v = $('#vid'); const q = S.av.quadros[S.qsel]; if (v && q && q.t != null) v.currentTime = q.t; $('#frames').innerHTML = quadrosHTML(S.av); return; }
+    if (a === 'vmark') { const v = $('#vid'); if (!v || !v.videoWidth) return; v.pause(); const q = { fase: FASES[Math.min(S.av.quadros.length, 4)], t: v.currentTime, img: capturar(v) };
+      if (S.qsel != null && S.av.quadros[S.qsel]) { q.fase = S.av.quadros[S.qsel].fase; S.av.quadros[S.qsel] = q; } else if (S.av.quadros.length < 5) { S.av.quadros.push(q); S.qsel = S.av.quadros.length - 1; }
+      $('#frames').innerHTML = quadrosHTML(S.av); return; }
+    if (a === 'pdf' || a === 'doc') {
+      const al = db.alunos.find(x => x.id === S.alunoId); const au = al && al.aulas.find(x => x.id === t.dataset.aula); if (!au) return;
+      if (a === 'doc') { if (au.docUrl) { window.open(au.docUrl, '_blank', 'noopener'); return; }
+        return modal('Editar o texto', 'Na versão final, este botão abre o diagnóstico como Google Doc, guardado na pasta do aluno no Drive. Você corrige o que quiser lá, volta aqui e toca em "Ver e salvar o PDF": o PDF sai com o texto já editado.'); }
+      let d = au.diag;
+      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) {} }
+      return abrirRelatorio(d);
+    }
+  };
+  app.oninput = ev => {
+    const t = ev.target;
+    if (t.dataset.f) { S.av[t.dataset.f] = t.value; return estado(); }
+    if (t.dataset.gobs) { S.av.golpes[t.dataset.gobs].obs = t.value; return; }
+    if (t.id === 'busca') { const q = t.value.trim().toLowerCase(); document.querySelectorAll('#lista .al').forEach(b => b.hidden = q && !b.dataset.nome.includes(q)); }
+  };
+  app.onchange = ev => {
+    const t = ev.target;
+    if (t.dataset.cb) { S.av[t.dataset.cb] = t.checked; return estado(); }
+    if (t.dataset.qf !== undefined) { S.av.quadros[+t.dataset.qf].fase = t.value; return; }
+    if (t.id === 'vfile' && t.files[0]) carregarVideo(t.files[0]);
+  };
+  app.onkeydown = ev => { if (ev.target.dataset && ev.target.dataset.q !== undefined && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); ev.target.click(); } };
+}
+function estado() { const e = ETAPAS[S.step]; const b = document.querySelector('.foot .b-ink'); if (b && e && S.view === 'form') b.disabled = !e.ok(S.av); }
+function modal(tit, txt) {
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(tit)}"><div class="box"><h2>${esc(tit)}</h2><p>${esc(txt)}</p><button class="btn b-ink b-full" id="mok">Entendi</button></div></div>`;
+  $('#mok').onclick = () => m.innerHTML = ''; $('#mok').focus();
+}
+
+/* Relatórios de exemplo direto: index.html#exemplo-pdf ou #exemplo-reavaliacao */
+if (location.hash === '#exemplo-pdf') abrirRelatorio(EXEMPLO, true);
+else if (location.hash === '#exemplo-reavaliacao') abrirRelatorio(REAV, true);
+else render();
+}
+</script>
+</body>
+</html>

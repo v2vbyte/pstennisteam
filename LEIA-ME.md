@@ -52,3 +52,12 @@ Em `css/style.css`, altere `--accent` (saibro `#A8492A`). Opções testadas: azu
 - **Vídeo do topo:** o comentário no `index.html` mostra como trocar o desenho da quadra por um vídeo curto.
 - **Depoimentos:** a seção foi retirada por enquanto. Quando houver vídeos ou falas de alunos, ela pode voltar.
 - **Dicas do Instagram:** quando os posts estiverem no ar, troque os links dos quatro blocos pelos links dos posts.
+
+## Área do professor
+
+Fica em `professor/` e é acessada só pelo link direto `pstennisteam.com/professor/`. Não há link para ela no site, ela não aparece no Google (`noindex`) e não carrega a tag do Google Ads, porque circulam dados de alunos.
+
+- Tudo (estilo, scripts e o modelo do PDF) fica no próprio `professor/index.html`. O QR code do WhatsApp do PDF está em `professor/img/`.
+- **Modo demonstração:** enquanto `API_URL` estiver vazio no bloco `CONFIG` (início do script), a página funciona só no aparelho, com texto de exemplo e login simulado.
+- **Versão real:** preencha em `CONFIG` a `API_URL` (endereço do Google Apps Script publicado na conta pstennisteam@gmail.com) e o `GOOGLE_CLIENT_ID` (ID de cliente OAuth do Google Cloud). As contas autorizadas a entrar ficam no Apps Script, não na página.
+- Relatórios de exemplo: `professor/#exemplo-pdf` (aula experimental) e `professor/#exemplo-reavaliacao`.
