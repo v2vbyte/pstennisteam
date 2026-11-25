@@ -25,7 +25,7 @@
   var TEMPO_MINIMO = 4; // segundos na página antes de o clique contar
 
   // ID da propriedade do Google Analytics 4. Ex.: 'G-AB12CD34EF'. Vazio = GA4 desligado.
-  var GA4 = '';
+  var GA4 = 'G-F6X4LYW36W';
 
   // Chave da escolha no navegador. Mudou de 'ps-consentimento-anuncios' quando
   // o GA4 entrou, para pedir a escolha de novo com o texto atualizado.
