@@ -108,7 +108,7 @@ function criarAmbiente(opts = {}) {
   function tokeninfo(url) {
     const tok = decodeURIComponent(url.split('id_token=')[1]);
     const base = { aud: 'client-123', iss: 'https://accounts.google.com', email_verified: 'true', exp: String(Math.floor(Date.now() / 1000) + 3600) };
-    if (tok === 'tok-ok') return resposta(200, Object.assign(base, { email: 'pstennisteam@gmail.com' }));
+    if (tok === 'tok-ok' || tok.endsWith('.tok-ok')) return resposta(200, Object.assign(base, { email: 'pstennisteam@gmail.com' }));
     if (tok === 'tok-estranho') return resposta(200, Object.assign(base, { email: 'intruso@gmail.com' }));
     if (tok === 'tok-outroapp') return resposta(200, Object.assign(base, { email: 'pstennisteam@gmail.com', aud: 'outro' }));
     return resposta(400, { error: 'invalid_token' });
