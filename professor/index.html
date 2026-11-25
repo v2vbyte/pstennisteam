@@ -369,7 +369,6 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .imgbtn{margin-top:8px;min-height:46px;font-size:14px}
 .box.share{max-height:94vh;overflow:auto}
 .share .chips{margin-bottom:12px}
-.fotochip{display:inline-flex;align-items:center;cursor:pointer}
 .prev{background:var(--areia);border-radius:14px;padding:10px;display:flex;justify-content:center;margin-bottom:10px}
 .prev canvas{max-width:100%;max-height:50vh;width:auto;height:auto;border-radius:8px;display:block}
 /* relatório: barras de 10 e página da classe */
@@ -634,6 +633,7 @@ const semente = () => ({ alunos: [ { id:'ex1', nome:'Mariana Costa', idade:34, w
 let db = load() || semente();
 const ultima = al => al.aulas[al.aulas.length - 1];
 const classeDe = au => au && au.diag && au.diag.classe ? (au.diag.classe.confirmada || '') : '';
+const subiuEm = au => { const c = au && au.diag && au.diag.classe; return !!(c && c.confirmada && c.anterior && idxC(c.confirmada) > idxC(c.anterior)); };
 const classeAtual = al => { for (let i = al.aulas.length - 1; i >= 0; i--) { const c = classeDe(al.aulas[i]); if (c) return c; } return ''; };
 
 /* ---------- Sessão e API (Apps Script) ---------- */
@@ -799,7 +799,7 @@ function classeCard(al) {
     return `<section class="cls ok">${COURT()}<span class="over">${sub ? 'Subiu de classe' : manteve ? 'Manteve a classe' : 'Classe confirmada'}</span>
       <div class="cn">${esc(c.confirmada)}<small>classe</small></div>
       <p>${sub ? `Subiu da ${esc(ant)} para a ${esc(c.confirmada)} classe em ${esc(u.data)}.` : manteve ? `Segue na ${esc(c.confirmada)} classe. Próxima meta: ${esc(proxima(c.confirmada))} classe.` : `Classe confirmada em ${esc(u.data)}.`}</p>
-      <button class="btn b-lima" data-a="imagem" data-aula="${esc(u.id)}">${ICON.img} Imagem para o aluno postar</button></section>`;
+      ${sub ? `<button class="btn b-lima" data-a="imagem" data-aula="${esc(u.id)}">${ICON.img} Post de parabéns</button>` : ''}</section>`;
   }
   const sel = S.csel || c.sugerida;
   const lbl = !ant ? `Confirmar ${sel} classe` : idxC(sel) > idxC(ant) ? `Subir para a ${sel} classe` : sel === ant ? `Manter na ${sel} classe` : `Voltar para a ${sel} classe`;
@@ -834,7 +834,7 @@ function vAluno() {
   <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span>${classeDe(au) ? ` <span class="tag">${esc(classeDe(au))} classe</span>` : ''}<div class="dt">${esc(au.data)}</div></div></div>
     <p class="rs">${esc(au.diag.resumo)}</p>
     <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Ver e salvar o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
-    ${classeDe(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Imagem para o aluno postar</button>` : ''}
+    ${subiuEm(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Post de parabéns</button>` : ''}
     <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'PDF enviado por e-mail e salvo no Google Drive.'}</p></div>`).join('')}</div>
   <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
   </main>`;
@@ -1054,86 +1054,77 @@ function abrirRelatorio(d, soRelatorio) {
   };
 }
 
-/* ---------- Imagem para story e feed ---------- */
-const IM = { formato:'story', foto:null, al:null, au:null };
+/* ---------- Post de parabéns (do Paulo para o aluno) ---------- */
+const IM = { formato:'story', al:null, au:null };
 const carregarImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
-function textoImagem(al, au) {
-  const c = au.diag.classe, atual = c.confirmada, ant = c.anterior;
-  if (ant && idxC(atual) > idxC(ant)) return { tipo:'subiu', l1:'Subi para a', num: atual, l3:'classe', over:`Reavaliação · ${au.data}` };
-  if (ant && atual === ant && atual !== '1ª') return { tipo:'rumo', l1:'Rumo à', num: proxima(atual), l3:'classe', over:`Hoje na ${atual} classe · ${au.data}` };
-  return { tipo:'inicio', l1:'Minha classe', num: atual, l3:'no tênis', over:`Avaliação · ${au.data}` };
-}
+/* escreve com espaçamento entre letras (sobretítulos) */
+function espacado(x, txt, ax, y, esp) { for (const ch of txt) { x.fillText(ch, ax, y); ax += x.measureText(ch).width + esp; } }
+/* reduz a fonte até o texto caber na largura */
+function caber(x, txt, peso, tam, familia, larg) { let t = tam; do { x.font = `${peso} ${t}px ${familia}`; t -= 2; } while (x.measureText(txt).width > larg && t > 20); }
 async function desenharImagem(cv) {
-  const W = 1080, H = IM.formato === 'story' ? 1920 : 1350; cv.width = W; cv.height = H;
-  const x = cv.getContext('2d'), al = IM.al, au = IM.au, t = textoImagem(al, au);
+  const W = 1080, story = IM.formato === 'story', H = story ? 1920 : 1350; cv.width = W; cv.height = H;
+  const x = cv.getContext('2d'), al = IM.al, au = IM.au, num = au.diag.classe.confirmada;
   try { await Promise.all(['800 100px "Barlow Condensed"', '600 40px "Barlow Condensed"', '700 40px Figtree', '600 40px Figtree'].map(f => document.fonts.load(f))); } catch (e) {}
   x.fillStyle = '#1C1A17'; x.fillRect(0, 0, W, H);
   /* quadra vista de cima */
   x.save(); x.globalAlpha = .22; x.strokeStyle = '#F4EEE6'; x.lineWidth = 4;
-  const cw = 620, ch = cw * 734 / 360, ox = W - cw * .62, oy = IM.formato === 'story' ? 120 : -260, s = cw / 360;
+  const cw = 620, ox = W - cw * .62, oy = story ? 120 : -260, s = cw / 360;
   const L = (a, b, c2, d) => { x.beginPath(); x.moveTo(ox + a * s, oy + b * s); x.lineTo(ox + c2 * s, oy + d * s); x.stroke(); };
   x.strokeRect(ox + 20 * s, oy + 20 * s, 320 * s, 694 * s); L(60,20,60,714); L(300,20,300,714); L(60,180,300,180); L(60,554,300,554); L(180,180,180,554); L(180,20,180,34); L(180,700,180,714);
   x.lineWidth = 7; L(4,367,356,367); x.restore();
-  /* foto opcional em preto e branco */
-  let topoTexto = IM.formato === 'story' ? 860 : 520;
-  if (IM.foto) {
-    const fx = 72, fy = IM.formato === 'story' ? 220 : 170, fw = W - 144, fh = IM.formato === 'story' ? 820 : 420;
-    const r = Math.max(fw / IM.foto.width, fh / IM.foto.height), sw = fw / r, sh = fh / r;
-    const tmp = document.createElement('canvas'); tmp.width = fw; tmp.height = fh; const tx = tmp.getContext('2d');
-    tx.drawImage(IM.foto, (IM.foto.width - sw) / 2, (IM.foto.height - sh) / 2, sw, sh, 0, 0, fw, fh);
-    try { const px = tx.getImageData(0, 0, fw, fh), dd = px.data; for (let i = 0; i < dd.length; i += 4) { const g = dd[i] * .3 + dd[i + 1] * .59 + dd[i + 2] * .11; dd[i] = dd[i + 1] = dd[i + 2] = g; } tx.putImageData(px, 0, 0); } catch (e) {}
-    x.save(); x.beginPath(); x.roundRect(fx, fy, fw, fh, 40); x.clip(); x.drawImage(tmp, fx, fy); x.restore();
-    topoTexto = fy + fh + 70;
-  }
   /* logo */
   try { const lg = await carregarImg(LOGO); const lw = 330, lh = lw * lg.height / lg.width; x.drawImage(lg, 72, 84, lw, lh); } catch (e) {}
   /* textos */
-  x.textBaseline = 'alphabetic'; x.fillStyle = '#CFC6BA'; x.font = '600 34px "Barlow Condensed"';
-  const over = t.over.toUpperCase(); let ax = 72; for (const ch2 of over) { x.fillText(ch2, ax, topoTexto); ax += x.measureText(ch2).width + 5; }
-  const grande = IM.foto ? (IM.formato === 'story' ? 1 : .78) : (IM.formato === 'story' ? 1.25 : 1);
-  x.fillStyle = '#F4EEE6'; x.font = `800 ${Math.round(120 * grande)}px "Barlow Condensed"`; const y1 = topoTexto + Math.round(118 * grande); x.fillText(t.l1.toUpperCase(), 68, y1);
-  x.fillStyle = '#D4F24A'; x.font = `800 ${Math.round(400 * grande)}px "Barlow Condensed"`; const y2 = y1 + Math.round(360 * grande); x.fillText(t.num, 56, y2);
-  const nw = x.measureText(t.num).width;
-  x.fillStyle = '#F4EEE6'; x.font = `800 ${Math.round(120 * grande)}px "Barlow Condensed"`; x.fillText(t.l3.toUpperCase(), 56 + nw + 30, y2 - Math.round(20 * grande));
-  x.font = '700 50px Figtree'; x.fillText(al.nome, 72, y2 + (IM.foto && IM.formato === 'feed' ? 78 : 100));
+  const k = story ? 1.18 : 1, larg = W - 144;
+  let y = story ? 860 : 410;
+  x.textBaseline = 'alphabetic';
+  x.fillStyle = '#CFC6BA'; x.font = '600 34px "Barlow Condensed"'; espacado(x, 'SUBIU DE CLASSE', 72, y, 5);
+  y += Math.round(132 * k);
+  x.fillStyle = '#F4EEE6'; caber(x, 'PARABÉNS!', 800, Math.round(150 * k), '"Barlow Condensed"', larg); x.fillText('PARABÉNS!', 66, y);
+  y += Math.round(96 * k);
+  caber(x, 'VOCÊ SUBIU PARA A', 800, Math.round(84 * k), '"Barlow Condensed"', larg); x.fillText('VOCÊ SUBIU PARA A', 68, y);
+  y += Math.round(330 * k);
+  x.fillStyle = '#D4F24A'; x.font = `800 ${Math.round(380 * k)}px "Barlow Condensed"`; x.fillText(num, 54, y);
+  const nw = x.measureText(num).width;
+  x.fillStyle = '#F4EEE6'; x.font = `800 ${Math.round(120 * k)}px "Barlow Condensed"`; x.fillText('CLASSE!', 54 + nw + 28, y - Math.round(18 * k));
+  /* nome do aluno */
+  y += Math.round(118 * k);
+  x.fillStyle = '#F4EEE6'; caber(x, al.nome, 700, story ? 68 : 58, 'Figtree', larg); x.fillText(al.nome, 72, y);
   /* rodapé */
   const fy2 = H - 110;
-  x.fillStyle = '#A8492A'; x.beginPath(); x.roundRect(72, fy2 - 62, 560, 92, 46); x.fill();
-  x.fillStyle = '#F4EEE6'; x.font = '700 36px Figtree'; x.fillText('Treino com @pstennisteam', 112, fy2 - 3);
+  x.fillStyle = '#A8492A'; x.beginPath(); x.roundRect(72, fy2 - 62, 330, 92, 46); x.fill();
+  x.fillStyle = '#F4EEE6'; x.font = '700 36px Figtree'; x.fillText('@pstennisteam', 112, fy2 - 3);
   x.fillStyle = '#CFC6BA'; x.font = '600 30px Figtree'; x.textAlign = 'right'; x.fillText('pstennisteam.com', W - 72, fy2 - 3); x.textAlign = 'left';
 }
 function abrirImagem(aulaId) {
   const al = db.alunos.find(x => x.id === S.alunoId), au = al && al.aulas.find(x => x.id === aulaId); if (!au) return;
-  IM.al = al; IM.au = au; IM.foto = null;
+  IM.al = al; IM.au = au;
   const m = $('#modal');
-  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Imagem para o aluno"><div class="box share">
-    <h2>Imagem para postar</h2>
-    <div class="chips" role="group" aria-label="Formato"><button type="button" class="chip" data-fmt="story" aria-pressed="${IM.formato === 'story'}">Story</button><button type="button" class="chip" data-fmt="feed" aria-pressed="${IM.formato === 'feed'}">Feed</button>
-      <label class="chip fotochip">Foto do aluno<input type="file" id="ifoto" accept="image/*" hidden></label><button type="button" class="chip" id="semfoto" ${IM.foto ? '' : 'hidden'}>Tirar foto</button></div>
+  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Post de parabéns"><div class="box share">
+    <h2>Post de parabéns</h2>
+    <div class="chips" role="group" aria-label="Formato"><button type="button" class="chip" data-fmt="story" aria-pressed="${IM.formato === 'story'}">Story</button><button type="button" class="chip" data-fmt="feed" aria-pressed="${IM.formato === 'feed'}">Feed</button></div>
     <div class="prev"><canvas id="icv" aria-label="Prévia da imagem"></canvas></div>
-    <p class="small" id="imsg">A foto é opcional e fica em preto e branco. Peça autorização ao aluno antes de usar a foto dele.</p>
-    <div class="row2"><button class="btn b-ink" id="ishare">Enviar no WhatsApp</button><button class="btn b-ghost" id="ibaixar">Baixar</button></div>
+    <p class="small" id="imsg">Para postar no @pstennisteam e marcar o aluno. Combine com ele antes de divulgar o nome.</p>
+    <div class="row2"><button class="btn b-ink" id="ishare">Compartilhar</button><button class="btn b-ghost" id="ibaixar">Baixar</button></div>
     <button class="btn b-ghost b-full" id="ifechar" style="margin-top:10px">Fechar</button></div></div>`;
   const cv = $('#icv'), redesenha = () => desenharImagem(cv);
   redesenha();
   m.onclick = async ev => {
     const b = ev.target.closest('button'); if (!b) return;
     if (b.dataset.fmt) { IM.formato = b.dataset.fmt; m.querySelectorAll('[data-fmt]').forEach(k => k.setAttribute('aria-pressed', k.dataset.fmt === IM.formato)); return redesenha(); }
-    if (b.id === 'semfoto') { IM.foto = null; b.hidden = true; return redesenha(); }
     if (b.id === 'ifechar') { m.innerHTML = ''; m.onclick = null; return; }
     if (b.id === 'ishare' || b.id === 'ibaixar') {
-      const nome = `classe-${(al.nome.split(' ')[0] || 'aluno').toLowerCase()}-${IM.formato}.png`;
+      const nome = `parabens-${(al.nome.split(' ')[0] || 'aluno').toLowerCase()}-${IM.formato}.png`;
       const blob = await new Promise(r => cv.toBlob(r, 'image/png')); if (!blob) return;
       const file = new File([blob], nome, { type:'image/png' });
       if (b.id === 'ishare') {
-        try { if (navigator.canShare && navigator.canShare({ files:[file] })) { await navigator.share({ files:[file], text:'Sua classe no PS Tennis Team. Posta e marca a gente: @pstennisteam' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
-        $('#imsg').textContent = 'Este aparelho não abriu o compartilhamento. Toque em "Baixar" e envie a imagem pelo WhatsApp.'; return;
+        try { if (navigator.canShare && navigator.canShare({ files:[file] })) { await navigator.share({ files:[file], text:`Parabéns, ${al.nome.split(' ')[0]}! Você subiu para a ${au.diag.classe.confirmada} classe.` }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+        $('#imsg').textContent = 'Este aparelho não abriu o compartilhamento. Toque em "Baixar" e poste a imagem pelo Instagram.'; return;
       }
-      try { const u = URL.createObjectURL(blob), a = document.createElement('a'); a.href = u; a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 2000); $('#imsg').textContent = 'Imagem salva. Agora é só enviar ao aluno.'; }
+      try { const u = URL.createObjectURL(blob), a = document.createElement('a'); a.href = u; a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 2000); $('#imsg').textContent = 'Imagem salva. Agora é só postar e marcar o aluno.'; }
       catch (e) { $('#imsg').textContent = 'Este visualizador não permite baixar. No site do professor, o botão funciona normalmente.'; }
     }
   };
-  $('#ifoto').onchange = async ev => { const f = ev.target.files[0]; if (!f) return; const u = URL.createObjectURL(f); try { IM.foto = await carregarImg(u); $('#semfoto').hidden = false; redesenha(); } catch (e) {} };
 }
 
 /* ---------- Eventos ---------- */
