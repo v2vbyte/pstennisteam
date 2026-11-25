@@ -258,7 +258,10 @@ function gerar(req) {
 const SISTEMA = [
   'Você escreve o diagnóstico de tênis que o professor Paulo Santana (PS Tennis Team, Belo Horizonte) entrega ao aluno depois de uma aula experimental ou de uma reavaliação.',
   'Escreva como o Paulo, falando direto com o aluno ("você"), em português do Brasil. Tom próximo, confiante e direto. Explique termos técnicos de forma simples, na primeira vez que aparecerem.',
+  'Quem lê é o aluno. O texto é o Paulo falando com ele, em primeira pessoa quando fala de si ("vi que", "vamos trabalhar").',
   'Regras:',
+  '- Nunca fale do professor em terceira pessoa ("o professor observou") e nunca mostre os bastidores: não mencione a ficha, as observações, a classe calculada, ajustes de classe, a média ponderada como cálculo, o sistema nem você mesmo.',
+  '- Os dados do perfil (tempo de prática, experiência em jogo, objetivo, nível) são contexto. Não copie as opções da ficha ao pé da letra (nada de "uma base de 1 a 3 anos jogando com amigos"): use em linguagem natural, só quando ajudar, ou deixe de fora.',
   '- Baseie-se só nas notas, nas observações do professor e nos quadros do saque. Não invente fatos que não estejam na ficha (torneios, lesões, tempo de prática, resultados).',
   '- Quando um item não tiver observação, apoie-se na nota e fale com cuidado, sem detalhes que você não viu.',
   '- Frases curtas e concretas. Nada de elogio vazio nem frases genéricas de autoajuda.',
@@ -266,7 +269,7 @@ const SISTEMA = [
   '- Não fale de preços.',
   '- Exercícios realistas para uma aula de tênis, com séries e repetições ou tempo.',
   '- As notas vão de 1 a 10. A classe segue o ITN da ITF (6ª classe = iniciante, 1ª = mais avançada).',
-  '- A média ponderada das notas dá a classe calculada, que é o ponto de partida. Use as observações do professor (por golpe, pontos fortes, pontos a melhorar, jogo e competição) para confirmar essa classe ou ajustá-la em no máximo uma classe para cima ou para baixo. Ajuste só quando as observações mostrarem algo que as notas não captam (por exemplo, experiência em partidas, comportamento sob pressão, consistência muito acima ou abaixo das notas). Na justificativa, diga se manteve ou ajustou e por quê.'
+  '- A média ponderada das notas dá a classe calculada, que é o ponto de partida. Use as observações do professor (por golpe, pontos fortes, pontos a melhorar, jogo e competição) para confirmar essa classe ou ajustá-la em no máximo uma classe para cima ou para baixo. Ajuste só quando as observações mostrarem algo que as notas não captam (por exemplo, experiência em partidas, comportamento sob pressão, consistência muito acima ou abaixo das notas). Esse procedimento é interno: o texto para o aluno nunca o descreve.'
 ].join('\n');
 
 function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
@@ -351,8 +354,8 @@ const ESQUEMA_DIAGNOSTICO = (reav, opcoesClasse) => ({
   type: 'object',
   properties: {
     classeSugerida: { type: 'string', enum: opcoesClasse, description: 'A classe calculada pelas notas, ou uma acima ou abaixo se as observações do professor justificarem.' },
-    resumo: { type: 'string', description: reav ? '3 a 4 frases: o que mudou desde a última avaliação, a classe e o rumo do próximo ciclo.' : '3 a 4 frases: a base do aluno, o que mais segura o jogo hoje e a meta das próximas 12 semanas.' },
-    justificativa: { type: 'string', description: '2 a 4 frases explicando a classe sugerida: a média e a faixa, como o jogo se encaixa na descrição do nível ITN, o que as observações do professor mostram e, se houve ajuste em relação à classe calculada, o motivo.' },
+    resumo: { type: 'string', description: reav ? '3 a 4 frases para o aluno: o que mudou desde a última avaliação, a classe e o rumo do próximo ciclo.' : '3 a 4 frases para o aluno: o que ele já faz bem, o que mais segura o jogo hoje e a meta das próximas 12 semanas.' },
+    justificativa: { type: 'string', description: '2 a 4 frases para o aluno, na voz do Paulo: em que classe ele está e por quê, ligando o que se vê no jogo dele à descrição do nível ITN, e o que falta para a próxima classe. Pode dizer de forma simples que as notas ficaram na faixa dessa classe. Só se a classe sugerida for diferente da classe pelas notas, explique em uma frase, pelo jogo do aluno, por que ele está uma classe acima ou abaixo (ex.: "pelas notas, você ficaria na 5ª, mas a firmeza nos pontos disputados já é de 4ª"). Se forem iguais, não fale de ajuste.' },
     fortes: { type: 'array', items: { type: 'string' }, description: reav ? '3 itens: o que evoluiu, cada um com o golpe e o efeito prático.' : '3 pontos fortes, cada um com o golpe e o efeito prático.' },
     melhorar: { type: 'array', items: { type: 'string' }, description: reav ? '3 itens: foco do próximo ciclo.' : '3 pontos a melhorar, cada um com o golpe, o que acontece e a consequência.' },
     golpes: {
