@@ -90,6 +90,7 @@ function testarDiagnostico() {
   const cal = { media: 4.3, itn: 7.5, classe: '4ª', nivel: 'Iniciante' };
   const t0 = Date.now();
   const r = escreverComClaude(av, cal, 'experimental', null, '', []);
+  if (r.uso) Logger.log('Tokens de saída: diagnóstico ' + r.uso[0] + ', plano ' + r.uso[1]);
   Logger.log('Tempo: ' + Math.round((Date.now() - t0) / 1000) + ' segundos');
   Logger.log('Classe sugerida: ' + r.diagnostico.classeSugerida + ' (calculada pelas notas: 4ª)');
   Logger.log('Resumo: ' + r.diagnostico.resumo);
@@ -279,14 +280,16 @@ function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
   conteudo1.push({ type: 'text', text: 'Escreva agora a parte do diagnóstico, no formato JSON pedido.' + (quadros.length ? ' Analise os quadros do saque.' : ' Não há vídeo do saque nesta aula: não inclua o campo "saque".') });
 
   /* Saída estruturada: o Claude responde um JSON que segue o esquema */
+  /* Sem raciocínio prévio (between_tools): a resposta sai mais rápida e o
+     raciocínio não consome o limite de tamanho; o Apps Script corta em ~60 s */
   const p1 = {
-    model: modelo(), max_tokens: 4000, system: SISTEMA,
-    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe))) } },
+    model: modelo(), max_tokens: 8000, system: SISTEMA, thinking: { type: 'between_tools' },
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe))) } },
     messages: [{ role: 'user', content: conteudo1 }]
   };
   const p2 = {
-    model: modelo(), max_tokens: 3000, system: SISTEMA,
-    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_PLANO(reav)) } },
+    model: modelo(), max_tokens: 6000, system: SISTEMA, thinking: { type: 'between_tools' },
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_PLANO(reav)) } },
     messages: [{ role: 'user', content: contexto + '\n\n' + (reav
       ? 'Monte o PRÓXIMO CICLO de 8 semanas, com 2 fases de 4 semanas e 3 itens cada. Continue a numeração das semanas a partir do plano anterior (se a reavaliação foi ao fim da semana 8, comece na semana 9). Marque a última fase com reavaliacao = true. Ataque primeiro o "Foco do próximo ciclo" e as notas mais baixas.'
       : 'Monte um plano de 12 semanas, com 3 fases de 4 semanas (Semanas 1 a 4, 5 a 8, 9 a 12) e 3 itens cada. A primeira fase ataca os pontos a melhorar e as notas mais baixas; a última leva para o jogo. Marque a fase 2 com reavaliacao = true (reavaliação ao fim da semana 8).') +
@@ -299,7 +302,9 @@ function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
   d.classeSugerida = igual(CLASSES, d.classeSugerida);
   d.golpes = (d.golpes || []).map(g => Object.assign({}, g, { golpe: igual(GOLPES, g.golpe) || g.golpe }));
   if (d.saque) d.saque.quadros = (d.saque.quadros || []).map(q => Object.assign({}, q, { fase: igual(FASES, q.fase) || q.fase }));
-  return { diagnostico: d, plano: p };
+  const uso = r.map(x => (x.usage || {}).output_tokens || 0);
+  console.log('Claude · tokens de saída: ' + uso.join(' + '));
+  return { diagnostico: d, plano: p, uso: uso };
 }
 
 function montarContexto(av, cal, tipo, antDiag, antClasse, quadros) {
