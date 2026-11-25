@@ -2,11 +2,17 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1C1A17">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
-<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<!-- App na tela inicial: abre em tela cheia, sem as barras do navegador -->
+<link rel="manifest" href="/professor/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/professor/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PS Professor">
 <!-- Área restrita do professor: sem link no site, fora do Google (noindex)
      e sem a tag do Google Ads, porque aqui circulam dados de alunos. -->
 
@@ -35,7 +41,7 @@ h1,h2,h3{font-family:var(--tit);font-weight:800;text-transform:uppercase;line-he
 [hidden]{display:none!important}
 
 /* ---------- App ---------- */
-.top{background:var(--tinta);color:var(--creme);padding:14px max(5vw,18px);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+.top{background:var(--tinta);color:var(--creme);padding:calc(14px + env(safe-area-inset-top)) max(5vw,18px) 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
 .top img{height:26px;width:auto;display:block}
 .top .who{font-size:13px;font-weight:600;color:var(--noescuro)}
 .top button{background:none;border:0;color:var(--noescuro);font-size:13px;font-weight:600;padding:10px 4px;cursor:pointer}
@@ -53,7 +59,7 @@ h1,h2,h3{font-family:var(--tit);font-weight:800;text-transform:uppercase;line-he
 .btn[disabled]{opacity:.4;cursor:not-allowed}
 
 /* PIN */
-.pin{min-height:100svh;background:var(--tinta);color:var(--creme);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;position:relative;overflow:hidden}
+.pin{min-height:100svh;background:var(--tinta);color:var(--creme);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(32px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
 .pin .court{position:absolute;right:-170px;top:-60px;width:300px;opacity:.3;pointer-events:none}
 .pin img{height:40px;margin-bottom:34px;position:relative}
 .pin h1{font-size:44px;color:var(--creme);text-align:center;position:relative}
@@ -172,7 +178,7 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .modal p{color:var(--forte);margin:0 0 18px}
 
 /* ---------- Relatório (A4) ---------- */
-.rbar{position:sticky;top:0;z-index:6;background:var(--tinta);color:var(--creme);padding:10px max(4vw,14px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.rbar{position:sticky;top:0;z-index:6;background:var(--tinta);color:var(--creme);padding:calc(10px + env(safe-area-inset-top)) max(4vw,14px) 10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .rbar .btn{min-height:44px;font-size:15px;padding:0 18px}
 .rbar .msg{font-size:13px;color:var(--noescuro);flex-basis:100%}
 .rstage{padding:18px 0 40px;background:#d8d0c5}
@@ -636,12 +642,22 @@ const classeDe = au => au && au.diag && au.diag.classe ? (au.diag.classe.confirm
 const subiuEm = au => { const c = au && au.diag && au.diag.classe; return !!(c && c.confirmada && c.anterior && idxC(c.confirmada) > idxC(c.anterior)); };
 const classeAtual = al => { for (let i = al.aulas.length - 1; i >= 0; i--) { const c = classeDe(al.aulas[i]); if (c) return c; } return ''; };
 
-/* ---------- Sessão e API (Apps Script) ---------- */
+/* ---------- Sessão e API (Apps Script) ----------
+   O login do Google vale cerca de 1 hora. Ele fica guardado neste aparelho
+   até expirar, para o app não pedir login toda vez que for aberto; depois
+   disso, o Google tenta entrar sozinho (auto_select) na mesma conta. */
 let TOKEN = '', CONTA = '';
+const SESSAO = 'ps-prof-sessao';
+function guardarToken(t) {
+  try { const b = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'); const p = JSON.parse(atob(b + '==='.slice((b.length + 3) % 4)));
+    localStorage.setItem(SESSAO, JSON.stringify({ t, exp: p.exp * 1000 })); } catch (e) {}
+}
+function tokenGuardado() { try { const s = JSON.parse(localStorage.getItem(SESSAO) || 'null'); if (s && s.exp - Date.now() > 120000) return s.t; } catch (e) {} return ''; }
+function esquecerToken() { try { localStorage.removeItem(SESSAO); } catch (e) {} }
 async function api(action, payload = {}) {
   const r = await fetch(CONFIG.API_URL, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify({ action, token: TOKEN, ...payload }) });
   const j = await r.json();
-  if (j.erro === 'sessao') { TOKEN = ''; go('login'); throw new Error('Sua sessão expirou. Entre de novo.'); }
+  if (j.erro === 'sessao') { TOKEN = ''; esquecerToken(); go('login'); throw new Error('Sua sessão expirou. Entre de novo.'); }
   if (!j.ok) throw new Error(j.erro || 'Falha na comunicação');
   return j;
 }
@@ -654,8 +670,9 @@ function carregarGoogle() {
 async function montarBotaoGoogle() {
   try {
     await carregarGoogle();
-    google.accounts.id.initialize({ client_id: CONFIG.GOOGLE_CLIENT_ID, callback: r => { TOKEN = r.credential; entrar(); } });
+    google.accounts.id.initialize({ client_id: CONFIG.GOOGLE_CLIENT_ID, auto_select: true, callback: r => { TOKEN = r.credential; guardarToken(TOKEN); entrar(); } });
     google.accounts.id.renderButton($('#gbtn'), { theme:'filled_black', shape:'pill', size:'large', text:'signin_with', locale:'pt-BR', width: 280 });
+    try { google.accounts.id.prompt(); } catch (e) {}
   } catch (e) { $('#lerr').textContent = 'Não consegui carregar o login do Google. Verifique a internet e recarregue a página.'; }
 }
 async function entrar() {
@@ -1134,7 +1151,7 @@ function bind() {
     const t = ev.target.closest('button, [data-q]'); if (!t) return;
     const a = t.dataset.a;
     if (a === 'google') return entrar();
-    if (a === 'sair') { TOKEN = ''; CONTA = ''; try { !DEMO && window.google && google.accounts.id.disableAutoSelect(); } catch (e) {} return go('login'); }
+    if (a === 'sair') { TOKEN = ''; CONTA = ''; esquecerToken(); try { !DEMO && window.google && google.accounts.id.disableAutoSelect(); } catch (e) {} return go('login'); }
     if (a === 'nova') { S.av = novoAv(); S.base = null; S.step = 0; S.qsel = null; return go('form'); }
     if (a === 'reavaliar') { const al = db.alunos.find(x => x.id === S.alunoId); S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; return go('form'); }
     if (a === 'home') return go('home');
@@ -1187,7 +1204,7 @@ function modal(tit, txt) {
 /* Relatórios de exemplo direto: #exemplo-pdf ou #exemplo-reavaliacao */
 if (location.hash === '#exemplo-pdf') abrirRelatorio(EXEMPLO, true);
 else if (location.hash === '#exemplo-reavaliacao') abrirRelatorio(REAV, true);
-else render();
+else { render(); if (!DEMO && (TOKEN = tokenGuardado())) entrar(); }
 }
 </script>
 </body>
