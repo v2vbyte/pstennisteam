@@ -670,10 +670,11 @@ function carregarGoogle() {
 async function montarBotaoGoogle() {
   try {
     await carregarGoogle();
+    if (S.view !== 'login' || !$('#gbtn')) return;   /* já entrou com a sessão guardada */
     google.accounts.id.initialize({ client_id: CONFIG.GOOGLE_CLIENT_ID, auto_select: true, callback: r => { TOKEN = r.credential; guardarToken(TOKEN); entrar(); } });
     google.accounts.id.renderButton($('#gbtn'), { theme:'filled_black', shape:'pill', size:'large', text:'signin_with', locale:'pt-BR', width: 280 });
     try { google.accounts.id.prompt(); } catch (e) {}
-  } catch (e) { $('#lerr').textContent = 'Não consegui carregar o login do Google. Verifique a internet e recarregue a página.'; }
+  } catch (e) { const l = $('#lerr'); if (l) l.textContent = 'Não consegui carregar o login do Google. Verifique a internet e recarregue a página.'; }
 }
 async function entrar() {
   const err = $('#lerr'); if (err) err.textContent = '';
@@ -851,7 +852,7 @@ function vAluno() {
   <div class="secth" style="margin-top:22px"><h2>Histórico</h2></div>
   <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span>${classeDe(au) ? ` <span class="tag">${esc(classeDe(au))} classe</span>` : ''}<div class="dt">${esc(au.data)}</div></div></div>
     <p class="rs">${esc(au.diag.resumo)}</p>
-    <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Ver e salvar o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
+    <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Abrir o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
     ${subiuEm(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Post de parabéns</button>` : ''}
     <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'Diagnóstico salvo no Google Drive e avisado por e-mail.'}</p></div>`).join('')}</div>
   <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
@@ -941,6 +942,7 @@ async function gerar() {
       al = r.aluno;
     }
     save(db); S.alunoId = al.id; S.av = null; S.base = null; S.csel = null; go('aluno');
+    if (!DEMO) sincronizarPdf(al.id, ultima(al).id);
   } catch (e) {
     app.querySelector('.gen').insertAdjacentHTML('beforeend', `<div class="note" style="margin-top:22px">Não foi possível gerar agora: ${esc(e.message)}. A ficha não se perdeu.</div><button class="btn b-ink" id="tentar">Tentar de novo</button>`);
     $('#tentar').onclick = () => { S.av = av; S.base = baseId; gerar(); };
@@ -954,7 +956,93 @@ async function confirmarClasse(aulaId) {
     c.confirmada = escolha; al.classe = escolha;
     if (au.diag.resumo && c.sugerida !== escolha) au.diag.resumoNota = `Classe confirmada pelo professor: ${escolha}.`;
     save(db); S.csel = null; render();
+    if (!DEMO) sincronizarPdf(al.id, au.id);
   } catch (e) { modal('Não deu certo', e.message); }
+}
+
+/* ---------- PDF do relatório na pasta do aluno (Drive) ----------
+   O PDF é montado aqui no navegador, com a identidade visual, e enviado ao
+   Apps Script. Sempre que o diagnóstico muda (nova aula, classe confirmada
+   ou edição no Google Doc), o PDF salvo no Drive é trocado pelo novo. */
+const carregarScript = src => new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+async function montarPdf(d) {
+  await carregarScript('/professor/vendor/html2canvas.min.js');
+  await carregarScript('/professor/vendor/jspdf.umd.min.js');
+  const box = document.createElement('div');
+  box.className = 'rpages'; box.setAttribute('aria-hidden', 'true');
+  box.style.cssText = 'position:fixed;left:-10000px;top:0;zoom:1;pointer-events:none';
+  box.innerHTML = relatorio(d); document.body.appendChild(box);
+  try {
+    try { await document.fonts.ready; } catch (e) {}
+    /* SVG sem tamanho próprio (QR code) sai deformado na captura: dá um tamanho a ele */
+    await Promise.all([...box.querySelectorAll('img[src$=".svg"]')].map(async i => {
+      try { const t = await (await fetch(i.getAttribute('src'))).text();
+        i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(t.replace('<svg ', '<svg width="600" height="600" ')); } catch (e) {}
+    }));
+    await Promise.all([...box.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+    const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    const pags = [...box.querySelectorAll('.pg')];
+    for (let i = 0; i < pags.length; i++) {
+      const c = await html2canvas(pags[i], { scale: 2, backgroundColor: '#F4EEE6', useCORS: true, logging: false });
+      if (i) pdf.addPage();
+      pdf.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 210, 297);
+    }
+    return pdf;
+  } finally { box.remove(); }
+}
+const pdfEmCurso = new Set(), pdfPendente = new Set();
+async function sincronizarPdf(alunoId, aulaId, lido, pronto) {
+  if (DEMO) return;
+  if (pdfEmCurso.has(aulaId)) { pdfPendente.add(aulaId); return; }
+  pdfEmCurso.add(aulaId);
+  const msg = t => { const m = $('#pdfmsg'); if (m) m.textContent = t; };
+  try {
+    const r = lido || await api('ler', { alunoId, aulaId });
+    if (r.versao && r.pdfVersao === r.versao) return;
+    msg('Salvando uma cópia na pasta do aluno no Drive…');
+    const doc = pronto || await montarPdf(r.diagnostico);
+    const s = await api('salvarPdf', { alunoId, aulaId, versao: r.versao, pdf: doc.output('datauristring') });
+    const al = db.alunos.find(x => x.id === alunoId), au = al && al.aulas.find(x => x.id === aulaId);
+    if (au && s.pdfUrl) { au.pdfUrl = s.pdfUrl; save(db); }
+    if (!s.ignorado) msg('Uma cópia está salva na pasta do aluno no Drive.');
+  } catch (e) {
+    console.warn('PDF no Drive:', e);
+    msg('Não deu para salvar a cópia no Drive agora. Ela é salva na próxima vez que você abrir o PDF.');
+  } finally {
+    pdfEmCurso.delete(aulaId);
+    if (pdfPendente.delete(aulaId)) sincronizarPdf(alunoId, aulaId);
+  }
+}
+
+/* ---------- Abrir o PDF (arquivo de verdade, sem imprimir) ---------- */
+let pdfUrlLocal = '';
+async function abrirPdf(al, au) {
+  const m = $('#modal');
+  const fechar = () => { m.innerHTML = ''; m.onclick = null; if (pdfUrlLocal) { URL.revokeObjectURL(pdfUrlLocal); pdfUrlLocal = ''; } };
+  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="PDF do relatório"><div class="box"><h2>Preparando o PDF</h2><p>Leva alguns segundos.</p></div></div>`;
+  try {
+    let d = au.diag, lido = null;
+    if (!DEMO) { lido = await api('ler', { alunoId: al.id, aulaId: au.id }); d = lido.diagnostico; au.diag = d; save(db); }
+    const doc = await montarPdf(d);
+    const nome = `Relatório - ${al.nome} - ${String(d.aluno.data || '').replace(/\//g, '-')}.pdf`;
+    const arq = new File([doc.output('blob')], nome, { type: 'application/pdf' });
+    if (pdfUrlLocal) URL.revokeObjectURL(pdfUrlLocal);
+    pdfUrlLocal = URL.createObjectURL(arq);
+    const podeEnviar = !!(navigator.canShare && navigator.canShare({ files: [arq] }));
+    m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="PDF do relatório"><div class="box">
+      <h2>PDF pronto</h2><p>${esc(nome)}</p>
+      <a class="btn b-ink b-full" id="pabrir" href="${pdfUrlLocal}" target="_blank" rel="noopener" style="margin-top:14px">Abrir o PDF</a>
+      ${podeEnviar ? '<button class="btn b-lima b-full" id="penviar" style="margin-top:10px">Enviar ou salvar no celular</button>' : ''}
+      <a class="btn b-ghost b-full" href="${pdfUrlLocal}" download="${esc(nome)}" style="margin-top:10px">Baixar o arquivo</a>
+      <p class="small" id="pdfmsg" style="margin-top:12px">${DEMO ? 'Modo demonstração: na versão final, uma cópia fica salva na pasta do aluno no Drive.' : ''}</p>
+      <button class="btn b-ghost b-full" id="pfechar" style="margin-top:6px">Fechar</button></div></div>`;
+    m.onclick = async ev => {
+      const b = ev.target.closest('button'); if (!b) return;
+      if (b.id === 'pfechar') return fechar();
+      if (b.id === 'penviar') { try { await navigator.share({ files: [arq], title: nome }); } catch (e) {} }
+    };
+    if (lido) sincronizarPdf(al.id, au.id, lido, doc);
+  } catch (e) { fechar(); modal('Não deu para gerar o PDF', e.message); }
 }
 
 /* ---------- Relatório A4 ---------- */
@@ -1174,10 +1262,8 @@ function bind() {
     if (a === 'pdf' || a === 'doc') {
       const al = db.alunos.find(x => x.id === S.alunoId); const au = al && al.aulas.find(x => x.id === t.dataset.aula); if (!au) return;
       if (a === 'doc') { if (au.docUrl) { window.open(au.docUrl, '_blank', 'noopener'); return; }
-        return modal('Editar o texto', 'Na versão final, este botão abre o diagnóstico como Google Doc, guardado na pasta do aluno no Drive. Você corrige o que quiser lá, volta aqui e toca em "Ver e salvar o PDF": o PDF sai com o texto já editado.'); }
-      let d = au.diag;
-      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) { return modal('Não deu para abrir o PDF', e.message); } }
-      return abrirRelatorio(d);
+        return modal('Editar o texto', 'Na versão final, este botão abre o diagnóstico como Google Doc, guardado na pasta do aluno no Drive. Você corrige o que quiser lá, volta aqui e toca em "Abrir o PDF": o PDF sai com o texto já editado.'); }
+      return abrirPdf(al, au);
     }
   };
   app.oninput = ev => {

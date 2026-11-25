@@ -15,6 +15,7 @@ function criarAmbiente(opts = {}) {
     setContent(c) { this.content = c; this.updated = agora(); return this; }
     getLastUpdated() { return new Date(this.updated); }
     moveTo(f) { this.parent = f.id; return this; }
+    setTrashed(t) { this.trashed = t; return this; }
     getUrl() { return 'https://drive.google.com/file/d/' + this.id; }
   }
   class MFolder {
@@ -22,7 +23,7 @@ function criarAmbiente(opts = {}) {
     getId() { return this.id; } getName() { return this.name; }
     getUrl() { return 'https://drive.google.com/drive/folders/' + this.id; }
     createFolder(n) { return new MFolder(n, this.id); }
-    createFile(n, c, m) { return new MFile(n, c, m, this.id); }
+    createFile(n, c, m) { if (n && typeof n === 'object' && n.__blob) return new MFile(n.name, n.bytes, n.mime, this.id); return new MFile(n, c, m, this.id); }
   }
   const DriveApp = {
     getFolderById(id) { if (!folders[id]) throw new Error('pasta inexistente ' + id); return folders[id]; },
@@ -159,8 +160,11 @@ function criarAmbiente(opts = {}) {
   };
 
   const Utilities = {
-    DigestAlgorithm: { SHA_256: 'sha256' },
-    computeDigest: (alg, s) => [...crypto.createHash('sha256').update(s).digest()],
+    DigestAlgorithm: { SHA_256: 'sha256', MD5: 'md5' },
+    Charset: { UTF_8: 'utf8' },
+    computeDigest: (alg, s) => [...crypto.createHash(alg).update(s, 'utf8').digest()].map(b => b > 127 ? b - 256 : b),
+    base64Decode: b => [...Buffer.from(b, 'base64')],
+    newBlob: (bytes, mime, name) => ({ __blob: true, bytes: Buffer.from(bytes.map(b => b & 255)), mime, name }),
     base64EncodeWebSafe: b => Buffer.from(b).toString('base64').replace(/\+/g, '-').replace(/\//g, '_'),
     formatDate: () => '25/11/2026',
     getUuid: () => crypto.randomUUID(),
