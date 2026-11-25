@@ -182,6 +182,132 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .rbar .btn{min-height:44px;font-size:15px;padding:0 18px}
 .rbar .msg{font-size:13px;color:var(--noescuro);flex-basis:100%}
 .rstage{padding:18px 0 40px;background:#d8d0c5}
+/* ===== PDF para celular: coluna de 430px, cada página com a altura do conteúdo ===== */
+.mob{width:430px;font:16px/1.55 var(--txt);color:var(--tinta)}
+.mob .mp{position:relative;overflow:hidden;background:var(--creme);padding:34px 26px 26px}
+.mob .mp+.mp{margin-top:0}
+.mob h1,.mob h2,.mob h3{font-family:var(--tit);text-transform:uppercase;line-height:.92;margin:0}
+.mob p{margin:0}
+.mob .ov{font-family:var(--tit);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;color:var(--saibro)}
+.mob .h{font-size:38px;font-weight:800;margin:6px 0 18px}
+.mob .court{position:absolute;opacity:.16;pointer-events:none}
+.mob .rod{display:flex;justify-content:space-between;gap:10px;margin-top:22px;padding-top:12px;border-top:1px solid var(--linha);font-size:10.5px;font-weight:600;color:var(--suave)}
+.mob .rod b{color:var(--saibro)}
+.mob .escuro{background:var(--tinta);color:var(--creme)}
+.mob .escuro .rod{border-color:#3F3A34;color:var(--noescuro)}
+.mob .saibro{background:var(--saibro);color:var(--creme)}
+.mob .pill{font-size:12px;padding:6px 14px}
+.mob .p-lima{background:var(--lima);color:var(--tinta)}
+/* capa */
+.mob .mcapa{padding:30px 26px 34px;min-height:640px}
+.mob .mcapa .court{right:-120px;top:40px;width:330px}
+.mob .mcapa .mlogo{height:30px;display:block;margin-bottom:150px;position:relative}
+.mob .mcapa h1{font-size:64px;font-weight:800;color:var(--creme);margin-top:16px;position:relative}
+.mob .mcapa .msub{font-family:var(--tit);font-weight:700;text-transform:uppercase;font-size:22px;color:var(--noescuro);margin-top:6px}
+.mob .mcapa .mnome{font-family:var(--tit);font-weight:800;text-transform:uppercase;font-size:40px;line-height:.95;color:var(--lima);margin-top:34px}
+.mob .mcapa .mquando{font-size:14px;color:var(--noescuro);margin-top:8px}
+.mob .mcapa .mexemplo{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;background:var(--areia);color:var(--tinta);border-radius:999px;padding:5px 12px}
+/* perfil */
+.mob .mperfil{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 26px}
+.mob .mperfil div{background:var(--areia);border-radius:14px;padding:10px 12px}
+.mob .mperfil small{display:block;font-size:11.5px;color:var(--suave)}
+.mob .mperfil b{font-size:15px;font-weight:700}
+.mob .texto{font-size:16.5px;line-height:1.6;margin-top:10px}
+/* classe */
+.mob .classe-topo{margin:-34px -26px 22px;padding:30px 26px 26px;position:relative}
+.mob .classe-topo .court{right:-110px;top:-20px;width:300px}
+.mob .mbig{display:flex;align-items:flex-end;gap:12px;margin:10px 0 16px;position:relative}
+.mob .mbig .num{font-family:var(--tit);font-weight:800;font-size:150px;line-height:.8;color:var(--lima)}
+.mob .mbig .pal{font-family:var(--tit);font-weight:800;font-size:40px;text-transform:uppercase;line-height:1;padding-bottom:6px}
+.mob .mescada{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mob .mdeg{background:var(--areia);border-radius:14px;padding:9px 10px;text-align:center}
+.mob .mdeg b{display:block;font-family:var(--tit);font-weight:800;font-size:26px;line-height:1}
+.mob .mdeg small{font-size:11px;color:var(--suave)}
+.mob .mdeg.cur{background:var(--saibro);color:var(--creme)}
+.mob .mdeg.cur small{color:var(--creme)}
+.mob .mdeg.ant{outline:2px dashed var(--tinta);outline-offset:-2px}
+.mob .mescleg{font-size:12px;color:var(--suave);margin:8px 0 16px}
+.mob .mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}
+.mob .mstats div{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:10px}
+.mob .mstats small{display:block;font-size:11px;color:var(--suave)}
+.mob .mstats b{font-family:var(--tit);font-weight:800;font-size:22px;line-height:1.1}
+.mob .mnota-itn{font-size:11.5px;color:var(--suave);margin-top:16px;line-height:1.5}
+/* caixas */
+.mob .bx{border-radius:22px;padding:22px 20px;margin-top:14px}
+.mob .bx h3{font-size:24px;font-weight:800;margin-bottom:14px}
+.mob .bx ol{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.mob .bx li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;font-size:16px;line-height:1.5}
+.mob .bx li b{font-family:var(--tit);font-weight:800;font-size:22px;line-height:1.05}
+.mob .bx ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px;line-height:1.5}
+.mob .bx ul li{display:list-item}
+.mob .bx p{font-size:16px;line-height:1.55}
+.mob .bx .k{font-family:var(--tit);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);font-size:13px;margin-bottom:6px}
+/* jogo */
+.mob .mradar{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:10px;margin-bottom:16px}
+.mob .mradar svg{width:100%;height:auto;display:block}
+.mob .mleg{display:flex;gap:16px;justify-content:center;font-size:12.5px;padding:4px 0 6px}
+.mob .mleg i{display:inline-block;width:18px;height:0;border-top:3px solid var(--saibro);vertical-align:middle;margin-right:6px}
+.mob .mleg i.l-ant{border-top:2px dashed var(--tinta)}
+.mob .mnt{display:grid;grid-template-columns:118px minmax(0,1fr) 48px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--linha);font-size:15px}
+.mob .mnt:last-child{border-bottom:0}
+.mob .mnt span{font-weight:700}
+.mob .mnt em{font-style:normal;font-family:var(--tit);font-weight:800;font-size:20px;text-align:right}
+.mob .mnt em.mais{color:var(--saibro)}
+.mob .b10{display:flex;gap:3px}
+.mob .b10 i{flex:1;height:10px;border-radius:999px;background:var(--areia);position:relative}
+.mob .b10 i.on{background:var(--saibro)}
+.mob .b10 i.was::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--tinta)}
+.mob .mescala{font-size:12px;color:var(--suave);margin-top:12px;line-height:1.5}
+/* golpes */
+.mob .mgc{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:20px;margin-top:14px}
+.mob .mgt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.mob .mgt h3{font-size:26px;font-weight:800}
+.mob .mgn b{font-family:var(--tit);font-weight:800;font-size:30px;color:var(--saibro)}
+.mob .mgn small{font-size:13px;color:var(--suave);font-weight:700}
+.mob .mlb{font-family:var(--tit);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--suave);margin:14px 0 4px}
+.mob .mcorr{background:var(--tinta);color:var(--creme);border-radius:16px;padding:16px;margin-top:14px}
+.mob .mcorr .k{font-family:var(--tit);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);font-size:13px;margin-bottom:6px}
+.mob .mcorr .ex{color:var(--noescuro);font-size:14.5px;margin-top:10px}
+.mob .moutros{background:var(--areia);border-radius:22px;padding:18px 20px;margin-top:14px}
+.mob .moutros h3{font-size:22px;font-weight:800;margin-bottom:8px}
+.mob .moutros .mit{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--linha)}
+.mob .moutros .mit:last-child{border-bottom:0}
+.mob .moutros .mit span{font-weight:700;font-size:15px}
+.mob .moutros .mit small{display:block;font-weight:500;font-size:12.5px;color:var(--suave)}
+.mob .moutros .mit b{font-family:var(--tit);font-weight:800;font-size:22px;color:var(--saibro)}
+.mob .moutros .mit b small{display:inline;font-size:12px}
+/* saque */
+.mob .mq{display:grid;grid-template-columns:132px minmax(0,1fr);gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--linha)}
+.mob .mq img{width:132px;height:176px;object-fit:cover;border-radius:14px;display:block}
+.mob .mq .pill{margin-bottom:8px}
+.mob .mq p{font-size:15px;line-height:1.5}
+/* plano */
+.mob .mfase{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:20px;margin-top:14px}
+.mob .mfase .mfh{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.mob .mfase .mn{font-family:var(--tit);font-weight:800;font-size:30px;color:var(--saibro);line-height:1}
+.mob .mfase .mfh small{font-size:13px;font-weight:700;color:var(--suave)}
+.mob .mfase h3{font-size:22px;font-weight:800;margin:6px 0 10px}
+.mob .mfase ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:15.5px;line-height:1.5}
+.mob .mfase .mre{margin-top:12px}
+/* fim */
+.mob .mfim{padding:30px 26px 30px}
+.mob .mfim .court{right:-120px;top:20px;width:330px}
+.mob .mfim .mlogo{height:30px;display:block;margin-bottom:60px;position:relative}
+.mob .mfim h1{font-size:54px;font-weight:800;color:var(--creme);position:relative}
+.mob .mfim .mtxt{font-size:17px;line-height:1.55;margin-top:16px;position:relative}
+.mob .mrec{background:var(--tinta);border-radius:22px;padding:20px;margin-top:22px}
+.mob .mrec .k{font-family:var(--tit);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima);font-size:13px}
+.mob .mrec b{display:block;font-family:var(--tit);font-weight:800;text-transform:uppercase;font-size:26px;line-height:1;margin:8px 0}
+.mob .mrec p{color:var(--noescuro);font-size:15px}
+.mob .mmods{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.mob .mmods span{border:1.5px solid rgba(244,238,230,.6);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
+.mob .mcta{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:34px}
+.mob .mzap{display:inline-flex;align-items:center;gap:8px;background:var(--lima);color:var(--tinta);font-weight:700;font-size:16px;border-radius:999px;padding:13px 20px}
+.mob .mzap svg{width:18px;height:18px}
+.mob .mcta p{font-size:13px;margin-top:10px}
+.mob .mqr{background:var(--creme);border-radius:16px;padding:10px;text-align:center;color:var(--tinta);flex:none}
+.mob .mqr img{width:104px;height:104px;display:block}
+.mob .mqr small{font-size:11px;font-weight:700}
 .rpages{width:210mm;margin:0 auto}
 .pg{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--creme);color:var(--tinta);margin:0 auto 14px;box-shadow:0 4px 24px rgba(28,26,23,.18);font:10.5pt/1.5 var(--txt);break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .pg h1,.pg h2,.pg h3{font-family:var(--tit);text-transform:uppercase;line-height:.92}
@@ -960,6 +1086,100 @@ async function confirmarClasse(aulaId) {
   } catch (e) { modal('Não deu certo', e.message); }
 }
 
+/* ---------- Relatório para celular (é o que vai para o PDF) ----------
+   Uma coluna estreita; cada <section class="mp"> vira uma página do PDF
+   com a altura do próprio conteúdo, então nada transborda. */
+function relatorioMobile(d) {
+  const a = d.aluno, reav = !!d.anterior, c = d.classe || {};
+  const perfil = [['Classe', c.confirmada || c.sugerida ? `${c.confirmada || c.sugerida}${c.confirmada ? '' : ' (sugerida)'}` : ''], ['Nível', a.nivel], ['Objetivo', a.objetivo], ['Experiência', a.experiencia], ['Tempo de prática', a.tempo], ['Mão dominante', a.mao], ['Backhand', a.backhand], ['Empunhadura', a.empunhadura]].filter(x => x[1]);
+  const golpes = (d.golpes || []).slice(0, 4);
+  const temSaque = !!(d.saque && d.saque.quadros && d.saque.quadros.length);
+  const outros = d.notas.filter(n => !golpes.some(g => g.golpe === n.golpe));
+  const antDe = g => reav ? ((d.anterior.notas.find(x => x.golpe === g) || {}).nota || 0) : 0;
+  let p = 0; const rod = () => `<div class="rod"><span><b>PS Tennis Team</b> · Prof. Paulo Santana · @pstennisteam</span><span>${esc(a.nome)} · ${++p}</span></div>`;
+  const atual = c.confirmada || c.sugerida, ant = c.anterior || '';
+  const sub = ant && idxC(atual) > idxC(ant), manteve = ant && atual === ant;
+  const status = !c.confirmada ? 'Classe sugerida, aguardando confirmação' : sub ? `Subiu da ${ant} para a ${atual} classe` : manteve ? `Mantém a ${atual} classe` : 'Classe confirmada pelo professor';
+  const prox = atual && atual !== '1ª' ? proxima(atual) : null;
+  return `
+  <section class="mp escuro mcapa">${COURT()}<img class="mlogo" src="${LOGO}" alt="PS Tennis Team">
+    <span class="pill p-saibro">${reav ? 'Reavaliação' : 'Aula experimental'}</span>
+    <h1>${reav ? 'Reavaliação' : 'Avaliação'}</h1><div class="msub">${reav ? 'Evolução e próximo ciclo' : 'Diagnóstico e plano de treino'}</div>
+    <div class="mnome">${esc(a.nome)}</div>
+    <div class="mquando">${esc(a.data)}${a.local ? ` · ${esc(a.local)}` : ''} · com o professor Paulo Santana${reav ? `<br>Comparação com a aula de ${esc(d.anterior.data)}` : ''}</div>
+    ${d.exemplo ? `<span class="mexemplo">${typeof d.exemplo === 'string' ? esc(d.exemplo) : 'Exemplo com aluna fictícia'}</span>` : ''}
+  </section>
+
+  <section class="mp">
+    <div class="ov">Seu perfil</div>
+    <div class="mperfil">${perfil.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join('')}</div>
+    <div class="ov">${reav ? 'Resumo da evolução' : 'Resumo da aula'}</div>
+    <p class="texto">${esc(d.resumo)}</p>
+    ${rod()}
+  </section>
+
+  ${atual ? `<section class="mp">
+    <div class="classe-topo escuro">${COURT()}<div class="ov" style="color:var(--noescuro)">Sua classe</div>
+      <div class="mbig"><span class="num">${esc(atual)}</span><span class="pal">classe</span></div>
+      <span class="pill ${sub ? 'p-lima' : 'p-saibro'}">${esc(status)}</span></div>
+    <div class="mescada">${CLASSES.map(k => { const f = FAIXAS.find(x => x.c === k); return `<div class="mdeg ${k === atual ? 'cur' : ''} ${k === ant && k !== atual ? 'ant' : ''}"><b>${k}</b><small>${esc(f.itn)}</small></div>`; }).join('')}</div>
+    <p class="mescleg">Da 6ª (início) à 1ª classe.${ant && !manteve ? ' A borda tracejada marca a classe anterior.' : ''}</p>
+    <div class="mstats"><div><small>Média</small><b>${fmt(c.media)}</b></div><div><small>Referência</small><b>ITN ${fmt(c.itn)}</b></div><div><small>Nível</small><b>${esc(c.nivel)}</b></div></div>
+    <div class="ov">Por que essa classe</div><p class="texto">${esc(c.justificativa || '')}</p>
+    ${prox ? `<div class="bx bx-escuro"><h3>Para chegar à ${esc(prox)} classe</h3><ol>${(CRITERIOS[prox] || []).map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>` : ''}
+    <p class="mnota-itn">A classe é uma sugestão do professor, calibrada pelas descrições de nível do ITN (International Tennis Number), da ITF. Federações e clubes podem usar critérios próprios nos torneios.</p>
+    ${rod()}
+  </section>` : ''}
+
+  <section class="mp">
+    <div class="ov">${reav ? 'Antes e agora' : 'Diagnóstico'}</div><h2 class="h">${reav ? 'Sua evolução' : 'Seu jogo hoje'}</h2>
+    <div class="mradar">${radar(d.notas, reav ? d.anterior.notas : null)}
+      ${reav ? `<div class="mleg"><span><i></i>Hoje</span><span><i class="l-ant"></i>Antes, ${esc(d.anterior.data)}</span></div>` : ''}</div>
+    <div>${d.notas.map(x => { const an = antDe(x.golpe); return `<div class="mnt"><span>${esc(x.golpe)}</span>${barra10(x.nota, reav ? an : 0)}${reav ? `<em class="${x.nota > an ? 'mais' : ''}">${an}→${x.nota}</em>` : `<em>${x.nota}</em>`}</div>`; }).join('')}</div>
+    <p class="mescala">Notas de 1 a 10: 1 a 2 começando · 3 a 4 em desenvolvimento · 5 a 6 funcional · 7 a 8 consistente · 9 a 10 avançado.${reav ? ' A linha embaixo da barra marca a nota anterior.' : ''}</p>
+    <div class="bx bx-claro"><h3>${reav ? 'O que evoluiu' : 'Pontos fortes'}</h3><ol>${d.fortes.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
+    <div class="bx bx-escuro"><h3>${reav ? 'Foco do próximo ciclo' : 'Pontos a melhorar'}</h3><ol>${d.melhorar.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
+    ${rod()}
+  </section>
+
+  <section class="mp">
+    <div class="ov">Análise técnica</div><h2 class="h">Golpe a golpe</h2>
+    ${golpes.map(g => { const an = antDe(g.golpe); return `<article class="mgc"><div class="mgt"><h3>${esc(g.golpe)}</h3><span class="mgn">${reav && an ? `<small>${an} → </small>` : ''}<b>${g.nota}</b><small>/10</small></span></div>
+      ${barra10(g.nota, reav ? an : 0)}
+      <div class="mlb">O que eu vi</div><p>${esc(g.vi)}</p>
+      <div class="mcorr"><div class="k">Como corrigir</div><p>${esc(g.corrigir)}</p>${g.exercicio ? `<p class="ex">Exercício: ${esc(g.exercicio)}</p>` : ''}</div></article>`; }).join('')}
+    ${outros.length ? `<div class="moutros"><h3>Também avaliados</h3>${outros.map(x => `<div class="mit"><span>${esc(x.golpe)}<small>${x.golpe === 'Saque' && temSaque ? 'Análise na próxima página' : esc(nivelNota(x.nota))}</small></span><b>${x.nota}<small>/10</small></b></div>`).join('')}</div>` : ''}
+    ${rod()}
+  </section>
+
+  ${temSaque ? `<section class="mp">
+    <div class="ov">Vídeo da aula</div><h2 class="h">Análise do saque</h2>
+    ${d.saque.quadros.slice(0, 5).map((q, i) => `<div class="mq">${q.img ? `<img src="${esc(q.img)}" alt="Quadro ${i + 1}">` : '<div></div>'}<div><span class="pill p-tinta">${esc(q.fase)}</span><p>${esc(q.obs)}</p></div></div>`).join('')}
+    <div class="bx bx-claro"><h3>O que já está bom</h3><p>${esc(d.saque.bom)}</p></div>
+    <div class="bx bx-saibro"><div class="k">Prioridade</div><h3>O foco das próximas aulas</h3><p>${esc(d.saque.prioridade)}</p></div>
+    ${rod()}
+  </section>` : ''}
+
+  <section class="mp">
+    <div class="ov">${esc(d.planoTitulo || '12 semanas · 1 aula por semana')}</div><h2 class="h">${reav ? 'Seu próximo ciclo' : 'Seu plano de treino'}</h2>
+    ${d.plano.map((f, i) => `<div class="mfase"><div class="mfh"><span class="mn">Fase ${i + 1}</span><small>${esc(f.semanas)}</small></div>
+      <h3>${esc(f.titulo)}</h3><ul>${f.itens.map(it => `<li><b>${esc(it.foco)}.</b> ${esc(it.exercicio)}</li>`).join('')}</ul>
+      ${f.reavaliacao ? '<span class="pill p-saibro mre">Reavaliação com novo vídeo e revisão da classe no fim da fase</span>' : ''}</div>`).join('')}
+    <div class="bx bx-areia"><h3>Para fazer em casa</h3><ul>${(d.casa || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    <div class="bx bx-claro"><h3>Sua raquete</h3><p><b>${esc(d.equipamento.raquete)}</b></p><p style="margin-top:8px">${esc(d.equipamento.obs)}</p></div>
+    ${rod()}
+  </section>
+
+  <section class="mp saibro mfim">${COURT()}<img class="mlogo" src="${LOGO}" alt="PS Tennis Team">
+    <h1>Seu próximo passo</h1><p class="mtxt">${esc(d.proximo.texto)}</p>
+    <div class="mrec"><div class="k">Indicação do professor</div><b>${esc(d.proximo.recomendacao)}</b><p>${esc(d.proximo.motivo)}</p></div>
+    <div class="mmods"><span>Individual</span><span>Dupla</span><span>Grupo (4 pessoas)</span><span>Fama Tennis ou no seu condomínio</span></div>
+    <div class="mcta"><div><span class="mzap">${ICON.zap} Agende pelo WhatsApp</span><p>(31) 99586-9025 · @pstennisteam</p></div>
+      <div class="mqr"><img src="${QR}" alt="QR code do WhatsApp"><small>Aponte a câmera</small></div></div>
+  </section>`;
+}
+const nomePdf = d => `${d.tipo === 'reavaliacao' || d.anterior ? 'Reavaliação' : 'Avaliação'} - ${d.aluno.nome}${d.tipo === 'reavaliacao' || d.anterior ? ` - ${String(d.aluno.data || '').replace(/\//g, '-')}` : ''}.pdf`;
+
 /* ---------- PDF do relatório na pasta do aluno (Drive) ----------
    O PDF é montado aqui no navegador, com a identidade visual, e enviado ao
    Apps Script. Sempre que o diagnóstico muda (nova aula, classe confirmada
@@ -969,9 +1189,9 @@ async function montarPdf(d) {
   await carregarScript('/professor/vendor/html2canvas.min.js');
   await carregarScript('/professor/vendor/jspdf.umd.min.js');
   const box = document.createElement('div');
-  box.className = 'rpages'; box.setAttribute('aria-hidden', 'true');
+  box.className = 'mob'; box.setAttribute('aria-hidden', 'true');
   box.style.cssText = 'position:fixed;left:-10000px;top:0;zoom:1;pointer-events:none';
-  box.innerHTML = relatorio(d); document.body.appendChild(box);
+  box.innerHTML = relatorioMobile(d); document.body.appendChild(box);
   try {
     try { await document.fonts.ready; } catch (e) {}
     /* SVG sem tamanho próprio (QR code) sai deformado na captura: dá um tamanho a ele */
@@ -980,12 +1200,15 @@ async function montarPdf(d) {
         i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(t.replace('<svg ', '<svg width="600" height="600" ')); } catch (e) {}
     }));
     await Promise.all([...box.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
-    const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', compress: true });
-    const pags = [...box.querySelectorAll('.pg')];
-    for (let i = 0; i < pags.length; i++) {
-      const c = await html2canvas(pags[i], { scale: 2, backgroundColor: '#F4EEE6', useCORS: true, logging: false });
-      if (i) pdf.addPage();
-      pdf.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 210, 297);
+    let pdf = null;
+    for (const pag of box.querySelectorAll('.mp')) {
+      const w = pag.offsetWidth, h = pag.offsetHeight;
+      const escala = Math.min(2.5, Math.sqrt(14e6 / (w * h)));   /* limite de tamanho de imagem do iPhone */
+      const c = await html2canvas(pag, { scale: escala, backgroundColor: null, useCORS: true, logging: false });
+      const fmtPag = [w * .75, h * .75];   /* px → pt */
+      if (!pdf) pdf = new window.jspdf.jsPDF({ unit: 'pt', format: fmtPag, orientation: 'portrait', compress: true });
+      else pdf.addPage(fmtPag, 'portrait');
+      pdf.addImage(c.toDataURL('image/jpeg', 0.86), 'JPEG', 0, 0, fmtPag[0], fmtPag[1]);
     }
     return pdf;
   } finally { box.remove(); }
@@ -1024,7 +1247,7 @@ async function abrirPdf(al, au) {
     let d = au.diag, lido = null;
     if (!DEMO) { lido = await api('ler', { alunoId: al.id, aulaId: au.id }); d = lido.diagnostico; au.diag = d; save(db); }
     const doc = await montarPdf(d);
-    const nome = `Relatório - ${al.nome} - ${String(d.aluno.data || '').replace(/\//g, '-')}.pdf`;
+    const nome = nomePdf(d);
     const arq = new File([doc.output('blob')], nome, { type: 'application/pdf' });
     if (pdfUrlLocal) URL.revokeObjectURL(pdfUrlLocal);
     pdfUrlLocal = URL.createObjectURL(arq);
@@ -1053,7 +1276,7 @@ function radar(notas, anterior) {
   const rings = [2,4,6,8,10].map(k => `<polygon points="${poly(notas.map(() => k))}" fill="none" stroke="#D9CFC2" stroke-width="${k === 10 ? 1.4 : 1}"/>`).join('');
   const eixos = notas.map((_, i) => { const [x, y] = pt(i, R); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D9CFC2"/>`; }).join('');
   const labels = notas.map((x, i) => { const [lx, ly] = pt(i, R + 20); const c = Math.cos((-90 + i * 360 / n) * Math.PI / 180); const anc = Math.abs(c) < .2 ? 'middle' : c > 0 ? 'start' : 'end';
-    return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anc}" font-family="Figtree" font-weight="700" font-size="11.5" fill="#1C1A17">${esc(x.golpe)}</text>`; }).join('');
+    return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anc}" font-family="Figtree, Helvetica, Arial, sans-serif" font-weight="700" font-size="11.5" fill="#1C1A17">${esc(x.golpe)}</text>`; }).join('');
   const antes = anterior ? `<polygon points="${poly(notas.map(x => (anterior.find(a => a.golpe === x.golpe) || {}).nota || 0))}" fill="none" stroke="#1C1A17" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>` : '';
   const pts = notas.map((x, i) => { const [px, py] = pt(i, R * x.nota / 10); return `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4" fill="#A8492A"/>`; }).join('');
   return `<svg viewBox="-40 -4 440 340" role="img" aria-label="Radar das notas por item">${rings}${eixos}<polygon points="${poly(notas.map(x => x.nota))}" fill="#A8492A" fill-opacity=".2" stroke="#A8492A" stroke-width="2.5" stroke-linejoin="round"/>${antes}${pts}${labels}</svg>`;

@@ -540,7 +540,7 @@ function salvarPdf(req) {
     const atual = versaoDiag(lerArquivoAula(au).diag);
     if (req.versao !== atual) return { ignorado: true, pdfUrl: au.pdfUrl || '' };   /* o diagnóstico mudou enquanto o PDF era montado */
     if (au.pdfId) { try { DriveApp.getFileById(au.pdfId).setTrashed(true); } catch (e) {} }
-    const nome = 'Relatório · ' + al.nome + ' · ' + au.data.replace(/\//g, '-') + '.pdf';
+    const nome = au.tipo === 'reavaliacao' ? 'Reavaliação - ' + al.nome + ' - ' + au.data.replace(/\//g, '-') + '.pdf' : 'Avaliação - ' + al.nome + '.pdf';
     const f = DriveApp.getFolderById(al.pastaId).createFile(Utilities.newBlob(bytes, 'application/pdf', nome));
     au.pdfId = f.getId(); au.pdfUrl = f.getUrl(); au.pdfVersao = atual;
     salvarIndice(idx);

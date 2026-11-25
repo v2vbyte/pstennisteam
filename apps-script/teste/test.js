@@ -104,7 +104,7 @@ let lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.i
 ok(lido.versao && lido.versao.length === 32 && lido.pdfVersao === '', 'ler informa a versão e que ainda não há PDF');
 r = E.post({ action: 'salvarPdf', token: 'tok-ok', alunoId: al.id, aulaId: au.id, versao: lido.versao, pdf: PDF1 });
 const arqPdf1 = Object.values(E.files).find(f => f.mime === 'application/pdf');
-ok(r.ok && r.pdfUrl && arqPdf1 && arqPdf1.parent === Object.values(E.folders).find(f => f.name === 'Ana Souza').id && /^Relatório · Ana Souza · 25-11-2026\.pdf$/.test(arqPdf1.name), 'PDF salvo na pasta do aluno com nome claro');
+ok(r.ok && r.pdfUrl && arqPdf1 && arqPdf1.parent === Object.values(E.folders).find(f => f.name === 'Ana Souza').id && arqPdf1.name === 'Avaliação - Ana Souza.pdf', 'PDF salvo na pasta do aluno com nome claro');
 ok(String(arqPdf1.content).startsWith('%PDF'), 'conteúdo do PDF gravado como arquivo');
 lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id });
 ok(lido.pdfVersao === lido.versao, 'depois de salvar, o PDF está em dia');
