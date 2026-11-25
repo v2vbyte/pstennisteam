@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Página de erro do GitHub Pages: aparece em qualquer endereço que não existe.
+     Por isso todos os caminhos começam com "/". Sem tag do Google: não precisa de faixa de cookies. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Página não encontrada | PS Tennis Team</title>
+<meta name="theme-color" content="#1C1A17">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --saibro:#A8492A; --lima:#D4F24A; --tinta:#1C1A17; --creme:#F4EEE6;
+    --texto-escuro:#CFC6BA;
+    --titulo:"Barlow Condensed","Arial Narrow",sans-serif;
+    --texto:"Figtree","Helvetica Neue",Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; min-height:100%; }
+  body{ min-height:100vh; min-height:100svh; background:var(--tinta); color:var(--creme); font-family:var(--texto); display:flex; flex-direction:column; overflow-x:hidden; }
+  a{ color:inherit; }
+
+  .topo{ padding:28px clamp(20px,6vw,80px); position:relative; z-index:2; }
+  .topo img{ display:block; height:44px; width:auto; }
+
+  .palco{ flex:1; position:relative; display:flex; align-items:center; padding:24px clamp(20px,6vw,80px) 72px; }
+  /* Elemento da marca: quadra vista de cima, linhas finas em creme com transparência */
+  .quadra{ position:absolute; inset:0; margin:auto; width:min(1150px,150vw); height:auto; pointer-events:none; }
+  .quadra *{ fill:none; stroke:rgba(244,238,230,.16); stroke-width:6; }
+  .bola{ fill:var(--lima) !important; stroke:none !important; }
+
+  .conteudo{ position:relative; z-index:1; max-width:720px; }
+  .etiqueta{ display:inline-block; padding:8px 18px; border-radius:999px; background:var(--saibro); color:var(--creme); font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; }
+  h1{ font-family:var(--titulo); font-weight:800; text-transform:uppercase; line-height:.9; font-size:clamp(64px,13vw,150px); margin:22px 0 20px; letter-spacing:-.01em; }
+  h1 span{ color:var(--lima); }
+  .lead{ font-size:clamp(17px,2.2vw,20px); line-height:1.55; color:var(--texto-escuro); max-width:560px; margin:0 0 34px; }
+
+  .acoes{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{ display:inline-flex; align-items:center; gap:10px; min-height:56px; padding:0 30px; border-radius:999px; font-weight:700; font-size:17px; text-decoration:none; transition:transform .2s, background-color .2s, border-color .2s; }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:focus-visible{ outline:3px solid var(--lima); outline-offset:3px; }
+  .btn-lima{ background:var(--lima); color:var(--tinta); }
+  .btn-contorno{ border:1.5px solid rgba(244,238,230,.45); color:var(--creme); }
+  .btn-contorno:hover{ border-color:var(--creme); }
+
+  .whats{ margin:28px 0 0; font-size:15px; color:var(--texto-escuro); }
+  .whats a{ color:var(--creme); font-weight:600; }
+
+  @media (max-width:560px){
+    .acoes .btn{ flex:1 1 100%; justify-content:center; }
+  }
+  @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } .btn:hover{ transform:none; } }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <a href="/" aria-label="PS Tennis Team, ir para o início">
+    <img src="/img/logo-branca.png" alt="PS Tennis Team" width="782" height="196">
+  </a>
+</header>
+
+<main class="palco">
+  <svg class="quadra" viewBox="-20 -20 2600 1137" aria-hidden="true" focusable="false">
+    <rect x="0" y="0" width="2377" height="1097"/>
+    <line x1="0" y1="137" x2="2377" y2="137"/>
+    <line x1="0" y1="960" x2="2377" y2="960"/>
+    <line x1="1188.5" y1="-20" x2="1188.5" y2="1117"/>
+    <line x1="548.5" y1="137" x2="548.5" y2="960"/>
+    <line x1="1828.5" y1="137" x2="1828.5" y2="960"/>
+    <line x1="548.5" y1="548.5" x2="1828.5" y2="548.5"/>
+    <line x1="0" y1="548.5" x2="30" y2="548.5"/>
+    <line x1="2347" y1="548.5" x2="2377" y2="548.5"/>
+    <circle class="bola" cx="2500" cy="250" r="30"/>
+  </svg>
+
+  <div class="conteudo">
+    <span class="etiqueta">Erro 404</span>
+    <h1>Essa bola<br><span>saiu.</span></h1>
+    <p class="lead">A página que você procurou não existe ou mudou de endereço. Volte para a quadra: o resto do site está aqui.</p>
+    <div class="acoes">
+      <a class="btn btn-lima" href="/">Voltar ao início</a>
+      <a class="btn btn-contorno" href="/aula-experimental/">Conhecer a aula experimental</a>
+    </div>
+    <p class="whats">Prefere conversar? <a href="https://wa.me/5531995869025?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener">Chame o Paulo no WhatsApp</a></p>
+  </div>
+</main>
+
+</body>
+</html>

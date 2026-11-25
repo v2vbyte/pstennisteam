@@ -9,7 +9,7 @@
   gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500});
   gtag('set', 'ads_data_redaction', true);
   gtag('set', 'url_passthrough', true);
-  try { if (localStorage.getItem('ps-consentimento-anuncios') === 'aceito') gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted'}); } catch (e) {}
+  try { if (localStorage.getItem('ps-consentimento') === 'aceito') gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'}); } catch (e) {}
 </script>
 <!-- Google tag (gtag.js) - código entregue pelo Google Ads -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18593472042"></script>
@@ -23,8 +23,23 @@
 <script src="/js/tag-google.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aula experimental de tênis em BH | PS Tennis Team</title>
-<meta name="description" content="Agende sua aula experimental de tênis com o professor Paulo Santana, na Fama Tennis (Estoril) ou no seu condomínio em Belo Horizonte. Adultos de todos os níveis.">
+<meta name="description" content="Agende sua aula experimental de tênis com o professor Paulo Santana, na Fama Tennis (Estoril) ou no seu condomínio em Belo Horizonte. Adultos, crianças e adolescentes de todos os níveis.">
 <link rel="canonical" href="https://pstennisteam.com/aula-experimental/">
+<!-- Dados estruturados (schema.org): o serviço desta página, ligado ao negócio descrito na home -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://pstennisteam.com/aula-experimental/#servico",
+  "name": "Aula experimental de tênis com avaliação completa",
+  "serviceType": "Aula de tênis",
+  "description": "Primeira aula com o professor Paulo Santana, na Fama Tennis (Estoril) ou no seu condomínio, com relatório em PDF: notas em 11 fundamentos, nível, classe sugerida e plano de treino de 12 semanas.",
+  "url": "https://pstennisteam.com/aula-experimental/",
+  "image": "https://pstennisteam.com/aula-experimental/img/paulo-quadra.jpg",
+  "areaServed": { "@type": "City", "name": "Belo Horizonte" },
+  "provider": { "@type": "LocalBusiness", "@id": "https://pstennisteam.com/#negocio", "name": "PS Tennis Team" }
+}
+</script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aula experimental de tênis em BH | PS Tennis Team">
 <meta property="og:description" content="Avaliação completa na primeira aula: notas em 11 fundamentos, nível, classe e um plano de treino de 12 semanas.">
@@ -328,7 +343,7 @@
       <div>
         <p class="sobre">Aulas de tênis em Belo Horizonte</p>
         <h1>Sua aula <span class="lima">experimental</span> de tênis</h1>
-        <p class="destaque">Com o professor Paulo Santana, na Fama Tennis (Estoril) ou no seu condomínio. Para adultos de todos os níveis, do primeiro saque à preparação para torneios.</p>
+        <p class="destaque">Com o professor Paulo Santana, na Fama Tennis (Estoril) ou no seu condomínio. Para adultos, crianças e adolescentes de todos os níveis, do primeiro saque à preparação para torneios.</p>
         <div class="hero-acoes">
           <a class="btn btn-lima js-whats" href="#" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#i-whats"/></svg>Agendar pelo WhatsApp
@@ -442,7 +457,7 @@
       <div>
         <p class="sobre">Quem dá a aula</p>
         <h2>Do saibro para <span class="lima">o seu jogo</span></h2>
-        <p class="destaque">O Paulo vive o tênis há 17 anos e conhece a quadra de todos os lados. Hoje ele usa essa experiência para ensinar adultos de todas as idades e níveis.</p>
+        <p class="destaque">O Paulo vive o tênis há 17 anos e conhece a quadra de todos os lados. Hoje ele usa essa experiência para ensinar alunos de todas as idades e níveis, de crianças a adultos.</p>
         <ul class="trajeto">
           <li><strong>Boleiro</strong><span>Onde tudo começou</span></li>
           <li><strong>Rebatedor</strong><span>Batendo bola com quem joga</span></li>
@@ -504,7 +519,7 @@
       <div class="faq">
         <details>
           <summary>Preciso já saber jogar?</summary>
-          <p>Não. As aulas são para adultos de todos os níveis, de quem nunca pegou numa raquete a quem quer se preparar para torneios.</p>
+          <p>Não. As aulas são para adultos, crianças e adolescentes de todos os níveis, de quem nunca pegou numa raquete a quem quer se preparar para torneios.</p>
         </details>
         <details>
           <summary>O que eu recebo depois da aula experimental?</summary>
@@ -559,7 +574,7 @@
 </footer>
 
 <div class="consent" id="consent" role="region" aria-label="Consentimento de cookies" hidden>
-  <p><strong>Cookies dos anúncios.</strong> Usamos uma ferramenta do Google para saber se os anúncios trazem pessoas até o WhatsApp. Ela só usa cookies se você aceitar. <a href="/#aviso-de-privacidade">Saiba mais</a></p>
+  <p><strong>Cookies de medição.</strong> Usamos ferramentas do Google para contar as visitas e saber se os anúncios trazem pessoas até o WhatsApp. Elas só usam cookies se você aceitar. <a href="/#aviso-de-privacidade">Saiba mais</a></p>
   <div class="consent-acoes">
     <button class="btn btn-contorno" type="button" data-consent="recusado">Recusar</button>
     <button class="btn btn-lima" type="button" data-consent="aceito">Aceitar</button>

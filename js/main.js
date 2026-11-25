@@ -359,7 +359,18 @@
       el.extra.hidden = !extra;
       el.extraText.textContent = extra;
       el.extra.setAttribute('href', href);
+
+      // Estatística (GA4): uma vez por visita, só o tipo de resultado, sem a mensagem
+      if (!testeMedido && window.PSMedir) {
+        testeMedido = true;
+        window.PSMedir.evento('teste_concluido', {
+          para_quem: state.quem,
+          objetivo: state.exp,
+          formato: state.formato
+        });
+      }
     }
+    var testeMedido = false;
 
     // Um único ouvinte para todos os botões do teste
     quizForm.addEventListener('click', function (event) {
@@ -403,7 +414,7 @@
   });
 
   /* ---------- 9. Aviso de privacidade e consentimento de cookies ---------- */
-  // A faixa pede a escolha sobre os cookies de anúncios (ver js/tag-google.js).
+  // A faixa pede a escolha sobre os cookies de medição: estatísticas e anúncios (ver js/tag-google.js).
   // Ela some quando a pessoa aceita ou recusa; ler o aviso não esconde a faixa.
   var banner = document.getElementById('privacy-banner');
   var dialog = document.getElementById('privacy-dialog');

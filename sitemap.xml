@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Páginas públicas do site. Ao criar uma página nova (ou o blog), inclua um bloco <url> aqui.
+     A área do professor e a página de imagens para anúncios ficam de fora de propósito. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pstennisteam.com/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://pstennisteam.com/aula-experimental/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://pstennisteam.com/politica-cancelamento-reposicao.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+</urlset>

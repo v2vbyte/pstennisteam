@@ -9,7 +9,7 @@
     gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500});
     gtag('set', 'ads_data_redaction', true);
     gtag('set', 'url_passthrough', true);
-    try { if (localStorage.getItem('ps-consentimento-anuncios') === 'aceito') gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted'}); } catch (e) {}
+    try { if (localStorage.getItem('ps-consentimento') === 'aceito') gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'}); } catch (e) {}
   </script>
   <!-- Google tag (gtag.js) - código entregue pelo Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18593472042"></script>
@@ -36,6 +36,66 @@
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://pstennisteam.com/">
+
+  <!-- Dados estruturados (schema.org): descrevem o negócio para o Google.
+       Só entra aqui o que também aparece na página. Se mudar telefone, endereço,
+       e-mail ou modalidades, atualize este bloco junto. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://pstennisteam.com/#site",
+        "url": "https://pstennisteam.com/",
+        "name": "PS Tennis Team",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://pstennisteam.com/#negocio" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://pstennisteam.com/#negocio",
+        "name": "PS Tennis Team",
+        "description": "Aulas de tênis com o professor Paulo Santana em Belo Horizonte: individual, dupla, grupo e aula avulsa, na Fama Tennis ou no seu condomínio.",
+        "url": "https://pstennisteam.com/",
+        "logo": "https://pstennisteam.com/img/logo-preta.png",
+        "image": "https://pstennisteam.com/img/compartilhamento.jpg",
+        "telephone": "+55 31 99586-9025",
+        "email": "contato@pstennisteam.com",
+        "sameAs": ["https://www.instagram.com/pstennisteam/"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Geraldo Vasconcelos, 210",
+          "addressLocality": "Belo Horizonte",
+          "addressRegion": "MG",
+          "addressCountry": "BR"
+        },
+        "areaServed": { "@type": "City", "name": "Belo Horizonte" },
+        "knowsAbout": "Tênis",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://pstennisteam.com/#paulo",
+          "name": "Paulo Santana",
+          "jobTitle": "Professor e treinador de tênis",
+          "image": "https://pstennisteam.com/img/paulo.jpg"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Aulas de tênis",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aula experimental com avaliação completa", "url": "https://pstennisteam.com/aula-experimental/" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aula individual" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aula em dupla" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aula em grupo (4 pessoas)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aula avulsa" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Preparação para torneios" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clínicas de fim de semana" } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
@@ -161,7 +221,7 @@
       <div class="about__text">
         <p class="eyebrow">O professor e o método</p>
         <h2 class="section-title">Técnica se aprende. Gosto pelo jogo se constrói.</h2>
-        <p class="body-lg"><strong>Paulo Santana</strong> é professor e treinador há mais de uma década para adultos de todas as faixas etárias, gêneros e níveis. Iniciando como boleiro e evoluindo para rebatedor, vive o tênis há 17 anos. Seu método integra técnica, movimentação em quadra, controle de efeitos, tática e mentalidade, porque no tênis tudo acontece ao mesmo tempo.</p>
+        <p class="body-lg"><strong>Paulo Santana</strong> é professor e treinador há mais de uma década para adultos, crianças e adolescentes de todos os gêneros e níveis. Iniciando como boleiro e evoluindo para rebatedor, vive o tênis há 17 anos. Seu método integra técnica, movimentação em quadra, controle de efeitos, tática e mentalidade, porque no tênis tudo acontece ao mesmo tempo.</p>
         <ol class="method">
           <li class="method__item">
             <span class="method__num" aria-hidden="true">01</span>
@@ -579,7 +639,7 @@
         </details>
         <details class="faq__item" name="faq">
           <summary>Como funciona a reposição de aulas?</summary>
-          <p>Avisando com antecedência mínima de 2h, você repõe a aula dentro do mesmo mês, conforme a disponibilidade de horários. Em breve, estará disponível a Política de Reposições e Cancelamentos.</p>
+          <p>Avisando com antecedência mínima de 2h, você repõe a aula dentro do mesmo mês, conforme a disponibilidade de horários. As regras completas estão na <a href="politica-cancelamento-reposicao.html">Política de cancelamento e reposição</a>.</p>
         </details>
         <details class="faq__item" name="faq">
           <summary>Em quanto tempo consigo jogar uma partida?</summary>
@@ -599,7 +659,7 @@
         </details>
         <details class="faq__item" name="faq">
           <summary>Os planos mensais possuem fidelidade?</summary>
-          <p>Não. Porém, existe uma Política de Cancelamento (documento completo disponível em breve).</p>
+          <p>Não. O encerramento segue a <a href="politica-cancelamento-reposicao.html">Política de cancelamento e reposição</a>.</p>
         </details>
         <details class="faq__item" name="faq">
           <summary>Como faço para cancelar o meu plano mensal?</summary>
@@ -673,7 +733,7 @@
 
 <!-- Aviso de privacidade: faixa na primeira visita + janela com o texto completo -->
 <div class="privacy-banner" id="privacy-banner" role="region" aria-label="Aviso de privacidade" hidden>
-  <p class="privacy-banner__text"><strong>Cookies dos anúncios.</strong> Usamos uma ferramenta do Google para saber se os anúncios trazem pessoas até o WhatsApp. Ela só usa cookies se você aceitar.</p>
+  <p class="privacy-banner__text"><strong>Cookies de medição.</strong> Usamos ferramentas do Google para contar as visitas e saber se os anúncios trazem pessoas até o WhatsApp. Elas só usam cookies se você aceitar.</p>
   <div class="privacy-banner__actions">
     <button class="link-button link-button--dark" type="button" data-open-privacy>Ler o aviso</button>
     <span class="privacy-banner__choice">
@@ -693,7 +753,7 @@
     </div>
     <div class="privacy-dialog__body">
       <h3>Quais dados este site coleta</h3>
-      <p>De quem visita, nenhum dado pessoal, como nome, telefone ou e-mail. O site não tem formulários nem cadastro para visitantes. A única ferramenta de medição é a do Google, explicada em "Anúncios do Google". Os dados que o professor registra na avaliação dos alunos estão explicados em "Avaliação dos alunos".</p>
+      <p>De quem visita, nenhum dado pessoal, como nome, telefone ou e-mail. O site não tem formulários nem cadastro para visitantes. As ferramentas de medição são do Google, explicadas em "Estatísticas de visitas" e "Anúncios do Google". Os dados que o professor registra na avaliação dos alunos estão explicados em "Avaliação dos alunos".</p>
       <h3>O teste "Qual aula é para você?"</h3>
       <p>As respostas ficam só no seu navegador, enquanto a página está aberta. Nada é enviado ou guardado. Elas só saem daqui se você decidir mandar a mensagem pelo WhatsApp.</p>
       <h3>Contato pelo WhatsApp</h3>
@@ -703,14 +763,16 @@
       <p>Esses dados servem para montar o seu relatório e acompanhar a sua evolução nas reavaliações. Eles ficam guardados na conta Google do PS Tennis Team (Google Drive e planilha de registro das aulas), com acesso restrito ao professor e a quem mantém o sistema. As imagens do vídeo não são publicadas sem uma nova autorização.</p>
       <p>Para escrever o texto do relatório, usamos o Claude, um serviço de inteligência artificial da Anthropic. Ele recebe o nome, a idade, as notas, as observações e os quadros do saque, mas não o seu WhatsApp. O Paulo confirma a classe e pode ajustar o texto antes de entregar o relatório.</p>
       <p>Você pode pedir uma cópia, a correção ou a exclusão dos seus dados a qualquer momento, pelo WhatsApp.</p>
+      <h3>Estatísticas de visitas</h3>
+      <p>O site usa o Google Analytics para saber quantas pessoas visitam as páginas, de onde chegam (busca, Instagram, anúncios), quais partes leem, se concluem o teste "Qual aula é para você?" e se tocam em um botão de WhatsApp. O PS Tennis Team vê só números agregados, nunca quem é cada visitante, e não recebe as respostas do teste, apenas o tipo de aula sugerido.</p>
       <h3>Anúncios do Google</h3>
       <p>O site usa a tag do Google Ads para saber se os anúncios no Google trazem pessoas até o WhatsApp: ela registra visitas às páginas e toques nos botões de WhatsApp de quem chegou por um anúncio.</p>
-      <p>Na primeira visita, você escolhe se aceita os cookies de anúncios. Se aceitar, o Google pode usar cookies e o identificador do clique no anúncio, conforme a política de privacidade dele. Se recusar, nenhum cookie de anúncio é gravado e o Google recebe apenas sinais sem cookies, que usa de forma agregada para estimar resultados. Para mudar a escolha, use "Preferências de cookies" no rodapé.</p>
+      <p>Na primeira visita, você escolhe se aceita os cookies de medição, que valem para as estatísticas e para os anúncios. Se aceitar, o Google pode usar cookies e o identificador do clique no anúncio, conforme a política de privacidade dele. Se recusar, nenhum cookie é gravado e o Google recebe apenas sinais sem cookies, que usa de forma agregada para estimar resultados. Para mudar a escolha, use "Preferências de cookies" no rodapé.</p>
       <p>Por essa ferramenta, o PS Tennis Team não recebe seu nome, seu telefone nem o conteúdo das suas mensagens, só números de visitas e cliques. Você pode gerenciar os anúncios que vê no Google em myadcenter.google.com.</p>
       <h3>Serviços de terceiros</h3>
       <p>O mapa da seção "Onde e quando" e as fontes do site são carregados do Google, que pode registrar dados técnicos de acesso, como o endereço IP, e usar cookies próprios, conforme a sua política de privacidade. Os links para o Instagram e o WhatsApp levam a serviços da Meta, com políticas próprias.</p>
       <h3>Armazenamento no navegador</h3>
-      <p>O site guarda no seu navegador apenas a sua escolha sobre os cookies de anúncios, para não perguntar de novo.</p>
+      <p>O site guarda no seu navegador apenas a sua escolha sobre os cookies de medição, para não perguntar de novo.</p>
       <h3>Dúvidas</h3>
       <p>Para qualquer pergunta sobre seus dados, fale com o PS Tennis Team pelo WhatsApp.</p>
     </div>
