@@ -4,4 +4,4 @@
 User-agent: *
 Disallow: /apps-script/
 
-Sitemap: https://pstennisteam.com/sitemap.xml
+Sitemap: https://www.pstennisteam.com/sitemap.xml

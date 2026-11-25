@@ -18,7 +18,7 @@ Site estático em HTML, CSS e JavaScript puros, sem bibliotecas. A única depend
 
 - Envie o conteúdo desta pasta para a raiz do repositório.
 - **Não apague o arquivo `CNAME`** que já existe no repositório: é ele que liga o site ao domínio pstennisteam.com.
-- A imagem de compartilhamento usa o endereço completo `https://pstennisteam.com/img/compartilhamento.jpg`. Se o domínio mudar, atualize as linhas `og:url`, `og:image` e `canonical` no `<head>`.
+- **O endereço principal é `https://www.pstennisteam.com`** (com www, como está no `CNAME`). Quem digita sem www é redirecionado. Por isso todos os endereços completos do site (`canonical`, `og:url`, `og:image`, dados estruturados, `sitemap.xml` e `robots.txt`) usam o www. Se o `CNAME` mudar, troque todos juntos.
 
 ## Grade de horários
 
