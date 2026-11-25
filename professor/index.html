@@ -339,6 +339,76 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .gc .gn{display:flex;align-items:center;gap:2mm}
 .gc .gn small{font-size:8pt;font-weight:700;color:var(--saibro)}
 
+
+/* escala 1 a 10, guia e classe */
+.scale.s10{grid-template-columns:repeat(5,minmax(0,1fr))}
+.scale.s10 .dot{height:44px;font-size:17px}
+.idesc{font-size:13px;color:var(--suave);margin:-6px 0 10px}
+.guia{background:var(--areia);border-radius:14px;padding:10px 14px;margin-bottom:14px}
+.guia summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none}
+.guia summary::-webkit-details-marker{display:none}
+.guia summary::after{content:" +";color:var(--saibro)}
+.guia[open] summary::after{content:" −"}
+.guia p{font-size:13px;line-height:1.45;margin:8px 0 0;color:var(--forte)}
+.guia p b{display:inline-block;min-width:52px;color:var(--tinta)}
+.guia p span{font-weight:700;color:var(--saibro);white-space:nowrap}
+.tag.pend{background:var(--saibro);color:var(--creme)}
+.al .av{font-size:18px}
+.cls{background:var(--tinta);color:var(--creme);border-radius:28px;padding:22px;position:relative;overflow:hidden;margin-bottom:20px}
+.cls .court{position:absolute;right:-110px;top:-70px;width:220px;opacity:.3;pointer-events:none}
+.cls .over{color:var(--noescuro);position:relative}
+.cls .cn{font:800 92px/.9 var(--tit);color:var(--lima);margin:8px 0 6px;position:relative;display:flex;align-items:baseline;gap:12px}
+.cls .cn small{font:800 26px var(--tit);text-transform:uppercase;color:var(--creme)}
+.cls p{margin:0 0 10px;font-size:14px;color:var(--noescuro);position:relative}
+.cls p b{color:var(--creme)}
+.cls .just{font-size:13px;line-height:1.5}
+.cls .chips{margin:6px 0 14px;position:relative}
+.cls .chip{background:transparent;border-color:#5E574E;color:var(--creme);font-size:14px;min-height:42px;padding:0 14px}
+.cls .chip[aria-pressed=true]{background:var(--lima);border-color:var(--lima);color:var(--tinta)}
+.cls .btn{position:relative}
+.imgbtn{margin-top:8px;min-height:46px;font-size:14px}
+.box.share{max-height:94vh;overflow:auto}
+.share .chips{margin-bottom:12px}
+.prev{background:var(--areia);border-radius:14px;padding:10px;display:flex;justify-content:center;margin-bottom:10px}
+.prev canvas{max-width:100%;max-height:50vh;width:auto;height:auto;border-radius:8px;display:block}
+/* relatório: barras de 10 e página da classe */
+.jogo .grid{grid-template-columns:100mm minmax(0,1fr)}
+.nt{grid-template-columns:26mm minmax(0,1fr) 6mm;gap:2.4mm}
+.nt em{font-style:normal;font-size:9pt;font-weight:700;color:var(--forte);text-align:right}
+.b10{display:flex;gap:.9mm}
+.b10 i{flex:1;height:3.8mm;border-radius:999px;background:var(--areia);position:relative}
+.b10 i.on{background:var(--saibro)}
+.b10 i.was::after{content:"";position:absolute;left:10%;right:10%;bottom:-1.4mm;height:.55mm;border-radius:1mm;background:var(--tinta)}
+.b10.sm i{height:2.6mm}
+.gc .gn b{font-family:var(--tit);font-weight:800;font-size:20pt;color:var(--saibro);line-height:1}
+.gc .gn small{font-size:8.5pt;font-weight:700;color:var(--suave)}
+.outros .it b{font-family:var(--tit);font-weight:800;font-size:15pt;color:var(--saibro);white-space:nowrap}
+.outros .it b small{display:inline;font-size:8pt;color:var(--suave);font-family:var(--txt)}
+.p-lima{background:var(--lima);color:var(--tinta)}
+.pg.classe .topo{position:absolute;left:0;right:0;top:0;height:108mm;background:var(--tinta);color:var(--creme);overflow:hidden;padding:16mm 16mm 0}
+.pg.classe .topo .court{position:absolute;right:-20mm;top:-30mm;width:80mm;opacity:.35}
+.pg.classe .big{display:flex;align-items:baseline;gap:5mm;margin:3mm 0 6mm;position:relative}
+.pg.classe .big .num{font-family:var(--tit);font-weight:800;font-size:150pt;line-height:.82;color:var(--lima)}
+.pg.classe .big .pal{font-family:var(--tit);font-weight:800;font-size:44pt;text-transform:uppercase;color:var(--creme);line-height:1}
+.pg.classe .pill{position:relative;font-size:9.5pt;padding:2mm 5mm}
+.pg.classe .in2{position:absolute;left:16mm;right:16mm;top:118mm;bottom:20mm}
+.escada{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2.6mm}
+.deg{background:var(--areia);border-radius:14px;padding:3mm 2mm;text-align:center;border:.6mm solid transparent}
+.deg b{display:block;font-family:var(--tit);font-weight:800;font-size:20pt;line-height:1}
+.deg small{display:block;font-size:6.8pt;font-weight:600;color:var(--suave);margin-top:1mm}
+.deg.cur{background:var(--saibro);color:var(--creme)}
+.deg.cur small{color:var(--creme)}
+.deg.ant{border:.6mm dashed var(--tinta)}
+.escleg{font-size:7.5pt;color:var(--suave);margin:2mm 0 6mm}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4mm;margin-bottom:6mm}
+.stats div{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:3.4mm 4mm}
+.stats small{display:block;font-size:7.5pt;font-weight:600;color:var(--suave)}
+.stats b{display:block;font-family:var(--tit);font-weight:800;font-size:20pt;line-height:1.05}
+.como p{font-size:10.5pt;line-height:1.55;color:var(--forte);margin-top:2mm}
+.meta{margin-top:6mm;padding:5mm 6mm}
+.meta h3{font-size:16pt;margin-bottom:3mm}
+.nota-itn{position:absolute;left:0;right:0;bottom:0;font-size:7.3pt;line-height:1.45;color:var(--suave)}
+
 @page{size:A4;margin:0}
 @media print{
   html,body{background:var(--creme)}
@@ -366,18 +436,71 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
    - GOOGLE_CLIENT_ID: ID de cliente OAuth criado no Google Cloud para pstennisteam.com
    As contas autorizadas a entrar ficam no Apps Script, não aqui.
    ========================================================= */
-const CONFIG = { API_URL: '', GOOGLE_CLIENT_ID: '', CONTA_DEMO: 'pstennisteam@gmail.com' };
+const CONFIG = { API_URL: 'https://script.google.com/macros/s/AKfycbzN_ekaDVbZEk8LT14ZQ9HArW21nvnbtVKdmd4jTORsgbL2JKcmpRntl3yh9taBy8IdLQ/exec', GOOGLE_CLIENT_ID: '1049963974875-89gvrb0j8fh0js11q95cnqcd5rrbahot.apps.googleusercontent.com', CONTA_DEMO: 'pstennisteam@gmail.com' };
 const DEMO = !CONFIG.API_URL;
 
-const GOLPES = ['Forehand','Backhand','Saque','Devolução','Voleio','Smash','Movimentação'];
+/* ---------- Itens avaliados (alinhados ao ITN da ITF) ----------
+   p = peso na média ponderada. Golpes e componentes do jogo seguem
+   a avaliação em quadra do ITN (fundo, voleio, saque, mobilidade) e
+   a descrição de níveis (saque, devolução, fundo, rede, passada). */
+const ITENS = [
+  { k:'Forehand', g:'golpes', p:1.2, d:'Consistência, profundidade e direção' },
+  { k:'Backhand', g:'golpes', p:1.2, d:'Consistência, profundidade e direção' },
+  { k:'Saque', g:'golpes', p:1.3, d:'1º e 2º saque: potência, precisão, efeito e duplas faltas' },
+  { k:'Devolução', g:'golpes', p:1.0, d:'Consistência e direção contra saques de ritmos diferentes' },
+  { k:'Voleio', g:'golpes', p:1.0, d:'Forehand e backhand, profundidade e controle' },
+  { k:'Smash', g:'golpes', p:0.6, d:'Posicionamento embaixo da bola e finalização' },
+  { k:'Lob e passada', g:'golpes', p:0.6, d:'Lob defensivo e ofensivo, passadas contra quem está na rede' },
+  { k:'Movimentação', g:'jogo', p:1.1, d:'Cobertura de quadra, split-step e recuperação' },
+  { k:'Consistência', g:'jogo', p:1.2, d:'Sustentar trocas, inclusive sob pressão' },
+  { k:'Efeitos', g:'jogo', p:0.8, d:'Topspin e slice usados com intenção' },
+  { k:'Tática', g:'jogo', p:1.0, d:'Leitura de jogo, escolha de golpes e adaptação ao adversário' }
+];
+const GOLPES = ITENS.map(i => i.k);
 const FASES = ['Preparação','Lançamento','Troféu','Contato','Terminação'];
-const NIVEL = ['','Iniciando','Em desenvolvimento','Funcional','Consistente','Avançado'];
+const NIVEIS = ['Principiante','Iniciante','Intermediário','Avançado'];
+const CLASSES = ['6ª','5ª','4ª','3ª','2ª','1ª'];
+/* Guia da nota: âncoras tiradas da descrição de níveis do ITN */
+const GUIA = [
+  ['1 a 2', 'Começando. O golpe ainda não sai com controle.', 'ITN 10'],
+  ['3 a 4', 'O golpe aparece, mas só em bola lenta e sem consistência.', 'ITN 9 a 8'],
+  ['5 a 6', 'Consistente em ritmo moderado, com direção e pouca profundidade.', 'ITN 7 a 6'],
+  ['7 a 8', 'Consistente, com profundidade e direção. Usa efeito e potência, mas oscila sob pressão.', 'ITN 5 a 4'],
+  ['9 a 10', 'Arma do jogo: controla ritmo, efeito e potência, e mantém sob pressão.', 'ITN 4 a 3']
+];
+/* Equivalência média → classe (proposta para validar com o Paulo).
+   ITN estimado = 10 − (média − 1) × 7/9  (nota 1 ≈ ITN 10, nota 10 ≈ ITN 3) */
+const FAIXAS = [ { c:'6ª', ate:2.9, itn:'ITN 9 a 10' }, { c:'5ª', ate:4.2, itn:'ITN 8' }, { c:'4ª', ate:5.5, itn:'ITN 7' },
+  { c:'3ª', ate:6.8, itn:'ITN 6' }, { c:'2ª', ate:8.1, itn:'ITN 5' }, { c:'1ª', ate:10, itn:'ITN 4 ou melhor' } ];
+const CRITERIOS = {
+  '5ª': ['Sustentar trocas curtas e lentas com jogadores do mesmo nível.', 'Saque com movimento completo e lançamento mais estável.', 'Forehand estabelecido em bolas de ritmo moderado.'],
+  '4ª': ['Forehand razoavelmente sólido, com intenção de direção.', 'Backhand consistente em bolas de ritmo moderado.', 'Ir à rede quando necessário, com voleio de forehand consistente.'],
+  '3ª': ['Direção controlada em bolas de ritmo moderado e mais profundidade.', 'Saque com controle e alguma potência, começando a usar efeito.', 'Devolução consistente contra saques de ritmo médio.'],
+  '2ª': ['Forehand profundo e controlado, com consistência.', 'Saques colocados, com primeiro saque potente.', 'Aproximações agressivas e voleio de forehand profundo.'],
+  '1ª': ['Gerar potência e efeito com consistência, controlando o ritmo.', 'Saques ofensivos, com poucas duplas faltas.', 'Adaptar o plano de jogo a cada adversário.']
+};
+const nivelNota = n => !n ? '' : n <= 2 ? 'Começando' : n <= 4 ? 'Em desenvolvimento' : n <= 6 ? 'Funcional' : n <= 8 ? 'Consistente' : 'Avançado';
+const idxC = c => CLASSES.indexOf(c);
+const proxima = c => CLASSES[Math.min(idxC(c) + 1, CLASSES.length - 1)];
+function calibrar(notas) {
+  let s = 0, w = 0;
+  notas.forEach(n => { const it = ITENS.find(i => i.k === n.golpe); if (it && n.nota) { s += n.nota * it.p; w += it.p; } });
+  if (!w) return null;
+  const media = Math.round(s / w * 10) / 10;
+  const itn = Math.max(3, Math.min(10, 10 - (media - 1) * 7 / 9));
+  const classe = FAIXAS.find(f => media <= f.ate).c;
+  const nivel = itn > 9 ? 'Principiante' : itn > 7.5 ? 'Iniciante' : itn > 4.5 ? 'Intermediário' : 'Avançado';
+  return { media, itn: Math.round(itn * 2) / 2, classe, nivel, itens: notas.filter(n => n.nota).length };
+}
+const fmt = n => String(n).replace('.', ',');
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = s => document.querySelector(s);
 const hoje = () => new Date().toLocaleDateString('pt-BR');
 const uid = () => Math.random().toString(36).slice(2, 10);
 const copia = o => JSON.parse(JSON.stringify(o));
+const LOGO = '/img/logo-branca.png';
+const QR = '/professor/img/qr-whatsapp.svg';
 
 const COURT = (cls = '') => `<svg class="court ${cls}" viewBox="0 0 360 734" fill="none" stroke="#F4EEE6" stroke-width="3" aria-hidden="true"><rect x="20" y="20" width="320" height="694"/><line x1="60" y1="20" x2="60" y2="714"/><line x1="300" y1="20" x2="300" y2="714"/><line x1="60" y1="180" x2="300" y2="180"/><line x1="60" y1="554" x2="300" y2="554"/><line x1="180" y1="180" x2="180" y2="554"/><line x1="180" y1="20" x2="180" y2="34"/><line x1="180" y1="700" x2="180" y2="714"/><line x1="4" y1="367" x2="356" y2="367" stroke-width="5"/></svg>`;
 const ICON = {
@@ -385,15 +508,21 @@ const ICON = {
   go: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
   zap: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>',
   mail: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
-  user: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>'
+  user: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  img: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>'
 };
 
 /* ---------- Diagnósticos de exemplo (aluna fictícia) ---------- */
+const N1 = { 'Forehand':4,'Backhand':3,'Saque':3,'Devolução':4,'Voleio':3,'Smash':2,'Lob e passada':3,'Movimentação':6,'Consistência':4,'Efeitos':3,'Tática':4 };
+const N2 = { 'Forehand':6,'Backhand':5,'Saque':5,'Devolução':5,'Voleio':5,'Smash':3,'Lob e passada':4,'Movimentação':6,'Consistência':6,'Efeitos':4,'Tática':5 };
+const notasDe = m => GOLPES.map(g => ({ golpe: g, nota: m[g] }));
 const EXEMPLO = {
   exemplo: true, tipo: 'experimental',
-  aluno: { nome: 'Mariana Costa', idade: 34, data: '22/09/2026', local: 'Fama Tennis', objetivo: 'Jogar partidas com mais consistência', tempo: '1 ano, com aulas esporádicas', mao: 'Destra', backhand: 'Duas mãos', empunhadura: 'Eastern', nivel: 'Intermediária iniciante' },
-  resumo: 'Mariana tem uma base boa para evoluir rápido: se movimenta bem, lê a bola cedo e já prepara o forehand com rotação de ombros. Os pontos que mais seguram o jogo hoje são o saque, que ainda não tem um lançamento estável, e o backhand, que sai curto porque o braço trava no contato. Com 12 semanas de trabalho focado, a meta é sacar com segurança e sustentar trocas longas dos dois lados.',
-  notas: [ {golpe:'Forehand',nota:3},{golpe:'Backhand',nota:2},{golpe:'Saque',nota:2},{golpe:'Devolução',nota:3},{golpe:'Voleio',nota:2},{golpe:'Smash',nota:1},{golpe:'Movimentação',nota:4} ],
+  aluno: { nome: 'Mariana Costa', idade: 34, data: '22/09/2026', local: 'Fama Tennis', objetivo: 'Jogar partidas', tempo: '1 a 3 anos', experiencia: 'Joga com amigos', mao: 'Destra', backhand: 'Duas mãos', empunhadura: 'Eastern', nivel: 'Iniciante' },
+  resumo: 'Mariana tem uma base boa para evoluir rápido: se movimenta bem, lê a bola cedo e já prepara o forehand com rotação de ombros. Os pontos que mais seguram o jogo hoje são o saque, que ainda não tem um lançamento estável, e o backhand, que sai curto porque o braço trava no contato. Com 12 semanas de trabalho focado, a meta é sacar com segurança, sustentar trocas longas dos dois lados e chegar à 4ª classe.',
+  notas: notasDe(N1),
+  classe: { sugerida:'5ª', confirmada:'5ª', media:3.7, itn:8, nivel:'Iniciante',
+    justificativa: 'A média ponderada ficou em 3,7, na faixa da 5ª classe. O jogo bate com a descrição do nível ITN 8: forehand se estabelecendo em ritmo moderado, saque com movimento completo mas lançamento irregular e preferência por evitar o backhand. A boa movimentação puxa a avaliação para cima, mas a pouca experiência em partidas mantém a sugestão na 5ª classe.' },
   fortes: [
     'Movimentação lateral rápida e boa leitura da bola: você chega bem posicionada na maioria das bolas.',
     'Forehand com preparação cedo e boa rotação de ombros, o que já gera potência.',
@@ -405,10 +534,10 @@ const EXEMPLO = {
     'Volta à posição de espera: depois de bater, você fica parada olhando a bola por um instante a mais.'
   ],
   golpes: [
-    { golpe:'Forehand', nota:3, vi:'Preparação boa, mas o contato acontece muito perto do corpo e a terminação fica baixa. Resultado: bola sem profundidade.', corrigir:'Encontre a bola à frente do pé da frente e termine com a raquete por cima do ombro oposto.', exercicio:'Cesto com alvo depois da linha de saque. 3 séries de 15 bolas.' },
-    { golpe:'Backhand', nota:2, vi:'A mão esquerda fica passiva e o giro do tronco é curto. O braço trava e a bola sai curta.', corrigir:'Deixe a mão esquerda conduzir o golpe, como um forehand de canhota, e solte os braços depois do contato.', exercicio:'Backhand só com a mão esquerda em bola lenta. 3 séries de 10, depois com as duas mãos.' },
-    { golpe:'Voleio', nota:2, vi:'Balanço grande do braço e empunhadura de forehand. A bola vai alta e sem controle.', corrigir:'Use a empunhadura continental e pense em bloquear a bola, não em bater nela.', exercicio:'Voleio de bloqueio a dois metros da rede. 4 séries de 10.' },
-    { golpe:'Movimentação', nota:4, vi:'Desloca bem para os lados e chega equilibrada. O split-step às vezes acontece tarde.', corrigir:'Faça o pequeno salto (split-step) no instante em que o adversário toca na bola.', exercicio:'Jogo de reação com chamada de direção. 4 rodadas de 1 minuto.' }
+    { golpe:'Forehand', nota:4, vi:'Preparação boa, mas o contato acontece muito perto do corpo e a terminação fica baixa. Resultado: bola sem profundidade.', corrigir:'Encontre a bola à frente do pé da frente e termine com a raquete por cima do ombro oposto.', exercicio:'Cesto com alvo depois da linha de saque. 3 séries de 15 bolas.' },
+    { golpe:'Backhand', nota:3, vi:'A mão esquerda fica passiva e o giro do tronco é curto. O braço trava e a bola sai curta.', corrigir:'Deixe a mão esquerda conduzir o golpe, como um forehand de canhota, e solte os braços depois do contato.', exercicio:'Backhand só com a mão esquerda em bola lenta. 3 séries de 10, depois com as duas mãos.' },
+    { golpe:'Voleio', nota:3, vi:'Balanço grande do braço e empunhadura de forehand. A bola vai alta e sem controle.', corrigir:'Use a empunhadura continental e pense em bloquear a bola, não em bater nela.', exercicio:'Voleio de bloqueio a dois metros da rede. 4 séries de 10.' },
+    { golpe:'Movimentação', nota:6, vi:'Desloca bem para os lados e chega equilibrada. O split-step às vezes acontece tarde.', corrigir:'Faça o pequeno salto (split-step) no instante em que o adversário toca na bola.', exercicio:'Jogo de reação com chamada de direção. 4 rodadas de 1 minuto.' }
   ],
   saque: {
     quadros: [
@@ -443,10 +572,12 @@ const EXEMPLO = {
 
 const REAV = {
   exemplo: true, tipo: 'reavaliacao',
-  aluno: Object.assign(copia(EXEMPLO.aluno), { data: '17/11/2026', nivel: 'Intermediária' }),
-  anterior: { data: '22/09/2026', notas: copia(EXEMPLO.notas) },
-  resumo: 'Em oito semanas, Mariana deu um salto no saque e no backhand. O lançamento ficou estável e a empunhadura continental já aparece na maioria dos saques. O backhand ganhou profundidade com a mão esquerda conduzindo o golpe. O próximo ciclo transforma essa base em pontos: saque com direção, subida à rede e mais jogo.',
-  notas: [ {golpe:'Forehand',nota:4},{golpe:'Backhand',nota:3},{golpe:'Saque',nota:3},{golpe:'Devolução',nota:3},{golpe:'Voleio',nota:3},{golpe:'Smash',nota:2},{golpe:'Movimentação',nota:4} ],
+  aluno: Object.assign(copia(EXEMPLO.aluno), { data: '17/11/2026', nivel: 'Intermediário', experiencia: 'Torneios internos' }),
+  anterior: { data: '22/09/2026', notas: notasDe(N1), classe: '5ª' },
+  resumo: 'Em oito semanas, Mariana deu um salto no saque e no backhand. O lançamento ficou estável e a empunhadura continental já aparece na maioria dos saques. O backhand ganhou profundidade com a mão esquerda conduzindo o golpe. Com isso, ela sobe para a 4ª classe, e o próximo ciclo transforma essa base em pontos: saque com direção, subida à rede e mais jogo.',
+  notas: notasDe(N2),
+  classe: { sugerida:'4ª', confirmada:'4ª', anterior:'5ª', media:5.1, itn:7, nivel:'Intermediário',
+    justificativa: 'A média ponderada subiu de 3,7 para 5,1 e entrou na faixa da 4ª classe. O saque com lançamento estável e o backhand com profundidade aproximam o jogo da descrição do nível ITN 7: sólida em ritmo moderado, com intenção de direção, e já indo à rede quando necessário. A estreia nos torneios internos confirma a subida.' },
   fortes: [
     'Saque: o lançamento agora sobe sempre no mesmo lugar, à frente do corpo, e o golpe ficou repetível.',
     'Backhand: a mão esquerda conduz o golpe e a bola passou a chegar no fundo da quadra.',
@@ -458,10 +589,10 @@ const REAV = {
     'Smash: começar o trabalho de posicionamento embaixo da bola.'
   ],
   golpes: [
-    { golpe:'Forehand', nota:4, vi:'Contato à frente do corpo e terminação alta na maioria das bolas. Em bolas rápidas, o contato ainda atrasa.', corrigir:'Prepare mais cedo quando a bola vem rápida: ombros girados assim que a bola cruza a rede.', exercicio:'Trocas em velocidade crescente com alvo no fundo. 4 séries de 12.' },
-    { golpe:'Backhand', nota:3, vi:'Mão esquerda ativa e bola com profundidade. Na corrida para o lado, a base ainda abre demais.', corrigir:'Chegue com passos curtos e apoie o pé da frente antes de bater.', exercicio:'Backhand em deslocamento lateral, 3 séries de 10 bolas.' },
-    { golpe:'Voleio', nota:3, vi:'Empunhadura continental e bloqueio curto. Falta deslocar o corpo para frente no contato.', corrigir:'Dê um passo para a bola com o pé oposto enquanto bloqueia.', exercicio:'Voleio com passo à frente, alternando lados. 4 séries de 10.' },
-    { golpe:'Smash', nota:2, vi:'Corre para trás de frente para a rede e bate com o braço sozinho.', corrigir:'Vire de lado, aponte a bola com a mão livre e só depois bata.', exercicio:'Smash com bola alimentada alta, parada, 3 séries de 8.' }
+    { golpe:'Forehand', nota:6, vi:'Contato à frente do corpo e terminação alta na maioria das bolas. Em bolas rápidas, o contato ainda atrasa.', corrigir:'Prepare mais cedo quando a bola vem rápida: ombros girados assim que a bola cruza a rede.', exercicio:'Trocas em velocidade crescente com alvo no fundo. 4 séries de 12.' },
+    { golpe:'Backhand', nota:5, vi:'Mão esquerda ativa e bola com profundidade. Na corrida para o lado, a base ainda abre demais.', corrigir:'Chegue com passos curtos e apoie o pé da frente antes de bater.', exercicio:'Backhand em deslocamento lateral, 3 séries de 10 bolas.' },
+    { golpe:'Voleio', nota:5, vi:'Empunhadura continental e bloqueio curto. Falta deslocar o corpo para frente no contato.', corrigir:'Dê um passo para a bola com o pé oposto enquanto bloqueia.', exercicio:'Voleio com passo à frente, alternando lados. 4 séries de 10.' },
+    { golpe:'Smash', nota:3, vi:'Corre para trás de frente para a rede e bate com o braço sozinho.', corrigir:'Vire de lado, aponte a bola com a mão livre e só depois bata.', exercicio:'Smash com bola alimentada alta, parada, 3 séries de 8.' }
   ],
   saque: {
     quadros: [
@@ -491,16 +622,19 @@ const REAV = {
 };
 
 /* ---------- Armazenamento (modo demonstração) ---------- */
-const KEY = 'ps-prof-demo-v2';
+const KEY = 'ps-prof-demo-v3';
 let mem = null;
 const load = () => { try { const j = localStorage.getItem(KEY); if (j) return JSON.parse(j); } catch (e) {} return mem; };
 const save = d => { mem = d; try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {
   try { const leve = copia(d); leve.alunos.forEach(a => a.aulas.forEach(au => { (au.av && au.av.quadros || []).forEach(q => q.img = null); au.diag && au.diag.saque && au.diag.saque.quadros.forEach(q => q.img = null); })); localStorage.setItem(KEY, JSON.stringify(leve)); } catch (e2) {} } };
-const semente = () => ({ alunos: [ { id:'ex1', nome:'Mariana Costa', idade:34, whatsapp:'', local:'Fama Tennis', aulas: [
-  { id:'a1', tipo:'experimental', data:'22/09/2026', diag: EXEMPLO, docUrl:'', av: null },
-  { id:'a2', tipo:'reavaliacao', data:'17/11/2026', diag: REAV, docUrl:'', av: null } ] } ] });
+const semente = () => ({ alunos: [ { id:'ex1', nome:'Mariana Costa', idade:34, whatsapp:'', local:'Fama Tennis', classe:'4ª', aulas: [
+  { id:'a1', tipo:'experimental', data:'22/09/2026', diag: copia(EXEMPLO), docUrl:'', av: null },
+  { id:'a2', tipo:'reavaliacao', data:'17/11/2026', diag: copia(REAV), docUrl:'', av: null } ] } ] });
 let db = load() || semente();
 const ultima = al => al.aulas[al.aulas.length - 1];
+const classeDe = au => au && au.diag && au.diag.classe ? (au.diag.classe.confirmada || '') : '';
+const subiuEm = au => { const c = au && au.diag && au.diag.classe; return !!(c && c.confirmada && c.anterior && idxC(c.confirmada) > idxC(c.anterior)); };
+const classeAtual = al => { for (let i = al.aulas.length - 1; i >= 0; i--) { const c = classeDe(al.aulas[i]); if (c) return c; } return ''; };
 
 /* ---------- Sessão e API (Apps Script) ---------- */
 let TOKEN = '', CONTA = '';
@@ -534,15 +668,15 @@ async function entrar() {
 }
 
 /* ---------- Estado ---------- */
-const S = { view:'login', step:0, av:null, alunoId:null, base:null, qsel:null };
-const novoAv = () => ({ nome:'', idade:'', whatsapp:'', local:'', objetivo:'', tempo:'', mao:'', backhand:'', empunhadura:'', nivel:'',
+const S = { view:'login', step:0, av:null, alunoId:null, base:null, qsel:null, csel:null };
+const novoAv = () => ({ nome:'', idade:'', whatsapp:'', local:'', objetivo:'', tempo:'', experiencia:'', classeAtual:'', mao:'', backhand:'', empunhadura:'', nivel:'',
   golpes: Object.fromEntries(GOLPES.map(g => [g, { nota:0, obs:'' }])), raquete:'', peso:'', grip:'', corda:'', semRaquete:false,
   fortes:'', melhorar:'', gerais:'', internas:'', quadros:[], consent:false, consentResp:false });
 function avReavaliacao(al) {
   const u = ultima(al), av = novoAv(), ant = u.av || {};
-  Object.assign(av, { nome: al.nome, idade: al.idade || '', whatsapp: al.whatsapp || '', local: al.local || '' });
-  ['objetivo','tempo','mao','backhand','empunhadura','nivel','raquete','peso','grip','corda','semRaquete'].forEach(k => { if (ant[k] !== undefined && ant[k] !== '') av[k] = ant[k]; });
-  if (!ant.mao && u.diag) { const m = u.diag.aluno.mao || ''; av.mao = /^destr/i.test(m) ? 'Destro' : /^canh/i.test(m) ? 'Canhoto' : ''; av.backhand = u.diag.aluno.backhand || ''; av.empunhadura = u.diag.aluno.empunhadura || ''; }
+  Object.assign(av, { nome: al.nome, idade: al.idade || '', whatsapp: al.whatsapp || '', local: al.local || '', classeAtual: classeAtual(al) || '' });
+  ['objetivo','tempo','experiencia','mao','backhand','empunhadura','nivel','raquete','peso','grip','corda','semRaquete'].forEach(k => { if (ant[k] !== undefined && ant[k] !== '') av[k] = ant[k]; });
+  if (!ant.mao && u.diag) { const a = u.diag.aluno, m = a.mao || ''; av.mao = /^destr/i.test(m) ? 'Destro' : /^canh/i.test(m) ? 'Canhoto' : ''; av.backhand = a.backhand || ''; av.empunhadura = a.empunhadura || ''; av.nivel = NIVEIS.includes(a.nivel) ? a.nivel : ''; av.objetivo = a.objetivo || ''; av.experiencia = a.experiencia || ''; }
   return av;
 }
 const notaAnterior = g => { if (!S.base) return 0; const al = db.alunos.find(x => x.id === S.base); const n = al && (ultima(al).diag.notas || []).find(x => x.golpe === g); return n ? n.nota : 0; };
@@ -555,16 +689,17 @@ function render() {
   bind();
   if (v === 'login' && !DEMO) montarBotaoGoogle();
 }
-const topo = () => `<header class="top"><img src="/img/logo-branca.png" alt="PS Tennis Team"><span class="who">${esc(CONTA || 'Área do professor')}</span><button data-a="sair">Sair</button></header>`;
+const topo = () => `<header class="top"><img src="${LOGO}" alt="PS Tennis Team"><span class="who">${esc(CONTA || 'Área do professor')}</span><button data-a="sair">Sair</button></header>`;
 const demoBar = () => DEMO ? `<div class="demo"><b>Modo demonstração.</b> Os dados ficam só neste aparelho e o diagnóstico usa um texto de exemplo. Na versão final, tudo fica no Google Drive de ${esc(CONFIG.CONTA_DEMO)} e cada diagnóstico chega por e-mail.</div>` : '';
 
 /* ---------- Telas ---------- */
 function vLogin() {
-  return `<main class="pin">${COURT()}<img src="/img/logo-branca.png" alt="PS Tennis Team"><h1>Área do professor</h1>
+  return `<main class="pin">${COURT()}<img src="${LOGO}" alt="PS Tennis Team"><h1>Área do professor</h1>
   <p>Entre com a conta Google do PS Tennis Team.</p>
   ${DEMO ? `<button class="gbtn" data-a="google"><span class="g">${ICON.user}</span>Entrar com Google</button><p class="small" style="color:var(--noescuro);margin-top:14px">Demonstração: entra como ${esc(CONFIG.CONTA_DEMO)}.</p>` : '<div id="gbtn" style="position:relative;min-height:44px"></div>'}
   <div class="err" id="lerr"></div></main>`;
 }
+const ord = d => { const [dd, mm, aa] = String(d).split('/').map(Number); return (aa || 0) * 10000 + (mm || 0) * 100 + (dd || 0); };
 function vHome() {
   const lista = db.alunos.slice().sort((a, b) => ord(ultima(b).data) - ord(ultima(a).data));
   return `${topo()}<main class="wrap">${demoBar()}
@@ -572,14 +707,20 @@ function vHome() {
   <button class="btn b-lima" data-a="nova">Começar ficha</button></section>
   <div class="secth"><h2>Alunos</h2><span class="small">${lista.length} no total</span></div>
   <input class="search" id="busca" type="search" placeholder="Buscar aluno" aria-label="Buscar aluno">
-  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length; return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(a.nome.trim().charAt(0).toUpperCase())}</span><span><span class="nm">${esc(a.nome)}</span><br><span class="meta">Última aula em ${esc(u.data)} · ${n} ${n === 1 ? 'aula registrada' : 'aulas registradas'}</span><br><span class="tag ${n > 1 ? 'ok' : ''}">${n > 1 ? 'Em acompanhamento' : 'Aula experimental'}</span></span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
+  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length, c = classeAtual(a), pend = !classeDe(u); return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span><span class="nm">${esc(a.nome)}</span><br><span class="meta">Última aula em ${esc(u.data)} · ${n} ${n === 1 ? 'aula' : 'aulas'}</span><br>${pend ? '<span class="tag pend">Confirmar classe</span>' : `<span class="tag ok">${esc(c)} classe</span>`}</span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
   </main>`;
 }
-const ord = d => { const [dd, mm, aa] = String(d).split('/').map(Number); return (aa || 0) * 10000 + (mm || 0) * 100 + (dd || 0); };
 
 /* Etapas da ficha */
 const chips = (campo, opcoes) => `<div class="chips" role="group">${opcoes.map(o => `<button type="button" class="chip" data-chip="${campo}" data-v="${esc(o)}" aria-pressed="${S.av[campo] === o}">${esc(o)}</button>`).join('')}</div>`;
 const ditado = (campo, ph) => `<div class="dict"><textarea class="inp" data-f="${campo}" id="f-${campo}" placeholder="${esc(ph)}">${esc(S.av[campo])}</textarea><button type="button" class="mic" data-mic="f-${campo}" aria-label="Ditar">${ICON.mic}</button></div>`;
+const guiaHTML = () => `<details class="guia"><summary>Guia da nota (critérios ITN)</summary><div>${GUIA.map(([n, t, r]) => `<p><b>${n}</b> ${t} <span>${r}</span></p>`).join('')}</div></details>`;
+const itemHTML = (it, av) => { const g = it.k, ant = notaAnterior(g), n = av.golpes[g].nota; return `
+    <div class="golpe"><div class="gh"><h3>${esc(g)}</h3><span class="lvl">${n ? `${n} · ${nivelNota(n)}` : ''}</span></div>
+    <p class="idesc">${esc(it.d)}</p>
+    ${ant ? `<p class="antes">Na última aula: <b>${ant}</b> · ${nivelNota(ant)}</p>` : ''}
+    <div class="scale s10" role="group" aria-label="Nota de ${esc(g)}, de 1 a 10">${[1,2,3,4,5,6,7,8,9,10].map(k => `<button type="button" class="dot ${k === ant ? 'was' : ''}" data-g="${esc(g)}" data-n="${k}" aria-pressed="${n === k}">${k}</button>`).join('')}</div>
+    <details class="more" ${av.golpes[g].obs ? 'open' : ''}><summary>Observação</summary><div class="dict"><textarea class="inp" id="g-${esc(g)}" data-gobs="${esc(g)}" placeholder="O que você viu">${esc(av.golpes[g].obs)}</textarea><button type="button" class="mic" data-mic="g-${esc(g)}" aria-label="Ditar">${ICON.mic}</button></div></details></div>`; };
 const ETAPAS = [
   { t:'Aluno', lead:'Quem fez a aula hoje.', ok: av => av.nome.trim().length > 1, html: av => `
     <div class="fld"><label for="f-nome">Nome do aluno</label><input class="inp" id="f-nome" data-f="nome" value="${esc(av.nome)}" autocomplete="off" ${S.base ? 'readonly' : ''}></div>
@@ -588,26 +729,25 @@ const ETAPAS = [
     <div class="fld"><span class="lb">Local da aula</span>${chips('local', ['Fama Tennis','Condomínio'])}</div>
     <div class="fld"><span class="lb">Objetivo</span>${chips('objetivo', ['Lazer','Condicionamento','Jogar partidas','Competir','Voltar a jogar'])}</div>
     <div class="fld"><span class="lb">Tempo de prática</span>${chips('tempo', ['Nunca jogou','Menos de 1 ano','1 a 3 anos','Mais de 3 anos'])}</div>` },
-  { t:'Perfil', lead:'Como o aluno joga hoje.', ok: () => true, html: () => `
+  { t:'Perfil', lead:'Como o aluno joga e compete hoje.', ok: () => true, html: () => `
+    <div class="fld"><span class="lb">Nível geral</span>${chips('nivel', NIVEIS)}</div>
+    <div class="fld"><span class="lb">Experiência em jogo</span>${chips('experiencia', ['Nunca jogou partidas','Joga com amigos','Torneios internos','Torneios de federação'])}</div>
+    <div class="fld"><span class="lb">Classe atual <span class="hint">(clube ou federação, se tiver)</span></span>${chips('classeAtual', ['Não tem', ...CLASSES.slice().reverse()])}</div>
     <div class="fld"><span class="lb">Mão dominante</span>${chips('mao', ['Destro','Canhoto'])}</div>
     <div class="fld"><span class="lb">Backhand</span>${chips('backhand', ['Uma mão','Duas mãos'])}</div>
-    <div class="fld"><span class="lb">Empunhadura do forehand</span>${chips('empunhadura', ['Continental','Eastern','Semi-western','Western'])}</div>
-    <div class="fld"><span class="lb">Nível geral</span>${chips('nivel', ['Iniciante','Intermediário iniciante','Intermediário','Avançado'])}</div>` },
-  { t:'Golpes', lead: () => S.base ? 'Dê a nota de hoje. A nota da última aula aparece em cada golpe para comparar.' : 'Toque na nota de cada golpe. 1 é iniciando e 5 é avançado.', ok: av => GOLPES.some(g => av.golpes[g].nota), html: av => GOLPES.map(g => { const ant = notaAnterior(g); return `
-    <div class="golpe"><div class="gh"><h3>${g}</h3><span class="lvl">${esc(NIVEL[av.golpes[g].nota] || '')}</span></div>
-    ${ant ? `<p class="antes">Na última aula: <b>${ant}</b> · ${esc(NIVEL[ant])}</p>` : ''}
-    <div class="scale" role="group" aria-label="Nota de ${g}">${[1,2,3,4,5].map(n => `<button type="button" class="dot ${n === ant ? 'was' : ''}" data-g="${g}" data-n="${n}" aria-pressed="${av.golpes[g].nota === n}">${n}</button>`).join('')}</div>
-    <details class="more" ${av.golpes[g].obs ? 'open' : ''}><summary>Observação sobre o ${g.toLowerCase()}</summary><div class="dict"><textarea class="inp" id="g-${g}" data-gobs="${g}" placeholder="O que você viu neste golpe">${esc(av.golpes[g].obs)}</textarea><button type="button" class="mic" data-mic="g-${g}" aria-label="Ditar">${ICON.mic}</button></div></details></div>`; }).join('') },
+    <div class="fld"><span class="lb">Empunhadura do forehand</span>${chips('empunhadura', ['Continental','Eastern','Semi-western','Western'])}</div>` },
+  { t:'Golpes', lead: () => S.base ? 'Dê a nota de hoje, de 1 a 10. A nota da última aula fica marcada para comparar.' : 'Toque na nota de cada golpe, de 1 a 10. Essas notas calibram a classe sugerida.', ok: av => ITENS.filter(i => i.g === 'golpes').some(i => av.golpes[i.k].nota), html: av => guiaHTML() + ITENS.filter(i => i.g === 'golpes').map(i => itemHTML(i, av)).join('') },
+  { t:'Jogo', lead:'Agora o que vai além do golpe: movimentação, consistência, efeitos e tática.', ok: () => true, html: av => guiaHTML() + ITENS.filter(i => i.g === 'jogo').map(i => itemHTML(i, av)).join('') },
   { t:'Equipamento', lead:'A raquete que o aluno usou na aula.', ok: () => true, html: av => `
     <label class="check"><input type="checkbox" data-cb="semRaquete" ${av.semRaquete ? 'checked' : ''}><span>Aluno não tem raquete própria (usou raquete emprestada)</span></label>
     <div class="fld"><label for="f-raquete">Modelo da raquete</label><input class="inp" id="f-raquete" data-f="raquete" value="${esc(av.raquete)}" placeholder="Ex.: marca e modelo"></div>
     <div class="fld"><span class="lb">Peso</span>${chips('peso', ['Até 270 g','280 a 290 g','300 g ou mais','Não sei'])}</div>
     <div class="fld"><span class="lb">Tamanho da empunhadura</span>${chips('grip', ['L1','L2','L3','L4','Não sei'])}</div>
     <div class="fld"><label for="f-corda">Corda e tensão <span class="hint">(se souber)</span></label><input class="inp" id="f-corda" data-f="corda" value="${esc(av.corda)}"></div>` },
-  { t:'Observações', lead: () => S.base ? 'Fale o que evoluiu e o que ainda precisa de atenção. O diagnóstico compara com a aula anterior.' : 'Toque no microfone e fale. Não precisa caprichar no texto: o diagnóstico organiza tudo.', ok: () => true, html: () => `
+  { t:'Observações', lead: () => S.base ? 'Fale o que evoluiu e o que ainda precisa de atenção. Isso também pesa na classe sugerida.' : 'Toque no microfone e fale. O que você disser aqui também pesa na classe sugerida.', ok: () => true, html: () => `
     <div class="fld"><span class="lb">${S.base ? 'O que evoluiu' : 'Pontos fortes'}</span>${ditado('fortes', S.base ? 'O que melhorou desde a última aula' : 'O que o aluno já faz bem')}</div>
     <div class="fld"><span class="lb">${S.base ? 'Foco do próximo ciclo' : 'Pontos a melhorar'}</span>${ditado('melhorar', 'O que mais segura o jogo hoje')}</div>
-    <div class="fld"><span class="lb">Observações gerais</span>${ditado('gerais', 'Postura, atitude, físico, o que mais chamou atenção')}</div>
+    <div class="fld"><span class="lb">Jogo e competição</span>${ditado('gerais', 'Como joga pontos, lida com pressão, comportamento em partida')}</div>
     <div class="fld"><span class="lb">Notas internas <span class="lock">Não vai para o aluno</span></span>${ditado('internas', 'Só para você: impressões, cuidados, valores combinados')}</div>
     <p class="mictip" id="mictip">${SR ? '' : 'Dica: neste aparelho, use o microfone do próprio teclado para ditar.'}</p>` },
   { t:'Vídeo do saque', lead:'Grave de 10 a 20 segundos, de lado. A página escolhe 5 quadros, e você pode trocar qualquer um.', ok: () => true, html: av => `
@@ -618,16 +758,17 @@ const ETAPAS = [
       <p class="small" style="color:var(--noescuro);margin:10px 0 0">Toque em um quadro abaixo, pause o vídeo no momento certo e toque em "Usar este momento".</p></div>
     <div class="frames" id="frames">${quadrosHTML(av)}</div>
     <p class="small" style="margin-top:14px">Sem vídeo hoje? Pode avançar: o diagnóstico sai sem a análise do saque.</p>` },
-  { t:'Autorização', lead:'Antes de gerar, confirme a autorização do aluno.', ok: av => av.consent && (!(+av.idade && +av.idade < 18) || av.consentResp), html: av => `
+  { t:'Autorização', lead:'Antes de gerar, confirme a autorização do aluno.', ok: av => av.consent && (!(+av.idade && +av.idade < 18) || av.consentResp), html: av => { const cal = calibrar(GOLPES.map(g => ({ golpe:g, nota: av.golpes[g].nota }))); return `
     <label class="check"><input type="checkbox" data-cb="consent" ${av.consent ? 'checked' : ''}><span>O aluno autorizou o uso das imagens do vídeo e dos dados da aula para o diagnóstico. As imagens não serão publicadas sem uma nova autorização.</span></label>
     ${+av.idade && +av.idade < 18 ? `<label class="check"><input type="checkbox" data-cb="consentResp" ${av.consentResp ? 'checked' : ''}><span>Aluno menor de idade: o responsável também autorizou.</span></label>` : ''}
     <div class="card" style="margin-top:18px"><h3>Resumo da ficha</h3><ul>
       <li><b>${esc(av.nome)}</b>${av.idade ? `, ${esc(av.idade)} anos` : ''}${av.local ? ` · ${esc(av.local)}` : ''}</li>
       <li>${S.base ? 'Reavaliação, comparando com a aula anterior' : 'Aula experimental'}</li>
-      <li>${GOLPES.filter(g => av.golpes[g].nota).length} golpes avaliados</li>
+      <li>${cal ? `${cal.itens} de ${ITENS.length} itens avaliados · média ${fmt(cal.media)}` : 'Nenhum item avaliado'}</li>
       <li>${av.quadros.length ? `${av.quadros.length} quadros do saque` : 'Sem vídeo do saque'}</li>
-      <li>${(n => n === 1 ? '1 observação preenchida' : `${n} observações preenchidas`)([av.fortes, av.melhorar, av.gerais].filter(x => x.trim()).length)}</li></ul></div>
-    <p class="small" style="display:flex;gap:8px;align-items:center">${ICON.mail} Uma cópia com o PDF vai para o e-mail do professor.</p>` }
+      <li>${(n => n === 1 ? '1 observação preenchida' : `${n} observações preenchidas`)([av.fortes, av.melhorar, av.gerais].filter(x => x.trim()).length)}</li></ul>
+      ${cal ? `<p class="small" style="margin:10px 0 0">Pelas notas, a classe calculada é <b>${cal.classe}</b>. O diagnóstico combina isso com as suas observações e sugere a classe final, que você confirma depois.</p>` : ''}</div>
+    <p class="small" style="display:flex;gap:8px;align-items:center">${ICON.mail} Uma cópia com o PDF vai para o e-mail do professor.</p>`; } }
 ];
 function quadrosHTML(av) {
   return av.quadros.map((q, i) => `<div class="fr ${S.qsel === i ? 'sel' : ''}" data-q="${i}" role="button" tabindex="0" aria-label="Quadro ${i + 1}"><img src="${q.img}" alt="Quadro ${i + 1}: ${esc(q.fase)}">
@@ -639,38 +780,63 @@ function vForm() {
   const lead = typeof e.lead === 'function' ? e.lead() : e.lead;
   const al = S.base && db.alunos.find(x => x.id === S.base);
   return `${topo()}<main class="wrap form">
-  ${al ? `<div class="reav">Reavaliação de <b>${esc(al.nome)}</b> · última aula em ${esc(ultima(al).data)}</div>` : ''}
+  ${al ? `<div class="reav">Reavaliação de <b>${esc(al.nome)}</b> · ${classeAtual(al) ? `${esc(classeAtual(al))} classe · ` : ''}última aula em ${esc(ultima(al).data)}</div>` : ''}
   <div class="stepn">Etapa ${S.step + 1} de ${ETAPAS.length}</div><div class="prog"><i style="width:${(S.step + 1) / ETAPAS.length * 100}%"></i></div>
   <h1>${e.t}</h1><p class="lead">${lead}</p>${e.html(av)}</main>
   <div class="foot"><div class="in"><button class="btn b-ghost" data-a="voltar">${S.step ? 'Voltar' : 'Cancelar'}</button><button class="btn b-ink" data-a="${ult ? 'gerar' : 'avancar'}" ${e.ok(av) ? '' : 'disabled'}>${ult ? 'Gerar diagnóstico' : 'Avançar'}</button></div></div>`;
 }
 function vGerando() {
-  const passos = ['Enviando a ficha','Analisando os quadros do saque', S.base ? 'Comparando com a aula anterior' : 'Escrevendo o diagnóstico','Montando o plano de treino','Salvando no Google Drive','Enviando o PDF por e-mail'];
+  const passos = ['Enviando a ficha','Analisando os quadros do saque', S.base ? 'Comparando com a aula anterior' : 'Escrevendo o diagnóstico','Calibrando a classe (critérios ITN)','Montando o plano de treino','Salvando no Google Drive','Avisando por e-mail'];
   return `${topo()}<main class="wrap gen"><span class="over">Só um instante</span><h1>Gerando o diagnóstico</h1><ol id="gp">${passos.map(p => `<li><i></i>${p}</li>`).join('')}</ol></main>`;
+}
+
+/* Card de confirmação de classe */
+function classeCard(al) {
+  const u = ultima(al), c = u.diag.classe; if (!c) return '';
+  const ant = c.anterior || '';
+  if (c.confirmada) {
+    const sub = ant && idxC(c.confirmada) > idxC(ant), manteve = ant && c.confirmada === ant;
+    return `<section class="cls ok">${COURT()}<span class="over">${sub ? 'Subiu de classe' : manteve ? 'Manteve a classe' : 'Classe confirmada'}</span>
+      <div class="cn">${esc(c.confirmada)}<small>classe</small></div>
+      <p>${sub ? `Subiu da ${esc(ant)} para a ${esc(c.confirmada)} classe em ${esc(u.data)}.` : manteve ? `Segue na ${esc(c.confirmada)} classe. Próxima meta: ${esc(proxima(c.confirmada))} classe.` : `Classe confirmada em ${esc(u.data)}.`}</p>
+      ${sub ? `<button class="btn b-lima" data-a="imagem" data-aula="${esc(u.id)}">${ICON.img} Post de parabéns</button>` : ''}</section>`;
+  }
+  const sel = S.csel || c.sugerida;
+  const lbl = !ant ? `Confirmar ${sel} classe` : idxC(sel) > idxC(ant) ? `Subir para a ${sel} classe` : sel === ant ? `Manter na ${sel} classe` : `Voltar para a ${sel} classe`;
+  return `<section class="cls">${COURT()}<span class="over">Confirme a classe</span>
+    <div class="cn">${esc(c.sugerida)}<small>classe sugerida</small></div>
+    <p>${ant ? `Classe atual: <b>${esc(ant)}</b>. ` : ''}Média ${fmt(c.media)} · referência ITN ${fmt(c.itn)} · ${esc(c.nivel)}</p>
+    ${c.calculada && c.calculada !== c.sugerida ? `<p>Pelas notas, a classe seria <b>${esc(c.calculada)}</b>. As suas observações levaram à sugestão da <b>${esc(c.sugerida)}</b>.</p>` : ''}
+    <p class="just">${esc(c.justificativa || '')}</p>
+    <div class="chips cc" role="group" aria-label="Escolher classe">${CLASSES.map(k => `<button type="button" class="chip" data-csel="${k}" aria-pressed="${sel === k}">${k}${k === c.sugerida ? ' · sugerida' : ''}${k === ant ? ' · atual' : ''}</button>`).join('')}</div>
+    <button class="btn b-lima b-full" data-a="confirmar" data-aula="${esc(u.id)}">${esc(lbl)}</button></section>`;
 }
 function evolucaoHTML(al) {
   if (al.aulas.length < 2) return '';
   const pri = al.aulas[0].diag.notas, ult = ultima(al).diag.notas;
+  const c1 = classeDe(al.aulas[0]), c2 = classeAtual(al);
   const linhas = ult.map(n => { const a = (pri.find(x => x.golpe === n.golpe) || {}).nota || 0; const d = n.nota - a;
     return `<div class="evo"><span class="g">${esc(n.golpe)}</span><span class="v">${a || '–'}</span><span class="ar" aria-hidden="true">→</span><span class="v now">${n.nota}</span><span class="d ${d > 0 ? 'mais' : ''}">${d > 0 ? `+${d}` : d < 0 ? d : '='}</span></div>`; }).join('');
-  return `<div class="card"><h3>Evolução</h3><p class="small" style="margin:0 0 10px">Da primeira aula (${esc(al.aulas[0].data)}) até a última (${esc(ultima(al).data)}).</p>${linhas}</div>`;
+  return `<div class="card"><h3>Evolução</h3><p class="small" style="margin:0 0 10px">Da primeira aula (${esc(al.aulas[0].data)}) até a última (${esc(ultima(al).data)}).${c1 && c2 ? ` Classe: <b>${esc(c1)} → ${esc(c2)}</b>.` : ''}</p>${linhas}</div>`;
 }
 function vAluno() {
   const al = db.alunos.find(x => x.id === S.alunoId);
   if (!al) { S.view = 'home'; return vHome(); }
-  const u = ultima(al), aulas = al.aulas.slice().reverse();
+  const u = ultima(al), aulas = al.aulas.slice().reverse(), c = classeAtual(al);
   return `${topo()}<main class="wrap">${demoBar()}
-  <section class="dhead">${COURT()}<span class="over">${al.aulas.length > 1 ? 'Em acompanhamento' : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'aula registrada' : 'aulas registradas'} · última em ${esc(u.data)}</p></section>
+  <section class="dhead">${COURT()}<span class="over">${c ? `${esc(c)} classe` : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'aula registrada' : 'aulas registradas'} · última em ${esc(u.data)}</p></section>
+  ${classeCard(al)}
   <div class="acts">
     <button class="btn b-ink b-full" data-a="reavaliar">Fazer reavaliação</button>
     ${al.whatsapp ? `<a class="btn b-ghost b-full" href="https://wa.me/55${esc(String(al.whatsapp).replace(/\D/g, ''))}" target="_blank" rel="noopener">Abrir conversa com o aluno</a>` : ''}
   </div>
   ${evolucaoHTML(al)}
   <div class="secth" style="margin-top:22px"><h2>Histórico</h2></div>
-  <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span><div class="dt">${esc(au.data)}</div></div></div>
+  <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span>${classeDe(au) ? ` <span class="tag">${esc(classeDe(au))} classe</span>` : ''}<div class="dt">${esc(au.data)}</div></div></div>
     <p class="rs">${esc(au.diag.resumo)}</p>
     <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Ver e salvar o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
-    <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'PDF enviado por e-mail e salvo no Google Drive.'}</p></div>`).join('')}</div>
+    ${subiuEm(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Post de parabéns</button>` : ''}
+    <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'Diagnóstico salvo no Google Drive e avisado por e-mail.'}</p></div>`).join('')}</div>
   <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
   </main>`;
 }
@@ -722,12 +888,17 @@ function montarDemo(av, anterior) {
   d.exemplo = 'Texto de exemplo · modo demonstração';
   const primeiro = av.nome.trim().split(/\s+/)[0];
   d.resumo = d.resumo.replace(/^(Em oito semanas, )?Mariana/, (m, p) => (p || '') + primeiro);
-  Object.assign(d.aluno, { nome: av.nome.trim(), idade: av.idade, data: hoje(), local: av.local || '', objetivo: av.objetivo || d.aluno.objetivo, tempo: av.tempo || d.aluno.tempo,
+  Object.assign(d.aluno, { nome: av.nome.trim(), idade: av.idade, data: hoje(), local: av.local || '', objetivo: av.objetivo || d.aluno.objetivo, tempo: av.tempo || d.aluno.tempo, experiencia: av.experiencia || d.aluno.experiencia,
     mao: av.mao || d.aluno.mao, backhand: av.backhand || d.aluno.backhand, empunhadura: av.empunhadura || d.aluno.empunhadura, nivel: av.nivel || d.aluno.nivel });
   const notas = GOLPES.map(g => ({ golpe: g, nota: av.golpes[g].nota })).filter(n => n.nota);
   if (notas.length >= 3) d.notas = notas;
   d.golpes.forEach(g => { if (av.golpes[g.golpe] && av.golpes[g.golpe].nota) g.nota = av.golpes[g.golpe].nota; });
-  if (anterior) d.anterior = { data: anterior.data, notas: copia(anterior.diag.notas) };
+  const cal = calibrar(d.notas);
+  const antC = anterior ? classeDe(anterior) || (anterior.diag.classe || {}).sugerida || '' : (CLASSES.includes(av.classeAtual) ? av.classeAtual : '');
+  d.classe = { sugerida: cal.classe, confirmada: '', anterior: antC, media: cal.media, itn: cal.itn, nivel: cal.nivel,
+    justificativa: `Texto de exemplo: a média ponderada das notas ficou em ${fmt(cal.media)}, na faixa da ${cal.classe} classe, o que corresponde à referência ITN ${fmt(cal.itn)}. Na versão final, o Claude explica aqui como as notas e as suas observações levaram a essa sugestão.` };
+  if (anterior) d.anterior = { data: anterior.data, notas: copia(anterior.diag.notas), classe: antC };
+  else delete d.anterior;
   if (av.quadros.length) d.saque.quadros = av.quadros.map(q => ({ fase: q.fase, img: q.img, obs: (d.saque.quadros.find(x => x.fase === q.fase) || {}).obs || '' }));
   if (av.raquete || av.peso || av.grip) d.equipamento.raquete = [av.raquete, av.peso, av.grip && `empunhadura ${av.grip}`, av.corda].filter(Boolean).join(', ');
   return d;
@@ -741,43 +912,71 @@ async function gerar() {
   try {
     let al = baseId ? db.alunos.find(x => x.id === baseId) : null;
     if (DEMO) {
-      for (let i = 0; i < lis.length; i++) { marca(i); await new Promise(r => setTimeout(r, 550)); }
+      for (let i = 0; i < lis.length; i++) { marca(i); await new Promise(r => setTimeout(r, 480)); }
       aula.diag = montarDemo(av, al ? ultima(al) : null);
       if (!al) { al = { id: uid(), nome: av.nome.trim(), idade: av.idade, whatsapp: av.whatsapp, local: av.local, aulas: [] }; db.alunos.push(al); }
       Object.assign(al, { idade: av.idade || al.idade, whatsapp: av.whatsapp || al.whatsapp, local: av.local || al.local });
       al.aulas.push(aula);
     } else {
       marca(0); const t = setInterval(() => { const n = document.querySelectorAll('#gp li.on').length; if (n < lis.length - 1) marca(n); }, 4000);
-      const r = await api('gerar', { tipo, alunoId: baseId || null, avaliacao: av }); clearInterval(t); marca(lis.length - 1);
+      const r = await api('gerar', { tipo, alunoId: baseId || null, avaliacao: av, calibragem: calibrar(GOLPES.map(g => ({ golpe:g, nota: av.golpes[g].nota }))) }); clearInterval(t); marca(lis.length - 1);
       const i = db.alunos.findIndex(x => x.id === r.aluno.id); if (i >= 0) db.alunos[i] = r.aluno; else db.alunos.push(r.aluno);
       al = r.aluno;
     }
-    save(db); S.alunoId = al.id; S.av = null; S.base = null; go('aluno');
+    save(db); S.alunoId = al.id; S.av = null; S.base = null; S.csel = null; go('aluno');
   } catch (e) {
     app.querySelector('.gen').insertAdjacentHTML('beforeend', `<div class="note" style="margin-top:22px">Não foi possível gerar agora: ${esc(e.message)}. A ficha não se perdeu.</div><button class="btn b-ink" id="tentar">Tentar de novo</button>`);
     $('#tentar').onclick = () => { S.av = av; S.base = baseId; gerar(); };
   }
+}
+async function confirmarClasse(aulaId) {
+  const al = db.alunos.find(x => x.id === S.alunoId); const au = al && al.aulas.find(x => x.id === aulaId); if (!au) return;
+  const c = au.diag.classe, escolha = S.csel || c.sugerida;
+  try {
+    if (!DEMO) await api('confirmarClasse', { alunoId: al.id, aulaId: au.id, classe: escolha });
+    c.confirmada = escolha; al.classe = escolha;
+    if (au.diag.resumo && c.sugerida !== escolha) au.diag.resumoNota = `Classe confirmada pelo professor: ${escolha}.`;
+    save(db); S.csel = null; render();
+  } catch (e) { modal('Não deu certo', e.message); }
 }
 
 /* ---------- Relatório A4 ---------- */
 function radar(notas, anterior) {
   const n = notas.length, cx = 180, cy = 168, R = 112;
   const pt = (i, r) => { const a = (-90 + i * 360 / n) * Math.PI / 180; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
-  const poly = vals => vals.map((v, i) => pt(i, R * v / 5).map(x => x.toFixed(1)).join(',')).join(' ');
-  const anel = k => poly(notas.map(() => k));
-  const rings = [1,2,3,4,5].map(k => `<polygon points="${anel(k)}" fill="none" stroke="#D9CFC2" stroke-width="${k === 5 ? 1.4 : 1}"/>`).join('');
+  const poly = vals => vals.map((v, i) => pt(i, R * v / 10).map(x => x.toFixed(1)).join(',')).join(' ');
+  const rings = [2,4,6,8,10].map(k => `<polygon points="${poly(notas.map(() => k))}" fill="none" stroke="#D9CFC2" stroke-width="${k === 10 ? 1.4 : 1}"/>`).join('');
   const eixos = notas.map((_, i) => { const [x, y] = pt(i, R); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#D9CFC2"/>`; }).join('');
-  const labels = notas.map((x, i) => { const [lx, ly] = pt(i, R + 24); const c = Math.cos((-90 + i * 360 / n) * Math.PI / 180); const anc = Math.abs(c) < .2 ? 'middle' : c > 0 ? 'start' : 'end';
-    return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anc}" font-family="Figtree" font-weight="700" font-size="13" fill="#1C1A17">${esc(x.golpe)}</text>`; }).join('');
+  const labels = notas.map((x, i) => { const [lx, ly] = pt(i, R + 20); const c = Math.cos((-90 + i * 360 / n) * Math.PI / 180); const anc = Math.abs(c) < .2 ? 'middle' : c > 0 ? 'start' : 'end';
+    return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anc}" font-family="Figtree" font-weight="700" font-size="11.5" fill="#1C1A17">${esc(x.golpe)}</text>`; }).join('');
   const antes = anterior ? `<polygon points="${poly(notas.map(x => (anterior.find(a => a.golpe === x.golpe) || {}).nota || 0))}" fill="none" stroke="#1C1A17" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>` : '';
-  const pts = notas.map((x, i) => { const [px, py] = pt(i, R * x.nota / 5); return `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4.5" fill="#A8492A"/>`; }).join('');
-  return `<svg viewBox="-34 -2 428 334" role="img" aria-label="Radar das notas por golpe">${rings}${eixos}<polygon points="${poly(notas.map(x => x.nota))}" fill="#A8492A" fill-opacity=".2" stroke="#A8492A" stroke-width="2.5" stroke-linejoin="round"/>${antes}${pts}${labels}</svg>`;
+  const pts = notas.map((x, i) => { const [px, py] = pt(i, R * x.nota / 10); return `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4" fill="#A8492A"/>`; }).join('');
+  return `<svg viewBox="-40 -4 440 340" role="img" aria-label="Radar das notas por item">${rings}${eixos}<polygon points="${poly(notas.map(x => x.nota))}" fill="#A8492A" fill-opacity=".2" stroke="#A8492A" stroke-width="2.5" stroke-linejoin="round"/>${antes}${pts}${labels}</svg>`;
 }
-const bolas = (n, cls = 'mini') => `<span class="${cls}">${[1,2,3,4,5].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join('')}</span>`;
+const barra10 = (n, ant, cls = 'b10') => `<span class="${cls}">${[1,2,3,4,5,6,7,8,9,10].map(k => `<i class="${k <= n ? 'on' : ''} ${ant && k <= ant ? 'was' : ''}"></i>`).join('')}</span>`;
 const rod = (a, p) => `<div class="rodape"><span><b>PS Tennis Team</b> · Prof. Paulo Santana · @pstennisteam</span><span>${esc(a.nome)} · ${p}</span></div>`;
+function paginaClasse(d, a, np) {
+  const c = d.classe; if (!c) return '';
+  const atual = c.confirmada || c.sugerida, ant = c.anterior || '';
+  const sub = ant && idxC(atual) > idxC(ant), manteve = ant && atual === ant;
+  const status = !c.confirmada ? 'Classe sugerida, aguardando confirmação do professor' : sub ? `Subiu da ${ant} para a ${atual} classe` : manteve ? `Mantém a ${atual} classe` : 'Classe confirmada pelo professor';
+  const prox = atual === '1ª' ? null : proxima(atual);
+  return `<section class="pg classe"><div class="topo">${COURT()}
+      <div class="ov" style="color:var(--noescuro)">Sua classe</div>
+      <div class="big"><span class="num">${esc(atual)}</span><span class="pal">classe</span></div>
+      <span class="pill ${sub ? 'p-lima' : 'p-saibro'}">${esc(status)}</span></div>
+    <div class="in2">
+      <div class="escada">${CLASSES.map(k => { const f = FAIXAS.find(x => x.c === k); return `<div class="deg ${k === atual ? 'cur' : ''} ${k === ant && k !== atual ? 'ant' : ''}"><b>${k}</b><small>${esc(f.itn)}</small></div>`; }).join('')}</div>
+      <p class="escleg">Da 6ª (início) à 1ª classe. ${ant && !manteve ? 'A borda tracejada marca a classe anterior.' : ''}</p>
+      <div class="stats"><div><small>Média ponderada</small><b>${fmt(c.media)}</b></div><div><small>Referência ITF</small><b>ITN ${fmt(c.itn)}</b></div><div><small>Nível</small><b>${esc(c.nivel)}</b></div></div>
+      <div class="como"><div class="ov">Como chegamos aqui</div><p>${esc(c.justificativa || '')}</p></div>
+      ${prox ? `<div class="bx bx-escuro meta"><h3>Para chegar à ${esc(prox)} classe</h3><ol>${(CRITERIOS[prox] || []).map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>` : ''}
+      <p class="nota-itn">A classe é uma sugestão do professor, calibrada pelas descrições de nível do ITN (International Tennis Number), da ITF. Federações e clubes podem usar critérios próprios para os torneios.</p>
+    </div>${rod(a, np())}</section>`;
+}
 function relatorio(d) {
-  const a = d.aluno, reav = !!d.anterior;
-  const perfil = [['Objetivo', a.objetivo], ['Tempo de prática', a.tempo], ['Nível', a.nivel], ['Mão dominante', a.mao], ['Backhand', a.backhand], ['Empunhadura', a.empunhadura], ['Local', a.local], ['Idade', a.idade ? `${a.idade} anos` : '']].filter(x => x[1]);
+  const a = d.aluno, reav = !!d.anterior, c = d.classe || {};
+  const perfil = [['Classe', c.confirmada || c.sugerida ? `${c.confirmada || c.sugerida}${c.confirmada ? '' : ' (sugerida)'}` : ''], ['Nível', a.nivel], ['Objetivo', a.objetivo], ['Experiência', a.experiencia], ['Tempo de prática', a.tempo], ['Mão dominante', a.mao], ['Backhand', a.backhand], ['Empunhadura', a.empunhadura]].filter(x => x[1]);
   const golpes = (d.golpes || []).slice(0, 4);
   const temSaque = !!(d.saque && d.saque.quadros && d.saque.quadros.length);
   const outros = d.notas.filter(n => !golpes.some(g => g.golpe === n.golpe));
@@ -785,7 +984,7 @@ function relatorio(d) {
   let p = 0; const np = () => String(++p);
   return `
   <section class="pg capa">
-    <div class="topo">${COURT()}<img class="logo" src="/img/logo-branca.png" alt="PS Tennis Team">${d.exemplo ? `<span class="exemplo">${typeof d.exemplo === 'string' ? esc(d.exemplo) : 'Exemplo com aluna fictícia'}</span>` : ''}
+    <div class="topo">${COURT()}<img class="logo" src="${LOGO}" alt="PS Tennis Team">${d.exemplo ? `<span class="exemplo">${typeof d.exemplo === 'string' ? esc(d.exemplo) : 'Exemplo com aluna fictícia'}</span>` : ''}
       <div class="tt"><span class="pill p-saibro">${reav ? 'Reavaliação' : 'Aula experimental'}</span><h1>${reav ? 'Evolução' : 'Diagnóstico'}</h1><div class="sub">${reav ? 'e próximo ciclo de treino' : 'e plano de treino'}</div>
       <div class="nome">${esc(a.nome)}</div><div class="quando">${esc(a.data)}${a.local ? ` · ${esc(a.local)}` : ''} · com o professor Paulo Santana${reav ? `<br>Comparação com a aula de ${esc(d.anterior.data)}` : ''}</div></div></div>
     <div class="base"><div class="ov">Seu perfil</div><div class="perfil">${perfil.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join('')}</div>
@@ -793,12 +992,14 @@ function relatorio(d) {
     ${rod(a, np())}
   </section>
 
+  ${paginaClasse(d, a, np)}
+
   <section class="pg jogo"><div class="in">
     <div class="ov">${reav ? 'Antes e agora' : 'Diagnóstico'}</div><h2 class="h">${reav ? 'Sua evolução' : 'Seu jogo hoje'}</h2>
     <div class="grid ${reav ? 'rv' : ''}"><div class="radarbox">${radar(d.notas, reav ? d.anterior.notas : null)}
       ${reav ? `<div class="leg"><span><i class="l-now"></i>Hoje, ${esc(a.data)}</span><span><i class="l-ant"></i>Antes, ${esc(d.anterior.data)}</span></div>` : ''}</div>
-      <div><div class="notas">${d.notas.map(x => { const an = antDe(x.golpe); return `<div class="nt ${reav ? 'rv' : ''}"><span>${esc(x.golpe)}</span><span class="bar">${[1,2,3,4,5].map(k => `<i class="${k <= x.nota ? 'on' : ''} ${reav && k <= an ? 'was' : ''}"></i>`).join('')}</span>${reav ? `<em class="${x.nota > an ? 'mais' : ''}">${an} → ${x.nota}</em>` : ''}</div>`; }).join('')}</div>
-      <p class="escala">Escala de 1 a 5: 1 iniciando · 2 em desenvolvimento · 3 funcional · 4 consistente · 5 avançado.${reav ? ' A linha embaixo de cada barra marca a nota anterior.' : ''}</p></div></div>
+      <div><div class="notas">${d.notas.map(x => { const an = antDe(x.golpe); return `<div class="nt ${reav ? 'rv' : ''}"><span>${esc(x.golpe)}</span>${barra10(x.nota, reav ? an : 0)}${reav ? `<em class="${x.nota > an ? 'mais' : ''}">${an} → ${x.nota}</em>` : `<em>${x.nota}</em>`}</div>`; }).join('')}</div>
+      <p class="escala">Notas de 1 a 10, calibradas pelos critérios de nível do ITN (ITF): 1 a 2 começando · 3 a 4 em desenvolvimento · 5 a 6 funcional · 7 a 8 consistente · 9 a 10 avançado.${reav ? ' A linha embaixo da barra marca a nota anterior.' : ''}</p></div></div>
     <div class="duas">
       <div class="bx bx-claro"><h3>${reav ? 'O que evoluiu' : 'Pontos fortes'}</h3><ol>${d.fortes.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
       <div class="bx bx-escuro"><h3>${reav ? 'Foco do próximo ciclo' : 'Pontos a melhorar'}</h3><ol>${d.melhorar.map((x, i) => `<li><b>${i + 1}</b><span>${esc(x)}</span></li>`).join('')}</ol></div>
@@ -807,10 +1008,11 @@ function relatorio(d) {
 
   <section class="pg golpes"><div class="in">
     <div class="ov">Análise técnica</div><h2 class="h">Golpe a golpe</h2>
-    <div class="cards">${golpes.map(g => { const an = antDe(g.golpe); return `<article class="gc"><div class="gt"><h3>${esc(g.golpe)}</h3><span class="gn">${reav && an ? `<small>${an} → ${g.nota}</small>` : ''}${bolas(g.nota)}</span></div>
+    <div class="cards">${golpes.map(g => { const an = antDe(g.golpe); return `<article class="gc"><div class="gt"><h3>${esc(g.golpe)}</h3><span class="gn">${reav && an ? `<small>${an} → </small>` : ''}<b>${g.nota}</b><small>/10</small></span></div>
+      ${barra10(g.nota, reav ? an : 0, 'b10 sm')}
       <div class="lb">O que vi</div><p>${esc(g.vi)}</p>
       <div class="corr"><div class="k">Como corrigir</div><p>${esc(g.corrigir)}</p>${g.exercicio ? `<p class="ex">Exercício: ${esc(g.exercicio)}</p>` : ''}</div></article>`; }).join('')}</div>
-    ${outros.length ? `<div class="outros"><h3>Também avaliados</h3><div class="ls">${outros.map(x => `<div class="it"><span>${esc(x.golpe)}<small>${x.golpe === 'Saque' && temSaque ? 'Análise na próxima página' : esc(NIVEL[x.nota] || '')}</small></span>${bolas(x.nota)}</div>`).join('')}</div></div>` : ''}
+    ${outros.length ? `<div class="outros"><h3>Também avaliados</h3><div class="ls">${outros.map(x => `<div class="it"><span>${esc(x.golpe)}<small>${x.golpe === 'Saque' && temSaque ? 'Análise na próxima página' : esc(nivelNota(x.nota))}</small></span><b>${x.nota}<small>/10</small></b></div>`).join('')}</div></div>` : ''}
   </div>${rod(a, np())}</section>
 
   ${temSaque ? `<section class="pg saque"><div class="in">
@@ -824,17 +1026,17 @@ function relatorio(d) {
   <section class="pg plano"><div class="in">
     <div class="ov">${esc(d.planoTitulo || '12 semanas · 1 aula por semana')}</div><h2 class="h">${reav ? 'Seu próximo ciclo' : 'Seu plano de treino'}</h2>
     <div class="fases">${d.plano.map((f, i) => `<div class="fase"><div class="fl"><div class="n">Fase ${i + 1}</div><small>${esc(f.semanas)}</small></div>
-      <div><h3>${esc(f.titulo)}</h3><ul>${f.itens.map(it => `<li><b>${esc(it.foco)}.</b> ${esc(it.exercicio)}</li>`).join('')}</ul>${f.reavaliacao ? '<span class="pill p-saibro re">Reavaliação com novo vídeo no fim da fase</span>' : ''}</div></div>`).join('')}</div>
+      <div><h3>${esc(f.titulo)}</h3><ul>${f.itens.map(it => `<li><b>${esc(it.foco)}.</b> ${esc(it.exercicio)}</li>`).join('')}</ul>${f.reavaliacao ? '<span class="pill p-saibro re">Reavaliação com novo vídeo e revisão da classe no fim da fase</span>' : ''}</div></div>`).join('')}</div>
     <div class="extra"><div class="bx bx-areia"><h3>Para fazer em casa</h3><ul>${(d.casa || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
       <div class="bx bx-claro"><h3>Sua raquete</h3><p><b>${esc(d.equipamento.raquete)}</b></p><p style="margin-top:1.6mm">${esc(d.equipamento.obs)}</p></div></div>
   </div>${rod(a, np())}</section>
 
-  <section class="pg fim">${COURT()}<img class="logo" src="/img/logo-branca.png" alt="PS Tennis Team">
+  <section class="pg fim">${COURT()}<img class="logo" src="${LOGO}" alt="PS Tennis Team">
     <div class="ct"><h1>Seu próximo passo</h1><p class="txt">${esc(d.proximo.texto)}</p>
       <div class="rec"><div class="k">Indicação do professor</div><b>${esc(d.proximo.recomendacao)}</b><p>${esc(d.proximo.motivo)}</p></div>
       <div class="mods"><span>Individual</span><span>Dupla</span><span>Grupo (4 pessoas)</span><span>Fama Tennis ou no seu condomínio</span></div></div>
     <div class="cta"><div><span class="zap">${ICON.zap} Agende pelo WhatsApp</span><p>(31) 99586-9025 · @pstennisteam</p></div>
-      <div class="qr"><img src="/professor/img/qr-whatsapp.svg" alt="QR code do WhatsApp"><small>Aponte a câmera</small></div></div>
+      <div class="qr"><img src="${QR}" alt="QR code do WhatsApp"><small>Aponte a câmera</small></div></div>
   </section>`;
 }
 function abrirRelatorio(d, soRelatorio) {
@@ -853,6 +1055,79 @@ function abrirRelatorio(d, soRelatorio) {
   };
 }
 
+/* ---------- Post de parabéns (do Paulo para o aluno) ---------- */
+const IM = { formato:'story', al:null, au:null };
+const carregarImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+/* escreve com espaçamento entre letras (sobretítulos) */
+function espacado(x, txt, ax, y, esp) { for (const ch of txt) { x.fillText(ch, ax, y); ax += x.measureText(ch).width + esp; } }
+/* reduz a fonte até o texto caber na largura */
+function caber(x, txt, peso, tam, familia, larg) { let t = tam; do { x.font = `${peso} ${t}px ${familia}`; t -= 2; } while (x.measureText(txt).width > larg && t > 20); }
+async function desenharImagem(cv) {
+  const W = 1080, story = IM.formato === 'story', H = story ? 1920 : 1350; cv.width = W; cv.height = H;
+  const x = cv.getContext('2d'), al = IM.al, au = IM.au, num = au.diag.classe.confirmada;
+  try { await Promise.all(['800 100px "Barlow Condensed"', '600 40px "Barlow Condensed"', '700 40px Figtree', '600 40px Figtree'].map(f => document.fonts.load(f))); } catch (e) {}
+  x.fillStyle = '#1C1A17'; x.fillRect(0, 0, W, H);
+  /* quadra vista de cima */
+  x.save(); x.globalAlpha = .22; x.strokeStyle = '#F4EEE6'; x.lineWidth = 4;
+  const cw = 620, ox = W - cw * .62, oy = story ? 120 : -260, s = cw / 360;
+  const L = (a, b, c2, d) => { x.beginPath(); x.moveTo(ox + a * s, oy + b * s); x.lineTo(ox + c2 * s, oy + d * s); x.stroke(); };
+  x.strokeRect(ox + 20 * s, oy + 20 * s, 320 * s, 694 * s); L(60,20,60,714); L(300,20,300,714); L(60,180,300,180); L(60,554,300,554); L(180,180,180,554); L(180,20,180,34); L(180,700,180,714);
+  x.lineWidth = 7; L(4,367,356,367); x.restore();
+  /* logo */
+  try { const lg = await carregarImg(LOGO); const lw = 330, lh = lw * lg.height / lg.width; x.drawImage(lg, 72, 84, lw, lh); } catch (e) {}
+  /* textos */
+  const k = story ? 1.18 : 1, larg = W - 144;
+  let y = story ? 860 : 410;
+  x.textBaseline = 'alphabetic';
+  x.fillStyle = '#CFC6BA'; x.font = '600 34px "Barlow Condensed"'; espacado(x, 'SUBIU DE CLASSE', 72, y, 5);
+  y += Math.round(132 * k);
+  x.fillStyle = '#F4EEE6'; caber(x, 'PARABÉNS!', 800, Math.round(150 * k), '"Barlow Condensed"', larg); x.fillText('PARABÉNS!', 66, y);
+  y += Math.round(96 * k);
+  caber(x, 'VOCÊ SUBIU PARA A', 800, Math.round(84 * k), '"Barlow Condensed"', larg); x.fillText('VOCÊ SUBIU PARA A', 68, y);
+  y += Math.round(330 * k);
+  x.fillStyle = '#D4F24A'; x.font = `800 ${Math.round(380 * k)}px "Barlow Condensed"`; x.fillText(num, 54, y);
+  const nw = x.measureText(num).width;
+  x.fillStyle = '#F4EEE6'; x.font = `800 ${Math.round(120 * k)}px "Barlow Condensed"`; x.fillText('CLASSE!', 54 + nw + 28, y - Math.round(18 * k));
+  /* nome do aluno */
+  y += Math.round(118 * k);
+  x.fillStyle = '#F4EEE6'; caber(x, al.nome, 700, story ? 68 : 58, 'Figtree', larg); x.fillText(al.nome, 72, y);
+  /* rodapé */
+  const fy2 = H - 110;
+  x.fillStyle = '#A8492A'; x.beginPath(); x.roundRect(72, fy2 - 62, 330, 92, 46); x.fill();
+  x.fillStyle = '#F4EEE6'; x.font = '700 36px Figtree'; x.fillText('@pstennisteam', 112, fy2 - 3);
+  x.fillStyle = '#CFC6BA'; x.font = '600 30px Figtree'; x.textAlign = 'right'; x.fillText('pstennisteam.com', W - 72, fy2 - 3); x.textAlign = 'left';
+}
+function abrirImagem(aulaId) {
+  const al = db.alunos.find(x => x.id === S.alunoId), au = al && al.aulas.find(x => x.id === aulaId); if (!au) return;
+  IM.al = al; IM.au = au;
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Post de parabéns"><div class="box share">
+    <h2>Post de parabéns</h2>
+    <div class="chips" role="group" aria-label="Formato"><button type="button" class="chip" data-fmt="story" aria-pressed="${IM.formato === 'story'}">Story</button><button type="button" class="chip" data-fmt="feed" aria-pressed="${IM.formato === 'feed'}">Feed</button></div>
+    <div class="prev"><canvas id="icv" aria-label="Prévia da imagem"></canvas></div>
+    <p class="small" id="imsg">Para postar no @pstennisteam e marcar o aluno. Combine com ele antes de divulgar o nome.</p>
+    <div class="row2"><button class="btn b-ink" id="ishare">Compartilhar</button><button class="btn b-ghost" id="ibaixar">Baixar</button></div>
+    <button class="btn b-ghost b-full" id="ifechar" style="margin-top:10px">Fechar</button></div></div>`;
+  const cv = $('#icv'), redesenha = () => desenharImagem(cv);
+  redesenha();
+  m.onclick = async ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    if (b.dataset.fmt) { IM.formato = b.dataset.fmt; m.querySelectorAll('[data-fmt]').forEach(k => k.setAttribute('aria-pressed', k.dataset.fmt === IM.formato)); return redesenha(); }
+    if (b.id === 'ifechar') { m.innerHTML = ''; m.onclick = null; return; }
+    if (b.id === 'ishare' || b.id === 'ibaixar') {
+      const nome = `parabens-${(al.nome.split(' ')[0] || 'aluno').toLowerCase()}-${IM.formato}.png`;
+      const blob = await new Promise(r => cv.toBlob(r, 'image/png')); if (!blob) return;
+      const file = new File([blob], nome, { type:'image/png' });
+      if (b.id === 'ishare') {
+        try { if (navigator.canShare && navigator.canShare({ files:[file] })) { await navigator.share({ files:[file], text:`Parabéns, ${al.nome.split(' ')[0]}! Você subiu para a ${au.diag.classe.confirmada} classe.` }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+        $('#imsg').textContent = 'Este aparelho não abriu o compartilhamento. Toque em "Baixar" e poste a imagem pelo Instagram.'; return;
+      }
+      try { const u = URL.createObjectURL(blob), a = document.createElement('a'); a.href = u; a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 2000); $('#imsg').textContent = 'Imagem salva. Agora é só postar e marcar o aluno.'; }
+      catch (e) { $('#imsg').textContent = 'Este visualizador não permite baixar. No site do professor, o botão funciona normalmente.'; }
+    }
+  };
+}
+
 /* ---------- Eventos ---------- */
 function bind() {
   app.onclick = async ev => {
@@ -863,12 +1138,15 @@ function bind() {
     if (a === 'nova') { S.av = novoAv(); S.base = null; S.step = 0; S.qsel = null; return go('form'); }
     if (a === 'reavaliar') { const al = db.alunos.find(x => x.id === S.alunoId); S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; return go('form'); }
     if (a === 'home') return go('home');
-    if (t.dataset.id) { S.alunoId = t.dataset.id; return go('aluno'); }
+    if (t.dataset.id) { S.alunoId = t.dataset.id; S.csel = null; return go('aluno'); }
+    if (t.dataset.csel) { S.csel = t.dataset.csel; const y = window.scrollY; render(); window.scrollTo(0, y); return; }
+    if (a === 'confirmar') return confirmarClasse(t.dataset.aula);
+    if (a === 'imagem') return abrirImagem(t.dataset.aula);
     if (a === 'voltar') { if (rec) rec.stop(); if (S.step) { S.step--; return go('form'); } const vinha = S.base; S.av = null; S.base = null; return go(vinha ? 'aluno' : 'home'); }
     if (a === 'avancar') { if (rec) rec.stop(); S.step++; return go('form'); }
     if (a === 'gerar') { if (rec) rec.stop(); return gerar(); }
     if (t.dataset.chip) { const c = t.dataset.chip; S.av[c] = S.av[c] === t.dataset.v ? '' : t.dataset.v; t.parentElement.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', S.av[c] === b.dataset.v)); return estado(); }
-    if (t.dataset.g) { const g = S.av.golpes[t.dataset.g]; g.nota = +t.dataset.n; t.parentElement.querySelectorAll('.dot').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === g.nota)); t.closest('.golpe').querySelector('.lvl').textContent = NIVEL[g.nota]; return estado(); }
+    if (t.dataset.g) { const g = S.av.golpes[t.dataset.g]; g.nota = +t.dataset.n; t.parentElement.querySelectorAll('.dot').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === g.nota)); t.closest('.golpe').querySelector('.lvl').textContent = `${g.nota} · ${nivelNota(g.nota)}`; return estado(); }
     if (t.dataset.mic) return ditar(t);
     if (a === 'vpick') return $('#vfile').click();
     if (t.dataset.qx !== undefined) { ev.stopPropagation(); S.av.quadros.splice(+t.dataset.qx, 1); S.qsel = null; $('#frames').innerHTML = quadrosHTML(S.av); return; }
@@ -881,7 +1159,7 @@ function bind() {
       if (a === 'doc') { if (au.docUrl) { window.open(au.docUrl, '_blank', 'noopener'); return; }
         return modal('Editar o texto', 'Na versão final, este botão abre o diagnóstico como Google Doc, guardado na pasta do aluno no Drive. Você corrige o que quiser lá, volta aqui e toca em "Ver e salvar o PDF": o PDF sai com o texto já editado.'); }
       let d = au.diag;
-      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) {} }
+      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) { return modal('Não deu para abrir o PDF', e.message); } }
       return abrirRelatorio(d);
     }
   };
@@ -906,7 +1184,7 @@ function modal(tit, txt) {
   $('#mok').onclick = () => m.innerHTML = ''; $('#mok').focus();
 }
 
-/* Relatórios de exemplo direto: index.html#exemplo-pdf ou #exemplo-reavaliacao */
+/* Relatórios de exemplo direto: #exemplo-pdf ou #exemplo-reavaliacao */
 if (location.hash === '#exemplo-pdf') abrirRelatorio(EXEMPLO, true);
 else if (location.hash === '#exemplo-reavaliacao') abrirRelatorio(REAV, true);
 else render();
