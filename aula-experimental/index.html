@@ -65,6 +65,7 @@
   h3{ font-family:var(--titulo); font-weight:700; font-size:30px; line-height:1; }
   .destaque{ font-size:clamp(18px, 2vw, 21px); line-height:1.6; }
   .lima{ color:var(--lima); }
+  .sem-quebra{ white-space:nowrap; }
   .saibro{ color:var(--saibro); }
 
   /* Botões e etiquetas */
@@ -391,7 +392,7 @@
     <div class="wrap rel-grid">
       <div>
         <p class="sobre">O que você leva</p>
-        <h2>Você sai com o <span class="saibro">raio-x do seu jogo</span></h2>
+        <h2>Você sai com o <span class="saibro"><span class="sem-quebra">raio-x</span> do seu jogo</span></h2>
         <p class="destaque">Depois da aula experimental, você recebe um relatório completo em PDF, com notas, nível, classe e um plano de treino feito para você.</p>
         <ul class="rel-lista">
           <li><strong>Notas de 1 a 10</strong> em 11 fundamentos, do forehand à tática</li>
