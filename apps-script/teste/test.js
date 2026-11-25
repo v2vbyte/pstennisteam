@@ -98,6 +98,32 @@ ok(d2.plano[2].titulo === 'Jogo de pontos' && d2.plano[1].reavaliacao === true &
 ok(d2.saque.quadros[0].img === IMG && d2.classe.confirmada === '4ª', 'imagens e classe preservadas');
 ok(E.post({ action: 'entrar', token: 'tok-ok' }).alunos[0].aulas[0].diag.resumo === 'Resumo reescrito pelo Paulo.', 'lista também mostra o resumo editado');
 
+console.log('8b. PDF do relatório na pasta do aluno');
+const PDF1 = 'data:application/pdf;base64,' + Buffer.from('%PDF-1.4 primeira').toString('base64');
+let lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id });
+ok(lido.versao && lido.versao.length === 32 && lido.pdfVersao === '', 'ler informa a versão e que ainda não há PDF');
+r = E.post({ action: 'salvarPdf', token: 'tok-ok', alunoId: al.id, aulaId: au.id, versao: lido.versao, pdf: PDF1 });
+const arqPdf1 = Object.values(E.files).find(f => f.mime === 'application/pdf');
+ok(r.ok && r.pdfUrl && arqPdf1 && arqPdf1.parent === Object.values(E.folders).find(f => f.name === 'Ana Souza').id && /^Relatório · Ana Souza · 25-11-2026\.pdf$/.test(arqPdf1.name), 'PDF salvo na pasta do aluno com nome claro');
+ok(String(arqPdf1.content).startsWith('%PDF'), 'conteúdo do PDF gravado como arquivo');
+lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id });
+ok(lido.pdfVersao === lido.versao, 'depois de salvar, o PDF está em dia');
+ok(E.log.sheet.rows[1][E.log.sheet.rows[0].indexOf('PDF do relatório')] === r.pdfUrl, 'link do PDF na planilha');
+E.editarDoc(docId, fs => { const i = fs.findIndex(f => f.texto === 'Resumo'); fs[i + 1].texto = 'Resumo editado de novo.'; });
+lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id });
+ok(lido.pdfVersao !== lido.versao, 'edição no Doc deixa o PDF desatualizado');
+r = E.post({ action: 'salvarPdf', token: 'tok-ok', alunoId: al.id, aulaId: au.id, versao: 'versao-velha', pdf: PDF1 });
+ok(r.ok && r.ignorado && !arqPdf1.trashed, 'PDF montado com versão velha é ignorado');
+r = E.post({ action: 'salvarPdf', token: 'tok-ok', alunoId: al.id, aulaId: au.id, versao: lido.versao, pdf: 'data:application/pdf;base64,' + Buffer.from('%PDF-1.4 segunda').toString('base64') });
+const pdfs = Object.values(E.files).filter(f => f.mime === 'application/pdf');
+ok(arqPdf1.trashed === true && pdfs.filter(f => !f.trashed).length === 1 && String(pdfs.find(f => !f.trashed).content).includes('segunda'), 'versão antiga vai para a lixeira e a nova fica no lugar');
+ok(E.post({ action: 'entrar', token: 'tok-ok' }).alunos[0].aulas[0].pdfUrl === r.pdfUrl, 'lista de alunos traz o link do PDF');
+E.post({ action: 'confirmarClasse', token: 'tok-ok', alunoId: al.id, aulaId: au.id, classe: '5ª' });
+lido = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id });
+ok(lido.pdfVersao !== lido.versao, 'mudar a classe também pede PDF novo');
+E.post({ action: 'confirmarClasse', token: 'tok-ok', alunoId: al.id, aulaId: au.id, classe: '4ª' });
+ok(/inválido/.test(E.post({ action: 'salvarPdf', token: 'tok-ok', alunoId: al.id, aulaId: au.id, versao: 'x', pdf: 'oi' }).erro), 'arquivo que não é PDF é recusado');
+
 console.log('9. reavaliação');
 const av2 = Object.assign(JSON.parse(JSON.stringify(av1)), { quadros: [], _video: false, golpes: golpes({ Forehand: 6, Backhand: 5, Saque: 5, Movimentação: 6, Consistência: 6 }) });
 E.log.claude.length = 0;
@@ -105,7 +131,7 @@ r = E.post({ action: 'gerar', token: 'tok-ok', tipo: 'reavaliacao', alunoId: al.
 ok(r.ok && r.aluno.aulas.length === 2, 'reavaliação vira a segunda aula do mesmo aluno: ' + (r.erro || ''));
 const u2 = r.aluno.aulas[1];
 ok(u2.diag.classe.anterior === '4ª' && u2.diag.anterior && u2.diag.anterior.classe === '4ª' && u2.diag.anterior.notas.length === 5, 'classe e notas anteriores vêm da aula confirmada');
-ok(JSON.stringify(E.log.claude[0].corpo.messages).includes('AVALIAÇÃO ANTERIOR') && JSON.stringify(E.log.claude[0].corpo.messages).includes('Resumo reescrito pelo Paulo.'), 'Claude recebe a avaliação anterior já editada');
+ok(JSON.stringify(E.log.claude[0].corpo.messages).includes('AVALIAÇÃO ANTERIOR') && JSON.stringify(E.log.claude[0].corpo.messages).includes('Resumo editado de novo.'), 'Claude recebe a avaliação anterior já editada');
 const d3 = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: u2.id }).diagnostico;
 ok(d3.saque === null && d3.plano.length === 2 && d3.plano[0].semanas === 'Semanas 9 a 12', 'sem vídeo, sem saque; intervalo com meia-risca vira "a"');
 ok(Object.values(E.folders).filter(f => f.name === 'Ana Souza').length === 1, 'não cria pasta duplicada');

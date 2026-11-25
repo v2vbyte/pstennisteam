@@ -36,7 +36,7 @@ const FASES = ['Preparação', 'Lançamento', 'Troféu', 'Contato', 'Terminaçã
 const CABECALHO = ['Data', 'Aluno', 'Idade', 'Local', 'Tipo', 'Objetivo', 'Tempo de prática', 'Experiência em jogo', 'Nível',
   'Classe anterior', 'Classe pelas notas', 'Classe sugerida', 'Classe confirmada', 'Média', 'ITN', 'Itens avaliados']
   .concat(GOLPES.map(g => 'Nota · ' + g))
-  .concat(['Tem vídeo do saque', 'Indicação do professor', 'Diagnóstico (Doc)', 'Pasta do aluno', 'ID do aluno', 'ID da aula']);
+  .concat(['Tem vídeo do saque', 'Indicação do professor', 'Diagnóstico (Doc)', 'PDF do relatório', 'Pasta do aluno', 'ID do aluno', 'ID da aula']);
 
 /* =====================================================================
    CONFIGURAÇÃO (rodar uma vez pelo editor)
@@ -125,7 +125,8 @@ const ACOES = {
   entrar: (req, email) => ({ email: email, alunos: lerIndice().alunos.map(paraPagina) }),
   gerar: gerar,
   confirmarClasse: confirmarClasse,
-  ler: ler
+  ler: ler,
+  salvarPdf: salvarPdf
 };
 
 /* =====================================================================
@@ -516,8 +517,39 @@ function ler(req) {
       });
     }
   }
-  return { diagnostico: arq.diag };
+  return { diagnostico: arq.diag, versao: versaoDiag(arq.diag), pdfVersao: au.pdfVersao || '', pdfUrl: au.pdfUrl || '' };
 }
+
+/* =====================================================================
+   PDF DO RELATÓRIO NA PASTA DO ALUNO
+   O PDF com a identidade visual é montado no navegador (a página manda o
+   arquivo pronto). A cada mudança no diagnóstico (classe confirmada ou
+   edição no Google Doc), a página manda um novo PDF: o antigo vai para a
+   lixeira do Drive e o novo fica no lugar.
+   ===================================================================== */
+function salvarPdf(req) {
+  const m = /^data:application\/pdf[^,]*;base64,(.+)$/.exec(String(req.pdf || ''));
+  if (!m) throw publico('PDF inválido.');
+  const bytes = Utilities.base64Decode(m[1]);
+  if (bytes.length > 25 * 1024 * 1024) throw publico('PDF grande demais.');
+  const r = comTrava(() => {
+    const idx = lerIndice();
+    const al = idx.alunos.filter(a => a.id === req.alunoId)[0];
+    const au = al && al.aulas.filter(a => a.id === req.aulaId)[0];
+    if (!au) throw publico('Aula não encontrada. Atualize a página.');
+    const atual = versaoDiag(lerArquivoAula(au).diag);
+    if (req.versao !== atual) return { ignorado: true, pdfUrl: au.pdfUrl || '' };   /* o diagnóstico mudou enquanto o PDF era montado */
+    if (au.pdfId) { try { DriveApp.getFileById(au.pdfId).setTrashed(true); } catch (e) {} }
+    const nome = 'Relatório · ' + al.nome + ' · ' + au.data.replace(/\//g, '-') + '.pdf';
+    const f = DriveApp.getFolderById(al.pastaId).createFile(Utilities.newBlob(bytes, 'application/pdf', nome));
+    au.pdfId = f.getId(); au.pdfUrl = f.getUrl(); au.pdfVersao = atual;
+    salvarIndice(idx);
+    return { pdfUrl: au.pdfUrl, aulaId: au.id };
+  });
+  if (!r.ignorado) { try { atualizarPlanilha(r.aulaId, 'PDF do relatório', r.pdfUrl); } catch (e) { console.error('Planilha: ' + e); } }
+  return { pdfUrl: r.pdfUrl, ignorado: !!r.ignorado };
+}
+const versaoDiag = d => Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, JSON.stringify(d), Utilities.Charset.UTF_8).map(b => ('0' + (b & 255).toString(16)).slice(-2)).join('');
 
 /* =====================================================================
    GOOGLE DOC: criar e ler de volta
@@ -738,7 +770,7 @@ function avLeve(av) {
 }
 const paraPagina = al => ({
   id: al.id, nome: al.nome, idade: al.idade, whatsapp: al.whatsapp, local: al.local, classe: al.classe,
-  aulas: al.aulas.map(a => ({ id: a.id, tipo: a.tipo, data: a.data, docUrl: a.docUrl, diag: a.diag, av: a.av }))
+  aulas: al.aulas.map(a => ({ id: a.id, tipo: a.tipo, data: a.data, docUrl: a.docUrl, pdfUrl: a.pdfUrl || '', diag: a.diag, av: a.av }))
 });
 
 /* =====================================================================
