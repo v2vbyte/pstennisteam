@@ -90,6 +90,7 @@ function testarDiagnostico() {
   const cal = { media: 4.3, itn: 7.5, classe: '4ª', nivel: 'Iniciante' };
   const t0 = Date.now();
   const r = escreverComClaude(av, cal, 'experimental', null, '', []);
+  if (r.uso) Logger.log('Tokens de saída: diagnóstico ' + r.uso[0] + ', plano ' + r.uso[1]);
   Logger.log('Tempo: ' + Math.round((Date.now() - t0) / 1000) + ' segundos');
   Logger.log('Classe sugerida: ' + r.diagnostico.classeSugerida + ' (calculada pelas notas: 4ª)');
   Logger.log('Resumo: ' + r.diagnostico.resumo);
@@ -257,7 +258,10 @@ function gerar(req) {
 const SISTEMA = [
   'Você escreve o diagnóstico de tênis que o professor Paulo Santana (PS Tennis Team, Belo Horizonte) entrega ao aluno depois de uma aula experimental ou de uma reavaliação.',
   'Escreva como o Paulo, falando direto com o aluno ("você"), em português do Brasil. Tom próximo, confiante e direto. Explique termos técnicos de forma simples, na primeira vez que aparecerem.',
+  'Quem lê é o aluno. O texto é o Paulo falando com ele, em primeira pessoa quando fala de si ("vi que", "vamos trabalhar").',
   'Regras:',
+  '- Nunca fale do professor em terceira pessoa ("o professor observou") e nunca mostre os bastidores: não mencione a ficha, as observações, a classe calculada, ajustes de classe, a média ponderada como cálculo, o sistema nem você mesmo.',
+  '- Os dados do perfil (tempo de prática, experiência em jogo, objetivo, nível) são contexto. Não copie as opções da ficha ao pé da letra (nada de "uma base de 1 a 3 anos jogando com amigos"): use em linguagem natural, só quando ajudar, ou deixe de fora.',
   '- Baseie-se só nas notas, nas observações do professor e nos quadros do saque. Não invente fatos que não estejam na ficha (torneios, lesões, tempo de prática, resultados).',
   '- Quando um item não tiver observação, apoie-se na nota e fale com cuidado, sem detalhes que você não viu.',
   '- Frases curtas e concretas. Nada de elogio vazio nem frases genéricas de autoajuda.',
@@ -265,7 +269,7 @@ const SISTEMA = [
   '- Não fale de preços.',
   '- Exercícios realistas para uma aula de tênis, com séries e repetições ou tempo.',
   '- As notas vão de 1 a 10. A classe segue o ITN da ITF (6ª classe = iniciante, 1ª = mais avançada).',
-  '- A média ponderada das notas dá a classe calculada, que é o ponto de partida. Use as observações do professor (por golpe, pontos fortes, pontos a melhorar, jogo e competição) para confirmar essa classe ou ajustá-la em no máximo uma classe para cima ou para baixo. Ajuste só quando as observações mostrarem algo que as notas não captam (por exemplo, experiência em partidas, comportamento sob pressão, consistência muito acima ou abaixo das notas). Na justificativa, diga se manteve ou ajustou e por quê.'
+  '- A média ponderada das notas dá a classe calculada, que é o ponto de partida. Use as observações do professor (por golpe, pontos fortes, pontos a melhorar, jogo e competição) para confirmar essa classe ou ajustá-la em no máximo uma classe para cima ou para baixo. Ajuste só quando as observações mostrarem algo que as notas não captam (por exemplo, experiência em partidas, comportamento sob pressão, consistência muito acima ou abaixo das notas). Esse procedimento é interno: o texto para o aluno nunca o descreve.'
 ].join('\n');
 
 function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
@@ -279,14 +283,16 @@ function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
   conteudo1.push({ type: 'text', text: 'Escreva agora a parte do diagnóstico, no formato JSON pedido.' + (quadros.length ? ' Analise os quadros do saque.' : ' Não há vídeo do saque nesta aula: não inclua o campo "saque".') });
 
   /* Saída estruturada: o Claude responde um JSON que segue o esquema */
+  /* Sem raciocínio prévio (between_tools): a resposta sai mais rápida e o
+     raciocínio não consome o limite de tamanho; o Apps Script corta em ~60 s */
   const p1 = {
-    model: modelo(), max_tokens: 4000, system: SISTEMA,
-    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe))) } },
+    model: modelo(), max_tokens: 8000, system: SISTEMA, thinking: { type: 'between_tools' },
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe))) } },
     messages: [{ role: 'user', content: conteudo1 }]
   };
   const p2 = {
-    model: modelo(), max_tokens: 3000, system: SISTEMA,
-    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_PLANO(reav)) } },
+    model: modelo(), max_tokens: 6000, system: SISTEMA, thinking: { type: 'between_tools' },
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_PLANO(reav)) } },
     messages: [{ role: 'user', content: contexto + '\n\n' + (reav
       ? 'Monte o PRÓXIMO CICLO de 8 semanas, com 2 fases de 4 semanas e 3 itens cada. Continue a numeração das semanas a partir do plano anterior (se a reavaliação foi ao fim da semana 8, comece na semana 9). Marque a última fase com reavaliacao = true. Ataque primeiro o "Foco do próximo ciclo" e as notas mais baixas.'
       : 'Monte um plano de 12 semanas, com 3 fases de 4 semanas (Semanas 1 a 4, 5 a 8, 9 a 12) e 3 itens cada. A primeira fase ataca os pontos a melhorar e as notas mais baixas; a última leva para o jogo. Marque a fase 2 com reavaliacao = true (reavaliação ao fim da semana 8).') +
@@ -299,7 +305,9 @@ function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
   d.classeSugerida = igual(CLASSES, d.classeSugerida);
   d.golpes = (d.golpes || []).map(g => Object.assign({}, g, { golpe: igual(GOLPES, g.golpe) || g.golpe }));
   if (d.saque) d.saque.quadros = (d.saque.quadros || []).map(q => Object.assign({}, q, { fase: igual(FASES, q.fase) || q.fase }));
-  return { diagnostico: d, plano: p };
+  const uso = r.map(x => (x.usage || {}).output_tokens || 0);
+  console.log('Claude · tokens de saída: ' + uso.join(' + '));
+  return { diagnostico: d, plano: p, uso: uso };
 }
 
 function montarContexto(av, cal, tipo, antDiag, antClasse, quadros) {
@@ -346,8 +354,8 @@ const ESQUEMA_DIAGNOSTICO = (reav, opcoesClasse) => ({
   type: 'object',
   properties: {
     classeSugerida: { type: 'string', enum: opcoesClasse, description: 'A classe calculada pelas notas, ou uma acima ou abaixo se as observações do professor justificarem.' },
-    resumo: { type: 'string', description: reav ? '3 a 4 frases: o que mudou desde a última avaliação, a classe e o rumo do próximo ciclo.' : '3 a 4 frases: a base do aluno, o que mais segura o jogo hoje e a meta das próximas 12 semanas.' },
-    justificativa: { type: 'string', description: '2 a 4 frases explicando a classe sugerida: a média e a faixa, como o jogo se encaixa na descrição do nível ITN, o que as observações do professor mostram e, se houve ajuste em relação à classe calculada, o motivo.' },
+    resumo: { type: 'string', description: reav ? '3 a 4 frases para o aluno: o que mudou desde a última avaliação, a classe e o rumo do próximo ciclo.' : '3 a 4 frases para o aluno: o que ele já faz bem, o que mais segura o jogo hoje e a meta das próximas 12 semanas.' },
+    justificativa: { type: 'string', description: '2 a 4 frases para o aluno, na voz do Paulo: em que classe ele está e por quê, ligando o que se vê no jogo dele à descrição do nível ITN, e o que falta para a próxima classe. Pode dizer de forma simples que as notas ficaram na faixa dessa classe. Só se a classe sugerida for diferente da classe pelas notas, explique em uma frase, pelo jogo do aluno, por que ele está uma classe acima ou abaixo (ex.: "pelas notas, você ficaria na 5ª, mas a firmeza nos pontos disputados já é de 4ª"). Se forem iguais, não fale de ajuste.' },
     fortes: { type: 'array', items: { type: 'string' }, description: reav ? '3 itens: o que evoluiu, cada um com o golpe e o efeito prático.' : '3 pontos fortes, cada um com o golpe e o efeito prático.' },
     melhorar: { type: 'array', items: { type: 'string' }, description: reav ? '3 itens: foco do próximo ciclo.' : '3 pontos a melhorar, cada um com o golpe, o que acontece e a consequência.' },
     golpes: {
