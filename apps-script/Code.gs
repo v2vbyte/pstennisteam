@@ -542,7 +542,8 @@ function salvarPdf(req) {
     if (au.pdfId) { try { DriveApp.getFileById(au.pdfId).setTrashed(true); } catch (e) {} }
     const nome = au.tipo === 'reavaliacao' ? 'Reavaliação - ' + al.nome + ' - ' + au.data.replace(/\//g, '-') + '.pdf' : 'Avaliação - ' + al.nome + '.pdf';
     const f = DriveApp.getFolderById(al.pastaId).createFile(Utilities.newBlob(bytes, 'application/pdf', nome));
-    au.pdfId = f.getId(); au.pdfUrl = f.getUrl(); au.pdfVersao = atual;
+    /* a versão guarda o diagnóstico e o layout do PDF: mudar qualquer um dos dois pede PDF novo */
+    au.pdfId = f.getId(); au.pdfUrl = f.getUrl(); au.pdfVersao = atual + '|' + String(req.layout || '').slice(0, 20);
     salvarIndice(idx);
     return { pdfUrl: au.pdfUrl, aulaId: au.id };
   });
