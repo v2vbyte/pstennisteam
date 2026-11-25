@@ -1,6 +1,6 @@
 /* =========================================================
    pstennisteam | Conversão do Google Ads e consentimento
-   A tag do Google (GTM-T9N2Z22P) e o consentimento padrão ficam
+   A tag do Google (gtag.js, AW-18593472042) e o consentimento padrão ficam
    no <head> de cada página, no formato que o Google Ads detecta.
    Este arquivo vem logo depois e cuida de duas coisas:
 

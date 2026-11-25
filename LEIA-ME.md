@@ -34,7 +34,7 @@ Ficam em `js/main.js`, seção 12, e no fim de `css/style.css`. Para incluir ou 
 
 ## Google Ads (tag e consentimento)
 
-- O código da tag do Google (`GTM-T9N2Z22P`, conta `AW-18593472042`) fica **direto no `<head>`** de cada página pública (`index.html`, `politica-cancelamento-reposicao.html` e `aula-experimental/index.html`), no formato do Google Ads, para o Google detectar a tag. Antes dele vem o consentimento padrão (negado). Toda página pública nova precisa do mesmo bloco. A área do professor (`professor/`) fica de fora de propósito: é ferramenta interna.
+- O código da tag do Google (gtag.js, conta `AW-18593472042`) fica **direto no `<head>`** de cada página pública (`index.html`, `politica-cancelamento-reposicao.html` e `aula-experimental/index.html`), no formato do Google Ads, para o Google detectar a tag. Antes dele vem o consentimento padrão (negado). Toda página pública nova precisa do mesmo bloco. A área do professor (`professor/`) fica de fora de propósito: é ferramenta interna.
 - `js/tag-google.js`, carregado logo depois, envia a conversão "Contato" (clique no WhatsApp) e oferece `PSConsentimento` para as faixas de cookies.
 - Para não contar robôs e toques acidentais, a conversão só conta com clique real, navegador não automatizado, pelo menos `TEMPO_MINIMO` segundos na página e uma vez por visita.
 - Consentimento (LGPD): a tag começa sem cookies de anúncio e só os usa depois do "Aceitar". A escolha vale para o site inteiro e pode ser mudada em "Preferências de cookies", no rodapé.
