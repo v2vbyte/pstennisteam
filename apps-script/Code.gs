@@ -257,25 +257,30 @@ function escreverComClaude(av, cal, tipo, antDiag, antClasse, quadros) {
     const m = /^data:(image\/[a-z]+);base64,(.+)$/.exec(q.img || '');
     if (m) { conteudo1.push({ type: 'text', text: 'Quadro ' + (i + 1) + ' do saque: ' + q.fase }); conteudo1.push({ type: 'image', source: { type: 'base64', media_type: m[1], data: m[2] } }); }
   });
-  conteudo1.push({ type: 'text', text: 'Escreva agora a parte do diagnóstico com a ferramenta "diagnostico".' + (quadros.length ? ' Analise os quadros do saque.' : ' Não há vídeo do saque nesta aula: não preencha "saque".') });
+  conteudo1.push({ type: 'text', text: 'Escreva agora a parte do diagnóstico, no formato JSON pedido.' + (quadros.length ? ' Analise os quadros do saque.' : ' Não há vídeo do saque nesta aula: não inclua o campo "saque".') });
 
+  /* Saída estruturada: o Claude responde um JSON que segue o esquema */
   const p1 = {
     model: modelo(), max_tokens: 4000, system: SISTEMA,
-    tools: [{ name: 'diagnostico', description: 'Registra a parte de diagnóstico do relatório.', input_schema: ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe)) }],
-    tool_choice: { type: 'tool', name: 'diagnostico' },
+    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_DIAGNOSTICO(reav, classesVizinhas(cal.classe))) } },
     messages: [{ role: 'user', content: conteudo1 }]
   };
   const p2 = {
     model: modelo(), max_tokens: 3000, system: SISTEMA,
-    tools: [{ name: 'plano', description: 'Registra o plano de treino e o próximo passo do relatório.', input_schema: ESQUEMA_PLANO(reav) }],
-    tool_choice: { type: 'tool', name: 'plano' },
+    output_config: { format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_PLANO(reav)) } },
     messages: [{ role: 'user', content: contexto + '\n\n' + (reav
       ? 'Monte o PRÓXIMO CICLO de 8 semanas, com 2 fases de 4 semanas e 3 itens cada. Continue a numeração das semanas a partir do plano anterior (se a reavaliação foi ao fim da semana 8, comece na semana 9). Marque a última fase com reavaliacao = true. Ataque primeiro o "Foco do próximo ciclo" e as notas mais baixas.'
       : 'Monte um plano de 12 semanas, com 3 fases de 4 semanas (Semanas 1 a 4, 5 a 8, 9 a 12) e 3 itens cada. A primeira fase ataca os pontos a melhorar e as notas mais baixas; a última leva para o jogo. Marque a fase 2 com reavaliacao = true (reavaliação ao fim da semana 8).') +
-      ' Considere 1 aula por semana. Na recomendação, use uma das modalidades: aula individual, em dupla ou em grupo (4 pessoas), 1 vez por semana. Use a ferramenta "plano".' }]
+      ' Considere 1 aula por semana. Na recomendação, use uma das modalidades: aula individual, em dupla ou em grupo (4 pessoas), 1 vez por semana. Responda no formato JSON pedido.' }]
   };
   const r = chamarAnthropicVarios([p1, p2]);
-  return { diagnostico: entradaFerramenta(r[0], 'diagnostico'), plano: entradaFerramenta(r[1], 'plano') };
+  const d = lerJson(r[0]), p = lerJson(r[1]);
+  /* o esquema não garante maiúsculas e minúsculas nos valores fixos */
+  const igual = (lista, v) => lista.filter(x => x.toLowerCase() === String(v || '').trim().toLowerCase())[0] || null;
+  d.classeSugerida = igual(CLASSES, d.classeSugerida);
+  d.golpes = (d.golpes || []).map(g => Object.assign({}, g, { golpe: igual(GOLPES, g.golpe) || g.golpe }));
+  if (d.saque) d.saque.quadros = (d.saque.quadros || []).map(q => Object.assign({}, q, { fase: igual(FASES, q.fase) || q.fase }));
+  return { diagnostico: d, plano: p };
 }
 
 function montarContexto(av, cal, tipo, antDiag, antClasse, quadros) {
@@ -416,10 +421,21 @@ function chamarAnthropicVarios(corpos) {
   return resultados;
 }
 
-function entradaFerramenta(resp, nome) {
-  const b = (resp.content || []).filter(x => x.type === 'tool_use' && x.name === nome)[0];
-  if (!b || !b.input) throw publico('O Claude não devolveu o texto completo. Toque em "Tentar de novo".');
-  return limparTravessoes(b.input);
+function lerJson(resp) {
+  if (resp.stop_reason === 'max_tokens') throw publico('O texto do Claude ficou longo demais e foi cortado. Toque em "Tentar de novo".');
+  const txt = (resp.content || []).filter(x => x.type === 'text').map(x => x.text).join('');
+  let obj;
+  try { obj = JSON.parse(txt); } catch (e) { throw publico('O Claude não devolveu o texto completo. Toque em "Tentar de novo".'); }
+  return limparTravessoes(obj);
+}
+/* A saída estruturada exige additionalProperties: false em todo objeto */
+function esquemaFechado(e) {
+  if (Array.isArray(e)) return e.map(esquemaFechado);
+  if (!e || typeof e !== 'object') return e;
+  const o = {};
+  Object.keys(e).forEach(k => o[k] = esquemaFechado(e[k]));
+  if (o.type === 'object') o.additionalProperties = false;
+  return o;
 }
 /* Garante a regra da marca: nada de travessão no texto */
 function limparTravessoes(v) {

@@ -39,7 +39,7 @@ ok(!JSON.stringify(au).includes('fake-jpeg'.slice(0, 4) === 'fake' ? Buffer.from
 ok(au.av && au.av.nome === 'Ana Souza' && !au.av.quadros, 'av leve guardado para a reavaliação');
 const [c1, c2] = E.log.claude;
 ok(E.log.claude.length === 2 && c1.headers['x-api-key'] === 'sk-test' && c1.headers['anthropic-version'] === '2023-06-01', 'duas chamadas em paralelo com os cabeçalhos certos');
-ok(c1.corpo.model === 'claude-sonnet-5-5' && c1.corpo.tool_choice.name === 'diagnostico' && c2.corpo.tool_choice.name === 'plano', 'modelo e ferramentas certos');
+ok(c1.corpo.model === 'claude-sonnet-5-5' && !c1.corpo.tool_choice && c1.corpo.output_config.format.type === 'json_schema' && c2.corpo.output_config.format.schema.properties.plano, 'modelo e saída estruturada (sem tool_choice)');
 ok(JSON.stringify(c1.corpo.messages).includes('"type":"image"') && !JSON.stringify(c2.corpo.messages).includes('"type":"image"'), 'imagens do saque só na chamada do diagnóstico');
 ok(!JSON.stringify(E.log.claude).includes('pagou com pix'), 'notas internas NÃO vão para o Claude');
 ok(JSON.stringify(c1.corpo.messages).includes('contato atrasado'), 'observação por golpe vai para o Claude');
@@ -124,6 +124,11 @@ ok(r.aluno.aulas[0].diag.classe.sugerida === '5ª', 'resposta fora do limite é 
 E4 = criarAmbiente({ props: PROPS }); E4.ctx.configurar();
 r = E4.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: av1, calibragem: { media: 1.5, itn: 10, classe: '6ª', nivel: 'Principiante' } });
 ok(JSON.stringify(E4.log.opcoesClasse) === JSON.stringify(['6ª', '5ª']), 'na 6ª calculada, só 6ª ou 5ª');
+
+let E5 = criarAmbiente({ props: PROPS, caixaAlta: true }); E5.ctx.configurar();
+r = E5.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: av1, calibragem: cal1 });
+const d5 = E5.post({ action: 'ler', token: 'tok-ok', alunoId: r.aluno.id, aulaId: r.aluno.aulas[0].id }).diagnostico;
+ok(r.ok && d5.golpes[0].golpe === 'Forehand' && d5.classe.sugerida === '5ª', 'valores fixos com maiúsculas trocadas são corrigidos');
 
 console.log('10. erros do Claude');
 let E2 = criarAmbiente({ props: PROPS, falhaClaude: 401 }); E2.ctx.configurar();
