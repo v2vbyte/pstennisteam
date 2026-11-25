@@ -589,7 +589,7 @@ function criarDoc(d, pasta) {
   t.setHeading(DocumentApp.ParagraphHeading.TITLE);
   const st = {}; st[A.FONT_FAMILY] = 'Barlow Condensed'; st[A.BOLD] = true; st[A.FONT_SIZE] = 26; st[A.FOREGROUND_COLOR] = COR.tinta; t.setAttributes(st);
   par((reav ? 'Reavaliação' : 'Aula experimental') + ' · ' + d.aluno.data + ' · Prof. Paulo Santana');
-  const nota = par('Como editar: mude só o texto. Mantenha os títulos e os rótulos em negrito (como "O que eu vi:") para o PDF sair certo. Depois, volte à área do professor e toque em "Ver e salvar o PDF".');
+  const nota = par('Como editar: mude só o texto. Mantenha os títulos e os rótulos em negrito (como "O que eu vi:") para o PDF sair certo. Depois, volte à área do professor e toque em "Abrir o PDF".');
   const sn = {}; sn[A.ITALIC] = true; sn[A.FONT_SIZE] = 9; sn[A.FOREGROUND_COLOR] = COR.suave; nota.setAttributes(sn);
 
   titulo(SECOES.resumo[0]); par(d.resumo);
@@ -727,7 +727,7 @@ function avisarPorEmail(al, d, docUrl, pastaUrl) {
     '<h2 style="margin:6px 0 4px">' + e(al.nome) + ' · ' + e(d.aluno.data) + '</h2>' +
     '<p style="margin:0 0 14px;color:#5E574E">Classe sugerida: <b style="color:#1C1A17">' + e(d.classe.sugerida) + '</b>' + (d.classe.anterior ? ' (antes: ' + e(d.classe.anterior) + ')' : '') + ' · média ' + e(String(d.classe.media).replace('.', ',')) + '</p>' +
     '<p style="line-height:1.55">' + e(d.resumo) + '</p>' +
-    '<p style="line-height:1.55"><b>Próximos passos:</b> confirme a classe na área do professor e toque em "Ver e salvar o PDF" para enviar ao aluno o relatório com a identidade visual.</p>' +
+    '<p style="line-height:1.55"><b>Próximos passos:</b> confirme a classe na área do professor e toque em "Abrir o PDF" para enviar ao aluno o relatório com a identidade visual.</p>' +
     '<p><a href="' + CFG.SITE + '" style="background:#1C1A17;color:#F4EEE6;padding:10px 18px;border-radius:999px;text-decoration:none;display:inline-block">Abrir a área do professor</a></p>' +
     '<p style="font-size:13px;color:#5E574E">Texto editável: <a href="' + docUrl + '">Google Doc</a> · Pasta do aluno: <a href="' + pastaUrl + '">Drive</a></p></div>';
   const opcoes = { to: para, subject: 'Diagnóstico · ' + al.nome + ' · ' + d.aluno.data, htmlBody: html, name: 'PS Tennis · Área do professor' };
