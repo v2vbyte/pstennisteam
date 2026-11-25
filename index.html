@@ -69,6 +69,7 @@
     <nav class="main-nav" id="menu-principal" aria-label="Principal">
       <ul class="main-nav__list">
         <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#avaliacao">Avaliação</a></li>
         <li><a href="#aulas">Aulas</a></li>
         <li><a href="#programas">Programas</a></li>
         <li><a href="#onde">Onde</a></li>
@@ -165,8 +166,8 @@
           <li class="method__item">
             <span class="method__num" aria-hidden="true">01</span>
             <div>
-              <h3 class="method__title">Diagnóstico na primeira aula</h3>
-              <p class="method__text">Entender seu nível, seu corpo e o que você quer do tênis.</p>
+              <h3 class="method__title">Avaliação na primeira aula</h3>
+              <p class="method__text">Notas de 1 a 10 em 11 fundamentos, seu nível e sua classe, num relatório completo.</p>
             </div>
           </li>
           <li class="method__item">
@@ -179,11 +180,58 @@
           <li class="method__item">
             <span class="method__num" aria-hidden="true">03</span>
             <div>
-              <h3 class="method__title">Evolução registrada em vídeo</h3>
-              <p class="method__text">Você vê o antes e o depois do seu golpe, mês a mês.</p>
+              <h3 class="method__title">Evolução registrada</h3>
+              <p class="method__text">Vídeo e reavaliações mostram o antes e o depois do seu jogo e quando é hora de subir de classe.</p>
             </div>
           </li>
         </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AVALIAÇÃO E CLASSES ==========
+    Escada: cada degrau usa --h (1 a 6) para a altura. As faixas de ITN seguem a
+    tabela da área do professor (FAIXAS em professor/index.html). -->
+  <section class="section section--ink" id="avaliacao">
+    <div class="container eval">
+      <div class="eval__text">
+        <p class="eyebrow eyebrow--ball">Avaliação e classes</p>
+        <h2 class="section-title section-title--light">Seu jogo em notas. Sua evolução em classes.</h2>
+        <p class="eval__lead">Na aula experimental, o Paulo dá notas de 1 a 10 para 11 fundamentos do seu jogo e define o seu nível e a sua classe. Você recebe tudo num relatório completo em PDF, com um plano de treino feito para você.</p>
+        <ul class="eval__skills" aria-label="Fundamentos avaliados">
+          <li>Forehand</li>
+          <li>Backhand</li>
+          <li>Saque</li>
+          <li>Devolução</li>
+          <li>Voleio</li>
+          <li>Smash</li>
+          <li>Lob e passada</li>
+          <li>Movimentação</li>
+          <li>Consistência</li>
+          <li>Efeitos</li>
+          <li>Tática</li>
+        </ul>
+        <h3 class="eval__subtitle">O que vem no relatório</h3>
+        <ol class="eval__report">
+          <li><strong>Nível e classe</strong><span>De Principiante a Avançado, com a classe sugerida e o que falta para chegar à próxima.</span></li>
+          <li><strong>Seu jogo hoje</strong><span>Gráfico com as 11 notas, seus pontos fortes e o que mais precisa melhorar.</span></li>
+          <li><strong>Golpe a golpe</strong><span>Como corrigir os ajustes mais importantes, com um exercício para cada um.</span></li>
+          <li><strong>Análise do saque</strong><span>Quadro a quadro, a partir do vídeo gravado na aula.</span></li>
+          <li><strong>Plano de 12 semanas</strong><span>Fases de 4 semanas, com a primeira reavaliação já marcada.</span></li>
+        </ol>
+      </div>
+      <div class="eval__ladder">
+        <p class="eval__ladder-title">Da 6ª à 1ª classe</p>
+        <ol class="ladder" aria-label="Classes, da 6ª à 1ª, com a referência ITN de cada uma">
+          <li class="ladder__step" style="--h:1"><span class="ladder__bar">6ª</span><span class="ladder__itn">ITN<br>9-10</span></li>
+          <li class="ladder__step" style="--h:2"><span class="ladder__bar">5ª</span><span class="ladder__itn">ITN<br>8</span></li>
+          <li class="ladder__step" style="--h:3"><span class="ladder__bar">4ª</span><span class="ladder__itn">ITN<br>7</span></li>
+          <li class="ladder__step" style="--h:4"><span class="ladder__bar">3ª</span><span class="ladder__itn">ITN<br>6</span></li>
+          <li class="ladder__step" style="--h:5"><span class="ladder__bar">2ª</span><span class="ladder__itn">ITN<br>5</span></li>
+          <li class="ladder__step ladder__step--top" style="--h:6"><span class="ladder__bar">1ª</span><span class="ladder__itn">ITN<br>1-4</span></li>
+        </ol>
+        <p class="eval__ladder-text">A primeira reavaliação acontece ao fim da 8ª semana do plano e, depois, a cada ciclo de 8 semanas. O Paulo compara com a avaliação anterior e decide se você sobe ou mantém a classe.</p>
+        <p class="eval__ref">As notas seguem as descrições de nível do ITN, a escala internacional da ITF. As classes são as usadas em clubes e federações no Brasil.</p>
       </div>
     </div>
   </section>
@@ -535,7 +583,15 @@
         </details>
         <details class="faq__item" name="faq">
           <summary>Em quanto tempo consigo jogar uma partida?</summary>
-          <p>Depende da frequência e do seu ponto de partida. Na aula experimental definimos juntos metas realistas para os primeiros meses.</p>
+          <p>Depende da frequência e do seu ponto de partida. Na aula experimental definimos juntos metas realistas para os primeiros meses, que já vêm no seu plano de treino.</p>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>O que eu recebo depois da aula experimental?</summary>
+          <p>Um relatório completo em PDF: notas de 1 a 10 em 11 fundamentos, seu nível, sua classe sugerida, os ajustes mais importantes golpe a golpe, a análise do seu saque e um plano de treino de 12 semanas.</p>
+        </details>
+        <details class="faq__item" name="faq">
+          <summary>O que é a classe e como eu subo?</summary>
+          <p>As classes vão da 6ª, para quem está começando, à 1ª, para jogadores avançados, como nos clubes e federações. A sua classe parte da média das notas e do que o Paulo observa no seu jogo. Nas reavaliações, ele compara com a avaliação anterior e decide se você sobe ou mantém a classe.</p>
         </details>
         <details class="faq__item" name="faq">
           <summary>Por que a aula em condomínio tem preço diferente?</summary>
@@ -559,7 +615,7 @@
     <div class="container cta__inner">
       <div class="cta__text">
         <h2 class="cta__title">A primeira aula é para a gente se conhecer.</h2>
-        <p class="cta__lead">Aula experimental com diagnóstico do seu jogo e um plano para os primeiros meses.</p>
+        <p class="cta__lead">Aula experimental com avaliação completa do seu jogo, relatório em PDF e um plano para os primeiros meses.</p>
       </div>
       <div class="cta__actions">
         <a class="btn btn--ball btn--xl" href="#" data-whatsapp="Olá! Vim pelo site e gostaria de agendar uma aula experimental." target="_blank" rel="noopener">
@@ -583,6 +639,7 @@
       <p class="site-footer__title">Navegação</p>
       <ul class="site-footer__list">
         <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#avaliacao">Avaliação e classes</a></li>
         <li><a href="#aulas">Aulas</a></li>
         <li><a href="#programas">Programas adicionais</a></li>
         <li><a href="#onde">Onde e quando</a></li>
@@ -636,11 +693,16 @@
     </div>
     <div class="privacy-dialog__body">
       <h3>Quais dados este site coleta</h3>
-      <p>Nenhum dado pessoal, como nome, telefone ou e-mail. O site não tem formulários nem cadastro. A única ferramenta de medição é a do Google, explicada em "Anúncios do Google".</p>
+      <p>De quem visita, nenhum dado pessoal, como nome, telefone ou e-mail. O site não tem formulários nem cadastro para visitantes. A única ferramenta de medição é a do Google, explicada em "Anúncios do Google". Os dados que o professor registra na avaliação dos alunos estão explicados em "Avaliação dos alunos".</p>
       <h3>O teste "Qual aula é para você?"</h3>
       <p>As respostas ficam só no seu navegador, enquanto a página está aberta. Nada é enviado ou guardado. Elas só saem daqui se você decidir mandar a mensagem pelo WhatsApp.</p>
       <h3>Contato pelo WhatsApp</h3>
       <p>Ao clicar em um botão de WhatsApp, você é levado ao aplicativo com uma mensagem pronta, que pode editar antes de enviar. As informações que você mandar são usadas apenas para responder e agendar aulas.</p>
+      <h3>Avaliação dos alunos</h3>
+      <p>Na aula experimental e nas reavaliações, o Paulo registra, com a sua autorização: nome, idade, WhatsApp, local das aulas, objetivo e experiência no tênis, as notas e observações da aula e alguns quadros do vídeo do seu saque. Se o aluno for menor de idade, o responsável também precisa autorizar.</p>
+      <p>Esses dados servem para montar o seu relatório e acompanhar a sua evolução nas reavaliações. Eles ficam guardados na conta Google do PS Tennis Team (Google Drive e planilha de registro das aulas), com acesso restrito ao professor e a quem mantém o sistema. As imagens do vídeo não são publicadas sem uma nova autorização.</p>
+      <p>Para escrever o texto do relatório, usamos o Claude, um serviço de inteligência artificial da Anthropic. Ele recebe o nome, a idade, as notas, as observações e os quadros do saque, mas não o seu WhatsApp. O Paulo confirma a classe e pode ajustar o texto antes de entregar o relatório.</p>
+      <p>Você pode pedir uma cópia, a correção ou a exclusão dos seus dados a qualquer momento, pelo WhatsApp.</p>
       <h3>Anúncios do Google</h3>
       <p>O site usa a tag do Google Ads para saber se os anúncios no Google trazem pessoas até o WhatsApp: ela registra visitas às páginas e toques nos botões de WhatsApp de quem chegou por um anúncio.</p>
       <p>Na primeira visita, você escolhe se aceita os cookies de anúncios. Se aceitar, o Google pode usar cookies e o identificador do clique no anúncio, conforme a política de privacidade dele. Se recusar, nenhum cookie de anúncio é gravado e o Google recebe apenas sinais sem cookies, que usa de forma agregada para estimar resultados. Para mudar a escolha, use "Preferências de cookies" no rodapé.</p>
