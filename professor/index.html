@@ -786,7 +786,7 @@ function vForm() {
   <div class="foot"><div class="in"><button class="btn b-ghost" data-a="voltar">${S.step ? 'Voltar' : 'Cancelar'}</button><button class="btn b-ink" data-a="${ult ? 'gerar' : 'avancar'}" ${e.ok(av) ? '' : 'disabled'}>${ult ? 'Gerar diagnóstico' : 'Avançar'}</button></div></div>`;
 }
 function vGerando() {
-  const passos = ['Enviando a ficha','Analisando os quadros do saque', S.base ? 'Comparando com a aula anterior' : 'Escrevendo o diagnóstico','Calibrando a classe (critérios ITN)','Montando o plano de treino','Salvando no Google Drive','Enviando o PDF por e-mail'];
+  const passos = ['Enviando a ficha','Analisando os quadros do saque', S.base ? 'Comparando com a aula anterior' : 'Escrevendo o diagnóstico','Calibrando a classe (critérios ITN)','Montando o plano de treino','Salvando no Google Drive','Avisando por e-mail'];
   return `${topo()}<main class="wrap gen"><span class="over">Só um instante</span><h1>Gerando o diagnóstico</h1><ol id="gp">${passos.map(p => `<li><i></i>${p}</li>`).join('')}</ol></main>`;
 }
 
@@ -806,6 +806,7 @@ function classeCard(al) {
   return `<section class="cls">${COURT()}<span class="over">Confirme a classe</span>
     <div class="cn">${esc(c.sugerida)}<small>classe sugerida</small></div>
     <p>${ant ? `Classe atual: <b>${esc(ant)}</b>. ` : ''}Média ${fmt(c.media)} · referência ITN ${fmt(c.itn)} · ${esc(c.nivel)}</p>
+    ${c.calculada && c.calculada !== c.sugerida ? `<p>Pelas notas, a classe seria <b>${esc(c.calculada)}</b>. As suas observações levaram à sugestão da <b>${esc(c.sugerida)}</b>.</p>` : ''}
     <p class="just">${esc(c.justificativa || '')}</p>
     <div class="chips cc" role="group" aria-label="Escolher classe">${CLASSES.map(k => `<button type="button" class="chip" data-csel="${k}" aria-pressed="${sel === k}">${k}${k === c.sugerida ? ' · sugerida' : ''}${k === ant ? ' · atual' : ''}</button>`).join('')}</div>
     <button class="btn b-lima b-full" data-a="confirmar" data-aula="${esc(u.id)}">${esc(lbl)}</button></section>`;
@@ -835,7 +836,7 @@ function vAluno() {
     <p class="rs">${esc(au.diag.resumo)}</p>
     <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Ver e salvar o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
     ${subiuEm(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Post de parabéns</button>` : ''}
-    <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'PDF enviado por e-mail e salvo no Google Drive.'}</p></div>`).join('')}</div>
+    <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'Diagnóstico salvo no Google Drive e avisado por e-mail.'}</p></div>`).join('')}</div>
   <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
   </main>`;
 }
@@ -1158,7 +1159,7 @@ function bind() {
       if (a === 'doc') { if (au.docUrl) { window.open(au.docUrl, '_blank', 'noopener'); return; }
         return modal('Editar o texto', 'Na versão final, este botão abre o diagnóstico como Google Doc, guardado na pasta do aluno no Drive. Você corrige o que quiser lá, volta aqui e toca em "Ver e salvar o PDF": o PDF sai com o texto já editado.'); }
       let d = au.diag;
-      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) {} }
+      if (!DEMO) { try { d = (await api('ler', { alunoId: al.id, aulaId: au.id })).diagnostico; au.diag = d; save(db); } catch (e) { return modal('Não deu para abrir o PDF', e.message); } }
       return abrirRelatorio(d);
     }
   };
