@@ -32,12 +32,24 @@ O rally do topo fica em `js/main.js`, na seção 10. Os pontos de batida estão 
 
 Ficam em `js/main.js`, seção 12, e no fim de `css/style.css`. Para incluir ou tirar blocos, edite a lista `ANIMAR` (seletor e tipo: sobe, `esq`, `dir` ou `zoom`); `ESCALONAR` controla o intervalo entre itens do mesmo grupo. Os números das credenciais contam do zero. Nada anima para quem ativou "reduzir movimento".
 
-## Google Ads (tag e consentimento)
+## Tag do Google (Ads, Analytics e consentimento)
 
-- O código da tag do Google (gtag.js, conta `AW-18593472042`) fica **direto no `<head>`** de cada página pública (`index.html`, `politica-cancelamento-reposicao.html` e `aula-experimental/index.html`), no formato do Google Ads, para o Google detectar a tag. Antes dele vem o consentimento padrão (negado). Toda página pública nova precisa do mesmo bloco. A área do professor (`professor/`) fica de fora de propósito: é ferramenta interna.
-- `js/tag-google.js`, carregado logo depois, envia a conversão "Contato" (clique no WhatsApp) e oferece `PSConsentimento` para as faixas de cookies.
-- Para não contar robôs e toques acidentais, a conversão só conta com clique real, navegador não automatizado, pelo menos `TEMPO_MINIMO` segundos na página e uma vez por visita.
-- Consentimento (LGPD): a tag começa sem cookies de anúncio e só os usa depois do "Aceitar". A escolha vale para o site inteiro e pode ser mudada em "Preferências de cookies", no rodapé.
+- O código da tag do Google (gtag.js, conta `AW-18593472042`) fica **direto no `<head>`** de cada página pública (`index.html`, `politica-cancelamento-reposicao.html` e `aula-experimental/index.html`), no formato do Google Ads, para o Google detectar a tag. Antes dele vem o consentimento padrão (negado). Toda página pública nova precisa do mesmo bloco. A área do professor (`professor/`) e a página 404 ficam de fora de propósito.
+- `js/tag-google.js`, carregado logo depois, envia a conversão "Contato" do Google Ads (clique no WhatsApp), liga o Google Analytics 4 e oferece `PSConsentimento` para as faixas de cookies.
+- Para não contar robôs e toques acidentais, a conversão do Ads só conta com clique real, navegador não automatizado, pelo menos `TEMPO_MINIMO` segundos na página e uma vez por visita.
+- **Google Analytics 4:** fica desligado enquanto `GA4` estiver vazio no início de `js/tag-google.js`. Para ligar, cole ali o ID da propriedade (formato `G-XXXXXXXXXX`). Não precisa mexer nas páginas. O GA4 registra sozinho visitas, origem, rolagem e cliques em links externos, e o site envia dois eventos próprios:
+  - `clique_whatsapp`: todo clique real em um botão de WhatsApp, com o parâmetro `origem` (id da seção, `botao-flutuante` ou `rodape`). Marque como **evento principal** no GA4.
+  - `teste_concluido`: quando alguém termina o teste "Qual aula é para você?", com `para_quem`, `objetivo` e `formato` (só o tipo de resultado, nunca a mensagem). Vem de `js/main.js` por `PSMedir.evento`.
+- Consentimento (LGPD): a tag começa sem cookies de anúncio nem de estatística e só os usa depois do "Aceitar". Uma escolha vale para os dois e para o site inteiro, e pode ser mudada em "Preferências de cookies", no rodapé. A escolha fica no navegador com a chave `ps-consentimento` (antes era `ps-consentimento-anuncios`; a troca fez a faixa aparecer de novo para todos, com o texto novo). Se mudar a chave, mude no `<head>` de cada página e em `js/tag-google.js`.
+- O aviso de privacidade (em `index.html`) explica as duas medições em "Estatísticas de visitas" e "Anúncios do Google". Se um evento novo passar a enviar outro tipo de informação, atualize o texto.
+
+## Busca no Google (SEO)
+
+- `sitemap.xml`: lista das páginas públicas para os buscadores. Ao criar uma página (ou o blog), inclua um bloco `<url>` e atualize `<lastmod>`. A área do professor e `midia-anuncios/` ficam de fora.
+- `robots.txt`: libera o site e aponta o sitemap. Bloqueia só `apps-script/`. A área do professor não aparece nele de propósito, para não divulgar o endereço: ela já tem `noindex`.
+- **Dados estruturados (schema.org):** blocos `application/ld+json` no `<head>`. Na home, o site e o negócio (endereço da Fama Tennis, telefone, e-mail, Instagram, Paulo Santana e as modalidades, sem preços). Na aula experimental, o serviço, ligado ao negócio pelo `@id`. Só entra o que também aparece na página. Se telefone, endereço ou modalidades mudarem, atualize junto. Para conferir: [Teste de pesquisa aprimorada](https://search.google.com/test/rich-results) e [validator.schema.org](https://validator.schema.org).
+- Toda página pública tem `<link rel="canonical">` com o endereço completo.
+- `404.html`: página de erro na identidade da marca, que o GitHub Pages mostra em qualquer endereço inexistente. Por isso os caminhos dela começam com `/`. Tem `noindex` e não carrega a tag do Google.
 
 ## Avaliação e classes (site público)
 

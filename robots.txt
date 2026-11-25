@@ -1,0 +1,7 @@
+# Buscadores podem ler o site inteiro, menos o código do motor da avaliação.
+# A área do professor não é listada aqui de propósito: ela já tem "noindex"
+# e citá-la neste arquivo só divulgaria o endereço.
+User-agent: *
+Disallow: /apps-script/
+
+Sitemap: https://pstennisteam.com/sitemap.xml
