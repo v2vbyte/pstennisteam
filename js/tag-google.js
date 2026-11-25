@@ -1,65 +1,45 @@
 /* =========================================================
-   pstennisteam | Tag do Google (Google Ads) com consentimento
-   Carregado no <head> de TODAS as páginas, antes de qualquer outro script.
+   pstennisteam | Conversão do Google Ads e consentimento
+   A tag do Google (GTM-T9N2Z22P) e o consentimento padrão ficam
+   no <head> de cada página, no formato que o Google Ads detecta.
+   Este arquivo vem logo depois e cuida de duas coisas:
 
-   - TAG_ID: tag do Google entregue pelo Google Ads (contêiner GTM-...).
-   - ADS_CONTA: ID da conta do Google Ads (AW-...).
-   - CONVERSAO: "send_to" da conversão "Contato" (clique no WhatsApp).
-     Enquanto tiver XXX, a conversão não é enviada.
-   - Consentimento (LGPD): a tag começa sem cookies de anúncio (modo de
-     consentimento do Google) e só passa a usá-los depois que a pessoa
-     toca em "Aceitar". A escolha vale para o site inteiro e fica salva
-     no navegador. As páginas mostram a faixa e chamam PSConsentimento.
+   1. Conversão "Contato" (clique no WhatsApp). Para não contar robôs
+      e toques acidentais de anúncios de Display, só conta quando:
+      - o clique é de verdade (não gerado por script);
+      - o navegador não está em modo automatizado;
+      - a pessoa está na página há pelo menos TEMPO_MINIMO segundos;
+      - é o primeiro clique de WhatsApp nesta visita.
+   2. PSConsentimento: usado pelas faixas de cookies das páginas.
    ========================================================= */
 (function () {
   'use strict';
 
-  var TAG_ID = 'GTM-T9N2Z22P';
-  var ADS_CONTA = 'AW-18593472042';
   var CONVERSAO = 'AW-18593472042/XTxLCOjQ0b4dEKq8h6JF'; // conversão "Contato"
+  var TEMPO_MINIMO = 4; // segundos na página antes de o clique contar
   var CHAVE = 'ps-consentimento-anuncios';
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   var gtag = window.gtag;
 
-  function salvo() {
-    try { return localStorage.getItem(CHAVE); } catch (e) { return null; }
-  }
+  var inicio = Date.now();
+  var jaContou = false;
 
-  // Padrão: tudo negado até a pessoa aceitar
-  gtag('consent', 'default', {
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: 'denied',
-    wait_for_update: 500
-  });
-  gtag('set', 'ads_data_redaction', true);
-  gtag('set', 'url_passthrough', true);
-  if (salvo() === 'aceito') {
-    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
-  }
-
-  // Tag do Google (mesmo código entregue pelo Google Ads)
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtm.js?id=' + TAG_ID;
-  document.head.appendChild(s);
-  gtag('js', new Date());
-  // Garante que a conta do Google Ads esteja ligada à tag, para a conversão chegar
-  gtag('config', ADS_CONTA);
-
-  // Conversão: qualquer clique em link de WhatsApp, em qualquer página
   document.addEventListener('click', function (e) {
     var link = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
-    if (!link || CONVERSAO.indexOf('XXX') !== -1) return;
+    if (!link || jaContou) return;
+    if (!e.isTrusted) return;
+    if (navigator.webdriver) return;
+    if ((Date.now() - inicio) / 1000 < TEMPO_MINIMO) return;
+    jaContou = true;
     gtag('event', 'conversion', { send_to: CONVERSAO, value: 1.0, currency: 'BRL' });
   });
 
-  // Usado pelas faixas de consentimento das páginas
   window.PSConsentimento = {
-    escolha: salvo,
+    escolha: function () {
+      try { return localStorage.getItem(CHAVE); } catch (e) { return null; }
+    },
     definir: function (escolha) {
       try { localStorage.setItem(CHAVE, escolha); } catch (e) { /* navegador sem armazenamento */ }
       var valor = escolha === 'aceito' ? 'granted' : 'denied';
