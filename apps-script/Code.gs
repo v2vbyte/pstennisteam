@@ -79,6 +79,25 @@ function testarClaude() {
   Logger.log('Claude respondeu: ' + r.content.map(b => b.text || '').join(''));
 }
 
+/* Teste completo do texto, sem mexer no Drive (rodar pelo editor) */
+function testarDiagnostico() {
+  const av = {
+    nome: 'Aluno Teste', idade: '30', local: 'Fama Tennis', objetivo: 'Jogar partidas', tempo: '1 a 3 anos', experiencia: 'Joga com amigos',
+    mao: 'Destro', backhand: 'Duas mãos', empunhadura: 'Eastern', nivel: 'Iniciante',
+    golpes: { Forehand: { nota: 5, obs: 'contato atrasado em bola rápida' }, Backhand: { nota: 4, obs: '' }, Saque: { nota: 3, obs: 'lançamento irregular' }, Movimentação: { nota: 6, obs: '' }, Consistência: { nota: 4, obs: '' } },
+    fortes: 'se movimenta bem e tem vontade', melhorar: 'saque e backhand', gerais: 'fica nervoso quando o placar aperta', quadros: []
+  };
+  const cal = { media: 4.3, itn: 7.5, classe: '4ª', nivel: 'Iniciante' };
+  const t0 = Date.now();
+  const r = escreverComClaude(av, cal, 'experimental', null, '', []);
+  Logger.log('Tempo: ' + Math.round((Date.now() - t0) / 1000) + ' segundos');
+  Logger.log('Classe sugerida: ' + r.diagnostico.classeSugerida + ' (calculada pelas notas: 4ª)');
+  Logger.log('Resumo: ' + r.diagnostico.resumo);
+  Logger.log('Justificativa: ' + r.diagnostico.justificativa);
+  Logger.log('Plano: ' + r.plano.planoTitulo + ' · ' + (r.plano.plano || []).map(f => f.semanas + ' ' + f.titulo).join(' | '));
+  Logger.log('Tudo certo: o motor conversa com o Claude.');
+}
+
 /* =====================================================================
    ENTRADA DA PÁGINA
    ===================================================================== */
