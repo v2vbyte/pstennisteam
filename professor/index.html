@@ -1214,6 +1214,7 @@ async function montarPdf(d) {
   } finally { box.remove(); }
 }
 const pdfEmCurso = new Set(), pdfPendente = new Set();
+const VERSAO_LAYOUT = 'celular-1';   /* mude ao alterar o layout do PDF: as cópias do Drive são refeitas */
 async function sincronizarPdf(alunoId, aulaId, lido, pronto) {
   if (DEMO) return;
   if (pdfEmCurso.has(aulaId)) { pdfPendente.add(aulaId); return; }
@@ -1221,10 +1222,10 @@ async function sincronizarPdf(alunoId, aulaId, lido, pronto) {
   const msg = t => { const m = $('#pdfmsg'); if (m) m.textContent = t; };
   try {
     const r = lido || await api('ler', { alunoId, aulaId });
-    if (r.versao && r.pdfVersao === r.versao) return;
+    if (r.versao && r.pdfVersao === r.versao + '|' + VERSAO_LAYOUT) return;
     msg('Salvando uma cópia na pasta do aluno no Drive…');
     const doc = pronto || await montarPdf(r.diagnostico);
-    const s = await api('salvarPdf', { alunoId, aulaId, versao: r.versao, pdf: doc.output('datauristring') });
+    const s = await api('salvarPdf', { alunoId, aulaId, versao: r.versao, layout: VERSAO_LAYOUT, pdf: doc.output('datauristring') });
     const al = db.alunos.find(x => x.id === alunoId), au = al && al.aulas.find(x => x.id === aulaId);
     if (au && s.pdfUrl) { au.pdfUrl = s.pdfUrl; save(db); }
     if (!s.ignorado) msg('Uma cópia está salva na pasta do aluno no Drive.');
