@@ -27,7 +27,7 @@
 <link rel="canonical" href="https://pstennisteam.com/aula-experimental/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aula experimental de tênis em BH | PS Tennis Team">
-<meta property="og:description" content="Diagnóstico na primeira aula, plano pelo seu objetivo e evolução registrada em vídeo.">
+<meta property="og:description" content="Avaliação completa na primeira aula: notas em 11 fundamentos, nível, classe e um plano de treino de 12 semanas.">
 <meta property="og:url" content="https://pstennisteam.com/aula-experimental/">
 <meta property="og:image" content="https://pstennisteam.com/aula-experimental/img/paulo-quadra.jpg">
 <meta name="theme-color" content="#1C1A17">
@@ -126,6 +126,30 @@
   .passo p{ color:var(--texto-forte); font-size:16px; }
   .pilares{ margin-top:48px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
   .pilares p{ font-size:15px; font-weight:600; color:var(--texto-suave); margin-right:6px; }
+
+  /* O relatório */
+  .relatorio{ background:var(--areia); }
+  .rel-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:72px; align-items:center; }
+  .relatorio .sobre{ margin-bottom:16px; }
+  .relatorio h2{ margin-bottom:24px; }
+  .relatorio .destaque{ color:var(--texto-forte); margin-bottom:28px; }
+  .rel-lista{ list-style:none; border-top:1px solid var(--linha); }
+  .rel-lista li{ position:relative; padding:14px 0 14px 34px; border-bottom:1px solid var(--linha); color:var(--texto-forte); font-size:16px; }
+  .rel-lista li::before{ content:""; position:absolute; left:4px; top:20px; width:14px; height:14px; border-radius:50%; background:var(--saibro); }
+  .rel-lista strong{ color:var(--tinta); }
+  .capa{ position:relative; overflow:hidden; background:var(--tinta); color:var(--creme); border-radius:var(--r-bloco); padding:32px 30px 26px; box-shadow:0 24px 48px rgba(28,26,23,.22); }
+  .capa .quadra{ right:-90px; top:-60px; width:300px; }
+  .capa > *:not(.quadra){ position:relative; }
+  .capa-topo{ display:flex; justify-content:space-between; gap:10px; margin-bottom:26px; }
+  .capa-titulo{ font-family:var(--titulo); font-weight:800; font-size:clamp(36px, 4.2vw, 52px); overflow-wrap:anywhere; line-height:.9; text-transform:uppercase; }
+  .capa-titulo span{ display:block; font-weight:600; font-size:22px; letter-spacing:.08em; color:var(--texto-escuro); margin-top:8px; }
+  .capa-nome{ margin-top:22px; font-size:19px; font-weight:700; }
+  .capa-dados{ display:grid; grid-template-columns:.8fr 1.7fr .8fr .6fr; gap:10px; margin-top:20px; padding:18px 0; border-top:1px solid var(--grafite); border-bottom:1px solid var(--grafite); }
+  .capa-dados span{ display:block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--texto-escuro); }
+  .capa-dados strong{ display:block; font-family:var(--titulo); font-weight:800; font-size:30px; line-height:1.1; text-transform:uppercase; }
+  .capa-radar{ display:block; width:min(220px, 70%); margin:22px auto 10px; color:var(--creme); }
+  .capa-radar-nota{ fill:rgba(168,73,42,.55); stroke:var(--lima); stroke-width:2; stroke-linejoin:round; }
+  .capa figcaption{ font-size:13px; color:var(--texto-escuro); text-align:center; }
 
   /* Professor */
   .professor{ background:var(--tinta); color:var(--creme); }
@@ -228,10 +252,11 @@
   .quadra.anim-quadra.is-in{ stroke-dashoffset:0; }
 
   :focus-visible{ outline:3px solid var(--lima); outline-offset:3px; }
-  .como :focus-visible, .onde :focus-visible, .modalidades :focus-visible, .perguntas :focus-visible{ outline-color:var(--saibro); }
+  .como :focus-visible, .relatorio :focus-visible, .onde :focus-visible, .modalidades :focus-visible, .perguntas :focus-visible{ outline-color:var(--saibro); }
 
   @media (max-width: 960px){
-    .hero-grid, .prof-grid{ grid-template-columns:minmax(0,1fr); gap:40px; }
+    .hero-grid, .prof-grid, .rel-grid{ grid-template-columns:minmax(0,1fr); gap:40px; }
+    .capa{ max-width:480px; }
     .hero .foto{ aspect-ratio:4/3; }
     .hero .foto img{ object-position:50% 30%; }
     .professor .foto{ aspect-ratio:4/3; order:2; }
@@ -247,6 +272,8 @@
     .topo .btn span{ display:none; }
     .topo .btn{ padding:0 14px; }
     .faixa-grid{ grid-template-columns:1fr; gap:22px; }
+    .capa{ padding:28px 22px 22px; }
+    .capa-dados{ grid-template-columns:1fr 1fr; gap:14px 10px; }
     .mods{ grid-template-columns:1fr; }
     .hero-acoes .btn{ width:100%; justify-content:center; }
     .final .btn{ width:100%; justify-content:center; }
@@ -334,8 +361,8 @@
       <div class="passos">
         <article class="passo">
           <div class="num">01</div>
-          <h3>Diagnóstico</h3>
-          <p>Na primeira aula, o Paulo observa seus golpes, sua movimentação e seu jeito de jogar para entender o seu ponto de partida.</p>
+          <h3>Avaliação completa</h3>
+          <p>Na primeira aula, o Paulo dá notas de 1 a 10 para 11 fundamentos do seu jogo e define o seu nível e a sua classe.</p>
         </article>
         <article class="passo">
           <div class="num">02</div>
@@ -344,8 +371,8 @@
         </article>
         <article class="passo">
           <div class="num">03</div>
-          <h3>Evolução em vídeo</h3>
-          <p>Sua evolução fica registrada em vídeo, para você enxergar o que mudou e o que ainda falta ajustar.</p>
+          <h3>Evolução registrada</h3>
+          <p>Vídeo e reavaliações mostram o que mudou, o que ainda falta ajustar e quando você sobe de classe.</p>
         </article>
       </div>
       <div class="pilares">
@@ -359,7 +386,51 @@
     </div>
   </section>
 
-  <!-- 4. O professor -->
+  <!-- 4. O relatório (a capa ao lado é um exemplo ilustrativo, com dados fictícios) -->
+  <section class="secao relatorio">
+    <div class="wrap rel-grid">
+      <div>
+        <p class="sobre">O que você leva</p>
+        <h2>Você sai com o <span class="saibro">raio-x do seu jogo</span></h2>
+        <p class="destaque">Depois da aula experimental, você recebe um relatório completo em PDF, com notas, nível, classe e um plano de treino feito para você.</p>
+        <ul class="rel-lista">
+          <li><strong>Notas de 1 a 10</strong> em 11 fundamentos, do forehand à tática</li>
+          <li><strong>Seu nível e sua classe</strong>, da 6ª à 1ª, como nos clubes e federações</li>
+          <li><strong>Golpe a golpe:</strong> como corrigir os ajustes mais importantes, com exercícios</li>
+          <li><strong>Análise do saque</strong>, quadro a quadro, a partir do vídeo da aula</li>
+          <li><strong>Plano de 12 semanas</strong>, com a primeira reavaliação já marcada</li>
+        </ul>
+      </div>
+      <figure class="capa" aria-label="Exemplo ilustrativo da capa do relatório, com dados fictícios">
+        <svg class="quadra" viewBox="0 0 400 860" aria-hidden="true"><use href="#quadra"/></svg>
+        <div class="capa-topo">
+          <span class="etiqueta et-saibro">Aula experimental</span>
+          <span class="etiqueta et-contorno">Exemplo</span>
+        </div>
+        <p class="capa-titulo">Diagnóstico<span>e plano de treino</span></p>
+        <p class="capa-nome">Mariana</p>
+        <div class="capa-dados">
+          <div><span>Classe</span><strong class="lima">5ª</strong></div>
+          <div><span>Nível</span><strong>Iniciante</strong></div>
+          <div><span>Média</span><strong>3,8</strong></div>
+          <div><span>ITN</span><strong>8</strong></div>
+        </div>
+        <svg class="capa-radar" viewBox="0 0 200 200" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1" opacity=".25">
+            <polygon points="100.0,80.0 110.8,83.2 118.2,91.7 119.8,102.8 115.1,113.1 105.6,119.2 94.4,119.2 84.9,113.1 80.2,102.8 81.8,91.7 89.2,83.2"/>
+            <polygon points="100.0,60.0 121.6,66.3 136.4,83.4 139.6,105.7 130.2,126.2 111.3,138.4 88.7,138.4 69.8,126.2 60.4,105.7 63.6,83.4 78.4,66.3"/>
+            <polygon points="100.0,40.0 132.4,49.5 154.6,75.1 159.4,108.5 145.3,139.3 116.9,157.6 83.1,157.6 54.7,139.3 40.6,108.5 45.4,75.1 67.6,49.5"/>
+            <polygon points="100.0,20.0 143.3,32.7 172.8,66.8 179.2,111.4 160.5,152.4 122.5,176.8 77.5,176.8 39.5,152.4 20.8,111.4 27.2,66.8 56.7,32.7"/>
+            <path d="M100,100L100.0,20.0 M100,100L143.3,32.7 M100,100L172.8,66.8 M100,100L179.2,111.4 M100,100L160.5,152.4 M100,100L122.5,176.8 M100,100L77.5,176.8 M100,100L39.5,152.4 M100,100L20.8,111.4 M100,100L27.2,66.8 M100,100L56.7,32.7"/>
+          </g>
+          <polygon class="capa-radar-nota" points="100.0,60.0 113.0,79.8 129.1,86.7 131.7,104.6 118.1,115.7 104.5,115.4 95.5,115.4 63.7,131.4 68.3,104.6 78.2,90.0 82.7,73.1"/>
+        </svg>
+        <figcaption>Exemplo ilustrativo. O seu relatório traz as suas notas e o seu plano.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5. O professor -->
   <section class="secao professor">
     <svg class="quadra" viewBox="0 0 400 860" aria-hidden="true"><use href="#quadra"/></svg>
     <div class="wrap prof-grid">
@@ -380,7 +451,7 @@
     </div>
   </section>
 
-  <!-- 5. Onde -->
+  <!-- 6. Onde -->
   <section class="secao onde">
     <div class="wrap">
       <div class="cabeca">
@@ -405,7 +476,7 @@
     </div>
   </section>
 
-  <!-- 6. Modalidades -->
+  <!-- 7. Modalidades -->
   <section class="secao modalidades">
     <div class="wrap">
       <div class="cabeca">
@@ -422,7 +493,7 @@
     </div>
   </section>
 
-  <!-- 7. Perguntas frequentes -->
+  <!-- 8. Perguntas frequentes -->
   <section class="secao perguntas">
     <div class="wrap">
       <div class="cabeca">
@@ -433,6 +504,10 @@
         <details>
           <summary>Preciso já saber jogar?</summary>
           <p>Não. As aulas são para adultos de todos os níveis, de quem nunca pegou numa raquete a quem quer se preparar para torneios.</p>
+        </details>
+        <details>
+          <summary>O que eu recebo depois da aula experimental?</summary>
+          <p>Um relatório completo em PDF: notas de 1 a 10 em 11 fundamentos, seu nível, sua classe sugerida, os ajustes mais importantes golpe a golpe, a análise do seu saque e um plano de treino de 12 semanas.</p>
         </details>
         <details>
           <summary>Onde acontece a aula experimental?</summary>
@@ -452,7 +527,7 @@
     </div>
   </section>
 
-  <!-- 8. Chamada final -->
+  <!-- 9. Chamada final -->
   <section class="secao final">
     <svg class="quadra" viewBox="0 0 400 860" aria-hidden="true" style="transform:translate(-50%,-50%) rotate(90deg)"><use href="#quadra"/></svg>
     <div class="wrap">
@@ -537,6 +612,9 @@
     ['.cabeca > *', ''],
     ['.passo', ''],
     ['.pilares > *', 'zoom'],
+    ['.relatorio .rel-grid > div > *:not(.rel-lista)', ''],
+    ['.rel-lista li', 'esq'],
+    ['.capa', 'zoom'],
     ['.professor .prof-grid > div:last-child > *:not(.trajeto)', 'dir'],
     ['.trajeto li', 'esq'],
     ['.local', ''],

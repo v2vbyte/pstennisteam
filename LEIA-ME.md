@@ -39,6 +39,14 @@ Ficam em `js/main.js`, seção 12, e no fim de `css/style.css`. Para incluir ou 
 - Para não contar robôs e toques acidentais, a conversão só conta com clique real, navegador não automatizado, pelo menos `TEMPO_MINIMO` segundos na página e uma vez por visita.
 - Consentimento (LGPD): a tag começa sem cookies de anúncio e só os usa depois do "Aceitar". A escolha vale para o site inteiro e pode ser mudada em "Preferências de cookies", no rodapé.
 
+## Avaliação e classes (site público)
+
+- Na home, a seção `#avaliacao` (logo depois de "O professor e o método") mostra os 11 fundamentos avaliados, o que vem no relatório e a escada da 6ª à 1ª classe. Cada degrau usa `--h` (1 a 6) para a altura, e as faixas de ITN seguem a tabela `FAIXAS` da área do professor. Se a tabela mudar lá, atualize aqui também.
+- Na página da aula experimental, a seção "O que você leva" traz uma capa de relatório ilustrativa, com dados fictícios (Mariana, 5ª classe, média 3,8, ITN 8) e a etiqueta "Exemplo".
+- Todo aluno recebe o relatório completo, inclusive na aula experimental (paga).
+- O texto sobre reavaliações (fim da 8ª semana e depois a cada ciclo de 8 semanas) segue o plano que o Apps Script monta (`apps-script/Code.gs`). Se os ciclos mudarem, atualize a home e as perguntas frequentes.
+- O aviso de privacidade (em `index.html`) tem a parte "Avaliação dos alunos", com os dados registrados pelo professor, onde ficam e o uso do Claude para escrever o relatório. Se a ficha da área do professor passar a pedir outros dados, atualize esse texto.
+
 ## Página da aula experimental
 
 Fica em `aula-experimental/`, com estilo e scripts no próprio `index.html`. É o destino dos anúncios.

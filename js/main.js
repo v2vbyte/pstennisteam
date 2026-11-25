@@ -706,6 +706,8 @@
     ['.section-head', ''],
     ['.about__text > *', ''],
     ['.method__item', 'esq'],
+    ['.eval__text > *', ''],
+    ['.eval__ladder', 'dir'],
     ['.plan', ''],
     ['.plan-note', ''],
     ['.program', 'zoom'],
