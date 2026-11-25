@@ -60,4 +60,6 @@ Fica em `professor/` e é acessada só pelo link direto `pstennisteam.com/profes
 - Tudo (estilo, scripts e o modelo do PDF) fica no próprio `professor/index.html`. O QR code do WhatsApp do PDF está em `professor/img/`.
 - **Modo demonstração:** enquanto `API_URL` estiver vazio no bloco `CONFIG` (início do script), a página funciona só no aparelho, com texto de exemplo e login simulado.
 - **Versão real:** preencha em `CONFIG` a `API_URL` (endereço do Google Apps Script publicado na conta pstennisteam@gmail.com) e o `GOOGLE_CLIENT_ID` (ID de cliente OAuth do Google Cloud). As contas autorizadas a entrar ficam no Apps Script, não na página.
+- **Notas e classes:** os itens avaliados, os pesos, o guia da nota e a tabela de equivalência média → classe ficam no início do script (`ITENS`, `GUIA`, `FAIXAS` e `CRITERIOS`). A calibragem usa as descrições de nível do ITN (ITF): ITN estimado = 10 − (média − 1) × 7/9. A classe sugerida só vale depois que o professor confirma.
+- **Imagem para redes:** gerada no próprio navegador, em 1080 × 1920 (story) ou 1080 × 1350 (feed), com foto opcional em preto e branco.
 - Relatórios de exemplo: `professor/#exemplo-pdf` (aula experimental) e `professor/#exemplo-reavaliacao`.
