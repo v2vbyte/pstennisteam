@@ -30,7 +30,13 @@ const CFG = {
 const CLASSES = ['6ª', '5ª', '4ª', '3ª', '2ª', '1ª'];
 const GOLPES = ['Forehand', 'Backhand', 'Saque', 'Devolução', 'Voleio', 'Smash', 'Lob e passada', 'Movimentação', 'Consistência', 'Efeitos', 'Tática'];
 const FASES = ['Preparação', 'Lançamento', 'Troféu', 'Contato', 'Terminação'];
-const CABECALHO = ['Data', 'Aluno', 'Tipo', 'Classe anterior', 'Classe sugerida', 'Classe confirmada', 'Média', 'ITN', 'Nível', 'Diagnóstico (Doc)', 'Pasta do aluno', 'ID do aluno', 'ID da aula'];
+/* Colunas da planilha de registro. O script acha cada coluna pelo nome do
+   cabeçalho, então dá para reordenar ou acrescentar colunas sem quebrar nada
+   (só não renomeie as que já existem). */
+const CABECALHO = ['Data', 'Aluno', 'Idade', 'Local', 'Tipo', 'Objetivo', 'Tempo de prática', 'Experiência em jogo', 'Nível',
+  'Classe anterior', 'Classe pelas notas', 'Classe sugerida', 'Classe confirmada', 'Média', 'ITN', 'Itens avaliados']
+  .concat(GOLPES.map(g => 'Nota · ' + g))
+  .concat(['Tem vídeo do saque', 'Indicação do professor', 'Diagnóstico (Doc)', 'Pasta do aluno', 'ID do aluno', 'ID da aula']);
 
 /* =====================================================================
    CONFIGURAÇÃO (rodar uma vez pelo editor)
@@ -220,7 +226,7 @@ function gerar(req) {
   });
 
   /* 6. Planilha e e-mail (se falharem, o diagnóstico continua salvo) */
-  try { registrarPlanilha(al, al.aulas[al.aulas.length - 1], pasta); } catch (e) { console.error('Planilha: ' + e); }
+  try { registrarPlanilha(al, al.aulas[al.aulas.length - 1], pasta, diag); } catch (e) { console.error('Planilha: ' + e); }
   try { avisarPorEmail(al, diag, doc.url, pasta.getUrl()); } catch (e) { console.error('E-mail: ' + e); }
 
   return { aluno: paraPagina(al) };
@@ -443,7 +449,7 @@ function confirmarClasse(req) {
     salvarIndice(idx);
     return { al: al, au: au };
   });
-  try { atualizarPlanilha(r.au.id, 6, req.classe); } catch (e) { console.error('Planilha: ' + e); }
+  try { atualizarPlanilha(r.au.id, 'Classe confirmada', req.classe); } catch (e) { console.error('Planilha: ' + e); }
   return {};
 }
 
@@ -608,15 +614,33 @@ function aplicarEdicoesDoDoc(original, docId) {
 /* =====================================================================
    PLANILHA E E-MAIL
    ===================================================================== */
-function registrarPlanilha(al, au, pasta) {
+function abaRegistro() {
   const aba = SpreadsheetApp.openById(prop('PLANILHA_ID')).getSheets()[0];
-  const c = au.diag.classe;
-  aba.appendRow([au.data, al.nome, au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental', c.anterior || '', c.sugerida, c.confirmada || '', c.media, c.itn, c.nivel, au.docUrl, pasta.getUrl(), al.id, au.id]);
+  const cab = aba.getRange(1, 1, 1, Math.max(1, aba.getLastColumn())).getValues()[0].map(String);
+  /* acrescenta no fim as colunas que ainda não existirem */
+  const faltam = CABECALHO.filter(c => cab.indexOf(c) < 0);
+  if (faltam.length) { aba.getRange(1, cab.length + 1, 1, faltam.length).setValues([faltam]).setFontWeight('bold'); faltam.forEach(c => cab.push(c)); }
+  return { aba: aba, cab: cab };
 }
-function atualizarPlanilha(aulaId, coluna, valor) {
-  const aba = SpreadsheetApp.openById(prop('PLANILHA_ID')).getSheets()[0];
-  const achou = aba.getRange('M:M').createTextFinder(aulaId).matchEntireCell(true).findNext();
-  if (achou) aba.getRange(achou.getRow(), coluna).setValue(valor);
+function registrarPlanilha(al, au, pasta, d) {
+  const r = abaRegistro(), c = d.classe, a = d.aluno;
+  const v = {
+    'Data': au.data, 'Aluno': al.nome, 'Idade': a.idade ? Number(a.idade) || a.idade : '', 'Local': a.local, 'Tipo': au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental',
+    'Objetivo': a.objetivo, 'Tempo de prática': a.tempo, 'Experiência em jogo': a.experiencia, 'Nível': a.nivel,
+    'Classe anterior': c.anterior || '', 'Classe pelas notas': c.calculada || c.sugerida, 'Classe sugerida': c.sugerida, 'Classe confirmada': c.confirmada || '',
+    'Média': c.media, 'ITN': c.itn, 'Itens avaliados': (d.notas || []).length,
+    'Tem vídeo do saque': d.saque ? 'Sim' : 'Não', 'Indicação do professor': (d.proximo || {}).recomendacao || '',
+    'Diagnóstico (Doc)': au.docUrl, 'Pasta do aluno': pasta.getUrl(), 'ID do aluno': al.id, 'ID da aula': au.id
+  };
+  GOLPES.forEach(g => { const n = (d.notas || []).filter(x => x.golpe === g)[0]; v['Nota · ' + g] = n ? n.nota : ''; });
+  r.aba.appendRow(r.cab.map(k => v[k] === undefined || v[k] === null ? '' : v[k]));
+}
+function atualizarPlanilha(aulaId, nomeColuna, valor) {
+  const r = abaRegistro();
+  const colId = r.cab.indexOf('ID da aula') + 1, col = r.cab.indexOf(nomeColuna) + 1;
+  if (!colId || !col || r.aba.getLastRow() < 2) return;
+  const achou = r.aba.getRange(2, colId, r.aba.getLastRow() - 1, 1).createTextFinder(aulaId).matchEntireCell(true).findNext();
+  if (achou) r.aba.getRange(achou.getRow(), col).setValue(valor);
 }
 
 function avisarPorEmail(al, d, docUrl, pastaUrl) {

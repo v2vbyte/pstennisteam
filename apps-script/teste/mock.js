@@ -73,13 +73,23 @@ function criarAmbiente(opts = {}) {
       const f = new MFile(nome, '', 'sheet', 'root'); const rows = [];
       const aba = {
         rows, setName: () => aba, setFrozenRows: () => aba,
+        getLastRow: () => rows.length,
+        getLastColumn: () => rows.reduce((m, r) => Math.max(m, (r || []).length), 0),
         getRange(a, b, c, d) {
-          if (typeof a === 'string') return { createTextFinder: x => ({ matchEntireCell: () => ({ findNext: () => { const i = rows.findIndex(r => r[12] === x); return i < 0 ? null : { getRow: () => i + 1 }; } }) }) };
-          const r = { setValues: v => { rows[a - 1] = v[0].slice(); return r; }, setFontWeight: () => r, setValue: v => { rows[a - 1][b - 1] = v; return r; } };
+          if (typeof a === 'string') throw new Error('notação A1 não simulada');
+          const nr = c || 1, nc = d || 1;
+          const r = {
+            getValues: () => Array.from({ length: nr }, (_, i) => Array.from({ length: nc }, (_, j) => ((rows[a - 1 + i] || [])[b - 1 + j]) ?? '')),
+            setValues: v => { v.forEach((linha, i) => { rows[a - 1 + i] = rows[a - 1 + i] || []; linha.forEach((x, j) => rows[a - 1 + i][b - 1 + j] = x); }); return r; },
+            setFontWeight: () => r,
+            setValue: x => { rows[a - 1][b - 1] = x; return r; },
+            createTextFinder: t => ({ matchEntireCell: () => ({ findNext: () => { for (let i = 0; i < nr; i++) if (((rows[a - 1 + i] || [])[b - 1]) === t) return { getRow: () => a + i }; return null; } }) })
+          };
           return r;
         },
         appendRow: r => { rows.push(r); log.sheetRows.push(r); }
       };
+      log.sheet = aba;
       const ss = { getId: () => f.id, getSheets: () => [aba], getUrl: () => 'https://sheets/' + f.id };
       sheets[f.id] = ss; return ss;
     },

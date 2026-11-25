@@ -56,7 +56,10 @@ ok(d.equipamento.raquete === 'Babolat Pure, 280 a 290 g, empunhadura L2', 'raque
 ok(d.plano[1].reavaliacao === true, 'fase 2 marcada com reavaliação');
 
 console.log('6. planilha, e-mail e Drive');
-ok(E.log.sheetRows.length === 1 && E.log.sheetRows[0][1] === 'Ana Souza' && E.log.sheetRows[0][4] === '5ª', 'linha na planilha');
+const cab = E.log.sheet.rows[0], col = n => cab.indexOf(n), linha1 = () => E.log.sheet.rows[1];
+ok(E.log.sheetRows.length === 1 && linha1()[col('Aluno')] === 'Ana Souza' && linha1()[col('Classe sugerida')] === '5ª', 'linha na planilha');
+ok(linha1()[col('Nota · Forehand')] === 4 && linha1()[col('Nota · Smash')] === '' && linha1()[col('Idade')] === 29 && linha1()[col('Local')] === 'Fama Tennis', 'notas por golpe, idade e local em colunas próprias');
+ok(linha1()[col('Tem vídeo do saque')] === 'Sim' && linha1()[col('Indicação do professor')] === 'Aula individual, 1 vez por semana' && linha1().length === cab.length, 'vídeo, indicação e linha do tamanho do cabeçalho');
 ok(E.log.mails.length === 1 && E.log.mails[0].cc === 'tamara@gmail.com' && /Ana Souza/.test(E.log.mails[0].subject), 'e-mail com cópia');
 ok(!/pix/.test(E.log.mails[0].htmlBody), 'e-mail sem notas internas');
 const pastaAluno = Object.values(E.folders).find(f => f.name === 'Ana Souza');
@@ -68,7 +71,9 @@ ok(r.ok, 'confirmar ok');
 r = E.post({ action: 'entrar', token: 'tok-ok' });
 ok(r.alunos[0].classe === '4ª' && r.alunos[0].aulas[0].diag.classe.confirmada === '4ª' && r.alunos[0].aulas[0].diag.resumoNota, 'classe confirmada e nota de ajuste');
 ok(E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: au.id }).diagnostico.classe.confirmada === '4ª', 'arquivo completo também atualizado');
-ok(E.log.sheetRows[0][5] === '4ª', 'planilha atualizada');
+ok(linha1()[col('Classe confirmada')] === '4ª', 'planilha atualizada');
+E.log.sheet.rows.forEach(r => r.push('coluna do Paulo'));
+E.log.sheet.rows[0][E.log.sheet.rows[0].length - 1] = 'Observação manual';
 ok(/inválida/.test(E.post({ action: 'confirmarClasse', token: 'tok-ok', alunoId: al.id, aulaId: au.id, classe: '9ª' }).erro), 'classe inválida recusada');
 
 console.log('8. edição no Google Doc volta para o PDF');
@@ -104,6 +109,7 @@ ok(JSON.stringify(E.log.claude[0].corpo.messages).includes('AVALIAÇÃO ANTERIOR
 const d3 = E.post({ action: 'ler', token: 'tok-ok', alunoId: al.id, aulaId: u2.id }).diagnostico;
 ok(d3.saque === null && d3.plano.length === 2 && d3.plano[0].semanas === 'Semanas 9 a 12', 'sem vídeo, sem saque; intervalo com meia-risca vira "a"');
 ok(Object.values(E.folders).filter(f => f.name === 'Ana Souza').length === 1, 'não cria pasta duplicada');
+ok(E.log.sheet.rows.length === 3 && E.log.sheet.rows[2][col('Tipo')] === 'Reavaliação' && E.log.sheet.rows[2][col('Classe anterior')] === '4ª', 'reavaliação vira nova linha, mesmo com coluna extra criada pelo Paulo');
 
 console.log('9b. observações pesam na classe');
 let E3 = criarAmbiente({ props: PROPS, classeClaude: (op, msg) => msg.includes('ganhou dois torneios internos') ? op[op.length - 1] : op[1] }); E3.ctx.configurar();
