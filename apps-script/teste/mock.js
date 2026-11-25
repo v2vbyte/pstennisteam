@@ -116,11 +116,17 @@ function criarAmbiente(opts = {}) {
   function anthropic(req) {
     const corpo = JSON.parse(req.payload); log.claude.push({ headers: req.headers, corpo });
     if (opts.falhaClaude) return resposta(opts.falhaClaude, { error: { message: 'erro simulado' } });
-    const nome = corpo.tool_choice && corpo.tool_choice.name;
+    if (corpo.tool_choice || corpo.tools) return resposta(400, { error: { message: 'tool_choice: type "tool" and "any" are not supported for this model.' } });
+    const esq = corpo.output_config && corpo.output_config.format && corpo.output_config.format.schema;
+    if (!esq) return resposta(400, { error: { message: 'sem output_config' } });
+    const semAP = []; (function v(o, c) { if (o && typeof o === 'object') { if (o.type === 'object' && o.additionalProperties !== false) semAP.push(c); Object.keys(o).forEach(k => v(o[k], c + '.' + k)); } })(esq, '$');
+    if (semAP.length) return resposta(400, { error: { message: 'additionalProperties false faltando em ' + semAP.join(',') } });
+    log.esquemas = log.esquemas || []; log.esquemas.push(esq);
+    const nome = esq.properties.classeSugerida ? 'diagnostico' : 'plano';
     const temQuadros = JSON.stringify(corpo.messages).includes('"type":"image"');
     const reav = JSON.stringify(corpo.messages).includes('TIPO DE AULA: Reavaliação');
     let input;
-    const opcoes = nome === 'diagnostico' ? corpo.tools[0].input_schema.properties.classeSugerida.enum : [];
+    const opcoes = nome === 'diagnostico' ? esq.properties.classeSugerida.enum : [];
     if (nome === 'diagnostico') log.opcoesClasse = opcoes;
     if (nome === 'diagnostico') input = {
       classeSugerida: opts.classeClaude ? opts.classeClaude(opcoes, JSON.stringify(corpo.messages)) : opcoes[1],
@@ -141,7 +147,8 @@ function criarAmbiente(opts = {}) {
       equipamentoObs: 'A raquete está adequada ao seu momento.',
       proximo: { recomendacao: 'Aula individual, 1 vez por semana', motivo: 'O saque pede correções finas.', texto: 'A próxima aula começa pela fase 1. Na semana 8 filmamos de novo.' }
     };
-    return resposta(200, { content: [{ type: 'tool_use', name: nome, input }] });
+    if (nome === 'diagnostico' && opts.caixaAlta) { input.classeSugerida = input.classeSugerida.toUpperCase(); input.golpes[0].golpe = input.golpes[0].golpe.toUpperCase(); }
+    return resposta(200, { content: [{ type: 'text', text: JSON.stringify(input) }], stop_reason: 'end_turn' });
   }
   const UrlFetchApp = {
     fetch(url, o) { if (url.includes('tokeninfo')) return tokeninfo(url); throw new Error('url inesperada ' + url); },
