@@ -85,8 +85,9 @@ h1,h2,h3{font-family:var(--tit);font-weight:800;text-transform:uppercase;line-he
 .alunos{display:grid;gap:10px}
 .al{display:flex;align-items:center;gap:14px;background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:14px 16px;cursor:pointer;text-align:left;width:100%}
 .al .av{width:46px;height:46px;border-radius:50%;background:var(--saibro);color:var(--creme);display:grid;place-items:center;font:800 20px var(--tit);flex:none}
+.al .info{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:0;flex:1}
 .al .nm{font-weight:700;font-size:16px;line-height:1.25}
-.al .meta{font-size:13px;color:var(--suave)}
+.al .sub{font-size:13px;line-height:1.35;color:var(--suave)}
 .al .go{margin-left:auto;color:var(--suave);flex:none}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--areia);color:var(--forte);margin-top:4px}
 .tag.ok{background:var(--tinta);color:var(--creme)}
@@ -851,7 +852,7 @@ function vHome() {
   <button class="btn b-lima" data-a="nova">Começar ficha</button></section>
   <div class="secth"><h2>Alunos</h2><span class="small">${lista.length} no total</span></div>
   <input class="search" id="busca" type="search" placeholder="Buscar aluno" aria-label="Buscar aluno">
-  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length, c = classeAtual(a), pend = !classeDe(u); return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span><span class="nm">${esc(a.nome)}</span><br><span class="meta">Última aula em ${esc(u.data)} · ${n} ${n === 1 ? 'aula' : 'aulas'}</span><br>${pend ? '<span class="tag pend">Confirmar classe</span>' : `<span class="tag ok">${esc(c)} classe</span>`}</span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
+  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length, c = classeAtual(a), pend = !classeDe(u); return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span class="info"><span class="nm">${esc(a.nome)}</span><span class="sub">Última avaliação em ${esc(u.data)}</span><span class="sub">${n} ${n === 1 ? 'avaliação' : 'avaliações'}</span>${pend ? '<span class="tag pend">Confirmar classe</span>' : `<span class="tag ok">${esc(c)} classe</span>`}</span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
   </main>`;
 }
 
@@ -968,7 +969,7 @@ function vAluno() {
   if (!al) { S.view = 'home'; return vHome(); }
   const u = ultima(al), aulas = al.aulas.slice().reverse(), c = classeAtual(al);
   return `${topo()}<main class="wrap">${demoBar()}
-  <section class="dhead">${COURT()}<span class="over">${c ? `${esc(c)} classe` : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'aula registrada' : 'aulas registradas'} · última em ${esc(u.data)}</p></section>
+  <section class="dhead">${COURT()}<span class="over">${c ? `${esc(c)} classe` : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'avaliação registrada' : 'avaliações registradas'} · última em ${esc(u.data)}</p></section>
   ${classeCard(al)}
   <div class="acts">
     <button class="btn b-ink b-full" data-a="reavaliar">Fazer reavaliação</button>
