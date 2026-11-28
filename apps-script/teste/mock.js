@@ -101,7 +101,7 @@ function criarAmbiente(opts = {}) {
   const props = Object.assign({}, opts.props || {});
   const PropertiesService = { getScriptProperties: () => ({ getProperty: k => props[k] === undefined ? null : props[k], setProperty: (k, v) => { props[k] = v; } }) };
   const cacheMap = {};
-  const CacheService = { getScriptCache: () => ({ get: k => cacheMap[k] || null, put: (k, v) => { cacheMap[k] = v; } }) };
+  const CacheService = { getScriptCache: () => ({ get: k => cacheMap[k] || null, put: (k, v) => { if (Buffer.byteLength(String(v)) > 100 * 1024) throw new Error('Argument too large: value'); cacheMap[k] = v; } }) };
   const LockService = { getScriptLock: () => ({ tryLock: () => true, releaseLock: () => {} }) };
 
   // ---- UrlFetchApp ----
@@ -129,7 +129,7 @@ function criarAmbiente(opts = {}) {
     if (esq.properties.exercicios) {
       log.treinos = log.treinos || []; log.treinos.push(corpo);
       const ctx = JSON.stringify(corpo.messages);
-      const id = (/\[(t\d-[a-z]{3}-\d)\]/.exec(ctx) || [])[1] || '';
+      const id = (/\[(t\d-[a-z]{3}-\d+)\]/.exec(ctx) || [])[1] || '';
       return resposta(200, { content: [{ type: 'text', text: JSON.stringify(opts.treinoClaude ? opts.treinoClaude(ctx, id) : {
         foco: 'O tema encontra o saque do plano — aproveite.',
         exercicios: [{ idBanco: id, nome: 'Do banco', como: 'Como fazer.', dose: '3 séries de 10', porque: 'Liga com o plano.' },

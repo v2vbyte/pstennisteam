@@ -1,6 +1,6 @@
 {
-  "sobre": "Banco de exercícios dos Treinos por tema (ciclo de 6 semanas). Proposta para o Paulo revisar: pode trocar nomes, descrições, doses e acrescentar exercícios. Cada exercício precisa de um id único. Em golpes, use os nomes da ficha: Forehand, Backhand, Saque, Devolução, Voleio, Smash, Lob e passada, Movimentação, Consistência, Efeitos, Tática. O nível Principiante usa a base de Iniciante, simplificada. Cada tema tem 8 exercícios por nível.",
-  "versao": 2,
+  "sobre": "Banco de exercícios dos Treinos por tema (ciclo de 6 semanas), organizado pelas situações de jogo usadas pela ITF (sacar, devolver, trocar do fundo, ir à rede, passar e defender) e com bolas de transição do Play and Stay para crianças e principiantes. Proposta para o Paulo revisar: pode trocar nomes, descrições, doses e acrescentar exercícios. Cada exercício precisa de um id único. Em golpes, use os nomes da ficha: Forehand, Backhand, Saque, Devolução, Voleio, Smash, Lob e passada, Movimentação, Consistência, Efeitos, Tática. Em materiais: cones, pratos, escada, elástico, corda, arcos, toalhas, bola laranja, bola verde. O nível Principiante usa a base de Iniciante, simplificada. Cada tema tem 14 exercícios por nível. Cada tema também tem momento (o momento do jogo, usado na mensagem da semana) e preparacao (alongamento, aquecimento e força, iguais para todos os alunos).",
+  "versao": 3,
   "temas": [
     {
       "n": 1,
@@ -27,7 +27,8 @@
                 "Forehand",
                 "Backhand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ini-2",
@@ -38,6 +39,9 @@
                 "Forehand",
                 "Backhand",
                 "Efeitos"
+              ],
+              "materiais": [
+                "corda"
               ]
             },
             {
@@ -49,6 +53,9 @@
                 "Movimentação",
                 "Forehand",
                 "Backhand"
+              ],
+              "materiais": [
+                "cones"
               ]
             },
             {
@@ -58,7 +65,8 @@
               "dose": "Até completar 3 vezes ou 10 minutos",
               "golpes": [
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ini-5",
@@ -69,6 +77,10 @@
                 "Forehand",
                 "Backhand",
                 "Consistência"
+              ],
+              "materiais": [
+                "arcos",
+                "cones"
               ]
             },
             {
@@ -79,7 +91,8 @@
               "golpes": [
                 "Tática",
                 "Forehand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ini-7",
@@ -88,7 +101,8 @@
               "dose": "4 séries de 10",
               "golpes": [
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ini-8",
@@ -98,7 +112,84 @@
               "golpes": [
                 "Consistência",
                 "Movimentação"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t1-ini-9",
+              "nome": "Escada e forehand",
+              "como": "Escada de agilidade no chão, paralela à linha de base. O aluno passa de lado, dois pés em cada quadrado, e no fim bate um forehand alimentado.",
+              "dose": "6 passagens, uma bola por passagem",
+              "golpes": [
+                "Movimentação",
+                "Forehand"
+              ],
+              "materiais": [
+                "escada"
               ]
+            },
+            {
+              "id": "t1-ini-10",
+              "nome": "Volta ao prato do centro",
+              "como": "Um prato marca o centro da linha de base. Professor alimenta uma bola de cada lado e, depois de cada golpe, o aluno pisa no prato antes da próxima.",
+              "dose": "3 séries de 10 bolas",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t1-ini-11",
+              "nome": "Mini quadra com bola laranja",
+              "como": "Para crianças e principiantes: troca cooperativa na mini quadra (cones marcando os limites), com bola laranja, contando bolas seguidas.",
+              "dose": "3 rodadas de 3 minutos, tentando bater o recorde",
+              "golpes": [
+                "Consistência"
+              ],
+              "materiais": [
+                "bola laranja",
+                "cones"
+              ]
+            },
+            {
+              "id": "t1-ini-12",
+              "nome": "Zigue-zague nos pratos",
+              "como": "Dois pratos do outro lado, um em cada canto do fundo. O aluno alterna: forehand no prato da direita, backhand no da esquerda.",
+              "dose": "3 séries de 10 bolas",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t1-ini-13",
+              "nome": "Base baixa com elástico",
+              "como": "Mini elástico acima dos joelhos. O aluno faz passos laterais em base baixa e um golpe de sombra a cada três passos, sem deixar os joelhos fecharem.",
+              "dose": "4 passagens de 6 metros",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "elástico"
+              ]
+            },
+            {
+              "id": "t1-ini-14",
+              "nome": "Fala antes de bater",
+              "como": "Na troca cooperativa, o aluno diz \"direita\" ou \"esquerda\" assim que a bola sai da raquete do professor. Treina ler a bola cedo.",
+              "dose": "3 rodadas de 2 minutos",
+              "golpes": [
+                "Consistência",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -114,7 +205,8 @@
                 "Forehand",
                 "Backhand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-2",
@@ -125,7 +217,8 @@
                 "Efeitos",
                 "Forehand",
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-3",
@@ -135,7 +228,8 @@
               "golpes": [
                 "Movimentação",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-4",
@@ -145,7 +239,8 @@
               "golpes": [
                 "Tática",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-5",
@@ -155,7 +250,8 @@
               "golpes": [
                 "Backhand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-6",
@@ -166,6 +262,9 @@
                 "Forehand",
                 "Backhand",
                 "Efeitos"
+              ],
+              "materiais": [
+                "toalhas"
               ]
             },
             {
@@ -176,7 +275,8 @@
               "golpes": [
                 "Devolução",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-int-8",
@@ -186,6 +286,83 @@
               "golpes": [
                 "Tática",
                 "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t1-int-9",
+              "nome": "Leque de cones",
+              "como": "Três cones atrás da linha de base. Depois de cada golpe, o aluno toca o cone que o professor apontar e volta ao centro.",
+              "dose": "4 séries de 8 bolas",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t1-int-10",
+              "nome": "Escada e troca cruzada",
+              "como": "Escada no fundo da quadra: entra, entra, sai, sai. Na saída, troca cruzada de 6 bolas sem erro.",
+              "dose": "5 passagens",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t1-int-11",
+              "nome": "Corredor de profundidade",
+              "como": "Cones formam um corredor a um metro da linha de base do outro lado. Bola que quica no corredor vale 2 na troca.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Efeitos"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t1-int-12",
+              "nome": "Cruzada até o sinal",
+              "como": "Troca cruzada com o professor. Quando ele fala \"já\", o aluno muda a próxima bola para a paralela e o ponto segue livre.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t1-int-13",
+              "nome": "Troca com elástico nas pernas",
+              "como": "Mini elástico acima dos joelhos durante a troca do fundo. Mantém a base larga e os passos curtos.",
+              "dose": "4 rodadas de 1 minuto",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "elástico"
+              ]
+            },
+            {
+              "id": "t1-int-14",
+              "nome": "Miolo proibido",
+              "como": "Cones marcam o meio da quadra do outro lado. Bola que cai ali faz o aluno perder o ponto: obriga a mandar fundo ou nos lados.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ],
+              "materiais": [
+                "cones"
               ]
             }
           ]
@@ -202,7 +379,8 @@
                 "Tática",
                 "Forehand",
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-2",
@@ -212,7 +390,8 @@
               "golpes": [
                 "Efeitos",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-3",
@@ -222,7 +401,8 @@
               "golpes": [
                 "Consistência",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-4",
@@ -233,7 +413,8 @@
                 "Forehand",
                 "Movimentação",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-5",
@@ -244,7 +425,8 @@
                 "Forehand",
                 "Efeitos",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-6",
@@ -254,7 +436,8 @@
               "golpes": [
                 "Backhand",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-7",
@@ -264,7 +447,8 @@
               "golpes": [
                 "Devolução",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t1-ava-8",
@@ -274,10 +458,152 @@
               "golpes": [
                 "Movimentação",
                 "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t1-ava-9",
+              "nome": "Quatro cantos nos pratos",
+              "como": "Pratos nos quatro cantos da zona de fundo. Alimentação rápida para os quatro cantos, com recuperação ao centro entre as bolas.",
+              "dose": "5 séries de 30 segundos",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
               ]
+            },
+            {
+              "id": "t1-ava-10",
+              "nome": "Cinco fundas e ataca",
+              "como": "Cones a um metro e meio da linha de base. Depois de cinco bolas seguidas depois dos cones, o aluno pode atacar.",
+              "dose": "Pontos de 15, dois jogos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t1-ava-11",
+              "nome": "Escada reativa",
+              "como": "Escada no fundo. O professor aponta um lado no meio da passagem e o aluno sai para aquele lado e bate a bola alimentada.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t1-ava-12",
+              "nome": "Duelo de cruzada de backhand",
+              "como": "Pontos só na cruzada de backhand. A paralela só vale depois de uma bola curta do adversário.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Backhand",
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t1-ava-13",
+              "nome": "Inside-out com cone de recuperação",
+              "como": "Forehand invertido para o backhand do parceiro. Um cone marca o ponto de recuperação, que o aluno precisa tocar antes da próxima bola.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Forehand",
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t1-ava-14",
+              "nome": "Troca em ritmo de partida",
+              "como": "Troca do fundo em ritmo de jogo (cerca de 80%), mantendo as bolas depois da linha de saque.",
+              "dose": "6 blocos de 90 segundos, 30 segundos de pausa",
+              "golpes": [
+                "Consistência",
+                "Movimentação"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "nas trocas do fundo de quadra",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Panturrilha na parede",
+            "como": "Mãos na parede, uma perna atrás esticada e o calcanhar no chão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Posterior da coxa",
+            "como": "Em pé, um calcanhar apoiado à frente, joelho esticado; incline o tronco com as costas retas.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Quadril em avanço",
+            "como": "Um joelho no chão e o outro pé à frente; leve o quadril para a frente sem arquear a lombar.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Rotação do tronco deitado",
+            "como": "Deitado de costas, joelhos dobrados; deixe os joelhos caírem para um lado e olhe para o outro.",
+            "dose": "30 segundos de cada lado"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote em volta da quadra",
+            "como": "Trote leve, aumentando o ritmo aos poucos.",
+            "dose": "2 voltas"
+          },
+          {
+            "nome": "Joelho alto e calcanhar no glúteo",
+            "como": "Na largura da quadra, ida com joelho alto e volta com calcanhar no glúteo.",
+            "dose": "2 idas e voltas"
+          },
+          {
+            "nome": "Avanço com rotação",
+            "como": "Passo à frente em avanço e gire o tronco para o lado da perna da frente.",
+            "dose": "8 de cada lado"
+          },
+          {
+            "nome": "Escada de agilidade",
+            "como": "Dois pés em cada quadrado, de frente e de lado.",
+            "dose": "4 passagens"
+          },
+          {
+            "nome": "Mini tênis",
+            "como": "Troca suave entre as linhas de saque, controlando a bola.",
+            "dose": "3 minutos"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Agachamento",
+            "como": "Pés na largura dos ombros, desça como se fosse sentar e suba. Joelhos na direção dos pés.",
+            "dose": "3 séries de 12"
+          },
+          {
+            "nome": "Prancha frontal",
+            "como": "Antebraços no chão, corpo reto da cabeça aos pés.",
+            "dose": "3 vezes de 30 segundos"
+          },
+          {
+            "nome": "Rotação do tronco com elástico",
+            "como": "Elástico preso na altura do peito; gire o tronco com os braços esticados, como num golpe.",
+            "dose": "3 séries de 10 de cada lado"
+          }
+        ]
       }
     },
     {
@@ -303,6 +629,9 @@
               "dose": "3 séries de 10 lançamentos",
               "golpes": [
                 "Saque"
+              ],
+              "materiais": [
+                "corda"
               ]
             },
             {
@@ -312,7 +641,8 @@
               "dose": "3 séries de 10 saques, recuando um passo a cada série",
               "golpes": [
                 "Saque"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-3",
@@ -321,7 +651,8 @@
               "dose": "4 séries de 8 devoluções",
               "golpes": [
                 "Devolução"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-4",
@@ -331,7 +662,8 @@
               "golpes": [
                 "Saque",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-5",
@@ -340,7 +672,8 @@
               "dose": "3 séries de 10",
               "golpes": [
                 "Saque"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-6",
@@ -350,7 +683,8 @@
               "golpes": [
                 "Devolução",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-7",
@@ -361,7 +695,8 @@
                 "Saque",
                 "Forehand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ini-8",
@@ -371,7 +706,80 @@
               "golpes": [
                 "Saque",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-ini-9",
+              "nome": "Lançamento no arco",
+              "como": "Um arco ou prato no chão, à frente do pé da frente. O aluno lança a bola na altura do saque e deixa cair dentro do alvo.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Saque"
+              ],
+              "materiais": [
+                "arcos",
+                "pratos"
               ]
+            },
+            {
+              "id": "t2-ini-10",
+              "nome": "Saque ajoelhado",
+              "como": "Com um joelho no chão, perto da rede, o aluno saca de cima para baixo para sentir o braço e o lançamento.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Saque"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-ini-11",
+              "nome": "Saque com bola laranja",
+              "como": "Para crianças e principiantes: saque na mini quadra, com bola laranja, da linha de saque.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Saque"
+              ],
+              "materiais": [
+                "bola laranja"
+              ]
+            },
+            {
+              "id": "t2-ini-12",
+              "nome": "Derruba o cone",
+              "como": "Cones na área de saque. Cada cone derrubado vale um ponto.",
+              "dose": "3 rodadas de 10 saques",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t2-ini-13",
+              "nome": "Devolução nos pratos",
+              "como": "Um prato marca a posição de espera. O aluno faz o split step no prato e devolve bloqueado no meio.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t2-ini-14",
+              "nome": "Bate e volta de saque",
+              "como": "Em dupla: um saca cinco, o outro devolve; depois trocam. Conta quantos pontos começam bem.",
+              "dose": "4 rodadas",
+              "golpes": [
+                "Saque",
+                "Devolução"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -386,6 +794,9 @@
               "golpes": [
                 "Saque",
                 "Tática"
+              ],
+              "materiais": [
+                "cones"
               ]
             },
             {
@@ -396,7 +807,8 @@
               "golpes": [
                 "Devolução",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-3",
@@ -406,7 +818,8 @@
               "golpes": [
                 "Movimentação",
                 "Devolução"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-4",
@@ -417,7 +830,8 @@
                 "Saque",
                 "Forehand",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-5",
@@ -427,7 +841,8 @@
               "golpes": [
                 "Saque",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-6",
@@ -437,7 +852,8 @@
               "golpes": [
                 "Devolução",
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-7",
@@ -448,7 +864,8 @@
                 "Devolução",
                 "Tática",
                 "Forehand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-int-8",
@@ -458,6 +875,83 @@
               "golpes": [
                 "Saque",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-int-9",
+              "nome": "Ombro pronto para sacar",
+              "como": "Antes da série, rotação externa com elástico preso na grade (cotovelo colado ao corpo), depois a série de saques.",
+              "dose": "2 séries de 12 rotações + 3 séries de 10 saques",
+              "golpes": [
+                "Saque"
+              ],
+              "materiais": [
+                "elástico"
+              ]
+            },
+            {
+              "id": "t2-int-10",
+              "nome": "Pontuação nos cones",
+              "como": "Cones na área de saque: no T vale 3, no corpo vale 2, aberto vale 1. Somar pontos em cada série.",
+              "dose": "3 séries de 10 saques de cada lado",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t2-int-11",
+              "nome": "Devolve e volta ao prato",
+              "como": "Depois da devolução, o aluno volta ao prato do centro em até três passos, pronto para a próxima bola.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t2-int-12",
+              "nome": "Escada e split step",
+              "como": "Escada curta: dois pés por quadrado e, no fim, split step no instante do saque do professor e devolução.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação",
+                "Devolução"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t2-int-13",
+              "nome": "Segundo saque valendo",
+              "como": "Só segundos saques. Dupla falta faz o aluno perder dois pontos.",
+              "dose": "Games até 7 pontos",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-int-14",
+              "nome": "Saque e alvo do saque + 1",
+              "como": "Saque no alvo combinado e a primeira bola num alvo de pratos no canto oposto.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Saque",
+                "Forehand",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
               ]
             }
           ]
@@ -473,7 +967,8 @@
               "golpes": [
                 "Saque",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-2",
@@ -484,7 +979,8 @@
                 "Saque",
                 "Tática",
                 "Forehand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-3",
@@ -494,7 +990,8 @@
               "golpes": [
                 "Devolução",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-4",
@@ -504,7 +1001,8 @@
               "golpes": [
                 "Saque",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-5",
@@ -515,7 +1013,8 @@
                 "Saque",
                 "Efeitos",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-6",
@@ -525,7 +1024,8 @@
               "golpes": [
                 "Devolução",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-7",
@@ -536,7 +1036,8 @@
                 "Devolução",
                 "Backhand",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t2-ava-8",
@@ -546,10 +1047,152 @@
               "golpes": [
                 "Saque",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-ava-9",
+              "nome": "Kick por cima da corda",
+              "como": "Corda ou elástico esticado bem acima da rede. O segundo saque com kick precisa passar por cima e cair na área.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ],
+              "materiais": [
+                "corda"
               ]
+            },
+            {
+              "id": "t2-ava-10",
+              "nome": "Saltos e saque",
+              "como": "Três saltos verticais seguidos e, logo depois, um saque, sentindo o impulso das pernas.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Saque"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-ava-11",
+              "nome": "Devolução contra saque de perto",
+              "como": "O professor saca de dentro da quadra, perto da linha de saque, para encurtar o tempo de reação.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Movimentação"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t2-ava-12",
+              "nome": "Padrões de saque nos pratos",
+              "como": "Pratos marcam o alvo do saque e a zona da primeira bola. Repetir os dois padrões preferidos do aluno.",
+              "dose": "5 séries de 5 por padrão",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t2-ava-13",
+              "nome": "Devolução pela cor do prato",
+              "como": "O professor mostra um prato de uma cor antes do saque: uma cor pede devolução cruzada funda, a outra, paralela.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t2-ava-14",
+              "nome": "Ponto até a terceira bola",
+              "como": "Pontos em que só valem saque, devolução e a bola seguinte. Quem fizer o ponto até a terceira bola marca.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Saque",
+                "Devolução",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "no começo do ponto, no saque e na devolução",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Ombro cruzado",
+            "como": "Leve o braço esticado na frente do peito com a ajuda da outra mão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Peitoral na porta",
+            "como": "Antebraço apoiado no batente, gire o corpo para o lado oposto até sentir o peito.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Antebraço",
+            "como": "Braço esticado à frente, puxe os dedos para trás com a outra mão; depois para baixo.",
+            "dose": "20 segundos em cada posição"
+          },
+          {
+            "nome": "Costas em posição de criança",
+            "como": "Ajoelhado, sente nos calcanhares e leve os braços esticados à frente no chão.",
+            "dose": "30 segundos"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote com movimentos de braço",
+            "como": "Trote leve fazendo círculos com os braços para a frente e para trás.",
+            "dose": "2 voltas na quadra"
+          },
+          {
+            "nome": "Rotação externa com elástico",
+            "como": "Elástico preso na grade, cotovelo colado ao corpo; gire o antebraço para fora devagar.",
+            "dose": "2 séries de 12 com o braço do saque"
+          },
+          {
+            "nome": "Saltitos com split step",
+            "como": "Saltitos leves no lugar e, ao sinal, um split step.",
+            "dose": "4 séries de 20 segundos"
+          },
+          {
+            "nome": "Pratos de reação",
+            "como": "Pratos à direita e à esquerda; ao sinal, saia para o prato e volte.",
+            "dose": "4 séries de 6"
+          },
+          {
+            "nome": "Saques progressivos",
+            "como": "Comece da linha de saque e vá recuando até a linha de base, aumentando a força aos poucos.",
+            "dose": "10 saques"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Rotação externa com elástico",
+            "como": "Cotovelo colado ao corpo, gire o antebraço para fora contra o elástico.",
+            "dose": "3 séries de 15 com o braço do saque"
+          },
+          {
+            "nome": "Remada com elástico",
+            "como": "Elástico preso à frente, puxe os cotovelos para trás juntando as escápulas.",
+            "dose": "3 séries de 12"
+          },
+          {
+            "nome": "Agachamento com salto",
+            "como": "Agachamento e salto vertical, aterrissando macio. Crianças e iniciantes fazem sem o salto.",
+            "dose": "3 séries de 8"
+          }
+        ]
       }
     },
     {
@@ -576,7 +1219,8 @@
               "dose": "3 séries de 10 de cada lado",
               "golpes": [
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-2",
@@ -586,7 +1230,8 @@
               "golpes": [
                 "Tática",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-3",
@@ -596,7 +1241,8 @@
               "golpes": [
                 "Forehand",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-4",
@@ -605,7 +1251,8 @@
               "dose": "3 séries de 6",
               "golpes": [
                 "Smash"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-5",
@@ -615,7 +1262,8 @@
               "golpes": [
                 "Backhand",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-6",
@@ -624,7 +1272,8 @@
               "dose": "3 séries de 10",
               "golpes": [
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-7",
@@ -634,7 +1283,8 @@
               "golpes": [
                 "Movimentação",
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ini-8",
@@ -644,6 +1294,78 @@
               "golpes": [
                 "Tática",
                 "Voleio"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ini-9",
+              "nome": "Escada até a rede",
+              "como": "Escada no meio da quadra, apontando para a rede. O aluno passa pela escada e, no fim, bloqueia um voleio lançado.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação",
+                "Voleio"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t3-ini-10",
+              "nome": "Voleio com bola laranja",
+              "como": "Para crianças e principiantes: voleio de bloqueio com bola laranja, mais lenta, perto da rede.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Voleio"
+              ],
+              "materiais": [
+                "bola laranja"
+              ]
+            },
+            {
+              "id": "t3-ini-11",
+              "nome": "Pega e voleia",
+              "como": "Primeiro o aluno pega a bola com a mão no ponto de contato, à frente do corpo. Depois faz o mesmo com a raquete.",
+              "dose": "2 séries de 10 de cada",
+              "golpes": [
+                "Voleio"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ini-12",
+              "nome": "Linha da bola curta",
+              "como": "Cones na linha de saque. Bola que quica antes dos cones é curta: o aluno entra e ataca. Depois dos cones, fica atrás.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Tática",
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t3-ini-13",
+              "nome": "Smash sem raquete",
+              "como": "O aluno vira de lado, aponta a bola com a mão livre e faz o gesto do smash lançando uma bola com a mão. Depois, com a raquete.",
+              "dose": "2 séries de 8 de cada",
+              "golpes": [
+                "Smash"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ini-14",
+              "nome": "Voleio no cone",
+              "como": "Cones no fundo da quadra do outro lado. O voleio de bloqueio tenta acertar os cones.",
+              "dose": "3 rodadas de 10",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ],
+              "materiais": [
+                "cones"
               ]
             }
           ]
@@ -660,7 +1382,8 @@
                 "Voleio",
                 "Tática",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-2",
@@ -670,7 +1393,8 @@
               "golpes": [
                 "Backhand",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-3",
@@ -680,7 +1404,8 @@
               "golpes": [
                 "Voleio",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-4",
@@ -690,7 +1415,8 @@
               "golpes": [
                 "Tática",
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-5",
@@ -701,7 +1427,8 @@
                 "Forehand",
                 "Tática",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-6",
@@ -710,7 +1437,8 @@
               "dose": "3 séries de 8",
               "golpes": [
                 "Smash"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-7",
@@ -720,7 +1448,8 @@
               "golpes": [
                 "Voleio",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-int-8",
@@ -730,7 +1459,83 @@
               "golpes": [
                 "Lob e passada",
                 "Smash"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-int-9",
+              "nome": "Pratos de posição na rede",
+              "como": "Três pratos perto da rede (direita, centro, esquerda). Depois da aproximação, o aluno para no prato do lado para onde mandou a bola.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Tática",
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
               ]
+            },
+            {
+              "id": "t3-int-10",
+              "nome": "Escada lateral e voleio",
+              "como": "Escada paralela à rede. Deslocamento lateral rápido e voleio no fim da escada.",
+              "dose": "6 passagens por lado",
+              "golpes": [
+                "Movimentação",
+                "Voleio"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t3-int-11",
+              "nome": "Avanço com elástico",
+              "como": "O professor segura um elástico na cintura do aluno, que avança contra a resistência até a rede e faz o voleio. Soltar devagar.",
+              "dose": "4 séries de 5",
+              "golpes": [
+                "Movimentação",
+                "Voleio"
+              ],
+              "materiais": [
+                "elástico"
+              ]
+            },
+            {
+              "id": "t3-int-12",
+              "nome": "Aproximação andando",
+              "como": "Um cone marca o ponto de impacto da aproximação: o aluno bate passando pelo cone, sem parar para bater.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t3-int-13",
+              "nome": "Smash e toca a rede",
+              "como": "Depois de cada smash, o aluno toca a rede com a raquete e recua para o próximo lob.",
+              "dose": "3 séries de 6",
+              "golpes": [
+                "Smash",
+                "Movimentação"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-int-14",
+              "nome": "Voleio cruzado de duplas",
+              "como": "Dois contra dois na rede, voleio cruzado. Quem está mais perto da bola chama \"minha\".",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -745,7 +1550,8 @@
               "golpes": [
                 "Saque",
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-2",
@@ -755,7 +1561,8 @@
               "golpes": [
                 "Smash",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-3",
@@ -766,7 +1573,8 @@
                 "Tática",
                 "Voleio",
                 "Smash"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-4",
@@ -776,7 +1584,8 @@
               "golpes": [
                 "Voleio",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-5",
@@ -787,7 +1596,8 @@
                 "Backhand",
                 "Efeitos",
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-6",
@@ -798,7 +1608,8 @@
                 "Forehand",
                 "Voleio",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-7",
@@ -808,7 +1619,8 @@
               "golpes": [
                 "Voleio",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t3-ava-8",
@@ -818,10 +1630,151 @@
               "golpes": [
                 "Tática",
                 "Voleio"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ava-9",
+              "nome": "Saque e voleio com prato",
+              "como": "Um prato marca onde fazer o split step depois do saque. Primeiro voleio fundo, segundo para fechar.",
+              "dose": "5 séries de 5",
+              "golpes": [
+                "Saque",
+                "Voleio",
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
               ]
+            },
+            {
+              "id": "t3-ava-10",
+              "nome": "Duas bolas rápidas na rede",
+              "como": "O professor alimenta duas bolas seguidas, rápidas, em lados diferentes. O aluno bloqueia as duas.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Voleio"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ava-11",
+              "nome": "Escada e aproximação",
+              "como": "Escada rápida no fundo da quadra e, na saída, bola curta para aproximação e voleio.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação",
+                "Forehand"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t3-ava-12",
+              "nome": "Smash de tesoura",
+              "como": "Lob alto e fundo. O aluno recua de lado e faz o smash saltando, trocando as pernas no ar.",
+              "dose": "3 séries de 6",
+              "golpes": [
+                "Smash"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t3-ava-13",
+              "nome": "Voleio curto no cone",
+              "como": "Cones perto da lateral, junto à rede. Voleio curto cruzado buscando o alvo.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t3-ava-14",
+              "nome": "Duplas em formação australiana",
+              "como": "Pontos de duplas com o parceiro do sacador do mesmo lado do saque, para treinar o voleio e a troca de posição.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Tática",
+                "Voleio"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "quando aparece a bola curta e é hora de atacar",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Quadril em avanço",
+            "como": "Um joelho no chão e o outro pé à frente; leve o quadril para a frente.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Quadríceps em pé",
+            "como": "Segure o pé atrás com a mão, joelhos juntos.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Ombro cruzado",
+            "como": "Braço esticado na frente do peito, puxado pela outra mão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Panturrilha na parede",
+            "como": "Mãos na parede, perna de trás esticada, calcanhar no chão.",
+            "dose": "30 segundos de cada lado"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote e corrida para a frente e para trás",
+            "como": "Trote leve e, na linha de saque, corrida de costas até a linha de base.",
+            "dose": "4 idas e voltas"
+          },
+          {
+            "nome": "Avanço caminhando",
+            "como": "Passos largos à frente, descendo o joelho de trás perto do chão.",
+            "dose": "2 passagens na largura da quadra"
+          },
+          {
+            "nome": "Escada até a rede",
+            "como": "Escada apontando para a rede, um pé em cada quadrado, terminando em base de voleio.",
+            "dose": "4 passagens"
+          },
+          {
+            "nome": "Círculos de braço e punho",
+            "como": "Círculos grandes com os braços e depois com os punhos.",
+            "dose": "20 segundos cada"
+          },
+          {
+            "nome": "Voleio a voleio",
+            "como": "Dois alunos perto da rede trocando voleios suaves.",
+            "dose": "2 minutos"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Avanço alternado",
+            "como": "Passo à frente, desça o joelho de trás perto do chão e volte. Alterne as pernas.",
+            "dose": "3 séries de 10 de cada lado"
+          },
+          {
+            "nome": "Flexão de braço",
+            "como": "Com os joelhos no chão ou na ponta dos pés, desça o peito e suba.",
+            "dose": "3 séries de 8 a 12"
+          },
+          {
+            "nome": "Abertura de braços com elástico",
+            "como": "Elástico seguro à frente com as duas mãos; abra os braços até o peito.",
+            "dose": "3 séries de 12"
+          }
+        ]
       }
     },
     {
@@ -848,7 +1801,8 @@
               "golpes": [
                 "Lob e passada",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-2",
@@ -857,6 +1811,9 @@
               "dose": "3 séries de 10 bolas",
               "golpes": [
                 "Movimentação"
+              ],
+              "materiais": [
+                "cones"
               ]
             },
             {
@@ -867,7 +1824,8 @@
               "golpes": [
                 "Consistência",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-4",
@@ -877,7 +1835,8 @@
               "golpes": [
                 "Lob e passada",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-5",
@@ -887,7 +1846,8 @@
               "golpes": [
                 "Forehand",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-6",
@@ -897,7 +1857,8 @@
               "golpes": [
                 "Backhand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-7",
@@ -906,7 +1867,8 @@
               "dose": "4 rodadas de 40 segundos",
               "golpes": [
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ini-8",
@@ -916,7 +1878,81 @@
               "golpes": [
                 "Efeitos",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-ini-9",
+              "nome": "Corre ao cone e lob",
+              "como": "Um cone na lateral. O aluno corre até o cone e devolve com um lob alto, depois volta ao centro.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Lob e passada",
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
               ]
+            },
+            {
+              "id": "t4-ini-10",
+              "nome": "Escada e volta ao centro",
+              "como": "Escada lateral. No fim, o aluno corre de volta ao centro da linha de base e recebe uma bola.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t4-ini-11",
+              "nome": "Defesa com bola verde",
+              "como": "Bola verde, mais lenta, para o aluno ter tempo de chegar e devolver alto. Bom para crianças e adultos que estão começando.",
+              "dose": "3 rodadas de 2 minutos",
+              "golpes": [
+                "Consistência",
+                "Movimentação"
+              ],
+              "materiais": [
+                "bola verde"
+              ]
+            },
+            {
+              "id": "t4-ini-12",
+              "nome": "Sombra nos pratos",
+              "como": "Sem bola: pratos nos cantos do fundo. O professor aponta, o aluno corre, faz o golpe de sombra e volta ao centro.",
+              "dose": "4 rodadas de 30 segundos",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t4-ini-13",
+              "nome": "Passada no corredor",
+              "como": "Cones formam um corredor na paralela. Com o professor na rede, o aluno tenta passar pelo corredor.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Lob e passada"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t4-ini-14",
+              "nome": "Não deixa quicar duas vezes",
+              "como": "Jogo: cada bola que o aluno alcança e devolve vale um ponto, mesmo que a devolução saia alta.",
+              "dose": "3 jogos até 10",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -932,7 +1968,8 @@
                 "Backhand",
                 "Efeitos",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-2",
@@ -942,7 +1979,8 @@
               "golpes": [
                 "Lob e passada",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-3",
@@ -952,7 +1990,8 @@
               "golpes": [
                 "Consistência",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-4",
@@ -962,7 +2001,8 @@
               "golpes": [
                 "Efeitos",
                 "Forehand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-5",
@@ -972,7 +2012,8 @@
               "golpes": [
                 "Devolução",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-6",
@@ -982,7 +2023,8 @@
               "golpes": [
                 "Lob e passada",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-7",
@@ -991,7 +2033,8 @@
               "dose": "3 séries de 6",
               "golpes": [
                 "Smash"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-int-8",
@@ -1001,7 +2044,81 @@
               "golpes": [
                 "Voleio",
                 "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-int-9",
+              "nome": "Leque de slice",
+              "como": "Cones nas laterais. O aluno corre até o cone, devolve com slice defensivo de backhand e volta ao centro.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Backhand",
+                "Efeitos",
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
               ]
+            },
+            {
+              "id": "t4-int-10",
+              "nome": "Escada com três saídas",
+              "como": "Escada e, no fim, três pratos em direções diferentes. O professor fala o número e o aluno sai para aquele prato.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada",
+                "pratos"
+              ]
+            },
+            {
+              "id": "t4-int-11",
+              "nome": "Deslocamento lateral com elástico",
+              "como": "O professor segura um elástico na cintura do aluno, que faz deslocamento lateral contra a resistência e volta.",
+              "dose": "4 séries de 6 metros por lado",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "elástico"
+              ]
+            },
+            {
+              "id": "t4-int-12",
+              "nome": "Lob alto no prato",
+              "como": "Pratos no fundo da quadra do outro lado. Lob defensivo alto buscando os pratos.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Lob e passada"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t4-int-13",
+              "nome": "Bola alta e funda recebida",
+              "como": "O professor manda topspin alto e fundo. O aluno recua e devolve alto, sem perder a posição.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Consistência",
+                "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-int-14",
+              "nome": "Começa perdendo",
+              "como": "Games que começam em 0-30 para o aluno: ele precisa defender bem para virar.",
+              "dose": "6 games",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -1016,7 +2133,8 @@
               "golpes": [
                 "Tática",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-2",
@@ -1026,7 +2144,8 @@
               "golpes": [
                 "Lob e passada",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-3",
@@ -1037,7 +2156,8 @@
                 "Forehand",
                 "Backhand",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-4",
@@ -1047,7 +2167,8 @@
               "golpes": [
                 "Movimentação",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-5",
@@ -1057,7 +2178,8 @@
               "golpes": [
                 "Devolução",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-6",
@@ -1068,7 +2190,8 @@
                 "Efeitos",
                 "Backhand",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-7",
@@ -1078,7 +2201,8 @@
               "golpes": [
                 "Smash",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t4-ava-8",
@@ -1088,10 +2212,151 @@
               "golpes": [
                 "Voleio",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-ava-9",
+              "nome": "Sprint e freada",
+              "como": "Sprint do centro até o cone lateral, freada em base aberta e golpe; volta ao centro.",
+              "dose": "5 séries de 4",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "cones"
               ]
+            },
+            {
+              "id": "t4-ava-10",
+              "nome": "Escada reativa com bola",
+              "como": "Escada rápida e, na saída, alimentação para um lado aleatório.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t4-ava-11",
+              "nome": "Corredores de passada",
+              "como": "Pratos marcam o corredor da paralela e a zona da cruzada curta. Parceiro na rede, o aluno escolhe a passada.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Lob e passada",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t4-ava-12",
+              "nome": "Contra-ataque ao slice",
+              "como": "O parceiro manda slice baixo e o aluno transforma a bola em ataque na paralela.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Tática",
+                "Forehand",
+                "Backhand"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-ava-13",
+              "nome": "Defesa contínua",
+              "como": "O professor ataca sem parar e o aluno defende tudo, mantendo a bola em jogo.",
+              "dose": "5 blocos de 45 segundos, 30 segundos de pausa",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t4-ava-14",
+              "nome": "Lob de contra-ataque",
+              "como": "Parceiro na rede. Lob com topspin, rápido e baixo, por cima do backhand do parceiro.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Lob e passada",
+                "Efeitos"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "quando o adversário te pressiona e você precisa se defender",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Adutores sentado",
+            "como": "Sentado, sola dos pés unida; deixe os joelhos caírem para os lados.",
+            "dose": "30 segundos"
+          },
+          {
+            "nome": "Glúteo deitado",
+            "como": "Deitado, cruze um tornozelo sobre o joelho oposto e puxe a coxa de baixo.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Panturrilha na parede",
+            "como": "Mãos na parede, perna de trás esticada, calcanhar no chão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Lateral do tronco",
+            "como": "Em pé, braço por cima da cabeça e incline o tronco para o lado oposto.",
+            "dose": "20 segundos de cada lado"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote e deslocamento lateral",
+            "como": "Trote leve e, nas laterais da quadra, deslocamento lateral sem cruzar os pés.",
+            "dose": "2 voltas"
+          },
+          {
+            "nome": "Passo cruzado",
+            "como": "Deslocamento lateral cruzando a perna de trás pela frente.",
+            "dose": "2 passagens de cada lado"
+          },
+          {
+            "nome": "Passos laterais com elástico",
+            "como": "Mini elástico acima dos joelhos, passos laterais em base baixa.",
+            "dose": "2 passagens de 6 metros"
+          },
+          {
+            "nome": "Pratos nos quatro cantos",
+            "como": "O professor aponta um prato; o aluno corre, toca e volta ao centro.",
+            "dose": "3 rodadas de 30 segundos"
+          },
+          {
+            "nome": "Troca do fundo",
+            "como": "Troca suave do fundo, aumentando o ritmo aos poucos.",
+            "dose": "3 minutos"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Avanço lateral",
+            "como": "Passo largo para o lado, dobrando o joelho dessa perna e mantendo a outra esticada.",
+            "dose": "3 séries de 8 de cada lado"
+          },
+          {
+            "nome": "Elevação de panturrilha",
+            "como": "Em pé, suba na ponta dos pés e desça devagar. Pode ser num degrau.",
+            "dose": "3 séries de 15"
+          },
+          {
+            "nome": "Prancha lateral",
+            "como": "Apoiado no antebraço, corpo de lado e reto. Iniciantes apoiam os joelhos.",
+            "dose": "3 vezes de 20 segundos de cada lado"
+          }
+        ]
       }
     },
     {
@@ -1119,7 +2384,8 @@
                 "Efeitos",
                 "Forehand",
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-2",
@@ -1128,7 +2394,8 @@
               "dose": "2 séries de 12",
               "golpes": [
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-3",
@@ -1137,7 +2404,8 @@
               "dose": "3 séries de 10",
               "golpes": [
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-4",
@@ -1147,7 +2415,8 @@
               "golpes": [
                 "Efeitos",
                 "Forehand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-5",
@@ -1157,7 +2426,8 @@
               "golpes": [
                 "Consistência",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-6",
@@ -1166,7 +2436,8 @@
               "dose": "3 séries de 10",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-7",
@@ -1176,7 +2447,8 @@
               "golpes": [
                 "Saque",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ini-8",
@@ -1186,7 +2458,79 @@
               "golpes": [
                 "Backhand",
                 "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ini-9",
+              "nome": "Por cima e por baixo da corda",
+              "como": "Corda ou elástico esticado acima da rede. O aluno alterna bolas que passam por cima da corda e bolas que passam entre a rede e a corda.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Efeitos",
+                "Consistência"
+              ],
+              "materiais": [
+                "corda"
               ]
+            },
+            {
+              "id": "t5-ini-10",
+              "nome": "Curta no prato, funda no cone",
+              "como": "Pratos perto da rede e cones no fundo do outro lado. O aluno alterna uma bola curta e uma funda.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": [
+                "pratos",
+                "cones"
+              ]
+            },
+            {
+              "id": "t5-ini-11",
+              "nome": "Curta e funda com bola laranja",
+              "como": "Para crianças e principiantes: na mini quadra, com bola laranja, ganhar o ponto alternando bolas curtas e fundas.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": [
+                "bola laranja",
+                "cones"
+              ]
+            },
+            {
+              "id": "t5-ini-12",
+              "nome": "Escovada na grade",
+              "como": "Perto da grade, o aluno escova a bola de baixo para cima e vê a bola subir girando. Sente o topspin sem pressa.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ini-13",
+              "nome": "Escada de ritmo",
+              "como": "Escada alternando um quadrado devagar e um rápido. Treina mudar de ritmo com os pés.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t5-ini-14",
+              "nome": "Qual foi o efeito?",
+              "como": "O professor varia o efeito e o aluno diz qual foi pelo quique, antes de devolver.",
+              "dose": "2 séries de 12",
+              "golpes": [
+                "Efeitos"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -1201,7 +2545,8 @@
               "golpes": [
                 "Efeitos",
                 "Backhand"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-2",
@@ -1211,7 +2556,8 @@
               "golpes": [
                 "Efeitos",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-3",
@@ -1221,7 +2567,8 @@
               "golpes": [
                 "Tática",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-4",
@@ -1230,7 +2577,8 @@
               "dose": "Pontos de 11, dois jogos",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-5",
@@ -1240,7 +2588,8 @@
               "golpes": [
                 "Forehand",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-6",
@@ -1250,7 +2599,8 @@
               "golpes": [
                 "Devolução",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-7",
@@ -1261,7 +2611,8 @@
                 "Movimentação",
                 "Tática",
                 "Voleio"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-int-8",
@@ -1271,7 +2622,81 @@
               "golpes": [
                 "Lob e passada",
                 "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-int-9",
+              "nome": "Deixadinha no prato",
+              "como": "Pratos perto da rede, do outro lado. Deixadinha buscando o alvo, com raquete aberta.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
               ]
+            },
+            {
+              "id": "t5-int-10",
+              "nome": "Alturas com a corda",
+              "como": "Troca do fundo alternando uma bola por cima da corda (alta, com topspin) e uma por baixo (mais reta).",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Efeitos",
+                "Forehand"
+              ],
+              "materiais": [
+                "corda"
+              ]
+            },
+            {
+              "id": "t5-int-11",
+              "nome": "Slice e deixadinha",
+              "como": "Aproximação com slice e, na bola seguinte, deixadinha no lado oposto.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Efeitos",
+                "Voleio"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-int-12",
+              "nome": "Cones mudam o ritmo",
+              "como": "Bola que vai até os cones do fundo precisa ser alta. Bola no corredor lateral precisa ser rápida.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Tática",
+                "Efeitos"
+              ],
+              "materiais": [
+                "cones"
+              ]
+            },
+            {
+              "id": "t5-int-13",
+              "nome": "Escada e bola no corpo",
+              "como": "Escada com passos curtos e, na saída, bola alimentada perto do corpo: o aluno ajusta a distância antes de bater.",
+              "dose": "6 passagens",
+              "golpes": [
+                "Movimentação"
+              ],
+              "materiais": [
+                "escada"
+              ]
+            },
+            {
+              "id": "t5-int-14",
+              "nome": "Ponto com três efeitos",
+              "como": "O ponto só vale se o aluno usar topspin, slice e uma bola chapada antes de ganhar.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -1286,7 +2711,8 @@
               "golpes": [
                 "Efeitos",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-2",
@@ -1296,7 +2722,8 @@
               "golpes": [
                 "Tática",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-3",
@@ -1305,7 +2732,8 @@
               "dose": "2 sets curtos até 4 games",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-4",
@@ -1315,7 +2743,8 @@
               "golpes": [
                 "Efeitos",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-5",
@@ -1325,7 +2754,8 @@
               "golpes": [
                 "Saque",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-6",
@@ -1336,7 +2766,8 @@
                 "Tática",
                 "Efeitos",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-7",
@@ -1346,7 +2777,8 @@
               "golpes": [
                 "Lob e passada",
                 "Efeitos"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t5-ava-8",
@@ -1356,10 +2788,146 @@
               "golpes": [
                 "Smash",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ava-9",
+              "nome": "Deixadinha e lob",
+              "como": "Deixadinha; o parceiro corre para a rede e o aluno faz o lob por cima.",
+              "dose": "4 séries de 5",
+              "golpes": [
+                "Efeitos",
+                "Lob e passada"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ava-10",
+              "nome": "Pesado e baixo no mesmo prato",
+              "como": "Um prato no fundo do backhand do parceiro. O aluno alterna topspin pesado e slice baixo no mesmo alvo.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Efeitos"
+              ],
+              "materiais": [
+                "pratos"
               ]
+            },
+            {
+              "id": "t5-ava-11",
+              "nome": "Três saques, um alvo",
+              "como": "Saque chapado, com slice e com kick, todos no mesmo alvo.",
+              "dose": "3 séries de 9",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ava-12",
+              "nome": "Leitura do adversário",
+              "como": "O professor esconde a intenção até o fim e alterna deixadinha e bola funda. O aluno lê o corpo e reage.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Movimentação",
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ava-13",
+              "nome": "Slice contra pancada",
+              "como": "O professor bate forte e o aluno responde com slice baixo, tirando o ritmo.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t5-ava-14",
+              "nome": "Três no ponto fraco",
+              "como": "Pontos em que o aluno precisa mandar três bolas no ponto fraco do parceiro antes de atacar.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "quando é preciso mudar o ritmo e tirar o adversário da zona de conforto",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Antebraço",
+            "como": "Braço esticado, puxe os dedos para trás e depois para baixo com a outra mão.",
+            "dose": "20 segundos em cada posição"
+          },
+          {
+            "nome": "Ombro cruzado",
+            "como": "Braço esticado na frente do peito, puxado pela outra mão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Rotação do tronco sentado",
+            "como": "Sentado, uma perna cruzada sobre a outra; gire o tronco para o lado da perna de cima.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Posterior da coxa",
+            "como": "Calcanhar apoiado à frente, joelho esticado, incline o tronco.",
+            "dose": "30 segundos de cada lado"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote com mudança de ritmo",
+            "como": "Trote alternando 10 passos lentos e 10 rápidos.",
+            "dose": "2 voltas"
+          },
+          {
+            "nome": "Rotação do tronco em pé",
+            "como": "Braços abertos, gire o tronco de um lado para o outro, soltando os braços.",
+            "dose": "20 vezes"
+          },
+          {
+            "nome": "Escada de ritmo",
+            "como": "Escada alternando um quadrado devagar e um rápido.",
+            "dose": "4 passagens"
+          },
+          {
+            "nome": "Punhos e dedos",
+            "como": "Círculos com os punhos e abrir e fechar as mãos com força.",
+            "dose": "30 segundos"
+          },
+          {
+            "nome": "Mini tênis com efeito",
+            "como": "Troca suave na mini quadra alternando topspin e slice.",
+            "dose": "3 minutos"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Punho com elástico ou garrafa",
+            "como": "Antebraço apoiado na coxa, levante e abaixe o punho devagar com um peso leve, para cima e para baixo.",
+            "dose": "2 séries de 15 de cada"
+          },
+          {
+            "nome": "Prancha com toque no ombro",
+            "como": "Em prancha alta, toque o ombro oposto com a mão, sem girar o quadril.",
+            "dose": "3 séries de 10 toques"
+          },
+          {
+            "nome": "Rotação do tronco com elástico",
+            "como": "Elástico preso de lado na altura do peito; gire o tronco com os braços esticados.",
+            "dose": "3 séries de 10 de cada lado"
+          }
+        ]
       }
     },
     {
@@ -1386,7 +2954,8 @@
               "dose": "3 jogos",
               "golpes": [
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-2",
@@ -1395,7 +2964,8 @@
               "dose": "4 games",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-3",
@@ -1405,7 +2975,8 @@
               "golpes": [
                 "Saque",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-4",
@@ -1414,7 +2985,8 @@
               "dose": "Durante todos os jogos da aula",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-5",
@@ -1425,7 +2997,8 @@
                 "Forehand",
                 "Backhand",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-6",
@@ -1435,7 +3008,8 @@
               "golpes": [
                 "Voleio",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-7",
@@ -1444,7 +3018,8 @@
               "dose": "3 jogos até 7",
               "golpes": [
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ini-8",
@@ -1454,7 +3029,78 @@
               "golpes": [
                 "Devolução",
                 "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ini-9",
+              "nome": "Placar de cones",
+              "como": "Jogo curto em que cada ponto ganho vira um cone na linha do aluno. Ver o placar ajuda as crianças a contar.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ],
+              "materiais": [
+                "cones"
               ]
+            },
+            {
+              "id": "t6-ini-10",
+              "nome": "Jogo com bola laranja",
+              "como": "Para crianças e principiantes: jogo na mini quadra com bola laranja e contagem simples.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Consistência"
+              ],
+              "materiais": [
+                "bola laranja",
+                "cones"
+              ]
+            },
+            {
+              "id": "t6-ini-11",
+              "nome": "Prato da rotina",
+              "como": "Um prato na linha de base. Entre os pontos, o aluno volta ao prato, respira fundo e só então saca ou recebe.",
+              "dose": "Durante os jogos da aula",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": [
+                "pratos"
+              ]
+            },
+            {
+              "id": "t6-ini-12",
+              "nome": "Rei da quadra com saque",
+              "como": "Quem ganha o ponto fica; quem perde dá lugar ao próximo. O ponto sempre começa com saque.",
+              "dose": "10 minutos",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ini-13",
+              "nome": "Termina na rede",
+              "como": "Mini jogo em que o ponto precisa terminar com voleio ou smash.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Voleio",
+                "Smash"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ini-14",
+              "nome": "Primeira bola fácil",
+              "como": "O professor alimenta a primeira bola fácil e o aluno decide: atacar ou construir. Depois, conversam sobre a escolha.",
+              "dose": "Pontos de 11",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -1469,7 +3115,8 @@
               "golpes": [
                 "Saque",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-2",
@@ -1478,6 +3125,9 @@
               "dose": "Durante um set curto até 4 games",
               "golpes": [
                 "Tática"
+              ],
+              "materiais": [
+                "corda"
               ]
             },
             {
@@ -1488,7 +3138,8 @@
               "golpes": [
                 "Tática",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-4",
@@ -1497,7 +3148,8 @@
               "dose": "3 games por perfil",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-5",
@@ -1508,7 +3160,8 @@
                 "Voleio",
                 "Tática",
                 "Movimentação"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-6",
@@ -1518,7 +3171,8 @@
               "golpes": [
                 "Backhand",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-7",
@@ -1528,7 +3182,8 @@
               "golpes": [
                 "Devolução",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-int-8",
@@ -1538,7 +3193,77 @@
               "golpes": [
                 "Efeitos",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-int-9",
+              "nome": "Rodízio de desafios",
+              "como": "Em grupo: desafios curtos de 3 pontos entre os alunos, com rodízio. Quem ganha sobe uma quadra.",
+              "dose": "15 minutos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-int-10",
+              "nome": "Um game, uma regra",
+              "como": "Cada game tem uma regra de um tema do ciclo: subir à rede, saque + 1, defesa sem errar.",
+              "dose": "6 games",
+              "golpes": [
+                "Tática",
+                "Voleio",
+                "Saque"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-int-11",
+              "nome": "Começa em 4-5",
+              "como": "Games que começam em 4-5 no set, com o aluno sacando para empatar.",
+              "dose": "6 games",
+              "golpes": [
+                "Tática",
+                "Saque"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-int-12",
+              "nome": "Ponto depois da escada",
+              "como": "Antes de cada ponto, quatro passagens rápidas na escada. Joga cansado, como no fim de um set.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "escada"
               ]
+            },
+            {
+              "id": "t6-int-13",
+              "nome": "Pontos de duplas",
+              "como": "Duplas com comunicação: chamar \"minha\" ou \"sua\" e combinar a jogada antes do saque.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-int-14",
+              "nome": "Devolução que vale dobrado",
+              "como": "Ponto ganho na devolução vale 2. Estimula devolver com intenção.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Devolução",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         },
@@ -1553,7 +3278,8 @@
               "golpes": [
                 "Saque",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-2",
@@ -1562,7 +3288,8 @@
               "dose": "1 set curto até 4 games",
               "golpes": [
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-3",
@@ -1572,7 +3299,8 @@
               "golpes": [
                 "Tática",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-4",
@@ -1582,7 +3310,8 @@
               "golpes": [
                 "Tática",
                 "Saque"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-5",
@@ -1593,7 +3322,8 @@
                 "Tática",
                 "Saque",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-6",
@@ -1603,7 +3333,8 @@
               "golpes": [
                 "Movimentação",
                 "Consistência"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-7",
@@ -1613,7 +3344,8 @@
               "golpes": [
                 "Lob e passada",
                 "Tática"
-              ]
+              ],
+              "materiais": []
             },
             {
               "id": "t6-ava-8",
@@ -1624,11 +3356,149 @@
                 "Forehand",
                 "Backhand",
                 "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ava-9",
+              "nome": "Match tiebreak de 10",
+              "como": "Tiebreaks de 10 pontos, como no lugar do terceiro set nos torneios.",
+              "dose": "3 tiebreaks",
+              "golpes": [
+                "Tática",
+                "Saque"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ava-10",
+              "nome": "Ponto com fadiga",
+              "como": "Antes de cada ponto, 20 segundos de escada e pratos. Treina decidir bem cansado.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ],
+              "materiais": [
+                "escada",
+                "pratos"
               ]
+            },
+            {
+              "id": "t6-ava-11",
+              "nome": "Cartas de estratégia",
+              "como": "No começo de cada game, o aluno sorteia uma carta com um objetivo tático (ex.: ganhar dois pontos na rede).",
+              "dose": "6 games",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ava-12",
+              "nome": "Pressão no 30-30",
+              "como": "Todo game começa em 30-30. Cada ponto é decisivo.",
+              "dose": "8 games",
+              "golpes": [
+                "Tática"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ava-13",
+              "nome": "Saque e devolução decisivos",
+              "como": "Games em que só o primeiro saque vale e a devolução precisa passar da linha de saque.",
+              "dose": "6 games",
+              "golpes": [
+                "Saque",
+                "Devolução"
+              ],
+              "materiais": []
+            },
+            {
+              "id": "t6-ava-14",
+              "nome": "Duplas com objetivos",
+              "como": "Pontos de duplas com objetivo por game: sacar e subir, devolver na paralela, lob no parceiro da rede.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ],
+              "materiais": []
             }
           ]
         }
+      },
+      "momento": "quando o placar aperta e cada ponto conta",
+      "preparacao": {
+        "alongamento": [
+          {
+            "nome": "Panturrilha na parede",
+            "como": "Mãos na parede, perna de trás esticada, calcanhar no chão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Quadríceps em pé",
+            "como": "Segure o pé atrás com a mão, joelhos juntos.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Ombro cruzado",
+            "como": "Braço esticado na frente do peito, puxado pela outra mão.",
+            "dose": "30 segundos de cada lado"
+          },
+          {
+            "nome": "Respiração deitado",
+            "como": "Deitado de costas, respire fundo pelo nariz e solte devagar pela boca. Ajuda a recuperar depois do jogo.",
+            "dose": "1 minuto"
+          }
+        ],
+        "aquecimento": [
+          {
+            "nome": "Trote e joelho alto",
+            "como": "Trote leve e, na largura da quadra, joelho alto.",
+            "dose": "2 voltas"
+          },
+          {
+            "nome": "Avanço com rotação",
+            "como": "Passo à frente em avanço e gire o tronco.",
+            "dose": "8 de cada lado"
+          },
+          {
+            "nome": "Rotação externa com elástico",
+            "como": "Cotovelo colado ao corpo, gire o antebraço para fora.",
+            "dose": "1 série de 12"
+          },
+          {
+            "nome": "Escada e pratos",
+            "como": "Escada de frente e, na saída, corrida até um prato apontado.",
+            "dose": "4 passagens"
+          },
+          {
+            "nome": "Pontos de aquecimento",
+            "como": "Pontos sem contar placar, aumentando a intensidade.",
+            "dose": "4 minutos"
+          }
+        ],
+        "forca": [
+          {
+            "nome": "Circuito de pernas",
+            "como": "Agachamento, avanço alternado e elevação de panturrilha em sequência.",
+            "dose": "3 voltas de 10 de cada"
+          },
+          {
+            "nome": "Prancha frontal",
+            "como": "Antebraços no chão, corpo reto.",
+            "dose": "3 vezes de 30 segundos"
+          },
+          {
+            "nome": "Remada com elástico",
+            "como": "Puxe os cotovelos para trás juntando as escápulas.",
+            "dose": "3 séries de 12"
+          }
+        ]
       }
     }
-  ]
+  ],
+  "avisoPreparacao": "Sem dor: se sentir desconforto, pare e fale com o Paulo. Quem tem lesão ou restrição médica segue a orientação do médico ou fisioterapeuta. Crianças fazem a força só com o peso do corpo. Aquecimento antes da aula; alongamento depois do treino ou em casa."
 }

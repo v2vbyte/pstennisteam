@@ -786,20 +786,23 @@ function definirTema(req) {
   return { ciclo: ciclo };
 }
 
-function lerBanco() {
+/* O banco vem do site. O cache do Apps Script guarda no máximo 100 KB por item,
+   então cada tema fica guardado separado (10 minutos). */
+function lerTemaDoBanco(n) {
   const cache = CacheService.getScriptCache();
-  const salvo = cache.get('banco_treinos');
+  const salvo = cache.get('banco_tema_' + n);
   if (salvo) return JSON.parse(salvo);
   let r;
   try { r = UrlFetchApp.fetch(CFG.BANCO + '?t=' + Date.now(), { muteHttpExceptions: true }); }
   catch (e) { throw publico('Não consegui ler o banco de exercícios no site. Tente de novo em alguns minutos.'); }
   if (r.getResponseCode() !== 200) throw publico('Não consegui ler o banco de exercícios no site. Tente de novo em alguns minutos.');
-  const txt = r.getContentText();
   let banco;
-  try { banco = JSON.parse(txt); } catch (e) { throw publico('O arquivo treinos-por-tema.json do site tem um erro de formatação.'); }
+  try { banco = JSON.parse(r.getContentText()); } catch (e) { throw publico('O arquivo treinos-por-tema.json do site tem um erro de formatação.'); }
   if (!banco || !Array.isArray(banco.temas)) throw publico('O arquivo treinos-por-tema.json do site está incompleto.');
-  try { cache.put('banco_treinos', txt, 600); } catch (e) {}
-  return banco;
+  banco.temas.forEach(t => { try { cache.put('banco_tema_' + t.n, JSON.stringify(t), 600); } catch (e) {} });
+  const tema = banco.temas.filter(t => Number(t.n) === Number(n))[0];
+  if (!tema) throw publico('O tema ' + n + ' não está no banco de exercícios.');
+  return tema;
 }
 
 /* Nível do aluno para o banco (o banco tem Iniciante, Intermediário e Avançado) */
@@ -836,9 +839,7 @@ function treinoSemana(req) {
   const refeitos = ja ? (ja.refeitos || 0) + 1 : 0;
   if (ja && refeitos > limite) throw publico('O treino de ' + String(al.nome).split(' ')[0] + ' já foi montado de novo ' + limite + (limite === 1 ? ' vez' : ' vezes') + ' esta semana. Para economizar o Claude, use o treino atual e ajuste na quadra.');
 
-  const banco = lerBanco();
-  const tema = banco.temas.filter(t => Number(t.n) === n)[0];
-  if (!tema) throw publico('O tema ' + n + ' não está no banco de exercícios.');
+  const tema = lerTemaDoBanco(n);
   const au = al.aulas[al.aulas.length - 1];
   const diag = lerArquivoAula(au).diag;
   const nivel = nivelDoAluno(diag), nivelBanco = nivelNoBanco(nivel);
@@ -925,7 +926,8 @@ const SISTEMA_TREINO = [
   'Regras:',
   '- Os exercícios precisam servir ao tema da semana e ao plano de treino do aluno ao mesmo tempo: escolha os que trabalham o tema usando os golpes e os pontos que o plano e a avaliação pedem.',
   '- Parta do banco de exercícios do nível do aluno. Use pelo menos 2 exercícios do banco, informando o id em idBanco. Você pode adaptar um exercício do banco (dose, simplificação, foco no golpe do plano), mantendo o id. Pode criar no máximo 1 exercício novo, quando o plano pedir algo que o banco não cobre; nesse caso, idBanco fica vazio.',
-  '- Ajuste à idade e ao nível: para crianças, formato de desafio ou jogo; para principiantes, bola lançada na mão e mini quadra.',
+  '- Ajuste à idade e ao nível: para crianças, formato de desafio ou jogo e bolas de transição (vermelha, laranja ou verde, como no Play and Stay da ITF); para principiantes, bola lançada na mão e mini quadra.',
+  '- O Paulo tem cones, pratos de agilidade, escada de agilidade, elásticos, corda e bolas de transição. Pode usar esses materiais quando ajudarem o exercício.',
   '- Se o objetivo do aluno for específico (por exemplo, preparação para torneios), o tema fica como pano de fundo e o plano individual tem prioridade.',
   '- Se o plano do aluno já passou da última semana, avise em "atencao" que está na hora da reavaliação.',
   '- Evite repetir os exercícios das últimas semanas, se houver alternativa no banco.',
@@ -956,7 +958,7 @@ function contextoTreino(x) {
   if (t.nota) L.push('Nota do tema: ' + t.nota);
   L.push('');
   L.push('BANCO DE EXERCÍCIOS DO TEMA, NÍVEL ' + x.nivelBanco.toUpperCase() + ' (os mais indicados para este aluno, do mais para o menos indicado). Objetivo do nível: ' + v(x.doNivel.objetivo));
-  (x.doNivel.exercicios || []).forEach(e => L.push('- [' + e.id + '] ' + e.nome + ': ' + e.como + ' Dose: ' + e.dose + '. Golpes: ' + (e.golpes || []).join(', ')));
+  (x.doNivel.exercicios || []).forEach(e => L.push('- [' + e.id + '] ' + e.nome + ': ' + e.como + ' Dose: ' + e.dose + '. Golpes: ' + (e.golpes || []).join(', ') + ((e.materiais || []).length ? '. Material: ' + e.materiais.join(', ') : '')));
   if (x.anteriores.length) {
     L.push('');
     L.push('EXERCÍCIOS DAS ÚLTIMAS SEMANAS: ' + x.anteriores.map(p => p.exercicios.map(e => e.nome).join(', ')).join(' | '));

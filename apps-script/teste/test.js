@@ -183,8 +183,8 @@ ok(r.ok, 'monta o treino: ' + (r.erro || ''));
 let tr = r.aluno.treinos[0];
 const tc1 = JSON.stringify(T1.log.treinos[0].messages);
 ok(tr.semana === '2026-11-30' && tr.tema === 3 && tr.temaTitulo === 'Atacar e fechar', 'na semana seguinte, o ciclo já está no tema 3');
-ok(tc1.includes('NÍVEL INICIANTE') && (tc1.match(/\[t3-ini-\d\]/g) || []).length === 6 && !tc1.includes('[t3-int-'), 'manda ao Claude só os 6 exercícios mais indicados do tema e do nível');
-ok(/\[(t3-ini-\d)\]/.exec(tc1)[1] === 't3-ini-5', 'o primeiro da lista trabalha o golpe mais fraco que está no plano (backhand)');
+ok(tc1.includes('NÍVEL INICIANTE') && (tc1.match(/\[t3-ini-\d+\]/g) || []).length === 6 && !tc1.includes('[t3-int-'), 'manda ao Claude só os 6 exercícios mais indicados do tema e do nível');
+ok(/\[(t3-ini-\d+)\]/.exec(tc1)[1] === 't3-ini-5', 'o primeiro da lista trabalha o golpe mais fraco que está no plano (backhand)');
 ok(tc1.includes('Semanas 1 a 4') && tc1.includes('Pontos a melhorar') && tc1.includes('semana 1 do plano'), 'manda o plano, os pontos a melhorar e a semana do plano');
 ok(!tc1.includes('pagou com pix'), 'notas internas NÃO vão para o Claude');
 ok(tr.exercicios.length === 3 && tr.exercicios[0].idBanco === 't3-ini-5' && tr.exercicios[1].idBanco === '' && tr.exercicios[2].idBanco === '' && tr.semIA === false, 'id do banco confere; id inventado é apagado');
@@ -212,6 +212,17 @@ ok(/já foi montado de novo 2 vezes/.test(r.erro) && T1.log.treinos.length === 4
 T1.props.REFAZER_TREINO = '3';
 ok(T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30', refazer: true }).ok, 'limite muda pela propriedade REFAZER_TREINO');
 
+console.log('11b. banco de exercícios do site');
+const BANCO = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', '..', 'professor', 'treinos-por-tema.json'), 'utf8'));
+const GOL = ['Forehand', 'Backhand', 'Saque', 'Devolução', 'Voleio', 'Smash', 'Lob e passada', 'Movimentação', 'Consistência', 'Efeitos', 'Tática'];
+const EXS = BANCO.temas.flatMap(t => Object.values(t.niveis).flatMap(n => n.exercicios));
+ok(BANCO.temas.length === 6 && BANCO.temas.every(t => ['Iniciante', 'Intermediário', 'Avançado'].every(n => t.niveis[n] && t.niveis[n].exercicios.length >= 8)), '6 temas, 3 níveis, pelo menos 8 exercícios cada');
+ok(new Set(EXS.map(e => e.id)).size === EXS.length, 'ids únicos (' + EXS.length + ' exercícios)');
+ok(EXS.every(e => e.nome && e.como && e.dose && e.golpes.length && e.golpes.every(g => GOL.includes(g)) && Array.isArray(e.materiais)), 'todo exercício tem nome, como, dose, golpes da ficha e materiais');
+ok(BANCO.temas.every(t => t.momento && t.preparacao && ['alongamento', 'aquecimento', 'forca'].every(k => t.preparacao[k].length >= 3)), 'todo tema tem momento do jogo e preparação (alongamento, aquecimento e força)');
+ok(!/[—–]/.test(JSON.stringify(BANCO)), 'nenhum travessão no banco');
+ok(Object.keys(T1.log).length && T1.log.banco === 1, 'o banco é lido do site uma vez e fica em cache por tema (o arquivo inteiro passa de 100 KB)');
+
 console.log('12. treino sem gastar o Claude');
 const o3 = { props: PROPS }, T3 = criarAmbiente(o3); T3.ctx.configurar();
 const tal3 = T3.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: Object.assign({}, av1, { quadros: [] }), calibragem: cal1 }).aluno;
@@ -220,7 +231,7 @@ o3.falhaClaude = 529;
 r = T3.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal3.id, semana: '2026-11-30' });
 tr = r.aluno && r.aluno.treinos[0];
 ok(r.ok && tr.semIA === true && /Montei o treino direto pelo banco/.test(r.aviso), 'Claude fora do ar: monta pelo banco e avisa');
-ok(tr.tema === 4 && tr.exercicios.length === 3 && tr.exercicios.every(e => /^t4-ini-\d$/.test(e.idBanco)) && tr.exercicios.some(e => e.idBanco === 't4-ini-6'), 'treino pelo banco usa os exercícios mais indicados (backhand, a nota mais baixa)');
+ok(tr.tema === 4 && tr.exercicios.length === 3 && tr.exercicios.every(e => /^t4-ini-\d+$/.test(e.idBanco)) && tr.exercicios.some(e => e.idBanco === 't4-ini-6'), 'treino pelo banco usa os exercícios mais indicados (backhand, a nota mais baixa)');
 ok(/Backhand|Forehand|Saque/.test(tr.atencao) && tr.exercicios.some(e => /nota \d/.test(e.porque)), 'treino pelo banco liga ao plano e às notas');
 ok(!/[—–]/.test(JSON.stringify(tr)), 'nenhum travessão no treino pelo banco');
 delete o3.falhaClaude; T3.props.MODO_TREINO = 'banco';
