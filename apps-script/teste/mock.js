@@ -126,6 +126,17 @@ function criarAmbiente(opts = {}) {
     const semAP = []; (function v(o, c) { if (o && typeof o === 'object') { if (o.type === 'object' && o.additionalProperties !== false) semAP.push(c); Object.keys(o).forEach(k => v(o[k], c + '.' + k)); } })(esq, '$');
     if (semAP.length) return resposta(400, { error: { message: 'additionalProperties false faltando em ' + semAP.join(',') } });
     log.esquemas = log.esquemas || []; log.esquemas.push(esq);
+    if (esq.properties.exercicios) {
+      log.treinos = log.treinos || []; log.treinos.push(corpo);
+      const ctx = JSON.stringify(corpo.messages);
+      const id = (/\[(t\d-[a-z]{3}-\d)\]/.exec(ctx) || [])[1] || '';
+      return resposta(200, { content: [{ type: 'text', text: JSON.stringify(opts.treinoClaude ? opts.treinoClaude(ctx, id) : {
+        foco: 'O tema encontra o saque do plano — aproveite.',
+        exercicios: [{ idBanco: id, nome: 'Do banco', como: 'Como fazer.', dose: '3 séries de 10', porque: 'Liga com o plano.' },
+          { idBanco: 'id-inventado', nome: 'Com id inventado', como: 'x', dose: 'x', porque: 'x' },
+          { idBanco: '', nome: 'Novo', como: 'x', dose: 'x', porque: 'x' }],
+        atencao: 'Olhe o lançamento.' }) }], stop_reason: 'end_turn', usage: { output_tokens: 321 } });
+    }
     const nome = esq.properties.classeSugerida ? 'diagnostico' : 'plano';
     const temQuadros = JSON.stringify(corpo.messages).includes('"type":"image"');
     const reav = JSON.stringify(corpo.messages).includes('TIPO DE AULA: Reavaliação');
@@ -155,7 +166,11 @@ function criarAmbiente(opts = {}) {
     return resposta(200, { content: [{ type: 'text', text: JSON.stringify(input) }], stop_reason: 'end_turn', usage: { output_tokens: 1234 } });
   }
   const UrlFetchApp = {
-    fetch(url, o) { if (url.includes('tokeninfo')) return tokeninfo(url); throw new Error('url inesperada ' + url); },
+    fetch(url, o) {
+      if (url.includes('tokeninfo')) return tokeninfo(url);
+      if (url.includes('treinos-por-tema.json')) { log.banco = (log.banco || 0) + 1; if (opts.bancoStatus) return resposta(opts.bancoStatus, 'erro'); return resposta(200, opts.banco || fs.readFileSync(require('path').join(__dirname, '..', '..', 'professor', 'treinos-por-tema.json'), 'utf8')); }
+      throw new Error('url inesperada ' + url);
+    },
     fetchAll(reqs) { return reqs.map(r => { if (r.url.includes('anthropic')) return anthropic(r); throw new Error('url inesperada'); }); }
   };
 

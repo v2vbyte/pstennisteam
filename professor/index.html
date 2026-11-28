@@ -542,6 +542,122 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .meta h3{font-size:16pt;margin-bottom:3mm}
 .nota-itn{position:absolute;left:0;right:0;bottom:0;font-size:7.3pt;line-height:1.45;color:var(--suave)}
 
+/* Treinos por tema: tema da semana (início) e treino da semana (aluno) */
+.tsem{background:var(--saibro);color:var(--creme);border-radius:28px;padding:22px;position:relative;overflow:hidden;margin-bottom:28px}
+.tsem .court{position:absolute;right:-110px;top:-70px;width:220px;opacity:.35;pointer-events:none}
+.tsem .num{position:absolute;right:14px;bottom:-22px;font:800 130px/1 var(--tit);color:rgba(244,238,230,.12);pointer-events:none}
+.tsem .over{color:var(--creme);opacity:.9;position:relative}
+.tsem h2{font-size:36px;color:var(--creme);margin:8px 0 4px;position:relative;max-width:14ch}
+.tsem .sb{margin:0;font-size:14px;color:var(--creme);opacity:.85;position:relative}
+.tsem .pq{margin:14px 0 0;font-weight:600;font-size:16px;line-height:1.4;color:var(--lima);position:relative}
+.tsem .ft{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;position:relative}
+.tsem .ft span{font-size:12px;color:var(--creme);opacity:.85;line-height:1.35}
+.tsem .lk{background:none;border:1.5px solid rgba(244,238,230,.5);color:var(--creme);border-radius:999px;min-height:40px;padding:0 14px;font-weight:700;font-size:13px;cursor:pointer;flex:none}
+.tpick{display:grid;gap:8px;margin-top:14px;position:relative}
+.tpick button{display:flex;align-items:center;gap:12px;text-align:left;background:rgba(28,26,23,.22);border:1.5px solid transparent;color:var(--creme);border-radius:16px;padding:10px 14px;font-weight:600;font-size:15px;cursor:pointer;min-height:48px}
+.tpick button b{font:800 22px/1 var(--tit);color:var(--lima);min-width:28px}
+.tpick button[aria-pressed=true]{background:var(--lima);color:var(--tinta)}
+.tpick button[aria-pressed=true] b{color:var(--tinta)}
+.tpick button[disabled]{opacity:.5}
+.trn{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:18px;margin-bottom:26px}
+.trn .trh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.trn .trh span{font-size:12px;color:var(--suave);font-weight:600}
+.trn h2{font-size:28px;margin:8px 0 6px}
+.trn h2 small{display:block;font:600 13px/1.3 var(--txt);text-transform:none;color:var(--saibro);letter-spacing:0;margin-bottom:2px}
+.trn .ctx{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.trn .ctx .tag{margin:0}
+.trn .foco{font-size:15px;line-height:1.5;color:var(--forte);margin:0 0 14px}
+.trn .txt{font-size:14px;color:var(--suave);margin:0 0 14px;line-height:1.5}
+.trx{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+.trx li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;background:var(--creme);border-radius:16px;padding:12px 14px 12px 10px}
+.trx .n{width:30px;height:30px;border-radius:50%;background:var(--tinta);color:var(--lima);display:grid;place-items:center;font:800 17px var(--tit)}
+.trx h3{font-size:20px;font-weight:700;line-height:1;margin:5px 0 6px;text-transform:none;font-family:var(--tit)}
+.trx p{margin:0 0 4px;font-size:14px;line-height:1.45;color:var(--forte)}
+.trx .ds{font-weight:700;color:var(--tinta)}
+.trx .pq{font-size:13px;color:var(--suave)}
+.trn .atn{background:var(--tinta);color:var(--creme);border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.45;margin-bottom:14px}
+.trn .atn b{display:block;font:700 13px var(--tit);text-transform:uppercase;letter-spacing:.12em;color:var(--lima);margin-bottom:2px}
+.trn .er{color:var(--saibro);font-weight:600;font-size:14px;margin:10px 0 0}
+.trn .ant{margin-top:14px;border-top:1px solid var(--linha);padding-top:10px}
+.trn .ant summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--suave);list-style:none;padding:4px 0}
+.trn .ant summary::-webkit-details-marker{display:none}
+.trn .ant summary::before{content:"+ "}
+.trn .ant[open] summary::before{content:"− "}
+.trn .ant p{font-size:13px;line-height:1.45;color:var(--forte);margin:8px 0 0}
+.trn .ant p b{color:var(--tinta)}
+.btn .spin{width:18px;height:18px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+/* Navegação: menu inicial e barra inferior */
+.wrap.nvpad{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+.nvbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--tinta);padding:8px max(3vw,8px) calc(8px + env(safe-area-inset-bottom))}
+.nvbar .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.nvbar button{background:none;border:0;color:var(--noescuro);display:flex;flex-direction:column;align-items:center;gap:3px;font:600 12px var(--txt);padding:6px 2px;border-radius:14px;cursor:pointer;min-height:52px}
+.nvbar button[aria-current=page]{color:var(--lima);background:var(--grafite)}
+.nvbar button:focus-visible{outline:3px solid var(--lima);outline-offset:-3px}
+.nvola{margin:4px 0 18px}
+.nvola h1{font-size:40px}
+.nvola p{margin:6px 0 0;color:var(--suave);font-size:15px}
+.nvmenu{display:grid;gap:12px;margin-bottom:26px}
+.nvcard{display:block;width:100%;text-align:left;border:0;border-radius:26px;padding:20px;cursor:pointer;position:relative;overflow:hidden;font:inherit}
+.nvcard .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px}
+.nvcard h2{font-size:32px;margin:0 0 6px}
+.nvcard p{margin:0;font-size:14px;line-height:1.45}
+.nvcard .go{position:absolute;right:18px;top:20px}
+.nvcard .st{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.nvcard .st .tag{margin:0}
+.nvcard.c-ava{background:var(--tinta);color:var(--creme)}
+.nvcard.c-ava .ic{background:var(--lima);color:var(--tinta)}
+.nvcard.c-ava p{color:var(--noescuro)}
+.nvcard.c-ava .go{color:var(--lima)}
+.nvcard.c-tem{background:var(--saibro);color:var(--creme)}
+.nvcard.c-tem .ic{background:rgba(28,26,23,.25);color:var(--lima)}
+.nvcard.c-tem .pq{color:var(--lima);font-weight:600;font-size:15px;margin-top:8px}
+.nvcard.c-alu{background:var(--papel);border:1px solid var(--linha);color:var(--tinta)}
+.nvcard.c-alu .ic{background:var(--areia);color:var(--saibro)}
+.nvcard.c-alu p{color:var(--suave)}
+.nvcard .num{position:absolute;right:14px;top:-18px;font:800 120px/1 var(--tit);color:rgba(244,238,230,.14);pointer-events:none}
+.nvtodo{display:grid;gap:8px;margin-bottom:8px}
+.nvtodo button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--papel);border:1px solid var(--linha);border-radius:18px;padding:12px 14px;cursor:pointer;font:inherit;color:inherit}
+.nvtodo .dt{width:10px;height:10px;border-radius:50%;flex:none;background:var(--saibro)}
+.nvtodo .dt.lima{background:var(--lima);outline:1.5px solid var(--tinta)}
+.nvtodo .dt.tinta{background:var(--tinta)}
+.nvtodo span{font-size:14px;line-height:1.4}
+.nvtodo b{font-weight:700}
+.nvtodo .go{margin-left:auto;color:var(--suave);flex:none}
+.nvhead{margin:0 0 16px}
+.nvhead h1{font-size:40px}
+.nvhead p{margin:6px 0 0;color:var(--suave);font-size:15px}
+.nvback{display:inline-flex;align-items:center;gap:4px;background:none;border:0;padding:6px 0;margin:-6px 0 8px;font:600 14px var(--txt);color:var(--suave);cursor:pointer}
+.nvnovo{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--tinta);color:var(--creme);border:0;border-radius:22px;padding:16px;cursor:pointer;font:inherit;margin-bottom:18px}
+.nvnovo .ic{width:46px;height:46px;border-radius:50%;background:var(--lima);color:var(--tinta);display:grid;place-items:center;flex:none}
+.nvnovo b{display:block;font-size:16px}
+.nvnovo small{display:block;font-size:13px;color:var(--noescuro);margin-top:2px}
+.nvfil{display:flex;gap:8px;overflow-x:auto;margin:0 -4px 14px;padding:2px 4px;scrollbar-width:none}
+.nvfil::-webkit-scrollbar{display:none}
+.nvfil .chip{flex:none;min-height:40px;font-size:14px;padding:0 14px}
+.nvsec{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:26px 0 10px}
+.nvsec h2{font-size:24px}
+.nvpil{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:4px 16px}
+.nvpil div{display:grid;gap:2px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.nvpil div:last-child{border-bottom:0}
+.nvpil b{font:700 14px var(--tit);text-transform:uppercase;letter-spacing:.08em;color:var(--saibro)}
+.nvpil span{font-size:14px;line-height:1.45;color:var(--forte)}
+.nvniv{display:grid;gap:8px}
+.nvniv div{background:var(--areia);border-radius:18px;padding:12px 14px}
+.nvniv .tag{margin:0 0 6px;background:var(--tinta);color:var(--creme)}
+.nvniv p{margin:0;font-size:14px;line-height:1.45;color:var(--forte)}
+.nvcic{display:grid;gap:8px}
+.nvcic button{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;text-align:left;background:var(--papel);border:1px solid var(--linha);border-radius:18px;padding:10px 14px;cursor:pointer;font:inherit;color:inherit;min-height:56px}
+.nvcic button b{font:800 24px/1 var(--tit);color:var(--saibro)}
+.nvcic button span{font-weight:600;font-size:15px;line-height:1.3}
+.nvcic button small{font-size:12px;color:var(--suave);font-weight:600;white-space:nowrap}
+.nvcic button[aria-current=true]{background:var(--saibro);border-color:var(--saibro);color:var(--creme)}
+.nvcic button[aria-current=true] b{color:var(--lima)}
+.nvcic button[aria-current=true] small{color:var(--creme)}
+.nvst{font-size:13px;color:var(--suave);margin:8px 0 0}
+.modal .row2 .btn{min-height:50px}
+
 @page{size:A4;margin:0}
 @media print{
   html,body{background:var(--creme)}
@@ -642,7 +758,13 @@ const ICON = {
   zap: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>',
   mail: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
   user: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
-  img: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>'
+  img: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>',
+  casa: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>',
+  ficha: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM12 11v6M9 14h6"/></svg>',
+  tema: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c3.4 3.4 3.4 9.4 0 12.8M18.4 5.6c-3.4 3.4-3.4 9.4 0 12.8"/></svg>',
+  alunos: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg>',
+  mais: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  volta: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>'
 };
 
 /* ---------- Diagnósticos de exemplo (aluna fictícia) ---------- */
@@ -755,19 +877,60 @@ const REAV = {
 };
 
 /* ---------- Armazenamento (modo demonstração) ---------- */
-const KEY = 'ps-prof-demo-v3';
+const KEY = 'ps-prof-demo-v4';
 let mem = null;
 const load = () => { try { const j = localStorage.getItem(KEY); if (j) return JSON.parse(j); } catch (e) {} return mem; };
 const save = d => { mem = d; try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {
   try { const leve = copia(d); leve.alunos.forEach(a => a.aulas.forEach(au => { (au.av && au.av.quadros || []).forEach(q => q.img = null); au.diag && au.diag.saque && au.diag.saque.quadros.forEach(q => q.img = null); })); localStorage.setItem(KEY, JSON.stringify(leve)); } catch (e2) {} } };
+/* Alunos fictícios da demonstração, para a lista e as pendências fazerem sentido */
+function exemploAluno(id, nome, idade, local, data, sugerida, confirmada, nivel, notas) {
+  const d = copia(EXEMPLO), primeiro = nome.split(' ')[0];
+  d.exemplo = 'Exemplo com dados fictícios';
+  Object.assign(d.aluno, { nome, idade, data, local, nivel });
+  d.resumo = d.resumo.replace(/^Mariana/, primeiro);
+  d.notas = notasDe(notas); d.golpes.forEach(g => g.nota = notas[g.golpe] || g.nota);
+  const cal = calibrar(d.notas);
+  Object.assign(d.classe, { sugerida, confirmada, nivel, media: cal.media, itn: cal.itn, justificativa: `Texto de exemplo para ${primeiro}: a média das notas ficou em ${fmt(cal.media)}, na faixa da ${sugerida} classe.` });
+  return { id, nome, idade, whatsapp:'', local, classe: confirmada, aulas: [ { id: id + 'a', tipo:'experimental', data, diag: d, docUrl:'', av: null } ] };
+}
 const semente = () => ({ alunos: [ { id:'ex1', nome:'Mariana Costa', idade:34, whatsapp:'', local:'Fama Tennis', classe:'4ª', aulas: [
   { id:'a1', tipo:'experimental', data:'22/09/2026', diag: copia(EXEMPLO), docUrl:'', av: null },
-  { id:'a2', tipo:'reavaliacao', data:'17/11/2026', diag: copia(REAV), docUrl:'', av: null } ] } ] });
+  { id:'a2', tipo:'reavaliacao', data:'17/11/2026', diag: copia(REAV), docUrl:'', av: null } ] },
+  exemploAluno('ex2', 'Rafael Lima', 41, 'Condomínio', '15/09/2026', '5ª', '5ª', 'Iniciante', N1),
+  exemploAluno('ex3', 'Beatriz Alves', 13, 'Fama Tennis', '25/11/2026', '6ª', '', 'Principiante', { 'Forehand':3,'Backhand':2,'Saque':2,'Devolução':2,'Voleio':2,'Smash':1,'Lob e passada':2,'Movimentação':4,'Consistência':2,'Efeitos':1,'Tática':2 }),
+  exemploAluno('ex4', 'Carlos Mendes', 52, 'Fama Tennis', '20/10/2026', '3ª', '3ª', 'Intermediário', { 'Forehand':7,'Backhand':6,'Saque':6,'Devolução':6,'Voleio':7,'Smash':5,'Lob e passada':6,'Movimentação':5,'Consistência':7,'Efeitos':6,'Tática':7 })
+] });
 let db = load() || semente();
 const ultima = al => al.aulas[al.aulas.length - 1];
 const classeDe = au => au && au.diag && au.diag.classe ? (au.diag.classe.confirmada || '') : '';
 const subiuEm = au => { const c = au && au.diag && au.diag.classe; return !!(c && c.confirmada && c.anterior && idxC(c.confirmada) > idxC(c.anterior)); };
 const classeAtual = al => { for (let i = al.aulas.length - 1; i >= 0; i--) { const c = classeDe(al.aulas[i]); if (c) return c; } return ''; };
+
+/* ---------- Treinos por tema ----------
+   Ciclo de 6 temas, um por semana, igual para todos os alunos. O Paulo
+   escolhe o tema da semana e o ciclo avança sozinho toda segunda-feira.
+   Os temas e o banco de exercícios ficam em professor/treinos-por-tema.json. */
+const TEMAS_PADRAO = ['Construir o ponto','Começar o ponto','Atacar e fechar','Defender e virar o jogo','Variar para desequilibrar','Competir'];
+let BANCO = null;
+function carregarBanco() {
+  if (BANCO) return Promise.resolve(BANCO);
+  return fetch(new URL('treinos-por-tema.json', location.href), { cache:'no-cache' }).then(r => r.ok ? r.json() : null)
+    .then(b => { if (b && Array.isArray(b.temas)) { BANCO = b; if (S.view === 'home' || S.view === 'aluno') { const y = window.scrollY; render(); window.scrollTo(0, y); } } return BANCO; })
+    .catch(() => null);
+}
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const semanaAtual = () => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - (d.getDay() + 6) % 7); return iso(d); };
+const diaUTC = s => { const [a, m, d] = String(s).split('-').map(Number); return Date.UTC(a, m - 1, d); };
+function temaDaSemana(ciclo, semana = semanaAtual()) {
+  if (!ciclo || !/^\d{4}-\d{2}-\d{2}$/.test(ciclo.inicio || '') || !(ciclo.tema >= 1 && ciclo.tema <= 6)) return 0;
+  const k = Math.round((diaUTC(semana) - diaUTC(ciclo.inicio)) / 6048e5);
+  return (((ciclo.tema - 1 + k) % 6) + 6) % 6 + 1;
+}
+const temaInfo = n => (BANCO && BANCO.temas.find(t => +t.n === +n)) || { n, titulo: TEMAS_PADRAO[n - 1] || '', subtitulo:'', pergunta:'', niveis:{} };
+const dm = s => { const [a, m, d] = s.split('-'); return `${d}/${m}`; };
+const periodoSemana = (s = semanaAtual()) => { const d = new Date(diaUTC(s) + 6 * 864e5); return `${dm(s)} a ${String(d.getUTCDate()).padStart(2, '0')}/${String(d.getUTCMonth() + 1).padStart(2, '0')}`; };
+const dois = n => String(n).padStart(2, '0');
+const nivelBanco = n => /avan/i.test(n) ? 'Avançado' : /interm/i.test(n) ? 'Intermediário' : 'Iniciante';
 
 /* ---------- Sessão e API (Apps Script) ----------
    O login do Google vale cerca de 1 hora. Ele fica guardado neste aparelho
@@ -785,7 +948,7 @@ async function api(action, payload = {}) {
   const r = await fetch(CONFIG.API_URL, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify({ action, token: TOKEN, ...payload }) });
   const j = await r.json();
   if (j.erro === 'sessao') { TOKEN = ''; esquecerToken(); go('login'); throw new Error('Sua sessão expirou. Entre de novo.'); }
-  if (!j.ok) throw new Error(j.erro || 'Falha na comunicação');
+  if (!j.ok) throw new Error(/^Ação desconhecida/.test(j.erro || '') ? 'O motor da área do professor (Apps Script) ainda está na versão antiga. Atualize o código no Apps Script e publique a nova versão.' : (j.erro || 'Falha na comunicação'));
   return j;
 }
 let gisPronto = null;
@@ -807,13 +970,14 @@ async function entrar() {
   const err = $('#lerr'); if (err) err.textContent = '';
   try {
     if (DEMO) { CONTA = CONFIG.CONTA_DEMO; }
-    else { const r = await api('entrar'); CONTA = r.email; db = { alunos: r.alunos || [] }; }
+    else { const r = await api('entrar'); CONTA = r.email; db = { alunos: r.alunos || [], ciclo: r.ciclo || null }; }
+    carregarBanco();
     go('home');
   } catch (e) { TOKEN = ''; if (err) err.textContent = e.message; }
 }
 
 /* ---------- Estado ---------- */
-const S = { view:'login', step:0, av:null, alunoId:null, base:null, qsel:null, csel:null };
+const S = { view:'login', step:0, av:null, alunoId:null, base:null, qsel:null, csel:null, salvandoTema:0, montando:null, treinoErro:'', origem:'', busca:'', filtro:'todos' };
 const novoAv = () => ({ nome:'', idade:'', whatsapp:'', local:'', objetivo:'', tempo:'', experiencia:'', classeAtual:'', mao:'', backhand:'', empunhadura:'', nivel:'',
   golpes: Object.fromEntries(GOLPES.map(g => [g, { nota:0, obs:'' }])), raquete:'', peso:'', grip:'', corda:'', semRaquete:false,
   fortes:'', melhorar:'', gerais:'', internas:'', quadros:[], consent:false, consentResp:false });
@@ -830,29 +994,117 @@ const app = $('#app');
 function go(view) { S.view = view; render(); window.scrollTo(0, 0); }
 function render() {
   const v = S.view;
-  app.innerHTML = v === 'login' ? vLogin() : v === 'home' ? vHome() : v === 'form' ? vForm() : v === 'gerando' ? vGerando() : vAluno();
+  const telas = { login: vLogin, home: vHome, avaliar: vAvaliar, tema: vTema, alunos: vAlunos, form: vForm, gerando: vGerando, aluno: vAluno };
+  app.innerHTML = (telas[v] || vAluno)() + (['home', 'avaliar', 'tema', 'alunos', 'aluno'].includes(v) ? navBar() : '');
   bind();
   if (v === 'login' && !DEMO) montarBotaoGoogle();
 }
+const ABAS = [['home', 'Início', 'casa'], ['avaliar', 'Avaliar', 'ficha'], ['tema', 'Tema', 'tema'], ['alunos', 'Alunos', 'alunos']];
+const navBar = () => { const atual = S.view === 'aluno' ? 'alunos' : S.view;
+  return `<nav class="nvbar" aria-label="Menu principal"><div class="in">${ABAS.map(([v, r, i]) => `<button type="button" data-go="${v}" ${atual === v ? 'aria-current="page"' : ''}>${ICON[i]}${r}</button>`).join('')}</div></nav>`; };
 const topo = () => `<header class="top"><img src="${LOGO}" alt="PS Tennis Team"><span class="who">${esc(CONTA || 'Área do professor')}</span><button data-a="sair">Sair</button></header>`;
-const demoBar = () => DEMO ? `<div class="demo"><b>Modo demonstração.</b> Os dados ficam só neste aparelho e o diagnóstico usa um texto de exemplo. Na versão final, tudo fica no Google Drive de ${esc(CONFIG.CONTA_DEMO)} e cada diagnóstico chega por e-mail.</div>` : '';
+const demoBar = () => DEMO ? `<div class="demo"><b>Modo demonstração.</b> Alunos e textos de exemplo, salvos só neste aparelho.</div>` : '';
 
 /* ---------- Telas ---------- */
 function vLogin() {
-  return `<main class="pin">${COURT()}<img src="${LOGO}" alt="PS Tennis Team"><h1>Área do professor</h1>
+  return `<main class="pin"><img src="${LOGO}" alt="PS Tennis Team"><h1>Área do professor</h1>
   <p>Entre com a conta Google do PS Tennis Team.</p>
   ${DEMO ? `<button class="gbtn" data-a="google"><span class="g">${ICON.user}</span>Entrar com Google</button><p class="small" style="color:var(--noescuro);margin-top:14px">Demonstração: entra como ${esc(CONFIG.CONTA_DEMO)}.</p>` : '<div id="gbtn" style="position:relative;min-height:44px"></div>'}
   <div class="err" id="lerr"></div></main>`;
 }
 const ord = d => { const [dd, mm, aa] = String(d).split('/').map(Number); return (aa || 0) * 10000 + (mm || 0) * 100 + (dd || 0); };
+/* ---------- Pendências (servem ao início e à gestão de alunos) ---------- */
+const DIA_MS = 864e5;
+const dataBR = d => { const [dd, mm, aa] = String(d).split('/').map(Number); return new Date(aa, mm - 1, dd, 12); };
+const semanasDesde = d => Math.max(0, Math.floor((Date.now() - dataBR(d)) / (7 * DIA_MS)));
+const REAVALIAR_EM = 8;   /* reavaliação ao fim de cada ciclo de 8 semanas */
+const pendClasse = al => !classeDe(ultima(al));
+const pendReav = al => semanasDesde(ultima(al).data) >= REAVALIAR_EM;
+const treinoAtual = al => { const n = temaDaSemana(db.ciclo), sem = semanaAtual(); return n ? (al.treinos || []).find(x => x.semana === sem && +x.tema === n) : null; };
+const haQuanto = d => { const s = semanasDesde(d); return s === 0 ? 'esta semana' : s === 1 ? 'há 1 semana' : `há ${s} semanas`; };
+const primeiroNome = n => esc(String(n).trim().split(/\s+/)[0]);
+const saudacao = () => { const h = new Date().getHours(); return h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite'; };
+
+/* Início: menu com as três áreas e o que pede atenção */
 function vHome() {
-  const lista = db.alunos.slice().sort((a, b) => ord(ultima(b).data) - ord(ultima(a).data));
-  return `${topo()}<main class="wrap">${demoBar()}
-  <section class="hero">${COURT()}<h1>Nova aula experimental</h1><p>Preencha a ficha durante ou logo depois da aula. Leva uns 5 minutos.</p>
-  <button class="btn b-lima" data-a="nova">Começar ficha</button></section>
-  <div class="secth"><h2>Alunos</h2><span class="small">${lista.length} no total</span></div>
-  <input class="search" id="busca" type="search" placeholder="Buscar aluno" aria-label="Buscar aluno">
-  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length, c = classeAtual(a), pend = !classeDe(u); return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span class="info"><span class="nm">${esc(a.nome)}</span><span class="sub">Última avaliação em ${esc(u.data)}</span><span class="sub">${n} ${n === 1 ? 'avaliação' : 'avaliações'}</span>${pend ? '<span class="tag pend">Confirmar classe</span>' : `<span class="tag ok">${esc(c)} classe</span>`}</span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
+  const al = db.alunos, n = temaDaSemana(db.ciclo), t = n ? temaInfo(n) : null;
+  const cls = al.filter(pendClasse), reav = al.filter(a => !pendClasse(a) && pendReav(a)), semTreino = n ? al.filter(a => !treinoAtual(a)).length : 0;
+  const todo = [
+    ...cls.map(a => `<button type="button" data-id="${esc(a.id)}"><i class="dt"></i><span>Confirmar a classe de <b>${esc(a.nome)}</b></span><span class="go">${ICON.go}</span></button>`),
+    ...reav.map(a => `<button type="button" data-reav="${esc(a.id)}"><i class="dt tinta"></i><span><b>${esc(a.nome)}</b>: última avaliação ${haQuanto(ultima(a).data)}. Hora de reavaliar.</span><span class="go">${ICON.go}</span></button>`),
+    !n ? `<button type="button" data-go="tema"><i class="dt lima"></i><span>Escolha o <b>tema desta semana</b></span><span class="go">${ICON.go}</span></button>`
+      : semTreino ? `<button type="button" data-go="tema"><i class="dt lima"></i><span><b>${semTreino} ${semTreino === 1 ? 'treino' : 'treinos'}</b> da semana para montar</span><span class="go">${ICON.go}</span></button>` : ''
+  ].filter(Boolean);
+  return `${topo()}<main class="wrap nvpad">${demoBar()}
+  <div class="nvola"><h1>${saudacao()}, Paulo</h1><p>O que vamos fazer hoje?</p></div>
+  <div class="nvmenu">
+    <button type="button" class="nvcard c-ava" data-go="avaliar"><span class="ic">${ICON.mais}</span><span class="go">${ICON.go}</span>
+      <h2>Nova avaliação</h2><p>Aluno novo faz a aula experimental. Quem já é aluno faz a reavaliação, comparando com a última.</p></button>
+    <button type="button" class="nvcard c-tem" data-go="tema">${n ? `<span class="num" aria-hidden="true">${dois(n)}</span>` : ''}<span class="ic">${ICON.tema}</span>
+      <span class="over" style="color:var(--creme);opacity:.9;position:relative">Tema da semana${n ? ` · ${periodoSemana()}` : ''}</span>
+      <h2 style="margin-top:6px">${n ? esc(t.titulo) : 'Escolha o tema'}</h2>
+      ${n && t.pergunta ? `<p class="pq">${esc(t.pergunta)}</p>` : `<p>O ciclo de 6 temas avança sozinho toda segunda-feira.</p>`}</button>
+    <button type="button" class="nvcard c-alu" data-go="alunos"><span class="ic">${ICON.alunos}</span><span class="go">${ICON.go}</span>
+      <h2>Alunos</h2><p>${al.length} ${al.length === 1 ? 'aluno' : 'alunos'}: ficha, evolução, treino da semana e histórico.</p>
+      ${cls.length || reav.length ? `<span class="st">${cls.length ? `<span class="tag pend">${cls.length} para confirmar classe</span>` : ''}${reav.length ? `<span class="tag ok">${reav.length} para reavaliar</span>` : ''}</span>` : ''}</button>
+  </div>
+  ${todo.length ? `<div class="nvsec" style="margin-top:0"><h2>Para fazer</h2></div><div class="nvtodo">${todo.join('')}</div>` : ''}
+  </main>`;
+}
+
+/* Nova avaliação: primeiro escolhe o aluno */
+function vAvaliar() {
+  const q = S.busca.trim().toLowerCase();
+  const ordem = db.alunos.slice().sort((a, b) => (pendReav(b) - pendReav(a)) || (ord(ultima(a).data) - ord(ultima(b).data)));
+  const vis = ordem.filter(a => !q || a.nome.toLowerCase().includes(q));
+  return `${topo()}<main class="wrap nvpad">${demoBar()}
+  <div class="nvhead"><h1>Nova avaliação</h1><p>Quem vai ser avaliado? Aluno novo faz a aula experimental; aluno da casa, a reavaliação.</p></div>
+  <input class="search" id="buscaAv" type="search" placeholder="Buscar pelo nome" aria-label="Buscar aluno" value="${esc(S.busca)}" autocomplete="off">
+  <button type="button" class="nvnovo" data-a="novo-aluno"><span class="ic">${ICON.mais}</span><span><b id="novoRot">${S.busca.trim() ? `Aluno novo: ${esc(S.busca.trim())}` : 'Aluno novo'}</b><small>Aula experimental: primeira avaliação</small></span></button>
+  <div class="nvsec" style="margin-top:4px"><h2>Reavaliação</h2><span class="small" id="avCont">${vis.length} de ${db.alunos.length}</span></div>
+  <div class="alunos" id="listaAv">${ordem.map(a => { const u = ultima(a), c = classeAtual(a);
+    return `<button class="al" data-reav="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}" ${q && !a.nome.toLowerCase().includes(q) ? 'hidden' : ''}><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span class="info"><span class="nm">${esc(a.nome)}</span><span class="sub">Última avaliação ${haQuanto(u.data)} (${esc(u.data)})</span>${pendReav(a) ? '<span class="tag ok">Hora de reavaliar</span>' : ''}</span><span class="go">${ICON.go}</span></button>`; }).join('')}</div>
+  <p class="empty" id="avVazio" ${vis.length || !db.alunos.length ? 'hidden' : ''}>Nenhum aluno com esse nome. Se for a primeira aula, toque em "Aluno novo".</p>
+  ${db.alunos.length ? '' : '<p class="empty">Ainda não há alunos. Comece pela aula experimental.</p>'}
+  </main>`;
+}
+
+/* Tema da semana */
+function vTema() {
+  const n = temaDaSemana(db.ciclo), sem = semanaAtual();
+  const ciclo = [1, 2, 3, 4, 5, 6].sort((a, b) => n ? ((a - n + 6) % 6) - ((b - n + 6) % 6) : a - b).map(k => { const desloc = n ? ((k - n + 6) % 6) : null; const ini = n ? iso(new Date(diaUTC(sem) + desloc * 7 * DIA_MS + 12 * 36e5)) : '';
+    return `<button type="button" data-tema="${k}" ${k === n ? 'aria-current="true"' : ''} ${S.salvandoTema ? 'disabled' : ''}><b>${dois(k)}</b><span>${esc(temaInfo(k).titulo)}${S.salvandoTema === k ? ' · salvando…' : ''}</span><small>${n ? (k === n ? 'Esta semana' : periodoSemana(ini)) : 'Escolher'}</small></button>`; }).join('');
+  if (!n) return `${topo()}<main class="wrap nvpad">${demoBar()}
+    <div class="nvhead"><h1>Tema da semana</h1><p>Escolha o tema desta semana. Depois o ciclo avança sozinho toda segunda-feira e volta ao tema 1 depois do 6.</p></div>
+    <div class="nvcic">${ciclo}</div></main>`;
+  const t = temaInfo(n), feitos = db.alunos.filter(treinoAtual).length;
+  const pil = Object.entries(t.pilares || {}), niv = Object.entries(t.niveis || {});
+  return `${topo()}<main class="wrap nvpad">${demoBar()}
+  <section class="tsem"><span class="num" aria-hidden="true">${dois(n)}</span><span class="over">Tema da semana · ${periodoSemana()}</span>
+    <h2>${esc(t.titulo)}</h2>${t.subtitulo ? `<p class="sb">${esc(t.subtitulo)}</p>` : ''}${t.pergunta ? `<p class="pq">${esc(t.pergunta)}</p>` : ''}</section>
+  <div class="nvsec" style="margin-top:0"><h2>Treinos da semana</h2><span class="small" style="white-space:nowrap">${feitos} de ${db.alunos.length} montados</span></div>
+  <div class="alunos">${db.alunos.map(a => { const tr = treinoAtual(a);
+    return `<button class="al" data-id="${esc(a.id)}"><span class="av">${esc(classeAtual(a) || a.nome.trim().charAt(0).toUpperCase())}</span><span class="info"><span class="nm">${esc(a.nome)}</span><span class="sub">${tr ? esc(tr.exercicios.map(e => e.nome).slice(0, 2).join(', ')) + (tr.exercicios.length > 2 ? '…' : '') : 'Treino ainda não montado'}</span>${tr ? '<span class="tag ok">Montado</span>' : '<span class="tag">Montar</span>'}</span><span class="go">${ICON.go}</span></button>`; }).join('') || '<p class="empty">Nenhum aluno ainda.</p>'}</div>
+  ${pil.length ? `<div class="nvsec"><h2>O que entra na semana</h2></div><div class="nvpil">${pil.map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
+  ${niv.length ? `<div class="nvsec"><h2>Em cada nível</h2></div><div class="nvniv">${niv.map(([k, v]) => `<div><span class="tag">${esc(k)}</span><p>${esc(v.objetivo || '')}</p></div>`).join('')}</div>` : ''}
+  ${t.nota ? `<p class="note" style="margin-top:12px">${esc(t.nota)}</p>` : ''}
+  <div class="nvsec"><h2>Próximas semanas</h2></div>
+  <div class="nvcic">${ciclo}</div>
+  <p class="nvst">Toque em outro tema para mudar o desta semana. O ciclo recomeça a partir dele.</p>
+  </main>`;
+}
+
+/* Gestão de alunos */
+const FILTROS = [['todos', 'Todos', () => true], ['classe', 'Confirmar classe', pendClasse], ['reavaliar', 'Hora de reavaliar', a => !pendClasse(a) && pendReav(a)], ['treino', 'Sem treino da semana', a => !!temaDaSemana(db.ciclo) && !treinoAtual(a)]];
+function vAlunos() {
+  const f = FILTROS.find(x => x[0] === S.filtro) || FILTROS[0];
+  const lista = db.alunos.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')).filter(f[2]);
+  return `${topo()}<main class="wrap nvpad">${demoBar()}
+  <div class="nvhead"><h1>Alunos</h1><p>${db.alunos.length} ${db.alunos.length === 1 ? 'aluno' : 'alunos'}. Toque em um aluno para ver a ficha, a evolução e o treino da semana.</p></div>
+  <input class="search" id="busca" type="search" placeholder="Buscar aluno" aria-label="Buscar aluno" autocomplete="off">
+  <div class="nvfil" role="group" aria-label="Filtrar alunos">${FILTROS.map(([k, r, fn]) => { const c = db.alunos.filter(fn).length; return k === 'treino' && !temaDaSemana(db.ciclo) ? '' : `<button type="button" class="chip" data-filtro="${k}" aria-pressed="${f[0] === k}">${r} · ${c}</button>`; }).join('')}</div>
+  <div class="alunos" id="lista">${lista.map(a => { const u = ultima(a), n = a.aulas.length, c = classeAtual(a), tr = treinoAtual(a);
+    return `<button class="al" data-id="${esc(a.id)}" data-nome="${esc(a.nome.toLowerCase())}"><span class="av">${esc(c || a.nome.trim().charAt(0).toUpperCase())}</span><span class="info"><span class="nm">${esc(a.nome)}</span><span class="sub">Última avaliação em ${esc(u.data)}</span><span class="sub">${n} ${n === 1 ? 'avaliação' : 'avaliações'}${temaDaSemana(db.ciclo) ? ` · ${tr ? 'treino montado' : 'sem treino da semana'}` : ''}</span>${pendClasse(a) ? '<span class="tag pend">Confirmar classe</span>' : pendReav(a) ? `<span class="tag ok">${esc(c)} classe · reavaliar</span>` : `<span class="tag ok">${esc(c)} classe</span>`}</span><span class="go">${ICON.go}</span></button>`; }).join('') || `<p class="empty">${db.alunos.length ? 'Nenhum aluno neste filtro.' : 'Nenhum aluno ainda. Comece por uma nova avaliação.'}</p>`}</div>
   </main>`;
 }
 
@@ -925,7 +1177,7 @@ function vForm() {
   const lead = typeof e.lead === 'function' ? e.lead() : e.lead;
   const al = S.base && db.alunos.find(x => x.id === S.base);
   return `${topo()}<main class="wrap form">
-  ${al ? `<div class="reav">Reavaliação de <b>${esc(al.nome)}</b> · ${classeAtual(al) ? `${esc(classeAtual(al))} classe · ` : ''}última aula em ${esc(ultima(al).data)}</div>` : ''}
+  ${al ? `<div class="reav">Reavaliação de <b>${esc(al.nome)}</b> · ${classeAtual(al) ? `${esc(classeAtual(al))} classe · ` : ''}última avaliação em ${esc(ultima(al).data)}</div>` : '<div class="reav"><b>Aula experimental</b> · aluno novo, primeira avaliação</div>'}
   <div class="stepn">Etapa ${S.step + 1} de ${ETAPAS.length}</div><div class="prog"><i style="width:${(S.step + 1) / ETAPAS.length * 100}%"></i></div>
   <h1>${e.t}</h1><p class="lead">${lead}</p>${e.html(av)}</main>
   <div class="foot"><div class="in"><button class="btn b-ghost" data-a="voltar">${S.step ? 'Voltar' : 'Cancelar'}</button><button class="btn b-ink" data-a="${ult ? 'gerar' : 'avancar'}" ${e.ok(av) ? '' : 'disabled'}>${ult ? 'Gerar diagnóstico' : 'Avançar'}</button></div></div>`;
@@ -935,20 +1187,81 @@ function vGerando() {
   return `${topo()}<main class="wrap gen"><span class="over">Só um instante</span><h1>Gerando o diagnóstico</h1><ol id="gp">${passos.map(p => `<li><i></i>${p}</li>`).join('')}</ol></main>`;
 }
 
+async function definirTema(n) {
+  if (S.salvandoTema) return;
+  const y = window.scrollY, semana = semanaAtual();
+  S.salvandoTema = n; render(); window.scrollTo(0, y);
+  try {
+    if (DEMO) { db.ciclo = { inicio: semana, tema: n }; save(db); }
+    else { const r = await api('definirTema', { tema: n, semana }); db.ciclo = r.ciclo; }
+  } catch (e) { modal('Não deu para salvar o tema', e.message); }
+  S.salvandoTema = 0; render(); window.scrollTo(0, y);
+}
+
+/* Treino da semana (ficha do aluno) */
+function treinoCard(al) {
+  const n = temaDaSemana(db.ciclo), semana = semanaAtual(), u = ultima(al), primeiro = esc(al.nome.split(' ')[0]);
+  const cab = `<div class="trh"><span class="over">Treino da semana</span><span>${periodoSemana()}</span></div>`;
+  if (!n) return `<section class="trn">${cab}<h2>Sem tema definido</h2><p class="txt">Escolha o tema desta semana na tela inicial. O treino de cada aluno parte do tema, do nível e do plano da última avaliação.</p>
+    <button class="btn b-ghost b-full" data-go="tema">Escolher o tema</button></section>`;
+  const t = temaInfo(n), tr = (al.treinos || []).find(x => x.semana === semana && +x.tema === n), ocupado = S.montando === al.id;
+  const titulo = `<h2><small>Tema ${dois(n)}</small>${esc(t.titulo)}</h2>`;
+  const btn = (a, rot, cls) => `<button class="btn ${cls} b-full" data-a="${a}" ${S.montando ? 'disabled' : ''}>${ocupado ? `<span class="spin" aria-hidden="true"></span>Montando o treino…` : rot}</button>${ocupado ? '<p class="txt" style="margin:8px 0 0;text-align:center">Leva uns 30 segundos.</p>' : ''}`;
+  const erro = S.treinoErro && !ocupado ? `<p class="er" role="alert">${esc(S.treinoErro)}</p>` : '';
+  const antigos = (al.treinos || []).filter(x => x !== tr).slice().reverse();
+  const hist = antigos.length ? `<details class="ant"><summary>Semanas anteriores (${antigos.length})</summary>${antigos.map(x => `<p><b>${esc(periodoSemana(x.semana))} · ${esc(x.temaTitulo || temaInfo(x.tema).titulo)}:</b> ${esc(x.exercicios.map(e => e.nome).join(', '))}</p>`).join('')}</details>` : '';
+  if (!tr) return `<section class="trn">${cab}${titulo}
+    <p class="txt">Monte o treino de ${primeiro} para esta semana: exercícios do banco do tema, no nível certo, ligados ao plano da avaliação de ${esc(u.data)}.</p>
+    ${btn('treino', 'Montar treino da semana', 'b-ink')}${erro}${hist}</section>`;
+  const velho = tr.avaliacao && tr.avaliacao !== u.id;
+  return `<section class="trn">${cab}${titulo}
+    <div class="ctx">${tr.nivel ? `<span class="tag">${esc(tr.nivel)}</span>` : ''}${tr.semanaPlano ? `<span class="tag">Semana ${tr.semanaPlano} do plano</span>` : ''}${tr.faseTitulo && !tr.alemDoPlano ? `<span class="tag">${esc(tr.faseTitulo)}</span>` : ''}${tr.alemDoPlano ? '<span class="tag pend">Hora de reavaliar</span>' : ''}${tr.semIA && !DEMO ? '<span class="tag">Montado pelo banco</span>' : ''}</div>
+    ${velho ? `<p class="txt">Este treino foi montado antes da última avaliação. Monte de novo para usar o plano novo.</p>` : ''}
+    <p class="foco">${esc(tr.foco)}</p>
+    <ol class="trx">${tr.exercicios.map((e, i) => `<li><span class="n">${i + 1}</span><div><h3>${esc(e.nome)}</h3><p>${esc(e.como)}</p>${e.dose ? `<p class="ds">${esc(e.dose)}</p>` : ''}${e.porque ? `<p class="pq">${esc(e.porque)}</p>` : ''}</div></li>`).join('')}</ol>
+    ${tr.atencao ? `<div class="atn"><b>De olho</b>${esc(tr.atencao)}</div>` : ''}
+    ${btn('retreino', 'Montar de novo', 'b-ghost')}${erro}${hist}</section>`;
+}
+function treinoDemo(al, n, semana) {
+  const u = ultima(al), c = u.diag.classe || {}, nivel = c.nivel || u.diag.aluno.nivel || 'Iniciante', t = temaInfo(n);
+  const ex = ((t.niveis || {})[nivelBanco(nivel)] || { exercicios: [] }).exercicios.slice(0, 3);
+  return { semana, tema: n, temaTitulo: t.titulo, nivel, semanaPlano: 0, faseTitulo: '', alemDoPlano: false, avaliacao: u.id, geradoEm: hoje(),
+    foco: `Exemplo da demonstração: os três primeiros exercícios do banco do tema, no nível ${nivel.toLowerCase()}. Na versão real, o Claude escolhe e adapta os exercícios ao plano de ${al.nome.split(' ')[0]}.`,
+    exercicios: ex.map(e => ({ idBanco: e.id, nome: e.nome, como: e.como, dose: e.dose, porque: '' })),
+    atencao: 'Na versão real, aqui vem o detalhe técnico para observar nesta semana, tirado da avaliação do aluno.' };
+}
+async function montarTreino(refazer) {
+  const al = db.alunos.find(x => x.id === S.alunoId); if (!al || S.montando) return;
+  const y = window.scrollY, semana = semanaAtual(), n = temaDaSemana(db.ciclo);
+  S.montando = al.id; S.treinoErro = ''; render(); window.scrollTo(0, y);
+  try {
+    if (DEMO) {
+      await carregarBanco(); await new Promise(r => setTimeout(r, 700));
+      al.treinos = (al.treinos || []).filter(x => x.semana !== semana).concat([treinoDemo(al, n, semana)]).slice(-12); save(db);
+    } else {
+      const r = await api('treinoSemana', { alunoId: al.id, semana, refazer: !!refazer });
+      const i = db.alunos.findIndex(x => x.id === r.aluno.id); if (i >= 0) db.alunos[i] = r.aluno;
+      if (r.aviso) S.treinoErro = r.aviso;
+    }
+  } catch (e) { S.treinoErro = e.message; }
+  S.montando = null;
+  if (S.view === 'aluno') { render(); window.scrollTo(0, y); }
+}
+
 /* Card de confirmação de classe */
 function classeCard(al) {
   const u = ultima(al), c = u.diag.classe; if (!c) return '';
   const ant = c.anterior || '';
   if (c.confirmada) {
     const sub = ant && idxC(c.confirmada) > idxC(ant), manteve = ant && c.confirmada === ant;
-    return `<section class="cls ok">${COURT()}<span class="over">${sub ? 'Subiu de classe' : manteve ? 'Manteve a classe' : 'Classe confirmada'}</span>
+    return `<section class="cls ok"><span class="over">${sub ? 'Subiu de classe' : manteve ? 'Manteve a classe' : 'Classe confirmada'}</span>
       <div class="cn">${esc(c.confirmada)}<small>classe</small></div>
       <p>${sub ? `Subiu da ${esc(ant)} para a ${esc(c.confirmada)} classe em ${esc(u.data)}.` : manteve ? `Segue na ${esc(c.confirmada)} classe. Próxima meta: ${esc(proxima(c.confirmada))} classe.` : `Classe confirmada em ${esc(u.data)}.`}</p>
       ${sub ? `<button class="btn b-lima" data-a="imagem" data-aula="${esc(u.id)}">${ICON.img} Post de parabéns</button>` : ''}</section>`;
   }
   const sel = S.csel || c.sugerida;
   const lbl = !ant ? `Confirmar ${sel} classe` : idxC(sel) > idxC(ant) ? `Subir para a ${sel} classe` : sel === ant ? `Manter na ${sel} classe` : `Voltar para a ${sel} classe`;
-  return `<section class="cls">${COURT()}<span class="over">Confirme a classe</span>
+  return `<section class="cls"><span class="over">Confirme a classe</span>
     <div class="cn">${esc(c.sugerida)}<small>classe sugerida</small></div>
     <p>${ant ? `Classe atual: <b>${esc(ant)}</b>. ` : ''}Média ${fmt(c.media)} · referência ITN ${fmt(c.itn)} · ${esc(c.nivel)}</p>
     ${c.calculada && c.calculada !== c.sugerida ? `<p>Pelas notas, a classe seria <b>${esc(c.calculada)}</b>. As suas observações levaram à sugestão da <b>${esc(c.sugerida)}</b>.</p>` : ''}
@@ -968,13 +1281,15 @@ function vAluno() {
   const al = db.alunos.find(x => x.id === S.alunoId);
   if (!al) { S.view = 'home'; return vHome(); }
   const u = ultima(al), aulas = al.aulas.slice().reverse(), c = classeAtual(al);
-  return `${topo()}<main class="wrap">${demoBar()}
-  <section class="dhead">${COURT()}<span class="over">${c ? `${esc(c)} classe` : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'avaliação registrada' : 'avaliações registradas'} · última em ${esc(u.data)}</p></section>
+  return `${topo()}<main class="wrap nvpad">${demoBar()}
+  <button type="button" class="nvback" data-go="${S.voltarPara || 'alunos'}">${ICON.volta}${S.voltarPara === 'tema' ? 'Tema da semana' : S.voltarPara === 'home' ? 'Início' : 'Alunos'}</button>
+  <section class="dhead"><span class="over">${c ? `${esc(c)} classe` : 'Aula experimental'}</span><h1>${esc(al.nome)}</h1><p>${al.aulas.length} ${al.aulas.length === 1 ? 'avaliação registrada' : 'avaliações registradas'} · última em ${esc(u.data)}</p></section>
   ${classeCard(al)}
   <div class="acts">
-    <button class="btn b-ink b-full" data-a="reavaliar">Fazer reavaliação</button>
+    <button class="btn b-ink b-full" data-a="reavaliar">Nova avaliação deste aluno</button>
     ${al.whatsapp ? `<a class="btn b-ghost b-full" href="https://wa.me/55${esc(String(al.whatsapp).replace(/\D/g, ''))}" target="_blank" rel="noopener">Abrir conversa com o aluno</a>` : ''}
   </div>
+  ${treinoCard(al)}
   ${evolucaoHTML(al)}
   <div class="secth" style="margin-top:22px"><h2>Histórico</h2></div>
   <div class="hist">${aulas.map(au => `<div class="aula"><div class="ah"><div><span class="tag ${au.tipo === 'reavaliacao' ? 'ok' : ''}">${au.tipo === 'reavaliacao' ? 'Reavaliação' : 'Aula experimental'}</span>${classeDe(au) ? ` <span class="tag">${esc(classeDe(au))} classe</span>` : ''}<div class="dt">${esc(au.data)}</div></div></div>
@@ -982,7 +1297,6 @@ function vAluno() {
     <div class="ab"><button class="btn b-ink" data-a="pdf" data-aula="${esc(au.id)}">Abrir o PDF</button><button class="btn b-ghost" data-a="doc" data-aula="${esc(au.id)}">Editar o texto</button></div>
     ${subiuEm(au) ? `<button class="btn b-ghost b-full imgbtn" data-a="imagem" data-aula="${esc(au.id)}">${ICON.img} Post de parabéns</button>` : ''}
     <p class="mailnote">${ICON.mail} ${DEMO ? `Na versão final, o PDF desta aula chega no e-mail ${esc(CONFIG.CONTA_DEMO)}.` : 'Diagnóstico salvo no Google Drive e avisado por e-mail.'}</p></div>`).join('')}</div>
-  <button class="btn b-ghost b-full" data-a="home" style="margin-top:8px">Voltar para alunos</button>
   </main>`;
 }
 
@@ -1068,7 +1382,7 @@ async function gerar() {
       const i = db.alunos.findIndex(x => x.id === r.aluno.id); if (i >= 0) db.alunos[i] = r.aluno; else db.alunos.push(r.aluno);
       al = r.aluno;
     }
-    save(db); S.alunoId = al.id; S.av = null; S.base = null; S.csel = null; go('aluno');
+    save(db); S.alunoId = al.id; S.av = null; S.base = null; S.csel = null; S.origem = ''; S.voltarPara = 'alunos'; go('aluno');
     if (!DEMO) sincronizarPdf(al.id, ultima(al).id);
   } catch (e) {
     app.querySelector('.gen').insertAdjacentHTML('beforeend', `<div class="note" style="margin-top:22px">Não foi possível gerar agora: ${esc(e.message)}. A ficha não se perdeu.</div><button class="btn b-ink" id="tentar">Tentar de novo</button>`);
@@ -1465,14 +1779,21 @@ function bind() {
     const a = t.dataset.a;
     if (a === 'google') return entrar();
     if (a === 'sair') { TOKEN = ''; CONTA = ''; esquecerToken(); try { !DEMO && window.google && google.accounts.id.disableAutoSelect(); } catch (e) {} return go('login'); }
-    if (a === 'nova') { S.av = novoAv(); S.base = null; S.step = 0; S.qsel = null; return go('form'); }
-    if (a === 'reavaliar') { const al = db.alunos.find(x => x.id === S.alunoId); S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; return go('form'); }
+    if (t.dataset.go) { if (t.dataset.go === 'avaliar' && S.view !== 'avaliar') S.busca = ''; return go(t.dataset.go); }
+    if (a === 'novo-aluno') { S.av = novoAv(); S.av.nome = S.busca.trim(); S.base = null; S.step = 0; S.qsel = null; S.origem = 'avaliar'; return go('form'); }
+    if (t.dataset.reav) { const al = db.alunos.find(x => x.id === t.dataset.reav); if (!al) return; S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; S.origem = S.view; return go('form'); }
+    if (a === 'reavaliar') { const al = db.alunos.find(x => x.id === S.alunoId); S.av = avReavaliacao(al); S.base = al.id; S.step = 0; S.qsel = null; S.origem = 'aluno'; return go('form'); }
     if (a === 'home') return go('home');
-    if (t.dataset.id) { S.alunoId = t.dataset.id; S.csel = null; return go('aluno'); }
+    if (t.dataset.filtro) { S.filtro = t.dataset.filtro; return render(); }
+    if (t.dataset.tema) { const k = +t.dataset.tema, n = temaDaSemana(db.ciclo); if (k === n) return;
+      if (!n) return definirTema(k);
+      return confirmar('Mudar o tema desta semana?', `Esta semana passa a ser "${temaInfo(k).titulo}" e o ciclo segue a partir dele. Os treinos já montados nesta semana continuam salvos, mas cada aluno vai precisar de um treino novo para o tema novo.`, 'Mudar o tema', () => definirTema(k)); }
+    if (a === 'treino' || a === 'retreino') return montarTreino(a === 'retreino');
+    if (t.dataset.id) { S.alunoId = t.dataset.id; S.csel = null; S.treinoErro = ''; S.voltarPara = S.view === 'aluno' ? S.voltarPara : S.view; return go('aluno'); }
     if (t.dataset.csel) { S.csel = t.dataset.csel; const y = window.scrollY; render(); window.scrollTo(0, y); return; }
     if (a === 'confirmar') return confirmarClasse(t.dataset.aula);
     if (a === 'imagem') return abrirImagem(t.dataset.aula);
-    if (a === 'voltar') { if (rec) rec.stop(); if (S.step) { S.step--; return go('form'); } const vinha = S.base; S.av = null; S.base = null; return go(vinha ? 'aluno' : 'home'); }
+    if (a === 'voltar') { if (rec) rec.stop(); if (S.step) { S.step--; return go('form'); } const volta = S.origem || (S.base ? 'aluno' : 'home'); S.av = null; S.base = null; S.origem = ''; return go(volta); }
     if (a === 'avancar') { if (rec) rec.stop(); S.step++; return go('form'); }
     if (a === 'gerar') { if (rec) rec.stop(); return gerar(); }
     if (t.dataset.chip) { const c = t.dataset.chip; S.av[c] = S.av[c] === t.dataset.v ? '' : t.dataset.v; t.parentElement.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', S.av[c] === b.dataset.v)); return estado(); }
@@ -1496,6 +1817,10 @@ function bind() {
     if (t.dataset.f) { S.av[t.dataset.f] = t.value; return estado(); }
     if (t.dataset.gobs) { S.av.golpes[t.dataset.gobs].obs = t.value; return; }
     if (t.id === 'busca') { const q = t.value.trim().toLowerCase(); document.querySelectorAll('#lista .al').forEach(b => b.hidden = q && !b.dataset.nome.includes(q)); }
+    if (t.id === 'buscaAv') { S.busca = t.value; const q = t.value.trim().toLowerCase(); let vis = 0;
+      document.querySelectorAll('#listaAv .al').forEach(b => { b.hidden = q && !b.dataset.nome.includes(q); if (!b.hidden) vis++; });
+      $('#novoRot').textContent = t.value.trim() ? `Aluno novo: ${t.value.trim()}` : 'Aluno novo';
+      $('#avCont').textContent = `${vis} de ${db.alunos.length}`; const v = $('#avVazio'); if (v) v.hidden = !!vis || !db.alunos.length; }
   };
   app.onchange = ev => {
     const t = ev.target;
@@ -1506,6 +1831,11 @@ function bind() {
   app.onkeydown = ev => { if (ev.target.dataset && ev.target.dataset.q !== undefined && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); ev.target.click(); } };
 }
 function estado() { const e = ETAPAS[S.step]; const b = document.querySelector('.foot .b-ink'); if (b && e && S.view === 'form') b.disabled = !e.ok(S.av); }
+function confirmar(tit, txt, rotulo, fn) {
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(tit)}"><div class="box"><h2>${esc(tit)}</h2><p>${esc(txt)}</p><div class="row2"><button class="btn b-ghost" id="mnao">Cancelar</button><button class="btn b-ink" id="msim">${esc(rotulo)}</button></div></div></div>`;
+  $('#mnao').onclick = () => m.innerHTML = ''; $('#msim').onclick = () => { m.innerHTML = ''; fn(); }; $('#msim').focus();
+}
 function modal(tit, txt) {
   const m = $('#modal');
   m.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(tit)}"><div class="box"><h2>${esc(tit)}</h2><p>${esc(txt)}</p><button class="btn b-ink b-full" id="mok">Entendi</button></div></div>`;

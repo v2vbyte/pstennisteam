@@ -166,4 +166,72 @@ r = E2.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao:
 ok(/sobrecarregado/.test(r.erro) && E2.log.claude.length === 4, 'sobrecarga tenta de novo uma vez e explica');
 ok(E2.post({ action: 'entrar', token: 'tok-ok' }).alunos.length === 0, 'falha no Claude não cria aluno pela metade');
 ok(/autorização/.test(E.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: Object.assign({}, av1, { consent: false }), calibragem: cal1 }).erro), 'sem autorização, não gera');
+console.log('11. treinos por tema: tema da semana e treino do aluno');
+const T1 = criarAmbiente({ props: PROPS }); T1.ctx.configurar();
+const tal = T1.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: Object.assign({}, av1, { quadros: [] }), calibragem: cal1 }).aluno;
+ok(T1.post({ action: 'entrar', token: 'tok-ok' }).ciclo === null, 'sem tema definido, entrar devolve ciclo vazio');
+ok(/Defina o tema/.test(T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30' }).erro), 'sem tema, pede para definir na tela inicial');
+ok(/Semana inválida/.test(T1.post({ action: 'definirTema', token: 'tok-ok', tema: 2, semana: '2026-11-24' }).erro), 'semana precisa ser segunda-feira');
+ok(/Tema inválido/.test(T1.post({ action: 'definirTema', token: 'tok-ok', tema: 7, semana: '2026-11-23' }).erro), 'tema fora de 1 a 6 é recusado');
+r = T1.post({ action: 'definirTema', token: 'tok-ok', tema: 2, semana: '2026-11-23' });
+ok(r.ok && r.ciclo.tema === 2 && r.ciclo.inicio === '2026-11-23', 'define o tema da semana');
+ok(T1.post({ action: 'entrar', token: 'tok-ok' }).ciclo.tema === 2, 'entrar devolve o ciclo salvo');
+ok(T1.ctx.temaDaSemana({ inicio: '2026-11-23', tema: 6 }, '2026-11-30') === 1 && T1.ctx.temaDaSemana({ inicio: '2026-11-23', tema: 2 }, '2026-11-16') === 1, 'ciclo avança e volta ao tema 1 depois do 6 (e para trás também)');
+
+r = T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30' });
+ok(r.ok, 'monta o treino: ' + (r.erro || ''));
+let tr = r.aluno.treinos[0];
+const tc1 = JSON.stringify(T1.log.treinos[0].messages);
+ok(tr.semana === '2026-11-30' && tr.tema === 3 && tr.temaTitulo === 'Atacar e fechar', 'na semana seguinte, o ciclo já está no tema 3');
+ok(tc1.includes('NÍVEL INICIANTE') && (tc1.match(/\[t3-ini-\d\]/g) || []).length === 6 && !tc1.includes('[t3-int-'), 'manda ao Claude só os 6 exercícios mais indicados do tema e do nível');
+ok(/\[(t3-ini-\d)\]/.exec(tc1)[1] === 't3-ini-5', 'o primeiro da lista trabalha o golpe mais fraco que está no plano (backhand)');
+ok(tc1.includes('Semanas 1 a 4') && tc1.includes('Pontos a melhorar') && tc1.includes('semana 1 do plano'), 'manda o plano, os pontos a melhorar e a semana do plano');
+ok(!tc1.includes('pagou com pix'), 'notas internas NÃO vão para o Claude');
+ok(tr.exercicios.length === 3 && tr.exercicios[0].idBanco === 't3-ini-5' && tr.exercicios[1].idBanco === '' && tr.exercicios[2].idBanco === '' && tr.semIA === false, 'id do banco confere; id inventado é apagado');
+ok(tr.semanaPlano === 1 && tr.faseTitulo === 'Base técnica' && tr.alemDoPlano === false, 'semana 1 do plano, fase Base técnica');
+ok(!/[—–]/.test(JSON.stringify(tr)), 'nenhum travessão no treino');
+ok(T1.log.treinos[0].model === 'claude-haiku-5-5' && T1.log.treinos[0].output_config.effort === 'low' && T1.log.treinos[0].max_tokens <= 2000 && T1.log.treinos[0].output_config.format.type === 'json_schema', 'treino usa o modelo mais barato (Haiku), esforço baixo e saída estruturada');
+
+r = T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30' });
+ok(r.ok && T1.log.treinos.length === 1, 'abrir de novo na mesma semana não chama o Claude');
+r = T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30', refazer: true });
+ok(r.ok && T1.log.treinos.length === 2 && r.aluno.treinos.length === 1, '"Montar de novo" refaz e substitui o da semana');
+ok(T1.log.banco === 1, 'banco de exercícios fica em cache (lido uma vez)');
+
+r = T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2027-03-01' });
+tr = r.aluno.treinos[1];
+const tc2 = JSON.stringify(T1.log.treinos[2].messages);
+ok(tr.tema === 4 && tr.alemDoPlano === true && tr.semanaPlano === 14, '14 semanas depois: tema 4 e plano encerrado');
+ok(tc2.includes('hora da reavaliação') && tc2.includes('EXERCÍCIOS DAS ÚLTIMAS SEMANAS'), 'avisa o Claude da reavaliação e dos exercícios anteriores');
+
+T1.post({ action: 'confirmarClasse', token: 'tok-ok', alunoId: tal.id, aulaId: tal.aulas[0].id, classe: '3ª' });
+T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30', refazer: true });
+ok(JSON.stringify(T1.log.treinos[3].messages).includes('NÍVEL INTERMEDIÁRIO'), 'classe confirmada diferente muda o nível do banco (3ª = intermediário)');
+r = T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30', refazer: true });
+ok(/já foi montado de novo 2 vezes/.test(r.erro) && T1.log.treinos.length === 4, '"Montar de novo" tem limite de 2 por semana (não chama o Claude)');
+T1.props.REFAZER_TREINO = '3';
+ok(T1.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal.id, semana: '2026-11-30', refazer: true }).ok, 'limite muda pela propriedade REFAZER_TREINO');
+
+console.log('12. treino sem gastar o Claude');
+const o3 = { props: PROPS }, T3 = criarAmbiente(o3); T3.ctx.configurar();
+const tal3 = T3.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: Object.assign({}, av1, { quadros: [] }), calibragem: cal1 }).aluno;
+T3.post({ action: 'definirTema', token: 'tok-ok', tema: 3, semana: '2026-11-23' });
+o3.falhaClaude = 529;
+r = T3.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal3.id, semana: '2026-11-30' });
+tr = r.aluno && r.aluno.treinos[0];
+ok(r.ok && tr.semIA === true && /Montei o treino direto pelo banco/.test(r.aviso), 'Claude fora do ar: monta pelo banco e avisa');
+ok(tr.tema === 4 && tr.exercicios.length === 3 && tr.exercicios.every(e => /^t4-ini-\d$/.test(e.idBanco)) && tr.exercicios.some(e => e.idBanco === 't4-ini-6'), 'treino pelo banco usa os exercícios mais indicados (backhand, a nota mais baixa)');
+ok(/Backhand|Forehand|Saque/.test(tr.atencao) && tr.exercicios.some(e => /nota \d/.test(e.porque)), 'treino pelo banco liga ao plano e às notas');
+ok(!/[—–]/.test(JSON.stringify(tr)), 'nenhum travessão no treino pelo banco');
+delete o3.falhaClaude; T3.props.MODO_TREINO = 'banco';
+const antes = T3.log.claude.length;
+r = T3.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal3.id, semana: '2026-12-07' });
+ok(r.ok && r.aluno.treinos[1].semIA === true && T3.log.claude.length === antes && !r.aviso, 'MODO_TREINO=banco não chama o Claude');
+ok(!r.aluno.treinos[1].exercicios.some(e => tr.exercicios.map(x => x.idBanco).includes(e.idBanco)) || r.aluno.treinos[1].tema !== tr.tema, 'semana seguinte não repete exercícios (ou é outro tema)');
+
+const T2 = criarAmbiente({ props: PROPS, bancoStatus: 404 }); T2.ctx.configurar();
+const tal2 = T2.post({ action: 'gerar', token: 'tok-ok', tipo: 'experimental', avaliacao: Object.assign({}, av1, { quadros: [] }), calibragem: cal1 }).aluno;
+T2.post({ action: 'definirTema', token: 'tok-ok', tema: 1, semana: '2026-11-23' });
+ok(/banco de exercícios/.test(T2.post({ action: 'treinoSemana', token: 'tok-ok', alunoId: tal2.id, semana: '2026-11-23' }).erro), 'site fora do ar: explica que não leu o banco');
+
 console.log('\nTodos os testes passaram.');

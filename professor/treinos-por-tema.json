@@ -1,0 +1,1634 @@
+{
+  "sobre": "Banco de exercícios dos Treinos por tema (ciclo de 6 semanas). Proposta para o Paulo revisar: pode trocar nomes, descrições, doses e acrescentar exercícios. Cada exercício precisa de um id único. Em golpes, use os nomes da ficha: Forehand, Backhand, Saque, Devolução, Voleio, Smash, Lob e passada, Movimentação, Consistência, Efeitos, Tática. O nível Principiante usa a base de Iniciante, simplificada. Cada tema tem 8 exercícios por nível.",
+  "versao": 2,
+  "temas": [
+    {
+      "n": 1,
+      "titulo": "Construir o ponto",
+      "subtitulo": "Consistência no fundo de quadra",
+      "pergunta": "Como manter a bola em jogo com intenção?",
+      "pilares": {
+        "Técnica": "Forehand e backhand de fundo de quadra, com atenção à altura sobre a rede e à profundidade da bola.",
+        "Efeitos": "Topspin como margem de segurança: a bola passa mais alta sobre a rede e cai dentro da quadra.",
+        "Movimentação": "Voltar ao centro depois de cada bola e bater com a base equilibrada.",
+        "Tática": "Trocar bolas na cruzada e reconhecer o momento de mudar para a paralela.",
+        "Mentalidade": "Paciência: aguentar a troca sem forçar a bola antes da hora."
+      },
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Troca cooperativa no meio da quadra, contando bolas seguidas. Foco em passar a bola com folga sobre a rede.",
+          "exercicios": [
+            {
+              "id": "t1-ini-1",
+              "nome": "Mini tênis cooperativo",
+              "como": "Troca entre as linhas de saque, só de forehand e depois só de backhand, contando bolas seguidas.",
+              "dose": "3 rodadas de 3 minutos, tentando bater o recorde da rodada anterior",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-ini-2",
+              "nome": "Bola acima da corda",
+              "como": "Uma corda ou fita esticada um metro acima da rede. A bola precisa passar entre a rede e a corda para valer.",
+              "dose": "4 séries de 10 bolas alimentadas, alternando forehand e backhand",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t1-ini-3",
+              "nome": "Bate e volta ao centro",
+              "como": "Professor alimenta uma bola de cada lado. Depois de cada golpe, o aluno toca um cone no centro da linha de base antes da bola seguinte.",
+              "dose": "3 séries de 12 bolas",
+              "golpes": [
+                "Movimentação",
+                "Forehand",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t1-ini-4",
+              "nome": "Desafio das 10",
+              "como": "Troca cooperativa do fundo com o professor. Meta: 10 bolas seguidas sem erro. Se errar, volta a contar do zero.",
+              "dose": "Até completar 3 vezes ou 10 minutos",
+              "golpes": [
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-ini-5",
+              "nome": "Alvo grande no fundo",
+              "como": "Dois arcos ou cones grandes no fundo da quadra do outro lado. Troca cooperativa tentando acertar a área entre eles.",
+              "dose": "3 rodadas de 3 minutos, contando acertos",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-ini-6",
+              "nome": "Cruzada ou paralela?",
+              "como": "Professor aponta um lado antes de alimentar. O aluno manda a bola na cruzada ou na paralela, sem pressa.",
+              "dose": "3 séries de 10 bolas",
+              "golpes": [
+                "Tática",
+                "Forehand"
+              ]
+            },
+            {
+              "id": "t1-ini-7",
+              "nome": "Backhand em bola de cesto",
+              "como": "Alimentação lenta só no backhand, com pausa entre as bolas para o aluno preparar cedo.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t1-ini-8",
+              "nome": "Rei da quadra cooperativo",
+              "como": "Em dupla ou grupo: quem completar 6 bolas seguidas com o professor fica na quadra; quem errar dá lugar ao próximo.",
+              "dose": "10 minutos",
+              "golpes": [
+                "Consistência",
+                "Movimentação"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Troca cruzada com alvo de profundidade (bolas depois da linha de saque) e volta ao centro a cada golpe.",
+          "exercicios": [
+            {
+              "id": "t1-int-1",
+              "nome": "Cruzada com zona funda",
+              "como": "Troca cruzada de forehand e depois de backhand. Só conta a bola que quica entre a linha de saque e a linha de base.",
+              "dose": "4 rodadas de 3 minutos (2 de cada lado), contando bolas fundas",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-int-2",
+              "nome": "Topspin com margem",
+              "como": "Troca do fundo mirando 1 metro acima da rede, com terminação alta para a bola cair dentro.",
+              "dose": "3 séries de 15 bolas por lado",
+              "golpes": [
+                "Efeitos",
+                "Forehand",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t1-int-3",
+              "nome": "Oito com recuperação",
+              "como": "Alimentação alternada forehand e backhand, longe do corpo. O aluno faz o split step no centro antes de cada bola.",
+              "dose": "4 séries de 10 bolas, descanso de 40 segundos",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-int-4",
+              "nome": "Quando mudar para a paralela",
+              "como": "Troca cruzada. Só pode mudar para a paralela quando receber uma bola curta ou no meio da quadra.",
+              "dose": "Pontos de 21, três jogos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-int-5",
+              "nome": "Backhand cruzado sem erro",
+              "como": "Troca cruzada só de backhand, com meta de 20 bolas seguidas acima da rede com folga.",
+              "dose": "3 tentativas, anotar o recorde",
+              "golpes": [
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-int-6",
+              "nome": "Profundidade com alvo de toalha",
+              "como": "Toalhas a um metro da linha de base. Cada bola que quica na toalha vale ponto extra na troca.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t1-int-7",
+              "nome": "Devolução e troca no fundo",
+              "como": "Parceiro saca devagar. A devolução vai funda no meio e a troca segue cruzada.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Devolução",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-int-8",
+              "nome": "Contador de paciência",
+              "como": "Pontos em que é proibido atacar antes da quinta bola. Quem forçar antes perde o ponto.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Padrões de construção, como cruzada, cruzada e paralela, usando altura e efeito para empurrar o adversário.",
+          "exercicios": [
+            {
+              "id": "t1-ava-1",
+              "nome": "Padrão cruzada, cruzada, paralela",
+              "como": "Duas bolas cruzadas fundas e a terceira na paralela. O parceiro defende e o ponto continua livre.",
+              "dose": "5 séries de 6 repetições por lado",
+              "golpes": [
+                "Tática",
+                "Forehand",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t1-ava-2",
+              "nome": "Bola alta e pesada",
+              "como": "Troca do fundo alternando uma bola alta com muito topspin e uma bola mais rápida e baixa, para tirar o ritmo do adversário.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Efeitos",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-ava-3",
+              "nome": "Ponto só no fundo",
+              "como": "Pontos começando com bola alimentada no fundo. Bola que quica antes da linha de saque é ponto perdido para quem bateu.",
+              "dose": "Sets de 11 pontos, três sets",
+              "golpes": [
+                "Consistência",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t1-ava-4",
+              "nome": "Inside-out com recuperação",
+              "como": "Forehand inside-out para a cruzada do backhand do parceiro e recuperação imediata para o centro, contra bola na paralela.",
+              "dose": "4 séries de 8 repetições",
+              "golpes": [
+                "Forehand",
+                "Movimentação",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t1-ava-5",
+              "nome": "Forehand pesado no backhand",
+              "como": "Troca em que o aluno direciona todas as bolas altas e com efeito para o backhand do parceiro, até receber uma curta.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Forehand",
+                "Efeitos",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t1-ava-6",
+              "nome": "Backhand na paralela de surpresa",
+              "como": "Troca cruzada de backhand. A cada quatro bolas, o aluno muda para a paralela e o ponto segue livre.",
+              "dose": "Pontos de 15, dois jogos",
+              "golpes": [
+                "Backhand",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t1-ava-7",
+              "nome": "Devolução funda e construção",
+              "como": "Parceiro saca com ritmo. A devolução precisa ir funda e o aluno constrói o ponto pela cruzada.",
+              "dose": "Pontos de 11, três jogos",
+              "golpes": [
+                "Devolução",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t1-ava-8",
+              "nome": "Troca com recuperação cronometrada",
+              "como": "Alimentação alternada rápida e funda. Entre as bolas, o aluno precisa voltar ao centro antes do quique.",
+              "dose": "5 séries de 30 segundos",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 2,
+      "titulo": "Começar o ponto",
+      "subtitulo": "Saque e devolução",
+      "pergunta": "Quem começa melhor o ponto sai na frente.",
+      "pilares": {
+        "Técnica": "Saque, devolução e a primeira bola depois deles (saque + 1 e devolução + 1).",
+        "Efeitos": "Saque chapado, com slice ou com kick, conforme o nível do aluno.",
+        "Movimentação": "Split step na devolução e reação rápida à direção do saque.",
+        "Tática": "Para onde sacar e como neutralizar um saque forte do adversário.",
+        "Mentalidade": "Rotina antes do saque e como lidar com a dupla falta sem perder a confiança."
+      },
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Lançamento da bola e saque com movimento reduzido. Devolução bloqueada, mirando o meio da quadra.",
+          "exercicios": [
+            {
+              "id": "t2-ini-1",
+              "nome": "Lançamento na raquete",
+              "como": "Raquete apoiada no chão à frente do pé da frente. O aluno lança a bola na altura do contato e deixa cair sobre as cordas.",
+              "dose": "3 séries de 10 lançamentos",
+              "golpes": [
+                "Saque"
+              ]
+            },
+            {
+              "id": "t2-ini-2",
+              "nome": "Saque da posição de troféu",
+              "como": "Começa com a raquete já atrás das costas, na posição de troféu, e saca da linha de saque, depois do meio da quadra.",
+              "dose": "3 séries de 10 saques, recuando um passo a cada série",
+              "golpes": [
+                "Saque"
+              ]
+            },
+            {
+              "id": "t2-ini-3",
+              "nome": "Devolução bloqueada no meio",
+              "como": "Professor saca devagar. O aluno faz um movimento curto, quase um bloqueio, e mira o centro da quadra.",
+              "dose": "4 séries de 8 devoluções",
+              "golpes": [
+                "Devolução"
+              ]
+            },
+            {
+              "id": "t2-ini-4",
+              "nome": "Rotina do saque",
+              "como": "Antes de cada saque: respirar, quicar a bola duas vezes e escolher o lado. Depois de uma dupla falta, repetir a rotina com calma.",
+              "dose": "2 games de saque só valendo o primeiro serviço dentro",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-ini-5",
+              "nome": "Saque por baixo com alvo",
+              "como": "Para quem ainda não tem o movimento completo: saque por baixo mirando a metade de trás da área de saque.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Saque"
+              ]
+            },
+            {
+              "id": "t2-ini-6",
+              "nome": "Devolução e volta ao centro",
+              "como": "Professor saca devagar. Depois de devolver, o aluno corre de volta ao centro da linha de base.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t2-ini-7",
+              "nome": "Primeira bola depois do saque",
+              "como": "Saque com movimento reduzido e, na bola seguinte alimentada pelo professor, um forehand para o meio.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Saque",
+                "Forehand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t2-ini-8",
+              "nome": "Desafio dos saques seguidos",
+              "como": "Contar quantos saques seguidos entram. Meta: 3, depois 5.",
+              "dose": "10 minutos, anotar o recorde",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Saque completo com alvos (aberto, no corpo e no T) e devolução profunda no centro.",
+          "exercicios": [
+            {
+              "id": "t2-int-1",
+              "nome": "Três alvos do saque",
+              "como": "Cones no aberto, no corpo e no T. O aluno anuncia o alvo antes de cada saque.",
+              "dose": "3 séries de 9 saques (3 em cada alvo) de cada lado",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-int-2",
+              "nome": "Devolução funda no centro",
+              "como": "Parceiro ou professor saca. A devolução precisa passar da linha de saque, na faixa central da quadra.",
+              "dose": "4 séries de 10 devoluções",
+              "golpes": [
+                "Devolução",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t2-int-3",
+              "nome": "Split step na hora certa",
+              "como": "Na devolução, o aluno faz o pequeno salto no instante em que o sacador toca na bola e reage para o lado do saque.",
+              "dose": "3 séries de 10, alternando lados",
+              "golpes": [
+                "Movimentação",
+                "Devolução"
+              ]
+            },
+            {
+              "id": "t2-int-4",
+              "nome": "Saque + 1",
+              "como": "Saque no alvo combinado e a primeira bola depois dele atacando o lado aberto da quadra.",
+              "dose": "4 séries de 6 repetições",
+              "golpes": [
+                "Saque",
+                "Forehand",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-int-5",
+              "nome": "Segundo saque com margem",
+              "como": "Só segundos saques, com mais efeito e altura sobre a rede. A bola precisa cair no fundo da área de saque.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t2-int-6",
+              "nome": "Devolução de backhand bloqueada",
+              "como": "Parceiro saca no backhand. O aluno encurta a preparação e bloqueia a bola funda no meio.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t2-int-7",
+              "nome": "Devolução + 1",
+              "como": "Devolução funda no meio e a bola seguinte atacando o lado aberto.",
+              "dose": "4 séries de 6 repetições",
+              "golpes": [
+                "Devolução",
+                "Tática",
+                "Forehand"
+              ]
+            },
+            {
+              "id": "t2-int-8",
+              "nome": "Games com só um saque",
+              "como": "Games normais, mas com apenas um saque por ponto. Treina a segurança do segundo saque.",
+              "dose": "4 games",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Segundo saque com kick, padrões de saque + 1 e devolução agressiva no segundo saque.",
+          "exercicios": [
+            {
+              "id": "t2-ava-1",
+              "nome": "Segundo saque com kick",
+              "como": "Lançamento um pouco atrás da cabeça e escovada de baixo para cima. Meta: a bola quica alto no backhand do recebedor.",
+              "dose": "4 séries de 10 segundos saques, contando os que entram",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t2-ava-2",
+              "nome": "Padrões de saque + 1",
+              "como": "Saque aberto e forehand no lado oposto; saque no T e forehand inside-out. O parceiro devolve livre.",
+              "dose": "5 séries de 4 repetições por padrão",
+              "golpes": [
+                "Saque",
+                "Tática",
+                "Forehand"
+              ]
+            },
+            {
+              "id": "t2-ava-3",
+              "nome": "Ataque ao segundo saque",
+              "como": "Parceiro só saca o segundo serviço. O aluno entra na quadra e devolve agressivo, buscando a iniciativa do ponto.",
+              "dose": "Pontos de 11, três jogos",
+              "golpes": [
+                "Devolução",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-ava-4",
+              "nome": "Games de saque sob pressão",
+              "como": "Games começando em 0-30 para o sacador, com só um saque por ponto.",
+              "dose": "4 games",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-ava-5",
+              "nome": "Saque aberto no lado da vantagem",
+              "como": "Saque com slice abrindo a quadra e a primeira bola no lado oposto.",
+              "dose": "5 séries de 5",
+              "golpes": [
+                "Saque",
+                "Efeitos",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-ava-6",
+              "nome": "Devolução de bloqueio contra saque forte",
+              "como": "Parceiro saca forte. O aluno faz o split step, encurta o movimento e devolve fundo no meio.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Devolução",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t2-ava-7",
+              "nome": "Devolução na paralela",
+              "como": "No segundo saque do parceiro, o aluno devolve na paralela de backhand e assume a iniciativa.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Devolução",
+                "Backhand",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t2-ava-8",
+              "nome": "Ritmo de saque",
+              "como": "Rotina completa entre os saques, com o mesmo tempo e o mesmo número de quiques em todos os pontos.",
+              "dose": "2 games de saque",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 3,
+      "titulo": "Atacar e fechar",
+      "subtitulo": "Transição para a rede",
+      "pergunta": "Reconheci a bola curta. E agora?",
+      "pilares": {
+        "Técnica": "Bola de aproximação, voleio e smash.",
+        "Efeitos": "Slice na aproximação, para a bola ficar baixa e dificultar a passada.",
+        "Movimentação": "Entrar na quadra para atacar e fazer o split step antes do voleio.",
+        "Tática": "Escolher a bola certa para subir e onde se posicionar na rede.",
+        "Mentalidade": "Decisão e coragem: escolheu atacar, vai até o fim sem hesitar."
+      },
+      "nota": "Turmas em dupla e grupo: bom momento para trazer o jogo de duplas (posicionamento, comunicação e voleio a dois).",
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Voleio bloqueado perto da rede, com bola lançada na mão. Aprender a reconhecer a bola curta.",
+          "exercicios": [
+            {
+              "id": "t3-ini-1",
+              "nome": "Voleio de bloqueio com bola na mão",
+              "como": "Aluno a dois metros da rede, empunhadura continental. Professor lança a bola na mão e o aluno bloqueia, sem balançar o braço.",
+              "dose": "3 séries de 10 de cada lado",
+              "golpes": [
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-ini-2",
+              "nome": "Curta ou funda?",
+              "como": "Professor alimenta bolas curtas e fundas misturadas. Na curta, o aluno entra e bate; na funda, fica atrás e devolve.",
+              "dose": "3 séries de 12 bolas",
+              "golpes": [
+                "Tática",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ini-3",
+              "nome": "Entra, bate e para",
+              "como": "Bola curta no meio da quadra. O aluno entra, bate andando para a frente e para em base equilibrada perto da rede.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Forehand",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ini-4",
+              "nome": "Smash parado",
+              "como": "Bola lançada alta pelo professor. O aluno vira de lado, aponta a bola com a mão livre e só depois bate.",
+              "dose": "3 séries de 6",
+              "golpes": [
+                "Smash"
+              ]
+            },
+            {
+              "id": "t3-ini-5",
+              "nome": "Bola curta, backhand na frente",
+              "como": "Bola curta no backhand. O aluno entra andando e bate na frente do corpo, sem deixar a bola cair demais.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Backhand",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ini-6",
+              "nome": "Voleio de forehand e backhand alternados",
+              "como": "Aluno perto da rede. Professor lança bolas devagar alternando os lados para o bloqueio.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-ini-7",
+              "nome": "Corrida até a rede",
+              "como": "Ao sinal do professor, o aluno corre da linha de saque até perto da rede, para em base e bloqueia uma bola lançada.",
+              "dose": "3 séries de 6",
+              "golpes": [
+                "Movimentação",
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-ini-8",
+              "nome": "Ponto que termina na rede",
+              "como": "Pontos em mini quadra em que o aluno precisa ir à rede depois de uma bola curta.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Tática",
+                "Voleio"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Aproximação seguida de voleio, em sequência, e posicionamento depois de subir.",
+          "exercicios": [
+            {
+              "id": "t3-int-1",
+              "nome": "Aproximação e voleio",
+              "como": "Bola curta, aproximação na paralela, split step e voleio cruzado na bola seguinte.",
+              "dose": "4 séries de 6 repetições",
+              "golpes": [
+                "Voleio",
+                "Tática",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-int-2",
+              "nome": "Aproximação com slice",
+              "como": "Aproximação de backhand com slice, buscando a bola baixa e funda no fundo de quadra.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Backhand",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t3-int-3",
+              "nome": "Voleio com passo à frente",
+              "como": "Na rede, alternando lados. O aluno dá um passo para a bola com o pé oposto enquanto bloqueia.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Voleio",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-int-4",
+              "nome": "Onde ficar na rede",
+              "como": "Depois da aproximação, o aluno se posiciona do lado para onde mandou a bola. Parceiro tenta a passada.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Tática",
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-int-5",
+              "nome": "Aproximação de forehand na paralela",
+              "como": "Bola curta no forehand. Aproximação funda na paralela e posição de voleio.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Forehand",
+                "Tática",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-int-6",
+              "nome": "Smash com bola alimentada",
+              "como": "Bola alta lançada pelo professor. O aluno vira de lado, aponta e finaliza no espaço aberto.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Smash"
+              ]
+            },
+            {
+              "id": "t3-int-7",
+              "nome": "Primeiro voleio funda, segundo para fechar",
+              "como": "Aluno na linha de saque: primeiro voleio fundo, avança, e o segundo voleio fecha o ponto em ângulo.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t3-int-8",
+              "nome": "Lob contra quem sobe",
+              "como": "Parceiro sobe à rede. O aluno treina o lob alto sobre o backhand do parceiro, que tenta o smash.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Lob e passada",
+                "Smash"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Padrões de ataque (aproximação na paralela, voleio cruzado), saque e voleio, smash recuando.",
+          "exercicios": [
+            {
+              "id": "t3-ava-1",
+              "nome": "Saque e voleio",
+              "como": "Saque no corpo ou no T e subida com split step na linha de saque. Primeiro voleio fundo, segundo para fechar.",
+              "dose": "5 séries de 5 por lado",
+              "golpes": [
+                "Saque",
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-ava-2",
+              "nome": "Smash recuando",
+              "como": "Lob alimentado sobre o aluno na rede. Ele recua com passos laterais cruzados e finaliza no espaço aberto.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Smash",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ava-3",
+              "nome": "Padrão de ataque completo",
+              "como": "Bola curta, aproximação na paralela, voleio cruzado e smash se vier o lob. O parceiro joga a passada livre.",
+              "dose": "Pontos de 15, três jogos",
+              "golpes": [
+                "Tática",
+                "Voleio",
+                "Smash"
+              ]
+            },
+            {
+              "id": "t3-ava-4",
+              "nome": "Voleio contra passada",
+              "como": "Aluno na rede contra dois jogadores no fundo, com bola rápida e baixa.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Voleio",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ava-5",
+              "nome": "Aproximação com slice e voleio cruzado",
+              "como": "Aproximação de backhand com slice baixo na paralela, split step e voleio cruzado.",
+              "dose": "5 séries de 5",
+              "golpes": [
+                "Backhand",
+                "Efeitos",
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t3-ava-6",
+              "nome": "Ataque à bola alta no meio da quadra",
+              "como": "Bola alta e curta. O aluno entra, bate o forehand de cima para baixo (drive voleio) e fecha na rede.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Forehand",
+                "Voleio",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t3-ava-7",
+              "nome": "Voleio baixo nos pés",
+              "como": "Parceiro manda bolas baixas nos pés. O aluno flexiona os joelhos e devolve o voleio fundo.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Voleio",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t3-ava-8",
+              "nome": "Pontos com regra de rede",
+              "como": "Pontos em que quem ganhar o ponto na rede marca 2. Incentiva escolher a bola certa para subir.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Tática",
+                "Voleio"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 4,
+      "titulo": "Defender e virar o jogo",
+      "subtitulo": "Neutralizar e contra-atacar",
+      "pergunta": "Como sair da pressão sem entregar o ponto?",
+      "pilares": {
+        "Técnica": "Lob, slice defensivo, passada e bola alta e funda.",
+        "Efeitos": "Slice para ganhar tempo e topspin alto para empurrar o adversário para trás.",
+        "Movimentação": "Deslocamento lateral e recuperação depois de uma bola aberta.",
+        "Tática": "Primeiro neutralizar, depois contra-atacar.",
+        "Mentalidade": "Resiliência: não desistir de bola e não se abalar com a pressão do outro lado."
+      },
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Lob alto para ganhar tempo e volta ao centro depois de correr para uma bola aberta.",
+          "exercicios": [
+            {
+              "id": "t4-ini-1",
+              "nome": "Lob para ganhar tempo",
+              "como": "Professor alimenta uma bola aberta. O aluno corre e devolve com uma bola bem alta, mirando o fundo da quadra.",
+              "dose": "3 séries de 8 de cada lado",
+              "golpes": [
+                "Lob e passada",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ini-2",
+              "nome": "Corre e volta ao cone",
+              "como": "Bola aberta de um lado, golpe e volta ao cone do centro com passos laterais antes da próxima.",
+              "dose": "3 séries de 10 bolas",
+              "golpes": [
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ini-3",
+              "nome": "Toda bola volta",
+              "como": "Professor varia direção e altura. O aluno só precisa devolver a bola em jogo, de qualquer jeito, sem desistir de nenhuma.",
+              "dose": "4 séries de 1 minuto",
+              "golpes": [
+                "Consistência",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ini-4",
+              "nome": "Passada no aberto",
+              "como": "Professor na rede. O aluno devolve a bola alimentada para o lado em que o professor não está.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Lob e passada",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-ini-5",
+              "nome": "Forehand alto e fundo",
+              "como": "Bola aberta no forehand. O aluno devolve alto e fundo, ganhando tempo para voltar ao centro.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Forehand",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ini-6",
+              "nome": "Backhand defensivo para o meio",
+              "como": "Bola funda no backhand. O aluno só precisa devolver no meio da quadra, alto e seguro.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t4-ini-7",
+              "nome": "Pega-pega da linha de base",
+              "como": "Professor alimenta em pontos diferentes da quadra. O aluno corre, devolve qualquer bola e volta ao centro.",
+              "dose": "4 rodadas de 40 segundos",
+              "golpes": [
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ini-8",
+              "nome": "Bola alta para sair da pressão",
+              "como": "Professor ataca. O aluno responde com bola alta (com ou sem efeito) para ter tempo de se recuperar.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Slice defensivo de backhand e escolha entre lob e passada quando o adversário sobe.",
+          "exercicios": [
+            {
+              "id": "t4-int-1",
+              "nome": "Slice defensivo de backhand",
+              "como": "Bola funda e aberta no backhand. O aluno devolve com slice longo e baixo e recupera para o centro.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Backhand",
+                "Efeitos",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-int-2",
+              "nome": "Lob ou passada?",
+              "como": "Parceiro sobe à rede. Se ele estiver colado, lob; se ficar longe da rede, passada nos pés ou no aberto.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Lob e passada",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-int-3",
+              "nome": "Neutralizar no meio",
+              "como": "Professor ataca as laterais. O aluno devolve alto e no meio da quadra para ganhar tempo, até receber uma bola mais fácil.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Consistência",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-int-4",
+              "nome": "Defesa com topspin alto",
+              "como": "Sob pressão, devolver com bola alta e muito topspin, empurrando o adversário para trás da linha de base.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Efeitos",
+                "Forehand"
+              ]
+            },
+            {
+              "id": "t4-int-5",
+              "nome": "Devolução de saque forte para o meio",
+              "como": "Parceiro saca forte. O aluno encurta o movimento e devolve fundo no meio, neutralizando.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t4-int-6",
+              "nome": "Passada na corrida",
+              "como": "Bola aberta e o parceiro na rede. O aluno faz a passada na paralela correndo.",
+              "dose": "4 séries de 6 por lado",
+              "golpes": [
+                "Lob e passada",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-int-7",
+              "nome": "Smash defensivo",
+              "como": "Lob alto do parceiro. O aluno recua e faz um smash seguro, fundo, em vez de tentar o ponto.",
+              "dose": "3 séries de 6",
+              "golpes": [
+                "Smash"
+              ]
+            },
+            {
+              "id": "t4-int-8",
+              "nome": "Voleio de defesa",
+              "como": "Aluno na rede recebendo bolas fortes. Objetivo: só bloquear e manter a bola em jogo.",
+              "dose": "4 séries de 10",
+              "golpes": [
+                "Voleio",
+                "Consistência"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Transformar uma bola defensiva em neutra e, na seguinte, em ofensiva (contra-ataque).",
+          "exercicios": [
+            {
+              "id": "t4-ava-1",
+              "nome": "Defesa, neutra, ataque",
+              "como": "Sequência de três bolas: a primeira bem aberta (defender), a segunda no meio (neutralizar), a terceira curta (atacar).",
+              "dose": "5 séries de 4 sequências",
+              "golpes": [
+                "Tática",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ava-2",
+              "nome": "Passada com duas bolas",
+              "como": "Parceiro na rede. Primeira bola baixa nos pés para tirar o voleio fácil, segunda é a passada.",
+              "dose": "Pontos de 11, três jogos",
+              "golpes": [
+                "Lob e passada",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-ava-3",
+              "nome": "Contra-ataque na corrida",
+              "como": "Bola aberta e rápida. O aluno devolve na paralela em vez de só se defender na cruzada.",
+              "dose": "4 séries de 6 por lado",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-ava-4",
+              "nome": "Pontos começando em desvantagem",
+              "como": "O ponto começa com o aluno fora da quadra, depois de uma bola aberta alimentada.",
+              "dose": "Sets de 11 pontos, dois sets",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t4-ava-5",
+              "nome": "Devolução bloqueada e contra-ataque",
+              "como": "Saque forte do parceiro, devolução bloqueada funda e, na bola seguinte, ataque na paralela.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Devolução",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t4-ava-6",
+              "nome": "Slice defensivo que vira neutra",
+              "como": "Bola funda e aberta. Slice baixo e longo, recuperação e a próxima bola já em posição neutra.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Efeitos",
+                "Backhand",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ava-7",
+              "nome": "Smash recuando sob pressão",
+              "como": "Lobs altos e fundos seguidos. O aluno recua, faz o smash e volta para a rede.",
+              "dose": "4 séries de 5",
+              "golpes": [
+                "Smash",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t4-ava-8",
+              "nome": "Voleio contra passada forte",
+              "como": "Aluno na rede contra passadas com ritmo. Trabalha posição e reflexo.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 5,
+      "titulo": "Variar para desequilibrar",
+      "subtitulo": "Controle de efeitos e ritmo",
+      "pergunta": "Como tirar o adversário da zona de conforto?",
+      "pilares": {
+        "Técnica": "Deixadinha (drop shot), slice e bolas de alturas e velocidades diferentes.",
+        "Efeitos": "O tema central da semana, incluindo ler o efeito da bola que vem do outro lado.",
+        "Movimentação": "Ajustes finos de distância da bola, com passos curtos antes do golpe.",
+        "Tática": "Mudar o ritmo da troca e explorar o ponto fraco do adversário.",
+        "Mentalidade": "Criatividade e plano B quando o que estava funcionando para de funcionar."
+      },
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Perceber a diferença entre bola com e sem efeito. Bater bolas altas e baixas de propósito.",
+          "exercicios": [
+            {
+              "id": "t5-ini-1",
+              "nome": "Alta ou baixa, de propósito",
+              "como": "O professor fala \"alta\" ou \"baixa\" antes de cada bola e o aluno muda a altura sobre a rede.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Efeitos",
+                "Forehand",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t5-ini-2",
+              "nome": "Sente o efeito",
+              "como": "Professor manda bolas com topspin, com slice e chapadas. O aluno observa o quique e diz qual era antes de bater.",
+              "dose": "2 séries de 12",
+              "golpes": [
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ini-3",
+              "nome": "Passinhos antes da bola",
+              "como": "Bola alimentada perto do corpo. O aluno ajusta a distância com passos curtos antes de bater, sem esticar o braço.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t5-ini-4",
+              "nome": "Primeira escovada",
+              "como": "Movimento de baixo para cima, escovando a bola, para sentir o topspin em bola lenta no meio da quadra.",
+              "dose": "3 séries de 10 de cada lado",
+              "golpes": [
+                "Efeitos",
+                "Forehand"
+              ]
+            },
+            {
+              "id": "t5-ini-5",
+              "nome": "Bola lenta e bola rápida",
+              "como": "Troca cooperativa alternando uma bola lenta e alta com uma mais rápida e baixa.",
+              "dose": "3 rodadas de 2 minutos",
+              "golpes": [
+                "Consistência",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ini-6",
+              "nome": "Mira no ponto fraco",
+              "como": "Professor diz qual lado é o \"ponto fraco\" do adversário imaginário. O aluno manda as bolas para lá.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t5-ini-7",
+              "nome": "Saque com efeito leve",
+              "como": "Primeiros saques com um pouco de escovada na bola, mais devagar, para sentir o efeito.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ini-8",
+              "nome": "Primeiro slice de backhand",
+              "como": "Movimento de cima para baixo, raquete aberta, em bola lenta no meio da quadra.",
+              "dose": "3 séries de 10",
+              "golpes": [
+                "Backhand",
+                "Efeitos"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Alternar topspin e slice na mesma troca e fazer as primeiras deixadinhas.",
+          "exercicios": [
+            {
+              "id": "t5-int-1",
+              "nome": "Topspin e slice na mesma troca",
+              "como": "Troca do fundo em que o aluno alterna: uma bola com topspin, a seguinte com slice.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Efeitos",
+                "Backhand"
+              ]
+            },
+            {
+              "id": "t5-int-2",
+              "nome": "Primeiras deixadinhas",
+              "como": "Bola curta e lenta no meio da quadra. O aluno faz a deixadinha com raquete aberta, buscando quicar duas vezes antes da linha de saque.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t5-int-3",
+              "nome": "Muda o ritmo",
+              "como": "Troca cruzada: a cada três bolas, o aluno manda uma mais lenta e alta ou uma mais rápida e baixa.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Tática",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-int-4",
+              "nome": "No ponto fraco",
+              "como": "O aluno identifica o lado mais fraco do parceiro e direciona a maioria das bolas para lá durante os pontos.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t5-int-5",
+              "nome": "Forehand com mais e menos topspin",
+              "como": "Troca do fundo alternando um forehand com muito topspin, alto, e outro mais reto.",
+              "dose": "4 rodadas de 2 minutos",
+              "golpes": [
+                "Forehand",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-int-6",
+              "nome": "Devolução com slice",
+              "como": "Contra o segundo saque, devolução com slice baixo e fundo para mudar o ritmo.",
+              "dose": "4 séries de 8",
+              "golpes": [
+                "Devolução",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-int-7",
+              "nome": "Deixadinha e corrida",
+              "como": "Aluno faz a deixadinha e corre para a rede para cobrir a resposta do parceiro.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Movimentação",
+                "Tática",
+                "Voleio"
+              ]
+            },
+            {
+              "id": "t5-int-8",
+              "nome": "Lob ofensivo",
+              "como": "Parceiro na rede, perto. O aluno faz o lob com topspin por cima do parceiro.",
+              "dose": "3 séries de 8",
+              "golpes": [
+                "Lob e passada",
+                "Efeitos"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Mudanças de ritmo e altura para quebrar o padrão do adversário e deixadinha disfarçada.",
+          "exercicios": [
+            {
+              "id": "t5-ava-1",
+              "nome": "Deixadinha disfarçada",
+              "como": "Mesma preparação do forehand ou backhand forte; na última hora, abre a raquete e faz a deixadinha.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t5-ava-2",
+              "nome": "Quebra de padrão",
+              "como": "Pontos em que o aluno precisa usar pelo menos uma bola de altura ou efeito diferente antes de atacar.",
+              "dose": "Sets de 11 pontos, dois sets",
+              "golpes": [
+                "Tática",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ava-3",
+              "nome": "Plano B",
+              "como": "No meio do jogo, o professor proíbe o golpe que o aluno mais usa para ganhar pontos. Ele precisa achar outro caminho.",
+              "dose": "2 sets curtos até 4 games",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t5-ava-4",
+              "nome": "Lê o efeito e responde",
+              "como": "Parceiro varia topspin, slice e chapada. O aluno ajusta a resposta: slice contra bola baixa, topspin contra bola alta.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Efeitos",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t5-ava-5",
+              "nome": "Kick e slice alternados",
+              "como": "Saque alternando kick e slice no mesmo lado, para o recebedor não ler o efeito.",
+              "dose": "5 séries de 6",
+              "golpes": [
+                "Saque",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ava-6",
+              "nome": "Bola sem peso no meio",
+              "como": "Troca em que o aluno manda bolas lentas e baixas no meio para tirar o ângulo e o ritmo do parceiro.",
+              "dose": "4 rodadas de 3 minutos",
+              "golpes": [
+                "Tática",
+                "Efeitos",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t5-ava-7",
+              "nome": "Passada com efeito",
+              "como": "Parceiro na rede. Passada cruzada com topspin curto, caindo nos pés.",
+              "dose": "4 séries de 6 por lado",
+              "golpes": [
+                "Lob e passada",
+                "Efeitos"
+              ]
+            },
+            {
+              "id": "t5-ava-8",
+              "nome": "Smash ou deixar quicar",
+              "como": "Lobs de alturas diferentes. O aluno decide entre smash no ar ou deixar quicar e bater.",
+              "dose": "4 séries de 6",
+              "golpes": [
+                "Smash",
+                "Tática"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 6,
+      "titulo": "Competir",
+      "subtitulo": "Semana de pontos",
+      "pergunta": "Consigo usar tudo isso quando o placar importa?",
+      "pilares": {
+        "Técnica": "Tudo o que foi trabalhado no ciclo, agora em situação real de ponto.",
+        "Efeitos": "Escolher o efeito certo sob pressão, e não só no treino de repetição.",
+        "Movimentação": "Manter a qualidade dos deslocamentos ao longo de pontos e games seguidos.",
+        "Tática": "Pontos com regras, situações de placar e plano de jogo contra perfis de adversário (o que só devolve, o que bate forte, o que sobe à rede).",
+        "Mentalidade": "Gestão emocional entre os pontos e rotina para se recuperar depois de um erro."
+      },
+      "nota": "Checkpoint do ciclo: boa semana para fazer o registro em vídeo da evolução de cada aluno.",
+      "niveis": {
+        "Iniciante": {
+          "objetivo": "Jogos curtos com contagem simplificada e aprendizado das regras do placar.",
+          "exercicios": [
+            {
+              "id": "t6-ini-1",
+              "nome": "Jogo até 7",
+              "como": "Pontos no meio da quadra, começando com bola lançada. Quem chega a 7 pontos primeiro vence.",
+              "dose": "3 jogos",
+              "golpes": [
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ini-2",
+              "nome": "Aprendendo o placar",
+              "como": "Games com contagem oficial (15, 30, 40, vantagem). O aluno canta o placar em voz alta antes de cada ponto.",
+              "dose": "4 games",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ini-3",
+              "nome": "Saca e joga",
+              "como": "O ponto começa com o saque do aluno, mesmo com movimento reduzido, e segue livre.",
+              "dose": "2 games de saque",
+              "golpes": [
+                "Saque",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ini-4",
+              "nome": "Respira e recomeça",
+              "como": "Depois de cada ponto perdido, o aluno vira de costas, respira fundo duas vezes e volta para a posição antes do próximo.",
+              "dose": "Durante todos os jogos da aula",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ini-5",
+              "nome": "Jogo de forehand e backhand",
+              "como": "Mini jogo em que cada ponto precisa ter pelo menos um forehand e um backhand de cada lado.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ini-6",
+              "nome": "Voleio vale dobrado",
+              "como": "Pontos em mini quadra: ponto ganho com voleio vale 2.",
+              "dose": "3 jogos até 9",
+              "golpes": [
+                "Voleio",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ini-7",
+              "nome": "Corre e devolve",
+              "como": "Jogo em que o professor abre a quadra de propósito e o aluno precisa correr para manter a bola viva.",
+              "dose": "3 jogos até 7",
+              "golpes": [
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t6-ini-8",
+              "nome": "Devolução que vale ponto",
+              "como": "Pontos começando com o saque do professor. Devolução dentro já vale 1 ponto para o aluno.",
+              "dose": "2 jogos até 10",
+              "golpes": [
+                "Devolução",
+                "Consistência"
+              ]
+            }
+          ]
+        },
+        "Intermediário": {
+          "objetivo": "Pontos que já começam em 30-40 ou 15-30 e rotina entre os pontos.",
+          "exercicios": [
+            {
+              "id": "t6-int-1",
+              "nome": "Games começando em 30-40",
+              "como": "Cada game começa com o aluno sacando em 30-40, precisando salvar o break point.",
+              "dose": "6 games",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-int-2",
+              "nome": "Rotina entre os pontos",
+              "como": "Combinar uma rotina curta (corda da raquete, respiração, plano do próximo ponto) e repetir antes de cada ponto.",
+              "dose": "Durante um set curto até 4 games",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-int-3",
+              "nome": "Ponto com regra",
+              "como": "Pontos em que só vale ganhar com bola funda ou depois de subir à rede, para usar o que foi treinado no ciclo.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-int-4",
+              "nome": "Contra perfis de adversário",
+              "como": "O professor joga cada game com um perfil: só devolve, bate forte ou sobe à rede. O aluno ajusta o plano.",
+              "dose": "3 games por perfil",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-int-5",
+              "nome": "Ponto com subida obrigatória",
+              "como": "Pontos em que o aluno precisa subir à rede na terceira bola.",
+              "dose": "Pontos de 11, dois jogos",
+              "golpes": [
+                "Voleio",
+                "Tática",
+                "Movimentação"
+              ]
+            },
+            {
+              "id": "t6-int-6",
+              "nome": "Placar de backhand",
+              "como": "Ponto ganho com backhand vale 2. Estimula a usar o backhand sob pressão.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Backhand",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-int-7",
+              "nome": "Devolução sob pressão",
+              "como": "Games começando em 30-40 para o sacador: o aluno devolve buscando a quebra.",
+              "dose": "6 games",
+              "golpes": [
+                "Devolução",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-int-8",
+              "nome": "Efeito certo na hora certa",
+              "como": "Pontos em que o professor grita \"slice\" ou \"topspin\" no meio da troca e o aluno troca o efeito na bola seguinte.",
+              "dose": "Pontos de 11",
+              "golpes": [
+                "Efeitos",
+                "Tática"
+              ]
+            }
+          ]
+        },
+        "Avançado": {
+          "objetivo": "Tie-breaks, sets simulados e plano de jogo para cada perfil de adversário.",
+          "exercicios": [
+            {
+              "id": "t6-ava-1",
+              "nome": "Tie-breaks",
+              "como": "Tie-breaks de 7 pontos com regra oficial de troca de saque e de lado.",
+              "dose": "4 tie-breaks",
+              "golpes": [
+                "Saque",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ava-2",
+              "nome": "Set simulado com plano",
+              "como": "Antes do set, o aluno escreve o plano de jogo em uma frase. Na troca de lado, revisa o que está funcionando.",
+              "dose": "1 set curto até 4 games",
+              "golpes": [
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ava-3",
+              "nome": "Recuperação depois do erro",
+              "como": "Depois de um erro não forçado, o ponto seguinte vale dobrado. O aluno usa a rotina para zerar a cabeça.",
+              "dose": "Sets de 11 pontos, dois sets",
+              "golpes": [
+                "Tática",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ava-4",
+              "nome": "Placar apertado",
+              "como": "Games começando em 4-4 ou 5-5 no set, com troca de saque a cada game.",
+              "dose": "6 games",
+              "golpes": [
+                "Tática",
+                "Saque"
+              ]
+            },
+            {
+              "id": "t6-ava-5",
+              "nome": "Set com estatística",
+              "como": "Set curto anotando primeiro saque, erros não forçados e pontos na rede. No fim, conversar sobre os números.",
+              "dose": "1 set até 4 games",
+              "golpes": [
+                "Tática",
+                "Saque",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ava-6",
+              "nome": "Ponto longo obrigatório",
+              "como": "O ponto só vale se tiver pelo menos 8 bolas. Treina paciência e movimentação sob placar.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Movimentação",
+                "Consistência"
+              ]
+            },
+            {
+              "id": "t6-ava-7",
+              "nome": "Contra quem sobe à rede",
+              "como": "O professor sobe em todo ponto. O aluno escolhe entre lob e passada.",
+              "dose": "Sets de 11 pontos",
+              "golpes": [
+                "Lob e passada",
+                "Tática"
+              ]
+            },
+            {
+              "id": "t6-ava-8",
+              "nome": "Forehand e backhand decisivos",
+              "como": "Pontos que começam em 30-30. O aluno define com o golpe de que menos gosta.",
+              "dose": "6 games",
+              "golpes": [
+                "Forehand",
+                "Backhand",
+                "Tática"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

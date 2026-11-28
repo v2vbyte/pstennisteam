@@ -8,13 +8,19 @@
  *   3. Guarda tudo no Google Drive: uma pasta por aluno, um Google Doc
  *      editável por aula e uma planilha com o registro das aulas.
  *   4. Avisa por e-mail a cada diagnóstico gerado.
+ *   5. Guarda o tema da semana (ciclo de Treinos por tema) e monta, com o
+ *      Claude, o treino da semana de cada aluno a partir do banco de
+ *      exercícios do site (professor/treinos-por-tema.json).
  *
  * Propriedades do script (Configurações do projeto > Propriedades do script):
  *   ANTHROPIC_API_KEY   chave da API do Claude (obrigatória)
  *   GOOGLE_CLIENT_ID    ID do cliente OAuth do Google Cloud (obrigatória)
  *   EMAILS_AUTORIZADOS  e-mails que podem entrar, separados por vírgula (obrigatória)
  *   EMAIL_COPIA         e-mail que recebe cópia dos avisos (opcional)
- *   MODELO              modelo do Claude (opcional, padrão claude-sonnet-5-5)
+ *   MODELO              modelo do Claude para o diagnóstico (opcional, padrão claude-sonnet-5-5)
+ *   MODELO_TREINO       modelo do Claude para o treino da semana (opcional, padrão claude-haiku-5-5)
+ *   MODO_TREINO         "banco" monta o treino da semana só pelo banco, sem chamar o Claude (opcional)
+ *   REFAZER_TREINO      quantas vezes por semana dá para "Montar de novo" o treino de um aluno (opcional, padrão 2)
  * A função configurar() cria a pasta, a planilha e o índice e grava
  * PASTA_ID, PLANILHA_ID e INDICE_ID sozinha.
  */
@@ -24,7 +30,11 @@ const CFG = {
   PLANILHA: 'PS Tennis · Registro de aulas',
   INDICE: 'indice-alunos.json',
   MODELO_PADRAO: 'claude-sonnet-5-5',
+  MODELO_TREINO_PADRAO: 'claude-haiku-5-5',
+  REFAZER_TREINO_PADRAO: 2,
+  EXERCICIOS_PARA_O_CLAUDE: 6,
   SITE: 'https://www.pstennisteam.com/professor/',
+  BANCO: 'https://www.pstennisteam.com/professor/treinos-por-tema.json',
   FUSO: 'America/Sao_Paulo'
 };
 const CLASSES = ['6ª', '5ª', '4ª', '3ª', '2ª', '1ª'];
@@ -122,11 +132,13 @@ function doPost(e) {
 }
 
 const ACOES = {
-  entrar: (req, email) => ({ email: email, alunos: lerIndice().alunos.map(paraPagina) }),
+  entrar: (req, email) => { const idx = lerIndice(); return { email: email, alunos: idx.alunos.map(paraPagina), ciclo: idx.ciclo || null }; },
   gerar: gerar,
   confirmarClasse: confirmarClasse,
   ler: ler,
-  salvarPdf: salvarPdf
+  salvarPdf: salvarPdf,
+  definirTema: definirTema,
+  treinoSemana: treinoSemana
 };
 
 /* =====================================================================
@@ -737,6 +749,255 @@ function avisarPorEmail(al, d, docUrl, pastaUrl) {
 }
 
 /* =====================================================================
+   TREINOS POR TEMA: TEMA DA SEMANA E TREINO DE CADA ALUNO
+   O ciclo tem 6 temas, um por semana, iguais para todos os alunos. O
+   Paulo escolhe o tema da semana na página e o ciclo avança sozinho toda
+   segunda-feira. O treino da semana do aluno junta o tema, o nível e o
+   plano de treino da última avaliação, partindo do banco de exercícios
+   publicado no site (professor/treinos-por-tema.json).
+   ===================================================================== */
+const TEMAS_NO_CICLO = 6;
+const DIA = 864e5;
+const SEMANA_RE = /^\d{4}-\d{2}-\d{2}$/;
+const diaUTC = s => { const p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); };
+const dataBRparaUTC = s => { const p = String(s).split('/').map(Number); return Date.UTC(p[2], p[1] - 1, p[0]); };
+const segundaUTC = t => t - ((new Date(t).getUTCDay() + 6) % 7) * DIA;
+/* a página manda a segunda-feira da semana (aaaa-mm-dd, no fuso do aparelho do Paulo) */
+function checarSemana(s) {
+  s = String(s || '');
+  if (!SEMANA_RE.test(s) || isNaN(diaUTC(s)) || new Date(diaUTC(s)).getUTCDay() !== 1) throw publico('Semana inválida. Atualize a página.');
+  return s;
+}
+function temaDaSemana(ciclo, semana) {
+  if (!ciclo || !SEMANA_RE.test(String(ciclo.inicio || '')) || !(ciclo.tema >= 1 && ciclo.tema <= TEMAS_NO_CICLO)) return 0;
+  const k = Math.round((diaUTC(semana) - diaUTC(ciclo.inicio)) / (7 * DIA));
+  return (((ciclo.tema - 1 + k) % TEMAS_NO_CICLO) + TEMAS_NO_CICLO) % TEMAS_NO_CICLO + 1;
+}
+
+function definirTema(req) {
+  const semana = checarSemana(req.semana), n = Number(req.tema);
+  if (!(n >= 1 && n <= TEMAS_NO_CICLO)) throw publico('Tema inválido.');
+  const ciclo = comTrava(() => {
+    const idx = lerIndice();
+    idx.ciclo = { inicio: semana, tema: n };
+    salvarIndice(idx);
+    return idx.ciclo;
+  });
+  return { ciclo: ciclo };
+}
+
+function lerBanco() {
+  const cache = CacheService.getScriptCache();
+  const salvo = cache.get('banco_treinos');
+  if (salvo) return JSON.parse(salvo);
+  let r;
+  try { r = UrlFetchApp.fetch(CFG.BANCO + '?t=' + Date.now(), { muteHttpExceptions: true }); }
+  catch (e) { throw publico('Não consegui ler o banco de exercícios no site. Tente de novo em alguns minutos.'); }
+  if (r.getResponseCode() !== 200) throw publico('Não consegui ler o banco de exercícios no site. Tente de novo em alguns minutos.');
+  const txt = r.getContentText();
+  let banco;
+  try { banco = JSON.parse(txt); } catch (e) { throw publico('O arquivo treinos-por-tema.json do site tem um erro de formatação.'); }
+  if (!banco || !Array.isArray(banco.temas)) throw publico('O arquivo treinos-por-tema.json do site está incompleto.');
+  try { cache.put('banco_treinos', txt, 600); } catch (e) {}
+  return banco;
+}
+
+/* Nível do aluno para o banco (o banco tem Iniciante, Intermediário e Avançado) */
+const NIVEL_POR_CLASSE = { '6ª': 'Iniciante', '5ª': 'Iniciante', '4ª': 'Intermediário', '3ª': 'Intermediário', '2ª': 'Intermediário', '1ª': 'Avançado' };
+function nivelDoAluno(diag) {
+  const c = diag.classe || {};
+  if (c.confirmada && c.confirmada !== c.sugerida && NIVEL_POR_CLASSE[c.confirmada]) return NIVEL_POR_CLASSE[c.confirmada];
+  return c.nivel || (diag.aluno && diag.aluno.nivel) || NIVEL_POR_CLASSE[c.confirmada || c.sugerida] || 'Iniciante';
+}
+const nivelNoBanco = n => /avan/i.test(n) ? 'Avançado' : /interm/i.test(n) ? 'Intermediário' : 'Iniciante';
+
+/* Em que semana do plano o aluno está (a contagem começa na semana da avaliação) */
+function semanaDoPlano(diag, semana) {
+  const fases = (diag.plano || []).map(f => { const m = /(\d+)\D+(\d+)/.exec(f.semanas || ''); return { f: f, de: m ? +m[1] : 0, ate: m ? +m[2] : 0 }; }).filter(x => x.de && x.ate);
+  if (!fases.length) return { semana: 0, fase: null, alemDoPlano: false };
+  const desde = Math.round((diaUTC(semana) - segundaUTC(dataBRparaUTC(diag.aluno && diag.aluno.data))) / (7 * DIA));
+  const n = fases[0].de - 1 + Math.max(1, isNaN(desde) ? 1 : desde);
+  const atual = fases.filter(x => n >= x.de && n <= x.ate)[0];
+  const ultima = fases[fases.length - 1];
+  return { semana: n, fase: (atual || (n > ultima.ate ? ultima : fases[0])).f, alemDoPlano: n > ultima.ate };
+}
+
+function treinoSemana(req) {
+  const semana = checarSemana(req.semana);
+  const idx = lerIndice();
+  const al = idx.alunos.filter(a => a.id === req.alunoId)[0];
+  if (!al || !al.aulas.length) throw publico('Aluno não encontrado. Atualize a página.');
+  const n = temaDaSemana(idx.ciclo, semana);
+  if (!n) throw publico('Defina o tema da semana na tela inicial.');
+  const ja = (al.treinos || []).filter(t => t.semana === semana && t.tema === n)[0];
+  if (ja && !req.refazer) return { aluno: paraPagina(al) };
+  /* economia: cada aluno tem um treino por semana; "Montar de novo" tem limite */
+  const limite = Number(prop('REFAZER_TREINO') || CFG.REFAZER_TREINO_PADRAO);
+  const refeitos = ja ? (ja.refeitos || 0) + 1 : 0;
+  if (ja && refeitos > limite) throw publico('O treino de ' + String(al.nome).split(' ')[0] + ' já foi montado de novo ' + limite + (limite === 1 ? ' vez' : ' vezes') + ' esta semana. Para economizar o Claude, use o treino atual e ajuste na quadra.');
+
+  const banco = lerBanco();
+  const tema = banco.temas.filter(t => Number(t.n) === n)[0];
+  if (!tema) throw publico('O tema ' + n + ' não está no banco de exercícios.');
+  const au = al.aulas[al.aulas.length - 1];
+  const diag = lerArquivoAula(au).diag;
+  const nivel = nivelDoAluno(diag), nivelBanco = nivelNoBanco(nivel);
+  const doNivel = (tema.niveis || {})[nivelBanco] || { objetivo: '', exercicios: [] };
+  const plano = semanaDoPlano(diag, semana);
+  const anteriores = (al.treinos || []).filter(t => t.semana !== semana).slice(-2);
+  /* o script já escolhe os exercícios do banco que mais servem a este aluno:
+     o Claude recebe só os melhores (texto menor, chamada mais barata) */
+  const rank = rankearBanco(doNivel.exercicios || [], diag, plano, anteriores);
+  const selecao = { objetivo: doNivel.objetivo, exercicios: rank.slice(0, CFG.EXERCICIOS_PARA_O_CLAUDE) };
+
+  let ia = null, aviso = '';
+  if (String(prop('MODO_TREINO')).toLowerCase() !== 'banco') {
+    try { ia = escreverTreino({ al: al, diag: diag, nivel: nivel, nivelBanco: nivelBanco, tema: tema, doNivel: selecao, plano: plano, anteriores: anteriores }); }
+    catch (e) { console.error('Treino com o Claude: ' + (e && e.message)); aviso = 'O Claude não respondeu agora (' + (e && e.publico ? e.message : 'erro') + '). Montei o treino direto pelo banco.'; }
+  }
+  const ids = (doNivel.exercicios || []).map(e => e.id);
+  const base = ia || treinoPeloBanco(al, diag, tema, selecao, plano);
+  const treino = {
+    semana: semana, tema: n, temaTitulo: tema.titulo || '', nivel: nivel,
+    semanaPlano: plano.semana, faseTitulo: plano.fase ? plano.fase.titulo || '' : '', alemDoPlano: plano.alemDoPlano,
+    foco: base.foco || '', atencao: base.atencao || '',
+    exercicios: (base.exercicios || []).filter(e => e && e.nome).slice(0, 4).map(e => ({
+      idBanco: ids.indexOf(e.idBanco) >= 0 ? e.idBanco : '', nome: e.nome, como: e.como || '', dose: e.dose || '', porque: e.porque || ''
+    })),
+    semIA: !ia, refeitos: refeitos,
+    geradoEm: Utilities.formatDate(new Date(), CFG.FUSO, 'dd/MM/yyyy'), avaliacao: au.id
+  };
+  if (!treino.exercicios.length) throw publico('Não encontrei exercícios no banco para este tema e nível.');
+
+  const atualizado = comTrava(() => {
+    const idx2 = lerIndice();
+    const a = idx2.alunos.filter(x => x.id === al.id)[0];
+    a.treinos = (a.treinos || []).filter(t => t.semana !== semana).concat([treino]).slice(-12);
+    salvarIndice(idx2);
+    return a;
+  });
+  return { aluno: paraPagina(atualizado), aviso: aviso };
+}
+
+/* Ordena o banco pelo que o aluno mais precisa: golpes com nota baixa, golpes
+   citados na fase atual do plano e nos pontos a melhorar. Exercícios das duas
+   últimas semanas descem na lista, para não repetir. */
+const semAcento = t => String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+function rankearBanco(exercicios, diag, plano, anteriores) {
+  const notas = {};
+  (diag.notas || []).forEach(x => notas[x.golpe] = Number(x.nota) || 0);
+  const fase = plano && plano.fase ? [plano.fase.titulo].concat((plano.fase.itens || []).map(i => i.foco + ' ' + i.exercicio)) : [];
+  const texto = semAcento(fase.concat(diag.melhorar || []).concat((diag.golpes || []).map(g => g.golpe)).join(' '));
+  const usados = {};
+  (anteriores || []).forEach(t => (t.exercicios || []).forEach(e => { if (e.idBanco) usados[e.idBanco] = 1; usados[semAcento(e.nome)] = 1; }));
+  return exercicios.map((e, i) => {
+    let p = 0;
+    (e.golpes || []).forEach(g => { if (notas[g]) p += Math.max(0, 10 - notas[g]); if (texto.indexOf(semAcento(g)) >= 0) p += 6; });
+    if (usados[e.id] || usados[semAcento(e.nome)]) p -= 12;
+    return { e: e, p: p, i: i };
+  }).sort((a, b) => b.p - a.p || a.i - b.i).map(x => x.e);
+}
+
+/* Treino montado só pelo banco (sem gastar o Claude): os 3 primeiros do
+   ranking, na ordem da aula (a ordem do banco vai da técnica ao jogo). */
+function treinoPeloBanco(al, diag, tema, selecao, plano) {
+  const todos = selecao.exercicios || [];
+  const escolha = todos.slice(0, 3);
+  const pos = {}; (tema.niveis ? Object.keys(tema.niveis).map(k => tema.niveis[k].exercicios || []) : []).forEach(l => l.forEach((e, i) => pos[e.id] = i));
+  escolha.sort((a, b) => (pos[a.id] || 0) - (pos[b.id] || 0));
+  const notas = {}; (diag.notas || []).forEach(x => notas[x.golpe] = Number(x.nota) || 0);
+  const nome = String(al.nome).split(' ')[0];
+  const fraco = (diag.golpes || []).slice().sort((a, b) => (notas[a.golpe] || 10) - (notas[b.golpe] || 10))[0];
+  return {
+    foco: 'Tema "' + tema.titulo + '": ' + (selecao.objetivo || '') + (plano.fase ? ' No plano de ' + nome + ', fase "' + plano.fase.titulo + '".' : ''),
+    exercicios: escolha.map(e => {
+      const g = (e.golpes || []).filter(x => notas[x]).sort((a, b) => notas[a] - notas[b])[0];
+      return { idBanco: e.id, nome: e.nome, como: e.como, dose: e.dose, porque: g ? 'Trabalha ' + g.toLowerCase() + ' (nota ' + notas[g] + ' na última avaliação).' : '' };
+    }),
+    atencao: plano.alemDoPlano ? 'O plano de ' + nome + ' já terminou: está na hora da reavaliação.' : fraco && fraco.corrigir ? fraco.golpe + ': ' + fraco.corrigir : ''
+  };
+}
+
+const SISTEMA_TREINO = [
+  'Você monta o treino da semana de um aluno do professor de tênis Paulo Santana (PS Tennis Team, Belo Horizonte).',
+  'Quem lê é o próprio Paulo, no celular, na quadra. Fale com ele ("você") e chame o aluno pelo primeiro nome. Português do Brasil, frases curtas e práticas, como anotação de treinador.',
+  'O método do Paulo organiza as semanas por tema (situação de jogo): o tema da semana é o mesmo para todos os alunos e só muda a complexidade, conforme o nível. Os cinco pilares (técnica, movimentação, efeitos, tática e mentalidade) aparecem em toda semana.',
+  'Regras:',
+  '- Os exercícios precisam servir ao tema da semana e ao plano de treino do aluno ao mesmo tempo: escolha os que trabalham o tema usando os golpes e os pontos que o plano e a avaliação pedem.',
+  '- Parta do banco de exercícios do nível do aluno. Use pelo menos 2 exercícios do banco, informando o id em idBanco. Você pode adaptar um exercício do banco (dose, simplificação, foco no golpe do plano), mantendo o id. Pode criar no máximo 1 exercício novo, quando o plano pedir algo que o banco não cobre; nesse caso, idBanco fica vazio.',
+  '- Ajuste à idade e ao nível: para crianças, formato de desafio ou jogo; para principiantes, bola lançada na mão e mini quadra.',
+  '- Se o objetivo do aluno for específico (por exemplo, preparação para torneios), o tema fica como pano de fundo e o plano individual tem prioridade.',
+  '- Se o plano do aluno já passou da última semana, avise em "atencao" que está na hora da reavaliação.',
+  '- Evite repetir os exercícios das últimas semanas, se houver alternativa no banco.',
+  '- 3 ou 4 exercícios para uma aula de 1 hora, na ordem da aula: técnica, situação de jogo e pontos. Doses realistas (séries e repetições ou tempo).',
+  '- Não invente fatos sobre o aluno que não estejam nos dados.',
+  '- Nunca use travessão (—) nem meia-risca (–) como pontuação. Use vírgula, dois-pontos ou ponto. Não use emojis.'
+].join('\n');
+
+function contextoTreino(x) {
+  const d = x.diag, a = d.aluno || {}, c = d.classe || {}, t = x.tema, L = [];
+  const v = s => (s === undefined || s === null || s === '') ? 'não informado' : String(s);
+  L.push('ALUNO: ' + v(x.al.nome).split(' ')[0] + ' | Idade: ' + v(a.idade || x.al.idade) + ' | Objetivo: ' + v(a.objetivo) + ' | Experiência em jogo: ' + v(a.experiencia));
+  L.push('Classe atual: ' + v(c.confirmada || c.sugerida) + ' | Nível: ' + x.nivel + (x.nivel !== x.nivelBanco ? ' (use a base de ' + x.nivelBanco + ' do banco, simplificada)' : ''));
+  L.push('Mão: ' + v(a.mao) + ' | Backhand: ' + v(a.backhand));
+  L.push('');
+  L.push('ÚLTIMA AVALIAÇÃO (' + v(a.data) + ', ' + (d.tipo === 'reavaliacao' ? 'reavaliação' : 'aula experimental') + ')');
+  L.push('Notas (1 a 10): ' + (d.notas || []).map(n => n.golpe + ' ' + n.nota).join(', '));
+  L.push('Pontos a melhorar: ' + (d.melhorar || []).join(' | '));
+  (d.golpes || []).forEach(g => L.push('- ' + g.golpe + ': ' + v(g.vi) + ' Como corrigir: ' + v(g.corrigir)));
+  if (d.saque && d.saque.prioridade) L.push('Prioridade do saque: ' + d.saque.prioridade);
+  L.push('');
+  L.push('PLANO DE TREINO: ' + v(d.planoTitulo));
+  (d.plano || []).forEach(f => L.push('- ' + f.semanas + ' · ' + f.titulo + ': ' + (f.itens || []).map(i => i.foco + ' (' + i.exercicio + ')').join('; ')));
+  L.push(x.plano.semana ? 'O aluno está na semana ' + x.plano.semana + ' do plano' + (x.plano.fase ? ', fase "' + x.plano.fase.titulo + '"' : '') + '.' + (x.plano.alemDoPlano ? ' O plano já terminou: está na hora da reavaliação.' : '') : 'Não deu para saber em que semana do plano o aluno está.');
+  L.push('');
+  L.push('TEMA DA SEMANA ' + t.n + ': ' + v(t.titulo) + ' (' + v(t.subtitulo) + '). Pergunta da semana: ' + v(t.pergunta));
+  Object.keys(t.pilares || {}).forEach(k => L.push('- ' + k + ': ' + t.pilares[k]));
+  if (t.nota) L.push('Nota do tema: ' + t.nota);
+  L.push('');
+  L.push('BANCO DE EXERCÍCIOS DO TEMA, NÍVEL ' + x.nivelBanco.toUpperCase() + ' (os mais indicados para este aluno, do mais para o menos indicado). Objetivo do nível: ' + v(x.doNivel.objetivo));
+  (x.doNivel.exercicios || []).forEach(e => L.push('- [' + e.id + '] ' + e.nome + ': ' + e.como + ' Dose: ' + e.dose + '. Golpes: ' + (e.golpes || []).join(', ')));
+  if (x.anteriores.length) {
+    L.push('');
+    L.push('EXERCÍCIOS DAS ÚLTIMAS SEMANAS: ' + x.anteriores.map(p => p.exercicios.map(e => e.nome).join(', ')).join(' | '));
+  }
+  return L.join('\n');
+}
+
+const ESQUEMA_TREINO = {
+  type: 'object',
+  properties: {
+    foco: { type: 'string', description: '1 a 2 frases para o Paulo: como o tema da semana encontra o plano deste aluno e o que buscar nesta aula.' },
+    exercicios: {
+      type: 'array', description: '3 ou 4 exercícios, na ordem da aula.',
+      items: {
+        type: 'object',
+        properties: {
+          idBanco: { type: 'string', description: 'O id do exercício no banco (ex.: t1-ini-2), ou vazio se for um exercício novo.' },
+          nome: { type: 'string', description: 'Nome curto do exercício.' },
+          como: { type: 'string', description: 'Como fazer, 1 a 2 frases, já ajustado ao aluno.' },
+          dose: { type: 'string', description: 'Séries e repetições ou tempo.' },
+          porque: { type: 'string', description: '1 frase ligando o exercício ao plano ou a um ponto a melhorar do aluno.' }
+        },
+        required: ['idBanco', 'nome', 'como', 'dose', 'porque']
+      }
+    },
+    atencao: { type: 'string', description: '1 frase: o detalhe técnico para observar e corrigir nesta semana, ou o aviso de reavaliação.' }
+  },
+  required: ['foco', 'exercicios', 'atencao']
+};
+
+function escreverTreino(x) {
+  const r = chamarAnthropic({
+    model: prop('MODELO_TREINO') || CFG.MODELO_TREINO_PADRAO, max_tokens: 1800, system: SISTEMA_TREINO, thinking: { type: 'between_tools' },
+    output_config: { effort: 'low', format: { type: 'json_schema', schema: esquemaFechado(ESQUEMA_TREINO) } },
+    messages: [{ role: 'user', content: contextoTreino(x) + '\n\nMonte o treino da semana deste aluno, no formato JSON pedido.' }]
+  });
+  console.log('Claude · treino da semana · tokens de saída: ' + ((r.usage || {}).output_tokens || 0));
+  return lerJson(r);
+}
+
+/* =====================================================================
    ARMAZENAMENTO NO DRIVE
    ===================================================================== */
 function pastaRaiz() {
@@ -771,7 +1032,8 @@ function avLeve(av) {
 }
 const paraPagina = al => ({
   id: al.id, nome: al.nome, idade: al.idade, whatsapp: al.whatsapp, local: al.local, classe: al.classe,
-  aulas: al.aulas.map(a => ({ id: a.id, tipo: a.tipo, data: a.data, docUrl: a.docUrl, pdfUrl: a.pdfUrl || '', diag: a.diag, av: a.av }))
+  aulas: al.aulas.map(a => ({ id: a.id, tipo: a.tipo, data: a.data, docUrl: a.docUrl, pdfUrl: a.pdfUrl || '', diag: a.diag, av: a.av })),
+  treinos: al.treinos || []
 });
 
 /* =====================================================================
